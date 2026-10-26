@@ -1,0 +1,3389 @@
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Pinyon+Script&family=Sacramento&family=Satisfy&display=swap" rel="stylesheet">
+<!-- SHM_TA_ENGINE=word-docx-v3 -->
+
+<div class="page-shell tenant-agreement-shell">
+  <style>
+    .tenant-agreement-shell .progress-tabs.tenant-agreement-tabs{
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;
+    }
+    .tenant-agreement-shell .progress-tabs.tenant-agreement-tabs .tab{
+      text-align:center;font-size:13px;font-weight:700;letter-spacing:.02em;
+    }
+    .tenant-agreement-shell .ta-section-block{
+      margin-top:22px;padding-top:18px;border-top:1px solid #e8eef5;
+    }
+    .tenant-agreement-shell .ta-section-block:first-of-type{margin-top:8px;padding-top:0;border-top:0;}
+    .tenant-agreement-shell .ta-rules-scroll{
+      max-height:min(70vh,720px);overflow-y:auto;overflow-x:hidden;
+      border:1px solid #e2e8f0;border-radius:14px;background:#fff;padding:14px 14px 18px;
+      scrollbar-width:thin;scrollbar-color:#94a3b8 #eef2f7;
+    }
+    .tenant-agreement-shell .ta-rules-scroll::-webkit-scrollbar{width:8px;}
+    .tenant-agreement-shell .ta-rules-scroll::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:999px;}
+    .tenant-agreement-shell .ta-rules-scroll::-webkit-scrollbar-track{background:#eef2f7;border-radius:999px;}
+    .tenant-agreement-shell .ta-terms-block{
+      margin-top:22px;padding-top:18px;border-top:1px solid #f0e2d5;
+    }
+    .tenant-agreement-shell .ta-terms-block:first-child{
+      margin-top:0;padding-top:0;border-top:0;
+    }
+    .tenant-agreement-shell .ta-terms-toolbar{
+      display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px;align-items:center;
+    }
+    .tenant-agreement-shell .ta-rules-list{display:flex;flex-direction:column;gap:10px;}
+    .tenant-agreement-shell .ta-rule-card{
+      border:1px solid #dbe4f0;border-radius:12px;padding:12px 14px;background:#f8fafc;
+      display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:start;
+    }
+    .tenant-agreement-shell .ta-rule-card.ta-rule-off{opacity:.55;background:#fff;}
+    .tenant-agreement-shell .ta-rule-card.ta-rule-view{
+      grid-template-columns:1fr;background:#fff;
+    }
+    .tenant-agreement-shell .ta-rule-card textarea{
+      width:100%;min-height:64px;border:1.5px solid #d6deea;border-radius:9px;padding:10px 12px;
+      font:inherit;font-size:13.5px;line-height:1.45;resize:vertical;box-sizing:border-box;background:#fff;
+    }
+    .tenant-agreement-shell .ta-rule-card textarea[readonly]{background:#f8fafc;border-color:#e2e8f0;color:#1e293b;resize:none;}
+    .tenant-agreement-shell .ta-rule-num{font-size:12px;font-weight:800;color:#64748b;margin-top:2px;margin-bottom:6px;}
+    .tenant-agreement-shell .ta-rule-actions{display:flex;flex-direction:column;gap:6px;}
+    .tenant-agreement-shell .ta-rule-actions .sig-btn{white-space:nowrap;}
+    .tenant-agreement-shell .ta-empty-terms{
+      padding:18px 14px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fafc;
+      color:#64748b;font-size:13.5px;text-align:center;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-rules-toolbar,
+    .tenant-agreement-shell.ta-recipient-mode .ta-terms-toolbar,
+    .tenant-agreement-shell.ta-recipient-mode #taRulesCreatorHint,
+    .tenant-agreement-shell.ta-recipient-mode #taTermsCreatorHint,
+    .tenant-agreement-shell.ta-recipient-mode #taCoreCreatorHint,
+    .tenant-agreement-shell.ta-recipient-mode #taTermsToolbar{display:none !important;}
+    .tenant-agreement-shell.ta-recipient-mode .ta-rule-actions{display:none !important;}
+    .tenant-agreement-shell.ta-recipient-mode #panel-0 input,
+    .tenant-agreement-shell.ta-recipient-mode #panel-0 textarea,
+    .tenant-agreement-shell.ta-recipient-mode #panel-1 input[type=checkbox]{pointer-events:none;}
+    .tenant-agreement-shell.ta-recipient-mode #panel-0 input,
+    .tenant-agreement-shell.ta-recipient-mode #panel-0 textarea{
+      background:#f8fafc;border-color:#e2e8f0;color:#1e293b;
+    }
+
+    .tenant-agreement-shell .ta-doc-header-sr{
+      position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+      clip:rect(0,0,0,0);white-space:nowrap;border:0;
+    }
+    .tenant-agreement-shell .ta-form-shell{
+      max-width:920px;margin:0 auto;background:#fff;border-radius:18px;
+      box-shadow:0 18px 48px rgba(15,23,42,.08);overflow:hidden;
+      border:1px solid rgba(15,23,42,.06);
+    }
+    .tenant-agreement-shell .ta-top-bar{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:22px 28px 18px;border-bottom:1px solid #e5e7eb;background:#fff;
+    }
+    .tenant-agreement-shell .ta-step-indicator{
+      flex-shrink:0;font-size:13px;font-weight:500;color:#6b7280;
+    }
+    .tenant-agreement-shell .ta-wizard-hero{margin:0 0 18px;}
+    .tenant-agreement-shell .ta-wizard-title{
+      margin:0 0 8px;font-size:clamp(1.65rem,3vw,2.05rem);font-weight:700;
+      letter-spacing:-.03em;color:#1a1a1a;line-height:1.15;
+    }
+    .tenant-agreement-shell .ta-wizard-kicker{
+      font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+      color:#d1541d;font-style:normal;opacity:1;
+    }
+    .tenant-agreement-shell:not(.ta-recipient-mode) .part-header{display:none;}
+    .tenant-agreement-shell #panel-0 > .body-text{
+      margin:0 0 20px;padding:14px 16px;border-radius:12px;font-size:14px;line-height:1.55;
+      color:#4b5563;background:#feefe6;border:1px solid #f3ddd2;
+    }
+    .tenant-agreement-shell .sub-header{
+      font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      color:#d1541d;margin:0 0 12px;
+    }
+    .tenant-agreement-shell .sec-num{
+      background:#d1541d !important;color:#fff !important;
+      width:26px;height:26px;font-size:12px;border-radius:999px;
+    }
+    .tenant-agreement-shell #panel-0 .ta-section-block:first-of-type .g2{
+      grid-template-columns:1fr;
+    }
+    .tenant-agreement-shell #panel-0 .info-box{
+      background:#f3f4f6;border-color:#e5e7eb;color:#374151;
+      border-radius:12px;padding:14px 16px 14px 42px;position:relative;
+    }
+    .tenant-agreement-shell #panel-0 .info-box::before{
+      content:"";position:absolute;left:14px;top:16px;width:16px;height:16px;
+      background:center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'/%3E%3C/svg%3E");
+    }
+    /* Creator: warm SHM form (Figma-aligned) */
+    .tenant-agreement-shell.ta-creator-mode{
+      --shm-orange:#d1541d;
+      --shm-orange-dark:#bc4b1a;
+      --shm-soft:#f3f4f6;
+      --shm-line:#e5e7eb;
+    }
+    .tenant-agreement-shell.ta-creator-mode .ta-section-block{
+      border-top-color:var(--shm-line);
+    }
+    .tenant-agreement-shell.ta-creator-mode .ta-rules-scroll{
+      border-color:var(--shm-line);background:#fff;
+      scrollbar-color:#94a3b8 #f1f5f9;
+    }
+    .tenant-agreement-shell.ta-creator-mode .ta-rules-scroll::-webkit-scrollbar-thumb{background:#94a3b8;}
+    .tenant-agreement-shell.ta-creator-mode .ta-rules-scroll::-webkit-scrollbar-track{background:#f1f5f9;}
+    .tenant-agreement-shell.ta-creator-mode .ta-rule-card{
+      border-color:var(--shm-line);background:#f8fafc;
+    }
+    .tenant-agreement-shell.ta-creator-mode .ta-rule-card.ta-rule-off{background:#fff;}
+    .tenant-agreement-shell.ta-creator-mode .ta-rule-card textarea{
+      border-color:#e2e8f0;
+    }
+    .tenant-agreement-shell.ta-creator-mode .ta-rule-card textarea[readonly]{
+      background:#f8fafc;border-color:var(--shm-line);
+    }
+    .tenant-agreement-shell.ta-creator-mode .ta-rule-num{color:#64748b;}
+    .tenant-agreement-shell.ta-creator-mode .ta-empty-terms{
+      border-color:#e2e8f0;background:#f8fafc;color:#64748b;
+    }
+    .tenant-agreement-shell.ta-creator-mode .ta-rule-card input[type=checkbox]{
+      accent-color:var(--shm-orange);
+    }
+    .tenant-agreement-shell .ta-rent-includes-box{
+      display:flex;flex-wrap:wrap;gap:14px 22px;margin-top:8px;padding:12px 14px;
+      border:1.5px solid #e2e8f0;border-radius:10px;background:#f8fafc;
+    }
+    .tenant-agreement-shell .ta-rent-includes-box label{
+      display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;
+    }
+    .tenant-agreement-shell .ta-rent-includes-box input[type=checkbox]{width:17px;height:17px;accent-color:#d1541d;}
+    .tenant-agreement-shell .ta-header-logo-wrap{
+      flex-shrink:0;display:flex;align-items:center;justify-content:center;
+      padding:0;background:transparent;border:0;box-shadow:none;
+    }
+    .tenant-agreement-shell .ta-header-logo{display:block;height:44px;width:auto;max-width:168px;object-fit:contain;}
+    .tenant-agreement-shell #panel-0 .g2{
+      grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:18px;align-items:start;
+    }
+    .tenant-agreement-shell #panel-0 .field-wrap{margin-bottom:0;}
+    .tenant-agreement-shell #panel-0 .ta-details-full{margin-bottom:18px;}
+    .tenant-agreement-shell #panel-0 .ta-lease-period-block .ta-details-full{margin-bottom:22px;}
+    .tenant-agreement-shell #panel-0 .ta-lease-period-block .g2{margin-top:6px;margin-bottom:0;}
+    .tenant-agreement-shell .ta-sign-party-field{margin:0 0 10px;}
+    .tenant-agreement-shell .ta-sign-party-field input{min-height:44px;width:100%;box-sizing:border-box;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:14px;}
+    .tenant-agreement-shell .ta-sign-party-field input[readonly]{background:#f8fafc;color:#475569;}
+    .tenant-agreement-shell .ta-extra-signer-row{
+      display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:end;
+      margin-bottom:10px;padding:10px 12px;border:1px solid #e2e8f0;border-radius:10px;background:#f8fafc;
+    }
+    .tenant-agreement-shell .ta-extra-signer-row label{font-size:11px;font-weight:700;color:#64748b;display:block;margin-bottom:4px;}
+    .tenant-agreement-shell .ta-email-preview-block{margin-bottom:16px;}
+    .tenant-agreement-shell .ta-email-preview-block iframe{width:100%;min-height:160px;border:1px solid var(--border);border-radius:8px;background:#fff;display:block;}
+    .tenant-agreement-shell #taSigningEmailBody,
+    .tenant-agreement-shell #taSigningEmailProviderBody{
+      width:100%;margin:6px 0 12px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;
+      font-size:13px;line-height:1.45;min-height:120px;resize:vertical;box-sizing:border-box;font-family:inherit;
+    }
+    .tenant-agreement-shell .ta-sign-step-layout{display:flex;flex-direction:column;gap:20px;}
+    .tenant-agreement-shell .ta-sign-step-section{
+      border:1px solid #e5e7eb;border-radius:14px;padding:16px 18px 18px;background:#fff;
+    }
+    .tenant-agreement-shell .ta-sign-step-section .sec-header{margin-bottom:14px;}
+    .tenant-agreement-shell .ta-pm-sign-row{
+      display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start;
+    }
+    .tenant-agreement-shell .ta-pm-sig-frame{
+      min-height:88px;border:1.5px dashed #d1d5db;border-radius:10px;padding:10px 12px;background:#fafafa;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .tenant-agreement-shell .ta-pm-sig-frame .sig-preview-holder{width:100%;}
+    .tenant-agreement-shell .ta-sign-step-section .sig-confirmed{margin-top:10px;}
+    .tenant-agreement-shell .ta-email-previews-grid{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;
+    }
+    .tenant-agreement-shell .ta-email-preview-head{
+      display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;flex-wrap:wrap;
+    }
+    .tenant-agreement-shell .ta-email-edit-link{
+      border:0;background:none;padding:0;font-size:12px;font-weight:600;color:#d1541d;cursor:pointer;text-decoration:underline;
+    }
+    .tenant-agreement-shell #taSigningEmailEditPanel{margin-top:14px;padding-top:14px;border-top:1px solid #e5e7eb;}
+    .tenant-agreement-shell.ta-creator-mode #panel-2 .sig-box{display:none !important;}
+    .tenant-agreement-shell.ta-recipient-mode #taSignStepLayout{display:none !important;}
+    @media (max-width:760px){
+      .tenant-agreement-shell .ta-pm-sign-row,
+      .tenant-agreement-shell .ta-email-previews-grid{grid-template-columns:1fr;}
+    }
+    .tenant-agreement-shell #panel-0 input:not([type=checkbox]):not([type=date]),
+    .tenant-agreement-shell #panel-0 input[type=date],
+    .tenant-agreement-shell #panel-0 textarea{
+      width:100%;min-height:48px;height:48px;padding:12px 14px;box-sizing:border-box;
+      border-radius:9px;border:1.5px solid #e2e8f0;font-size:14px;line-height:1.35;
+    }
+    .tenant-agreement-shell #panel-0 textarea#premises_address{resize:vertical;min-height:48px;}
+
+    /* Template editor: content only (no live signatures) */
+    .tenant-agreement-shell.ta-template-mode .signature-summary,
+    .tenant-agreement-shell.ta-template-mode .sig-box,
+    .tenant-agreement-shell.ta-template-mode #taTenantSubmitArea,
+    .tenant-agreement-shell.ta-template-mode #taSentInfo,
+    .tenant-agreement-shell.ta-template-mode #taCompletedInfo{display:none !important;}
+    .tenant-agreement-shell.ta-template-mode #taAdminSubmitArea{display:block !important;}
+
+    /* Recipient: single professional document + signing flow */
+    .tenant-agreement-shell #taDocumentView{display:none;}
+    .tenant-agreement-shell.ta-recipient-mode .ta-top-bar,
+    .tenant-agreement-shell.ta-recipient-mode .ta-wizard-hero,
+    .tenant-agreement-shell.ta-recipient-mode .progress-tabs,
+    .tenant-agreement-shell.ta-recipient-mode .nav-row,
+    .tenant-agreement-shell.ta-recipient-mode #panel-0,
+    .tenant-agreement-shell.ta-recipient-mode #panel-1{display:none !important;}
+    .tenant-agreement-shell.ta-recipient-mode .ta-step-indicator{display:none;}
+    .tenant-agreement-shell.ta-recipient-mode #taDocumentView{display:block;}
+    .tenant-agreement-shell.ta-recipient-mode .main-card{
+      max-width:none;margin:0;background:transparent;border:0;border-radius:0;
+      box-shadow:none;overflow:visible;padding:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode #panel-2{
+      display:block !important;
+      max-width:none;margin:0;
+      background:#fff;border:0;border-top:1px solid #e5e7eb;border-radius:0;
+      box-shadow:none;padding:24px 32px 32px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-form-shell{
+      max-width:960px;width:100%;margin:0 auto;
+      border-radius:18px;border:1px solid rgba(15,23,42,.06);
+      box-shadow:0 18px 48px rgba(15,23,42,.08);overflow:hidden;
+      background:#fff;
+    }
+    .tenant-agreement-shell.ta-recipient-mode.page-shell,
+    .tenant-agreement-shell.ta-recipient-mode #main-form{
+      max-width:none;width:100%;background:transparent;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .progress-tabs,
+    .tenant-agreement-shell.ta-recipient-mode .ta-progress-tabs,
+    .tenant-agreement-shell.ta-recipient-mode .tenant-agreement-tabs,
+    .tenant-agreement-shell:has(#panel-2.section-panel.active) .progress-tabs.tenant-agreement-tabs{
+      display:none !important;
+    }
+    .tenant-agreement-shell:not(.ta-recipient-mode) .ta-recipient-hero{display:none !important;}
+    .tenant-agreement-shell.ta-recipient-mode .ta-recipient-hero{
+      padding:22px 32px 8px;background:#fff;
+      border-bottom:1px solid #e5e7eb;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-recipient-hero-inner{
+      display:flex;align-items:center;gap:18px;text-align:left;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-recipient-hero .ta-brand-row{
+      flex-shrink:0;margin:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-recipient-hero-copy{
+      flex:1;min-width:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-body{
+      background:#fff;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-layout{
+      display:grid;grid-template-columns:minmax(0,1fr);gap:0;align-items:start;
+      max-width:none;width:100%;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance{
+      display:none !important;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-section,
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion{
+      margin:0 0 14px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-section-head.ta-signer-section-head-static,
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-section-ack > .ta-signer-section-head{
+      display:none !important;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-section:has(.ta-signer-section-head-static) .ta-signer-section-body,
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-section-ack .ta-signer-section-body{
+      border-top:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-section-head,
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-head{
+      display:flex;align-items:center;gap:10px;width:100%;padding:14px 16px;
+      border:0;background:#fff;text-align:left;cursor:default;font:inherit;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-head{cursor:pointer;}
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-head .ta-signer-section-glyph,
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-head .ta-signer-accordion-title{
+      position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+      clip:rect(0,0,0,0);white-space:nowrap;border:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-section-glyph{
+      width:28px;height:28px;border-radius:8px;background:#fff;border:1px solid #f3ddd2;
+      display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-section-title,
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-title{
+      font-size:15px;font-weight:700;color:#1a1a1a;flex:1;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-meta{
+      flex:1;text-align:left;font-size:15px;font-weight:700;color:#1a1a1a;margin-right:4px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-toggle{
+      width:28px;height:28px;border-radius:999px;border:1px solid #d1d5db;background:#fff;
+      color:#374151;display:inline-flex;align-items:center;justify-content:center;
+      font-size:18px;font-weight:700;line-height:1;flex-shrink:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion[data-open="true"] .ta-signer-accordion-toggle{
+      background:#d1541d;border-color:#d1541d;color:#fff;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-section-body,
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-body{
+      padding:16px 18px 18px;border-top:1px solid #f3f4f6;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance{
+      position:sticky;top:16px;border:1px solid #e5e7eb;border-radius:12px;
+      background:#fafafa;padding:16px 14px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance-title{
+      margin:0 0 10px;font-size:11px;font-weight:800;letter-spacing:.12em;
+      text-transform:uppercase;color:#6b7280;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance-list{
+      margin:0 0 18px;display:grid;gap:8px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance-list dt{
+      font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance-list dd{
+      margin:0 0 8px;font-size:13px;font-weight:600;color:#1a1a1a;line-height:1.35;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance-signers{
+      margin:0;padding:0;list-style:none;display:grid;gap:10px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance-signers li{
+      font-size:12px;color:#374151;line-height:1.4;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance-signers strong{display:block;color:#1a1a1a;}
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-clause-tools{
+      display:grid;grid-template-columns:1fr minmax(160px,200px);gap:10px;margin:0 0 14px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-search,
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-jump{
+      width:100%;box-sizing:border-box;border:1px solid #d1d5db;border-radius:10px;
+      padding:10px 12px;font-size:13px;background:#fff;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-term.ta-doc-term-highlight{
+      outline:2px solid #d1541d;outline-offset:4px;border-radius:8px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode #panel-2{
+      border-top:1px solid #e5e7eb;margin-top:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode #panel-2::before{
+      content:"Sign Agreement";display:block;padding:18px 32px 0;
+      font-size:15px;font-weight:700;color:#1a1a1a;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .sr-only{
+      position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+      clip:rect(0,0,0,0);white-space:nowrap;border:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-recipient-hero .ta-doc-kicker{
+      margin:0 0 6px;font-size:12.5px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:#d1541d;font-style:normal;opacity:1;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-recipient-hero .ta-doc-title{
+      margin:0 0 4px;font-size:clamp(1.65rem,3vw,2.05rem);font-weight:700;
+      letter-spacing:-.03em;color:#1a1a1a;line-height:1.15;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-block{
+      margin-top:28px;padding-top:4px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-block-head{
+      display:flex;align-items:center;gap:10px;margin:0 0 16px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-sec-num{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:26px;height:26px;border-radius:999px;background:#d1541d;color:#fff;
+      font-size:12px;font-weight:800;flex-shrink:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-block-title{
+      font-size:16px;font-weight:700;color:#1a1a1a;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-panel{
+      background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-panel h4{
+      margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;color:#6b7280;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-p.ta-doc-rent-lead{
+      font-size:clamp(1.25rem,2.5vw,1.65rem);font-weight:800;color:#d1541d;
+      line-height:1.25;margin:12px 0 14px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-core-block-fields .ta-doc-field{
+      background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;margin:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-core-block-fields .ta-doc-clause{
+      font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      color:#6b7280;margin:0 0 10px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-signer-main .ta-doc-clause{
+      display:none;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-co-row{
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;
+      padding:10px 0;border-top:1px solid #e5e7eb;margin-top:10px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-co-row:first-of-type{border-top:0;margin-top:8px;}
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-status-pill{
+      display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;
+      font-style:normal;background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-status-pill.signed{
+      background:#ecfdf5;color:#047857;border-color:#a7f3d0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-terms-split{
+      display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr);gap:16px;
+      align-items:start;margin-top:8px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-terms-split.ta-doc-terms-split-empty{
+      grid-template-columns:1fr;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-terms-split.ta-doc-terms-split-empty .ta-doc-terms-nav{
+      display:none;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-terms-nav{
+      position:sticky;top:12px;max-height:min(70vh,520px);overflow:auto;
+      border:1px solid #e5e7eb;border-radius:12px;background:#fafafa;padding:10px 8px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-terms-nav-label{
+      font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+      color:#9ca3af;padding:4px 8px 8px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-terms-nav-item{
+      display:block;width:100%;text-align:left;border:0;background:transparent;
+      padding:8px 10px;border-radius:8px;font-size:12px;line-height:1.35;color:#374151;
+      cursor:pointer;font-family:inherit;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-terms-nav-item:hover{background:#f3f4f6;}
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-terms-nav-item.active{
+      background:#feefe6;color:#d1541d;font-weight:700;
+      box-shadow:inset 3px 0 0 #d1541d;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-terms-main{
+      border:1px solid #e5e7eb;border-radius:12px;background:#fff;padding:16px 18px;
+      max-height:min(70vh,520px);overflow:auto;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-term{
+      margin:0 0 18px;padding-bottom:18px;border-bottom:1px solid #f3f4f6;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-term:last-child{
+      margin-bottom:0;padding-bottom:0;border-bottom:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-term-title{
+      font-size:15px;font-weight:700;color:#1a1a1a;margin:0 0 8px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-sec{
+      margin:22px 0 10px;font-size:14px;font-weight:700;color:#1a1a1a;
+      padding-bottom:0;border-bottom:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-ack{
+      margin-top:0;padding-top:0;border-top:0;font-weight:400;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-ack-box{
+      border-radius:12px;border:1px solid #e5e7eb;padding:16px 18px;background:#fff;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-footer{
+      margin-top:0;border-top:1px solid #e5e7eb;padding:16px 32px;border-radius:4px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode #panel-2 .part-header{display:none;}
+    .tenant-agreement-shell.ta-recipient-mode #taTenantSubmitArea .btn-submit{
+      background:#bc4b1a;border-color:#bc4b1a;border-radius:12px;
+      box-shadow:0 8px 20px rgba(168,67,24,.22);font-weight:700;padding:14px 28px;
+    }
+    @media (max-width:768px){
+      .tenant-agreement-shell.ta-recipient-mode .ta-signer-layout{grid-template-columns:1fr;}
+      .tenant-agreement-shell.ta-recipient-mode .ta-signer-clause-tools{grid-template-columns:1fr;}
+      .tenant-agreement-shell.ta-recipient-mode .ta-recipient-hero,
+      .tenant-agreement-shell.ta-recipient-mode .ta-doc-body,
+      .tenant-agreement-shell.ta-recipient-mode #panel-2{padding-left:16px;padding-right:16px;}
+    }
+    .tenant-agreement-shell.ta-recipient-mode #panel-2 .part-header{
+      margin-bottom:18px;padding-bottom:0;
+    }
+    .tenant-agreement-shell.ta-recipient-mode #panel-2 .part-label{display:none;}
+    .tenant-agreement-shell.ta-recipient-mode #panel-2 .part-title{
+      font-size:15px;font-weight:700;color:#0f172a;letter-spacing:.01em;
+    }
+    .ta-multi-tenant-panel{display:grid;gap:12px;margin-bottom:18px;}
+    .ta-multi-tenant-card{border:1px solid var(--border);border-radius:14px;padding:14px 16px;background:#fff;}
+    .ta-multi-tenant-card.active{border-color:#d1541d;box-shadow:0 0 0 1px rgba(192,78,26,.25);}
+    .ta-multi-tenant-card.signed{opacity:.92;background:#f8fafc;}
+    .ta-multi-tenant-card .ta-mt-email{font-size:13px;color:var(--muted);margin-top:4px;}
+    .ta-multi-tenant-card .ta-mt-role{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#64748b;margin-top:6px;}
+    .ta-multi-tenant-card .ta-mt-status{font-size:12px;font-weight:700;margin-top:8px;color:#64748b;}
+    .ta-multi-tenant-card.active .ta-mt-status{color:#bc4b1a;}
+    .ta-multi-tenant-card.signed .ta-mt-status{color:#059669;}
+    .ta-multi-tenant-card.locked .ta-mt-sig-slot{margin-top:10px;border:1px dashed #cbd5e1;border-radius:12px;padding:18px;text-align:center;color:#94a3b8;font-size:13px;background:#f8fafc;}
+    .ta-multi-tenant-card .ta-mt-sig-img{display:block;margin-top:10px;max-width:220px;max-height:72px;object-fit:contain;border:1px solid #e2e8f0;border-radius:8px;background:#fff;padding:6px;}
+    .ta-multi-renter-details{display:grid;gap:12px;}
+    .ta-multi-renter-detail-row{border:1px solid var(--border);border-radius:14px;padding:14px 16px;background:#f8fafc;}
+    .ta-multi-renter-detail-row .g2{margin-top:0;}
+    .ta-doc-co-renters{margin-top:12px;padding-top:10px;border-top:1px dashed #e2e8f0;}
+    .ta-doc-co-row{margin-top:10px;font-size:13px;}
+    .ta-doc-co-row img{display:block;margin-top:6px;max-width:180px;max-height:56px;object-fit:contain;}
+    .tenant-agreement-shell.ta-recipient-mode #panel-2 .part-divider{
+      background:#e2e8f0;margin-top:10px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .signature-summary{
+      display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:4px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .signature-summary .help-card{
+      background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;
+      font-size:13px;color:#475569;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .signature-summary .help-card strong{
+      display:block;margin-bottom:8px;font-size:12px;font-weight:700;color:#0f172a;
+      text-transform:uppercase;letter-spacing:.04em;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .sig-box{
+      margin-top:16px;background:#f8fafc;border:1px solid #e2e8f0;
+      border-radius:10px;padding:20px;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .sig-box .sub-header{
+      color:#0f172a;font-weight:700;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .signature-summary{display:none !important;}
+  .tenant-agreement-shell{
+      --shm-orange:#d1541d;
+      --shm-orange-dark:#bc4b1a;
+      --shm-ink:#1a1a1a;
+      --shm-muted:#6b7280;
+      --shm-line:#e5e7eb;
+      --shm-soft:#f3f4f6;
+      --shm-accent:#d1541d;
+    }
+    .tenant-agreement-shell .ta-doc-page{
+      background:#fff;border:0;border-radius:0;
+      box-shadow:none;padding:0 0 4px;color:var(--shm-ink);
+      font-family:Arial, "Segoe UI", Calibri, sans-serif;
+      font-size:13px;line-height:1.55;max-width:none;margin:0;
+      overflow:hidden;
+    }
+    .tenant-agreement-shell .ta-doc-brand-bar{
+      display:flex;align-items:center;justify-content:flex-end;gap:12px;
+      padding:14px 32px;margin:0;border-bottom:1px solid #e2e8f0;background:#fff;
+    }
+    .tenant-agreement-shell.ta-recipient-mode .ta-doc-brand-bar{display:none !important;}
+    .tenant-agreement-shell .ta-doc-body{padding:24px 32px 8px;}
+    .tenant-agreement-shell .ta-doc-title{
+      margin:2px 0 16px;font-size:18px;line-height:1.25;font-weight:700;
+      color:#0f172a;letter-spacing:.02em;
+    }
+    .tenant-agreement-shell .ta-doc-p{margin:0 0 10px;color:#334155;}
+    .tenant-agreement-shell .ta-doc-sec{
+      margin:20px 0 8px;font-size:13px;font-weight:700;color:#0f172a;
+      padding-bottom:5px;border-bottom:1px solid #e2e8f0;
+    }
+    .tenant-agreement-shell .ta-doc-clause{
+      margin:14px 0 6px;font-size:13px;font-weight:700;color:#000;
+    }
+    .tenant-agreement-shell .ta-doc-field{margin:3px 0;color:#334155;}
+    .tenant-agreement-shell .ta-doc-field strong{font-weight:700;color:#000;}
+    .tenant-agreement-shell .ta-doc-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 14px;
+    }
+    .tenant-agreement-shell .ta-doc-panel{
+      border:1px solid var(--shm-line);background:var(--shm-soft);border-radius:8px;
+      padding:12px 14px;margin:8px 0 14px;
+    }
+    .tenant-agreement-shell .ta-doc-panel h4{
+      margin:0 0 8px;font-size:11.5px;font-weight:700;color:#0f172a;
+      text-transform:uppercase;letter-spacing:.05em;
+    }
+    .tenant-agreement-shell .ta-doc-payment-details{
+      margin:14px 0 16px;background:#f9fafb;border:1px solid #e5e7eb;
+      border-radius:12px;padding:0;overflow:hidden;
+    }
+    .tenant-agreement-shell .ta-doc-payment-details-title{
+      margin:0;padding:14px 16px 10px;font-size:11px;font-weight:700;
+      letter-spacing:.12em;text-transform:uppercase;color:#6b7280;
+      border-bottom:1px solid #e5e7eb;
+    }
+    .tenant-agreement-shell .ta-doc-payment-row{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:12px 16px;border-bottom:1px solid #e5e7eb;font-size:14px;line-height:1.4;
+    }
+    .tenant-agreement-shell .ta-doc-payment-row:last-child{border-bottom:0;}
+    .tenant-agreement-shell .ta-doc-payment-label{
+      color:#6b7280;font-weight:400;flex-shrink:0;
+    }
+    .tenant-agreement-shell .ta-doc-payment-right{
+      display:flex;align-items:center;justify-content:flex-end;gap:10px;
+      flex:1;min-width:0;text-align:right;
+    }
+    .tenant-agreement-shell .ta-doc-payment-value{
+      font-weight:700;color:#1a1a1a;
+    }
+    .tenant-agreement-shell .ta-doc-payment-copy{
+      flex-shrink:0;border:1px solid #d1d5db;background:#fff;border-radius:8px;
+      padding:6px 12px;font-size:13px;font-weight:600;color:#374151;cursor:pointer;
+      font-family:inherit;line-height:1.2;
+    }
+    .tenant-agreement-shell .ta-doc-payment-copy:hover{background:#f3f4f6;}
+    @media (max-width:640px){
+      .tenant-agreement-shell .ta-doc-payment-row{
+        flex-direction:column;align-items:flex-start;
+      }
+      .tenant-agreement-shell .ta-doc-payment-right{
+        width:100%;justify-content:space-between;text-align:left;
+      }
+    }
+    .tenant-agreement-shell .ta-doc-list{margin:6px 0 10px;padding-left:18px;color:#334155;}
+    .tenant-agreement-shell .ta-doc-list li{margin:5px 0;}
+    .tenant-agreement-shell .ta-doc-terms .ta-doc-term{
+      margin:0 0 14px;font-size:13px;line-height:1.55;color:#1e293b;
+    }
+    .tenant-agreement-shell .ta-doc-terms .ta-doc-term-title{
+      margin:0 0 6px;font-size:13px;font-weight:700;color:#000;
+    }
+    .tenant-agreement-shell .ta-doc-terms .ta-doc-term-body{
+      margin:0;white-space:pre-wrap;font-size:12px;line-height:1.55;color:#334155;
+    }
+    .tenant-agreement-shell .ta-doc-core-block{margin:0 0 12px;}
+    .tenant-agreement-shell .ta-doc-ack{
+      margin-top:22px;padding-top:16px;border-top:1px solid var(--shm-line);
+      font-weight:600;color:#0f172a;font-size:13px;
+    }
+    .tenant-agreement-shell .ta-doc-ack-box{
+      display:flex;gap:10px;align-items:flex-start;margin-top:10px;
+      padding:14px 16px;border:1px solid var(--shm-line);border-radius:8px;background:#fff;
+      font-weight:400;color:#334155;
+    }
+    .tenant-agreement-shell .ta-doc-ack-box input{
+      width:18px;height:18px;margin-top:2px;accent-color:var(--shm-orange);flex-shrink:0;
+    }
+    .tenant-agreement-shell .ta-doc-footer{
+      margin-top:16px;padding:14px 32px 8px;border-top:1px solid #e2e8f0;
+      background:#f8fafc;
+    }
+    .tenant-agreement-shell .ta-doc-footer-brand{
+      padding:0;font-size:11px;color:var(--shm-muted);line-height:1.5;
+      text-align:left;
+    }
+    /* Creator wizard: orange branding (no recipient header banner) */
+    .tenant-agreement-shell:not(.ta-recipient-mode) .ta-wizard-brand{display:none !important;}
+    @media (max-width:720px){
+      .tenant-agreement-shell .ta-doc-body{padding:16px 16px 6px;}
+      .tenant-agreement-shell .ta-doc-footer{padding:12px 16px 6px;}
+      .tenant-agreement-shell .ta-doc-grid{grid-template-columns:1fr;}
+      .tenant-agreement-shell.ta-recipient-mode .main-card{border-radius:0;border-left:0;border-right:0;}
+      .tenant-agreement-shell.ta-recipient-mode #panel-2{padding:20px 16px 24px;}
+    }
+  </style>
+  <div id="main-form">
+    <div class="ta-form-shell">
+    <div class="ta-top-bar">
+      <div class="ta-brand-row" aria-label="ShareHouse Managers">
+        <div class="ta-header-logo-wrap">
+          <img class="ta-header-logo" src="/shm-logo.png" alt="ShareHouse Managers">
+        </div>
+      </div>
+      <div class="ta-step-indicator" id="taStepIndicator" aria-live="polite">Step 1 of 3</div>
+    </div>
+    <div class="ta-doc-header-sr">
+      <h1>Residential Co-Tenancy<br>Agreement</h1>
+      <div class="act-ref">Tenant Agreement · ShareHouseManagers</div>
+    </div>
+
+    <div class="progress-tabs tenant-agreement-tabs ta-progress-tabs">
+      <div class="tab active" onclick="goTo(0)">1 · Details</div>
+      <div class="tab" onclick="goTo(1)">2 · Terms</div>
+      <div class="tab" onclick="goTo(2)">3 · Sign</div>
+    </div>
+
+    <div class="main-card" id="agreementCapture">
+      <div class="ta-wizard-hero">
+        <h1 class="ta-wizard-title">Residential Co-Tenancy<br>Agreement</h1>
+        <div class="act-ref ta-wizard-kicker">Tenant Agreement · ShareHouseManagers</div>
+      </div>
+      <div id="taDocumentView" aria-label="Residential Co-Tenancy Agreement document">
+        <article class="ta-doc-page">
+          <div class="ta-doc-brand-bar">
+            <div class="ta-header-logo-wrap">
+              <img class="ta-header-logo" src="/shm-logo.png" alt="ShareHouse Managers">
+            </div>
+          </div>
+          <div class="ta-recipient-hero">
+            <div class="ta-recipient-hero-inner">
+              <div class="ta-brand-row">
+                <div class="ta-header-logo-wrap">
+                  <img class="ta-header-logo" src="/shm-logo.png" alt="ShareHouse Managers">
+                </div>
+              </div>
+              <div class="ta-recipient-hero-copy">
+                <div class="act-ref ta-doc-kicker">Tenancy Agreement · ShareHouseManagers</div>
+                <h1 class="ta-doc-title">Tenancy Agreement</h1>
+              </div>
+            </div>
+          </div>
+          <div class="ta-doc-body">
+            <div class="ta-signer-layout">
+              <div class="ta-signer-main">
+                <section class="ta-signer-section ta-signer-section-open">
+                  <div class="ta-signer-section-head ta-signer-section-head-static">
+                    <span class="ta-signer-section-glyph" aria-hidden="true">⌂</span>
+                    <span class="ta-signer-section-title">Tenant Agreement</span>
+                  </div>
+                  <div class="ta-signer-section-body">
+                    <p class="ta-doc-p">This agreement is made on <strong>Date</strong> <span id="taDocAgreementDate">—</span> Between</p>
+                    <div class="ta-doc-grid">
+                      <div class="ta-doc-panel">
+                        <h4>Residential Rental Provider (Rental Provider)</h4>
+                        <p class="ta-doc-field"><strong>Name:</strong> <span id="taDocProviderName">—</span></p>
+                      </div>
+                      <div class="ta-doc-panel">
+                        <h4>The Renters (Co-renter(s) or Sub-Renter)</h4>
+                        <p class="ta-doc-field"><strong>Name</strong> <span id="taDocTenantName">—</span></p>
+                        <p class="ta-doc-field"><strong>Email</strong> <span id="taDocTenantEmail">—</span></p>
+                        <div id="taDocCoRenters" class="ta-doc-co-renters" style="display:none"></div>
+                      </div>
+                    </div>
+                    <div class="ta-doc-sec">Property Management Company</div>
+                    <div class="ta-doc-panel">
+                      <p class="ta-doc-field"><strong>Company:</strong> sharehousemanagers.com.au Pty Ltd</p>
+                      <p class="ta-doc-field"><strong>Phone</strong> 03 8393 9396</p>
+                      <p class="ta-doc-field"><strong>Email</strong> info@sharehousemanagers.com.au</p>
+                      <p class="ta-doc-field"><strong>Address</strong> 27 Malcolm Court, Mt Waverley VIC 3149</p>
+                    </div>
+                    <div id="taDocCorePremises"></div>
+                  </div>
+                </section>
+
+                <section class="ta-signer-section ta-signer-section-open">
+                  <div class="ta-signer-section-head ta-signer-section-head-static">
+                    <span class="ta-signer-section-glyph" aria-hidden="true">$</span>
+                    <span class="ta-signer-section-title">Rent</span>
+                  </div>
+                  <div class="ta-signer-section-body">
+                    <div id="taDocCoreRent"></div>
+                  </div>
+                </section>
+
+                <section class="ta-signer-accordion" id="taSignerAccordionTerms" data-open="false">
+                  <button type="button" class="ta-signer-accordion-head" aria-expanded="false" aria-controls="taSignerTermsBody">
+                    <span class="ta-signer-section-glyph" aria-hidden="true">§</span>
+                    <span class="ta-signer-accordion-title">Terms</span>
+                    <span class="ta-signer-accordion-meta" id="taSignerTermsMeta"></span>
+                    <span class="ta-signer-accordion-toggle" aria-hidden="true">+</span>
+                  </button>
+                  <div class="ta-signer-accordion-body" id="taSignerTermsBody" hidden>
+                    <div id="taDocCoreTerms"></div>
+                  </div>
+                </section>
+
+                <section class="ta-signer-accordion" id="taSignerAccordionAdditional" data-open="false">
+                  <button type="button" class="ta-signer-accordion-head" aria-expanded="false" aria-controls="taSignerAdditionalBody">
+                    <span class="ta-signer-section-glyph" aria-hidden="true">¶</span>
+                    <span class="ta-signer-accordion-title">Additional terms</span>
+                    <span class="ta-signer-accordion-meta" id="taSignerAdditionalMeta"></span>
+                    <span class="ta-signer-accordion-toggle" aria-hidden="true">+</span>
+                  </button>
+                  <div class="ta-signer-accordion-body" id="taSignerAdditionalBody" hidden>
+                    <p class="ta-doc-p">Additional terms which do not take away the rights and duties included in the Residential Tenancies Act 1997 may be set out in this Section.</p>
+                    <div class="ta-signer-clause-tools" id="taSignerClauseTools">
+                      <input type="search" id="taClauseSearch" class="ta-signer-search" placeholder="Search clause…">
+                      <select id="taClauseJump" class="ta-signer-jump" aria-label="Jump to clause">
+                        <option value="">Jump to clause</option>
+                      </select>
+                    </div>
+                    <div class="ta-doc-terms" id="taDocAdditionalTerms"></div>
+                  </div>
+                </section>
+
+                <section class="ta-signer-accordion" id="taSignerAccordionRules" data-open="false">
+                  <button type="button" class="ta-signer-accordion-head" aria-expanded="false" aria-controls="taSignerRulesBody">
+                    <span class="ta-signer-section-glyph" aria-hidden="true">☰</span>
+                    <span class="ta-signer-accordion-title">Additional Share House Rules and Terms for Co-Tenancy Agreement</span>
+                    <span class="ta-signer-accordion-meta" id="taSignerRulesMeta"></span>
+                    <span class="ta-signer-accordion-toggle" aria-hidden="true">+</span>
+                  </button>
+                  <div class="ta-signer-accordion-body" id="taSignerRulesBody" hidden>
+                    <div class="ta-doc-terms" id="taDocShareHouseRules"></div>
+                  </div>
+                </section>
+
+                <section class="ta-signer-section ta-signer-section-ack">
+                  <div class="ta-signer-section-head ta-signer-section-head-static">
+                    <span class="ta-signer-section-glyph" aria-hidden="true">✓</span>
+                    <span class="ta-signer-section-title">Acknowledgement</span>
+                  </div>
+                  <div class="ta-signer-section-body">
+                    <div class="ta-doc-ack">
+                      <label class="ta-doc-ack-box" for="taAckCheckbox">
+                        <input type="checkbox" id="taAckCheckbox">
+                        <span>I hereby acknowledge that I have read and understood the above conditions.</span>
+                      </label>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="ta-signer-glance" id="taDocGlance" aria-label="Agreement at a glance">
+                <h3 class="ta-signer-glance-title">Agreement at a glance</h3>
+                <dl class="ta-signer-glance-list" id="taDocGlanceFacts"></dl>
+                <h3 class="ta-signer-glance-title">Signatories</h3>
+                <ul class="ta-signer-glance-signers" id="taDocGlanceSigners"></ul>
+              </aside>
+            </div>
+          </div>
+
+          <div class="ta-doc-footer">
+            <div class="ta-doc-footer-brand">
+              ShareHouseManagers.com.au (Pty Ltd) · ABN: 27 685 383 493 · Estate Agent Lic#0934L<br>
+              03 8393 9396 · 24 Muir St, Hawthorn VIC 3122 · info@sharehousemanagers.com.au
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="section-panel active" id="panel-0">
+        <div class="part-header"><span class="part-label">Step 1</span><span class="part-title">Agreement Details</span><div class="part-divider"></div></div>
+        <p class="body-text">Complete the agreement, parties, rent, and lease period before reviewing terms and signing.</p>
+
+        <div class="ta-section-block">
+          <div class="sub-header">Agreement</div>
+          <div class="g2">
+            <div class="field-wrap"><label class="field-label">Agreement Date</label><input type="date" id="agreement_date" value=""></div>
+            <div class="field-wrap"><label class="field-label">Premises Address</label><textarea id="premises_address" rows="1" placeholder="Property / room address"></textarea></div>
+          </div>
+        </div>
+
+        <div class="ta-section-block">
+          <div class="sub-header">Parties</div>
+          <div class="sec-header"><span class="sec-num">1</span><span class="sec-title">Residential Rental Provider</span></div>
+          <div class="g2">
+            <div class="field-wrap"><label class="field-label">Rental Provider Name</label><input id="provider_name" value="" placeholder="Residential rental provider name"></div>
+            <div class="field-wrap"><label class="field-label">Rental Provider Email</label><input type="email" id="provider_email" value="" placeholder="provider@example.com"></div>
+          </div>
+
+          <div class="sec-header"><span class="sec-num">2</span><span class="sec-title">Property Management Company</span></div>
+          <div class="info-box" style="margin-bottom:16px">
+            <strong>Fixed for every agreement</strong>
+            Company: sharehousemanagers.com.au Pty Ltd<br>
+            Phone: 03 8393 9396<br>
+            Email: info@sharehousemanagers.com.au<br>
+            Address: 27 Malcolm Court, Mt Waverley VIC 3149
+          </div>
+
+          <div class="sec-header"><span class="sec-num">3</span><span class="sec-title">The Renters</span></div>
+          <div id="taSingleRenterFields" class="g2">
+            <div class="field-wrap"><label class="field-label">Renter Name</label><input id="tenant_name_field" value=""></div>
+            <div class="field-wrap"><label class="field-label">Renter Email</label><input type="email" id="tenant_email_field" value=""></div>
+          </div>
+          <div id="taMultiRenterFields" class="ta-multi-renter-details" style="display:none" aria-live="polite"></div>
+        </div>
+
+        <div class="ta-section-block">
+          <div class="sub-header">Rent &amp; Bond</div>
+          <div class="g2">
+            <div class="field-wrap"><label class="field-label">Weekly Rent ($)</label><input id="weekly_rent" value="" inputmode="decimal"></div>
+            <div class="field-wrap"><label class="field-label">Calendar Monthly Rent ($)</label><input id="monthly_rent" value="" inputmode="decimal"></div>
+          </div>
+          <div class="g2">
+            <div class="field-wrap"><label class="field-label">Bond Amount ($)</label><input id="bond_amount" value="" inputmode="decimal"></div>
+            <div class="field-wrap"><label class="field-label">Date Bond Payment Due</label><input type="date" id="bond_payment_due" value=""></div>
+          </div>
+          <div class="field-wrap ta-rent-includes">
+            <label class="field-label">Rent includes:</label>
+            <div class="ta-rent-includes-box">
+              <label><input type="checkbox" id="rent_include_gas" checked> Gas</label>
+              <label><input type="checkbox" id="rent_include_water" checked> Water</label>
+              <label><input type="checkbox" id="rent_include_electricity" checked> Electricity</label>
+              <label><input type="checkbox" id="rent_include_internet" checked> Internet</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="ta-section-block ta-lease-period-block">
+          <div class="sub-header">Lease Period</div>
+          <div class="field-wrap ta-details-full"><label class="field-label">Fixed Term or Periodic Lease Period</label><input id="lease_period" value="" placeholder="e.g. 3 months"></div>
+          <div class="g2 ta-lease-period-dates">
+            <div class="field-wrap"><label class="field-label">Commencement Date</label><input type="date" id="commencement_date" value=""></div>
+            <div class="field-wrap"><label class="field-label">Terminate Date</label><input type="date" id="terminate_date" value=""></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-panel" id="panel-1">
+        <div class="part-header"><span class="part-label">Step 2</span><span class="part-title">Terms &amp; House Rules</span><div class="part-divider"></div></div>
+
+        <div class="info-box" id="taTermsCreatorHint" style="margin-bottom:12px">
+          Tick items to include them in the signed Word document. Edit headings and text as needed. Keep placeholders like [[PREMISES_ADDRESS]] so filled values still appear.
+        </div>
+        <div class="ta-terms-toolbar" id="taTermsToolbar">
+          <button type="button" class="sig-btn" onclick="taSelectAllTermsTab(true)">Select all</button>
+          <button type="button" class="sig-btn" onclick="taSelectAllTermsTab(false)">Clear selection</button>
+          <button type="button" class="sig-btn" onclick="taAddCoreSection()" style="border-color:#d1541d;color:#d1541d">+ Add section</button>
+          <button type="button" class="sig-btn" onclick="taAddAdditionalTerm()" style="border-color:#d1541d;color:#d1541d">+ Add clause</button>
+          <button type="button" class="sig-btn" onclick="taAddShareHouseRule()" style="border-color:#d1541d;color:#d1541d">+ Add rule</button>
+        </div>
+
+        <div class="ta-rules-scroll" id="taTermsUnifiedScroll">
+          <div class="ta-terms-block">
+            <div class="sub-header">Core sections (Premises–10)</div>
+            <div id="taCoreSectionsList" class="ta-rules-list"></div>
+            <input type="hidden" id="core_sections_json" value="">
+          </div>
+
+          <div class="ta-terms-block">
+            <div class="sub-header">Additional Terms</div>
+            <div id="taAdditionalTermsList" class="ta-rules-list"></div>
+            <input type="hidden" id="additional_terms_json" value="">
+          </div>
+
+          <div class="ta-terms-block">
+            <div class="sub-header">Additional Share House Rules</div>
+            <div id="taShareHouseRulesList" class="ta-rules-list"></div>
+            <input type="hidden" id="share_house_rules_json" value="">
+          </div>
+        </div>
+      </div>
+
+      <div class="section-panel" id="panel-2">
+        <div class="part-header"><span class="part-label">Step 3</span><span class="part-title">Signature</span><div class="part-divider"></div></div>
+
+        <div id="taSignStepLayout" class="ta-sign-step-layout" style="display:none">
+          <div class="ta-sign-step-section ta-sign-step-section-pm">
+            <div class="sec-header"><span class="sec-num">1</span><span class="sec-title">ShareHouse Managers (prepare only)</span></div>
+            <p style="margin:0 0 12px;font-size:13px;line-height:1.55;color:var(--muted)">Your property manager prepares this agreement. <strong>No ShareHouse Managers signature is required</strong> — only the tenant and landlord sign (sections 2 and 3).</p>
+            <div class="field-wrap ta-sign-party-field" id="taCreatorSignNameWrap">
+              <label class="field-label">Prepared by</label>
+              <input type="text" id="ta_creator_sign_name" value="Ishaq M" placeholder="Ishaq M" autocomplete="name" readonly tabindex="-1" aria-readonly="true">
+            </div>
+          </div>
+
+          <div class="ta-sign-step-section">
+            <div class="sec-header"><span class="sec-num">2</span><span class="sec-title">Tenant / Renter</span></div>
+            <div class="g2">
+              <div class="field-wrap ta-sign-party-field">
+                <label class="field-label">Tenant name</label>
+                <input type="text" id="ta_tenant_sign_display_name" readonly tabindex="-1" aria-readonly="true">
+              </div>
+              <div class="field-wrap ta-sign-party-field">
+                <label class="field-label">Tenant email</label>
+                <input type="email" id="ta_tenant_sign_display_email" readonly tabindex="-1" aria-readonly="true">
+              </div>
+            </div>
+          </div>
+
+          <div class="ta-sign-step-section" id="taSigningPartiesPanel">
+            <div class="sec-header"><span class="sec-num">3</span><span class="sec-title">Landlord / Rental provider</span></div>
+            <div class="g2">
+              <div class="field-wrap ta-sign-party-field"><label class="field-label">Landlord name</label><input type="text" id="ta_landlord_sign_name" autocomplete="organization"></div>
+              <div class="field-wrap ta-sign-party-field"><label class="field-label">Landlord email</label><input type="email" id="ta_landlord_sign_email" autocomplete="email"></div>
+            </div>
+          </div>
+
+          <div class="ta-sign-step-section" id="taExtraSignersWrap">
+            <div class="sec-header" style="margin-bottom:10px">
+              <span class="sec-num">4</span><span class="sec-title">Additional signers &amp; CC</span>
+              <button type="button" class="sig-btn" onclick="taAddExtraSigner()" style="float:right;margin-top:-4px;border-color:#d1541d;color:#d1541d">+ Add signer</button>
+            </div>
+            <div id="taExtraSignersList"></div>
+          </div>
+
+          <div class="ta-sign-step-section" id="taSigningEmailPanel">
+            <div class="sec-header">
+              <span class="sec-num">5</span><span class="sec-title">Email preview</span>
+              <button type="button" class="ta-email-edit-link" style="float:right;margin-top:2px" onclick="taToggleSigningEmailEditors()">✏ Click text to edit</button>
+            </div>
+            <div id="taAllEmailPreviews" class="ta-email-previews-grid"></div>
+            <div id="taSigningEmailEditPanel" style="display:none">
+              <p style="margin:0 0 10px;font-size:13px;color:var(--muted)">Edit subjects and message text. Each recipient gets their own link.</p>
+              <label style="font-size:12px;font-weight:700">Subject (tenants)</label>
+              <input type="text" id="taSigningEmailSubject" style="width:100%;margin:6px 0 12px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;min-height:48px;box-sizing:border-box">
+              <label style="font-size:12px;font-weight:700">Email body (tenants)</label>
+              <textarea id="taSigningEmailBody" rows="5" placeholder="Message shown in tenant signing emails"></textarea>
+              <label style="font-size:12px;font-weight:700;margin-top:8px;display:block">Subject (rental provider)</label>
+              <input type="text" id="taSigningEmailProviderSubject" style="width:100%;margin:6px 0 12px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;min-height:48px;box-sizing:border-box">
+              <label style="font-size:12px;font-weight:700">Email body (rental provider)</label>
+              <textarea id="taSigningEmailProviderBody" rows="5" placeholder="Message shown in rental provider signing email"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="g2 signature-summary" id="taSignatureSummary" style="display:none">
+          <div class="help-card"><strong>Admin / Property Manager</strong><div class="sig-preview-holder"></div></div>
+          <div class="help-card"><strong>Tenant / Renter</strong><div class="sig-preview-holder"></div></div>
+        </div>
+
+        <div class="sig-box">
+          <div class="sub-header" id="taSignatureRoleLabel">Signature</div>
+          <div class="sig-tabs">
+            <button class="sig-tab active" onclick="switchTaSigTab('draw',this)" type="button">✏️ Draw</button>
+            <button class="sig-tab" onclick="switchTaSigTab('type',this)" type="button">Aa Type</button>
+            <button class="sig-tab" onclick="switchTaSigTab('upload',this)" type="button">⬆ Upload</button>
+          </div>
+          <div class="sig-panel active" id="ta-sig-panel-draw">
+            <div class="sig-canvas-wrap"><canvas id="taSigCanvas" width="760" height="180"></canvas></div>
+            <div class="sig-actions"><button class="sig-btn danger" type="button" onclick="clearTaSignature()">Clear</button><button class="sig-btn" type="button" onclick="confirmTaSignature()">Use this signature</button></div>
+          </div>
+          <div class="sig-panel" id="ta-sig-panel-type">
+            <input type="text" id="sigTypeInput" placeholder="Type your full legal name…" oninput="updateTaTypeSig()" style="font-size:15px">
+            <div class="sig-font-picker" id="fontPicker">
+              <span class="font-pill active" onclick="setTaFont('Dancing Script',this)" style="font-family:'Dancing Script',cursive">Cursive</span>
+              <span class="font-pill" onclick="setTaFont('Pinyon Script',this)" style="font-family:'Pinyon Script',cursive">Elegant</span>
+              <span class="font-pill" onclick="setTaFont('Sacramento',this)" style="font-family:'Sacramento',cursive">Script</span>
+              <span class="font-pill" onclick="setTaFont('Satisfy',this)" style="font-family:'Satisfy',cursive">Flowing</span>
+            </div>
+            <div class="sig-type-preview"><span id="sigTypePreview" style="font-family:'Dancing Script',cursive"></span></div>
+            <div class="sig-actions"><button class="sig-btn" type="button" onclick="confirmTaTypeSig()">Use this signature</button></div>
+          </div>
+          <div class="sig-panel" id="ta-sig-panel-upload">
+            <div class="sig-upload-zone" id="uploadZone">
+              <input type="file" id="sigFileInput" accept="image/*" onchange="handleTaSigUpload(event)">
+              <div class="upload-icon">🖼️</div>
+              <strong style="font-size:13.5px;color:var(--text)">Click or drag to upload</strong>
+              <p>PNG, JPG or GIF · Signature image</p>
+            </div>
+            <div class="sig-upload-preview" id="uploadPreview">
+              <img id="uploadPreviewImg" src="" alt="Signature preview">
+              <div class="sig-actions" style="justify-content:center;margin-top:0.5rem"><button class="sig-btn danger" type="button" onclick="clearTaUpload()">Remove</button><button class="sig-btn" type="button" onclick="confirmTaUploadSig()">Use this signature</button></div>
+            </div>
+          </div>
+          <div class="auto-sign-note">Draw, type, or upload your signature, then click the submit button below. The signature is captured automatically.</div>
+          <input type="hidden" id="ta_signature_data">
+          <div id="taSigConfirmed" class="sig-confirmed" style="display:none;">Signature captured.</div>
+        </div>
+
+          <div class="submit-area" id="taAdminSubmitArea">
+            <button class="sig-btn" type="button" id="taSaveDraftBtn" onclick="saveTenantAgreementDraft()">Save draft</button>
+            <button class="btn-submit" type="button" id="taAdminSubmitBtn" onclick="adminSendTenantAgreement()">Send</button>
+          </div>
+
+          <div class="info-box" id="taTemplateSaveHint" style="display:none;margin-bottom:12px">
+            <strong>Template mode</strong>
+            Choose which clauses to keep, edit the wording, then save. No signature is needed — this content can be reused for many tenants.
+          </div>
+        
+          <div class="info-box" id="taSentInfo"><strong>Sent to tenant</strong>The tenant signing link has been created. Tenant status will update after they sign.</div>
+        
+          <div class="submit-area" id="taTenantSubmitArea"><button class="btn-submit" type="button" onclick="tenantSignAgreement()">Send</button></div>
+        
+          <div class="info-box" id="taCompletedInfo"><strong>Completed / Processing</strong>The document has been signed and is being saved to Google Drive.</div>
+        
+
+        <div id="taStatus" class="status-msg"></div>
+        <div id="taLog" class="log-box" style="display:none;"></div>
+      </div>
+
+      <div class="nav-row"><button class="btn-nav prev" type="button" onclick="prevPanel()">Back</button><button class="btn-nav next" id="taNextBtn" type="button" onclick="nextPanel()">Next</button></div>
+    </div>
+    </div>
+  </div>
+
+  <div id="ok-view" class="success-view"><div class="success-icon">✓</div><h2 id="ok_h">Agreement signed</h2><p>Thank you. Your agreement has been submitted successfully.</p></div>
+</div>
+
+<script>
+let currentPanel = 0;
+const TA_DEFAULT_CORE_SECTIONS = [
+  {
+    title: "Premises",
+    body: "Address [[PREMISES_ADDRESS]]"
+  },
+  {
+    title: "Rent",
+    body: "The rent amount is:\n$[[MONTHLY_RENT]] Per Calendar Month ($[[WEEKLY_RENT]]/week)\nThis rent includes [[RENT_INCLUDES]].\nThe first rent payment due:\nPay period: 1st day of each month.\nRent will be paid in advance every month. We do not accept weekly or fortnightly payments.\n\nAccount Name sharehousemanagers.com.au Pty Ltd\nBSB 083-004\nAccount Number 263-685-777\nBank NAB (National Australia Bank)"
+  },
+  {
+    title: "3. Bond",
+    body: "The Renter must pay the bond amount specified below.\nBond amount $[[BOND_AMOUNT]]\nDate bond payment due: [[BOND_PAYMENT_DUE]]"
+  },
+  {
+    title: "4. Period",
+    body: "Fixed Term or Periodic Lease Period: [[LEASE_PERIOD]]\nThe period of the agreement commences on: [[COMMENCEMENT_DATE]]\nand continue unless the agreement terminates on [[TERMINATE_DATE]] in accordance with the Residential Tenancies Act 1997, the agreement will continue as a periodic tenancy by Month to Month stay with 01-month notice before moving out of the property"
+  },
+  {
+    title: "4A. Consent to electronic service",
+    body: "Express Consent\nThe Renter consents to the electronic service of notices and other documents in accordance with the requirements of the Electronic Transactions (Victoria) Act 2000 at this email address:\nEmail [[TENANT_EMAIL]]\nThe Rental Provider consents to the electronic service of notices and other documents in accordance with the requirements of the Electronic Transactions (Victoria) Act 2000.\n\n(2) Inferred Consent\nIf the Renter or the Rental Provider (as the case may be) has not consented to electronic service under subclause (1), the Renter or the Renter Provider must not infer consent to electronic service merely from the receipt or response to emails or other electronic communications.\n\n(3) Change of Electronic Address\nThe Renter or the Rental Provider must immediately give notice in writing to the other party if the email address for electronic service under subclause (1) changes.\n\n(4) Withdrawal of Consent\n• The Renter or the Rental Provider may withdraw their consent under subclause (1) to electronic service of notices and other documents only by giving notice in writing to the other party.\n• Following the giving of notice under paragraph (a), no further notices or other documents are to be served by electronic communication."
+  },
+  {
+    title: "5. Condition of the premises",
+    body: "The Rental Provider must:\n• ensure that the premises are maintained in good repair, and\n• If the Rental Provider owns or controls the common areas, take reasonable steps to ensure that the common areas are maintained in good repair"
+  },
+  {
+    title: "6. Damage to the premises",
+    body: "• The Renter must ensure that care is taken to avoid damaging the rented premises.\n• The Renter must take reasonable care to avoid damaging any common areas.\n• The Renter who becomes aware of damage to the rented premises must give notice to the Rental Provider of any damage to the premises as soon as practicable."
+  },
+  {
+    title: "7. Cleanliness of the premises",
+    body: "• The Rental Provider must ensure that the premises are in a reasonably clean condition on the day on which it is agreed that the Renter is to enter into the occupation of the premises.\n• The Renter must keep the premises in a reasonably clean condition during the period of agreement."
+  },
+  {
+    title: "8. Use of premises",
+    body: "• The Renter must not use or allow the premises to be used for any illegal purpose\n• The Renter must not use or allow the premises to be used in such a manner as to cause a nuisance or cause an interference with the reasonable peace, comfort or privacy of any occupier of neighbouring premises."
+  },
+  {
+    title: "Quiet enjoyment",
+    body: "The Rental Provider must take all reasonable steps to ensure that the Renter has quiet enjoyment of the premises."
+  },
+  {
+    title: "10. Assignment or sub-letting",
+    body: "The Renter must not assign or sub-let the room or any part of the room without the written consent of the Rental Provider."
+  },
+  {
+    title: "Residential Tenancies Act 1997",
+    body: "• Each party must comply with the Residential Tenancies Act 1997\n• For further rights and duties refer to the Residential Tenancies Act 1997"
+  }
+];
+const TA_DEFAULT_ADDITIONAL_TERMS = [
+  "11. Water consumption & utilities Rental Provider will pay charges in respect of the re-connection and consumption of water, gas, electricity and the Internet.",
+  "12. Condition report The Renter acknowledges that the Condition Report provided by Email at the commencement of the tenancy must be acknowledged or signed and returned to the Rental Provider within 5 business days after entering into the occupation of the premises. If the Condition Report is not returned, the copy held by the Rental Provider will be accepted as conclusive evidence of the state of repair or general condition of the rented premises, as at the commencement of this tenancy.",
+  "13. Insurance The Renter shall not do or allow anything to be done which would invalidate any insurance policy on the premises or increase the premium and the Renter shall pay the Rental Provider all increased premiums and all other expenses incurred as a consequence of any breach of this term. The Renter agrees to pay the Rental Provider any excess amount charged or any additional premium charged by the Rental Provider’s Insurance Company [to the extent the Rental Provider elects to have this insurance in place and use it for the Renter responsible damage] as a result of any damage that has been caused by the Renter, or by anyone on the premises with the consent of the Renter that is covered under the insurance policy.",
+  "14. Tenant's contents insurance The Rental Provider is not responsible to ensure the Renters’ possessions. The Rental Provider’s insurance policy covers only the building plus any fixtures and fittings. With the ever-increasing incidence of burglary and theft, it is strongly recommended that the Renter take out Content’s Insurance cover. The Rental Provider accepts no responsibility for stolen, misplaced or damaged personal belongings kept inside or outside the rented premises. This includes but is not limited to items stored in vehicles in common car parking areas.",
+  "15. Indemnity The Renter shall indemnify the Rental Provider for any loss or damage caused by failure to ensure that care is taken to avoid damaging the rented premises by the Renter or anyone on the premises with the consent of the Renter. Without limiting the generality of the foregoing, the Renter shall indemnify the Rental Provider for the cost of repairs to plumbing blockages caused by the negligence or misuse of the Renter. The Renter shall indemnify the Rental Provider against all liability in respect of injury or damage to any third person or third party property arising from any conduct, act or omission by the Renter or the Renter’s servants, agents and/or invitees.",
+  "16. Reporting defects & Liability The Renter shall notify the Rental Provider immediately upon becoming aware of any defects in the premises or any other matter which may give rise to a liability pursuant to the Occupiers Liability Act 1983.",
+  "17. Use of Premises The Renter shall not use the premises for any purpose other than for residential purposes without the written consent of the Rental Provider.",
+  "18. Sub-letting The Renter must not grant a license or part via AirBnB or third party with the occupation of the premises, or a part of the premises to provide accommodation for a fee or other benefit, without, in each instance, obtaining the Rental Provider’s prior written consent which, if given, may be subject to reasonable conditions.",
+  "19. Alterations to Property The Renter shall not paint or affix any sign or any antenna onto the premises or affix any nail, screw, fastening or adhesive to the interior of the premises without the prior written consent of the Rental Provider. Adhesive tape and blu tak are forbidden at all times.",
+  "20. Light globes to be replaced by Tenant The Renter shall at the Renter’s expense replace all light tubes and globes to the premises which become defective during the term of the tenancy unless the defect is proven to be caused by faulty wiring.",
+  "21. Pets The Renter shall not keep any animal, bird or pet in the premises without the written consent of the Rental Provider.",
+  "22. Rubbish The Renter must store all rubbish and waste in appropriate receptacles with close-fitting lids. Rubbish and/or waste receptacles must be kept in the place specifically provided for this purpose (if any). The Renter must have rubbish and waste regularly removed in accordance with the municipality’s rubbish and waste removal timetables.",
+  "23. Hanging clothes The Renter shall not hang any clothes outside the premises other than where provision for the hanging of clothes has been provided.",
+  "24. Kerosene & oil heaters not permitted The Renter shall not keep or use in the premises any portable kerosene heaters, oil-burning heaters or heaters of a similar kind.",
+  "25. Mechanical repairs not to be carried out The Renter agrees not to carry out any mechanical repairs or spray painting on any motor vehicles, boats or motorcycle in or around the property including common property. The Renter also agrees to be fully responsible for the removal of any motorcycle, car or boat spare parts or bodies or any other equipment used and to fully reinstate the premises or the land or common property on which it is situated to their original condition forthwith.",
+  "26. Repairs All NON URGENT maintenance requests must be submitted in writing either by SMS or email to the Rental Provider. Please note that all reasonable steps must be taken to notify the Rental Provider of any URGENT repairs during business hours by contacting your Property Manager directly on mobile.",
+  "27. Smoke alarms 1. The smoke alarms in the property will be checked annually by a professional smoke alarm company appointed by the Rental Provider unless otherwise stated. 2. Renter should not tamper with the smoke alarm as otherwise, this will invalidate the latest service 3. Renter must however check that the smoke alarm is operating and they can do this by pressing the button on the smoke alarm for at least 10 seconds and ensuring it beeps. This should be done weekly. 4. Renter must immediately notify the Rental Provider of any smoke alarm that does not sound and confirm this advice to the Rental Provider in writing on the same day. 5. If the Renter removes the battery or the alarm or any way damages the alarm, they will be held liable and required to pay for the cost of reinstatement.",
+  "28. Locks & keys The Rental Provider acknowledges the Renter’s right to change the locks at the rental property providing a duplicate key is given to the Rental Provider. The Renter acknowledges that whilst all due care and attention has been taken, the Rental Provider cannot guarantee that all keys to the property were returned by previous occupants. To ensure total security, it is our recommendation that the barrels in all locks be replaced. The Rental Provider is not legally obligated to hold or provide a spare key.",
+  "29. Blockages caused by misuse The Renter shall hereby pay the cost of clearing any pipe, drain, toilet or sewage blockages belonging to the premises caused by misuse by the Renter or their visitors.",
+  "30. Cheques If you wish to pay by cheque you may do so by banking a cheque directly at the bank and ensuring it clears by the rent due date. Please do not post to the Rental Provider. The Renter hereby agrees that should any rent cheque be presented again or ‘refer to drawer’, the tenant shall within 24 hours pay the rental amount in full by bank cheque or cash and will reimburse the bank charge.",
+  "31. Receipts If you require a receipt for your rent payment please email rental provider and a computer ledger will be emailed to you.",
+  "32. Change of Renters during the tenancy & subletting The Renter acknowledges that the persons named on this Tenancy Agreement are those who will occupy the premises during the term of this Agreement, and that any change in those occupying the premises must be immediately reported to the Rental Provider in writing. A prospective Renter must not move into the property without first completing and submitting an application to the Renter to be approved by the Rental provider. In the event that a Renter or Renters vacate/s during the course of the tenancy and irrespective of whether or not another (new) Renter is found in their place, an administration cost will be charged and is payable to the agent by the tenant/s",
+  "33. Lease break - Breach of Fixed-term In the event that the Renter needs to vacate the premises prior to the expiry of this Agreement [and prior to the Diplomatic Clause coming into effect], the Renter agrees to immediately advise the Rental Provider in writing and pay the re-letting costs as follows: 1. pro rata leasing fee (regardless of who found the Renter) 2. all rental payable up to the commencement of any new tenancy or up to the expiry date of the current lease, whichever comes first. Rent must continue to be paid one month in advance as per this lease agreement. 3. any advertising incurred",
+  "34. Rent increase In accordance with the provisions of Section 44 of the Residential Tenancies Act 1997, the Rental Provider may from time to time and at any time, other than within the terms specified in the Schedule as the fixed term, increase the rent by giving the Renter at least 60 days’ notice of the increase",
+  "35. 'For Lease' & 'For Sale' boards & Access to Property The Renter shall allow the Rental provider to put on the premises a notice or notices ‘For Lease’ during the last month of the term of this Agreement. The Renter shall also allow the Rental Provider to put on the premises a notice or notices ‘For Sale’ or ‘Auction’ at any time during the term of this Agreement and permit access to the premises by the Rental Provider to present the property to prospective purchasers or Renters upon 24 hours’ notice or by Agreement with the Renter and the Rental Providers.",
+  "36. Owners Corporation Rules [where applicable] The Renter agrees to observe and be bound by the Articles of Association of the Service Company or the Rules of the Owners Corporation (formerly Body Corporate) as the case may be, in so far as they relate to or affect the use, occupation and enjoyment of the premises and the common property provided that the Renter shall not be required to contribute costs of a capital nature or which would, except for the provision, be payable by the Rental Provider. The Standard Rules of the Subdivision (Owners Corporation) Regulation, if not amended, apply to all Owners Corporations. The Renter shall not do or allow to be done anything that will cause the shared service facilities to become obstructed, untidy, damaged or used for any purpose other than for which they are intended.",
+  "37. Amendments by Agreement & In writing This Agreement may be amended only by an Agreement in writing signed by the Rental Provider and the Renter.",
+  "38. Renter wishes to vacate If the Renter wishes to vacate the premises at the expiration of this Agreement the Renter shall give the Rental Provider written notice of the Renter’s intention to vacate 28 days prior to the expiration of this Agreement. Notice given by email will be accepted but not by SMS.",
+  "39. Renter intends to leave when the lease ends If the Renter remains in occupation of the premises after the expiration of this Agreement and does not enter into a new fixed-term Agreement the Renter must give written notice of the Renter’s intention to vacate the premises specifying a termination date that is not earlier than 28 days after the day on which the Renter gives notice.",
+  "40. Return of keys The Renter must return all keys, security swipes/fobs and remote controls to the Rental Provider when the Renter vacates the premises. The Renter’s obligation to pay rent continues until such time that all the keys, security swipes/fobs are returned.",
+  "41. Renter must not use bond as last month's rent payment The Renter acknowledges that pursuant to Section 428 of the Residential Tenancies Act 1997, the Renter shall not refuse to pay rent on the grounds that the Renter intends to regard as rent paid by the Renter, the bond or any part of the bond paid in respect of the premises. The Renter acknowledges that failure to abide by this section of the Act renders the Renter liable to a penalty of $1000.",
+  "42. Bond lodgement & Bond refund The Renter acknowledges that the bond paid under this Tenancy Agreement has been deposited in accordance with the requirements of the Residential Tenancies Act 1997 with the Centralised Bond Authority. The Renter acknowledges having been advised that the refund of the bond at the end of the tenancy can only be achieved by signing and lodging a Bond Claim form with the Centralized Bond Authority or electronically through the RTBA.",
+  "43. Fixed-term tenancy notice The Renter acknowledges the right of the Rental Provider under the Residential Tenancies Act 1997 to issue a notice that will terminate the tenancy at the end of this fixed-term Agreement.",
+  "44. General & Miscellaneous The Renter shall comply with any Act, Regulation, Rule, or direction of any Government, semi Government, or statutory body. The Renter acknowledges that the Rental Provider has made no promises, representations, warranties, or undertakings regarding the suitability of the premises for the Renters’ purposes or regarding the furnishings, fittings, or appurtenances of the premises other than as provided herein. No consent or waiver of any breach by the Renter or the Renters’ obligations under the Residential Tenancies Act 1997 shall prevent the Rental Provider from subsequently enforcing any of the provisions of this Agreement.",
+];
+const TA_DEFAULT_SHARE_HOUSE_RULES = [
+  "This is a shared house (not a rooming house), and all Tenants will sign a residential co-tenancy agreement, under which all house residents will be on the same lease.",
+  "It's a 100% self-managed house by residents, and everyone living on the property is equally responsible for taking care of and using the property by following rules at home. Everyone is responsible for house safety, cleanliness, shared areas, household maintenance, each other's behavior, and neighbor's comfort. If anything happens at the house, all house residents will be responsible morally and legally as per the shared house agreement. Each resident should communicate with each other as a house team to solve any issues at the house and improve the house.",
+  "Monthly rent will be paid in advance from the move-in day.",
+  "Bond is not considered the first month's rent.",
+  "The bond will be refunded at the end of the tenancy after cleaning the room and moving out, and it will not be considered last month's rent.",
+  "There is a difference between 4 weeks and calendar month rent; please use this link to calculate calendar monthly rent https://www.consumer.vic.gov.au/housing/renting/rent-bond-bills-and-condition-reports/rent/rent-calculator",
+  "After acknowledging/signing this document, a one-month advance notice period will apply to cancel the agreement.",
+  "A 01-month notice will be given before moving out of the house, even with or without a fixed-term agreement.",
+  "Friends are always welcome to visit if they do not disturb other residents.",
+  "Friends' overnight stays are only allowed with the property manager's permission.",
+  "Family/Partner/Friend overnight stay will cost $25/night or $100/week.",
+  "Bills for water, gas, electricity and internet are included in the rent.",
+  "The house is entirely self-managed (100%) by co-residents, so residents divide weekly duties to clean and organize all the shared areas, work areas, waste and recycling bins, bathrooms and toilets, kitchens, living, laundry, and dining areas.",
+  "Weekly cleaning Rosters: Residents will do weekly duties according to the schedule and house weekly duties checklist sheet. Residents will clean all shared areas and take photos of cleaned places to share on the WhatsApp house group. If residents fail to do weekly duties, external cleaners will be hired for weekly cleaning, and the responsible weekly duty resident will pay the service charge.",
+  "Deep Cleaning: If residents do not keep the shared areas clean, they are responsible for organizing a professional deep cleaning, and the cost will be shared equally among all tenants.",
+  "Grass Mowing: Residents will organize grass mowing of the Nature strip, Backyard, and front yard.",
+  "Sticky hooks, Nails, Pictures with blue tack, Glue, Stickers, etc., are not allowed on the walls. Any damage/change to property (paint, etc.), colors, holes, or marks on walls or carpet will be repaired, and the responsible resident will be charged.",
+  "The resident understands that the following items (where installed) are part of the property rented, and any repair needed on these items due to misuse, etc., will be at the resident's own expense: (a) Gas/Electric hot plates (b) Air conditioner (c) Gas/Electric ovens (d) Rangehood/Exhaust fan (e) Washing machine (f) Fridge (g) Vacuum cleaner (h) Microwave (i) Toaster (j) bathroom or kitchen sink or water drainage blockage because of usage of un-dissolved tissue papers or any breakage of taps/tiles/etc. If any resident accepts fault and is willing to bear repair costs, they will pay any repair cost caused by their misuse, or all residents can mention who was responsible for misuse/damage. If no one accepts responsibility and house residents do not nominate someone collectively, all house residents will pay equally for repairing misused damage.",
+  "Residents will replace light globes in their rooms.",
+  "The room will be open for inspection for new tenants during one month's move-out notice period. The resident will be given 48 hours prior notice.",
+  "Room inspections by the management to check the room's condition will be conducted with seven days' prior notice, and photos will be taken for record.",
+  "All residents will strictly follow all rules for the Bathroom/Toilet, Kitchen, Living/Dining, Washing Machine, or Common areas.",
+  "There will be no loud sounds after 10 p.m. The resident will use the Kitchen or Bathroom with minimum noise after 10 p.m.",
+  "Loud music outside the room or house and disturbing neighbors are not allowed.",
+  "All rubbish belonging to residents in a room, house, and garage should be removed from the property before leaving. Debris will not be left outside or in place rubbish bins (overflow); otherwise, a removal job fee of $200 will be charged to the resident.",
+  "Before moving out, the resident will clean his/her room and all the places he/she uses, like the fridge, kitchen cabinet, store, bathroom, etc. A cleaning fee of $200 will be charged if the resident leaves the property without cleaning any sites.",
+  "Suppose the Resident leaves the room before the agreed period of stay or without prior one-month notice. In that case, the resident will be responsible for paying advertisement charges ($500) and room payments until the end of the agreement or the new tenant's move-in.",
+  "Suppose a resident is involved in any criminal activity or brings any friends who might be involved in any illegal activity or demanded by police or put the life of house residents at risk. In that case, the tenancy agreement will be canceled, and 24 hours' notice will be given to vacate the room. You will be responsible for paying the advertisement fee and rent until the room is rented out.",
+  "Residents are prohibited from using abusive language, rude and harsh comments, impolite or immoral words, or discrimination because of ethnicity, language, color, country, gender, occupation, etc.",
+  "No smoking inside the house. Residents will smoke only outside of the house and will clean the cigarette butts.",
+  "If the resident does not pay his room rent in advance and delays rent payment for more than seven days, this agreement will be terminated, a notice to leave the room will be issued, and the resident will vacate the space as per the notice period.",
+  "Tenants agree if Local Government Law forbids them to put locks on the doors, tenants will respect the law.",
+  "Tenants agree that if Local Government Law requires any rule or regulation regarding co-tenancy shared accommodation, tenants will respect and follow it.",
+  "Residents will follow these instructions for any repair work: Residents will inform management about any repair work with pictures; Management will organize a technician for the repair; Management will inform residents 24 hours before the technician's visit; During repair work, residents will be there to attend to technicians; Residents will confirm with pictures whether work has been done correctly or not. If anything is broken because of residents' negligence, and the house landlord does not agree to pay for the repair, the repair cost will be shared as described in the misuse/damage clause."
+];
+let taShareHouseRules = TA_DEFAULT_SHARE_HOUSE_RULES.map(function(text){ return { text: text, selected: true }; });
+let taAdditionalTerms = (typeof TA_DEFAULT_ADDITIONAL_TERMS !== 'undefined' ? TA_DEFAULT_ADDITIONAL_TERMS : []).map(function(text){
+  const raw=String(text||'');
+  const match=raw.match(/^(\d+[A-Za-z]?\.?\s+.+?)(?=\s+(?:The |Rental |Renter |If |All |With |Please |Without |In accordance|This Agreement|Notice |Adhesive |Ownership |Friends |Monthly |Bond |There |After |A \d|Bills |It's |Sticky |Residents |Room |Deep |Grass |Weekly |No |Loud |Suppose |Tenants |Before |Family |1\. ))([\s\S]*)$/);
+  if(match) return { title:match[1].trim(), body:match[2].trim(), text:raw, selected:true };
+  return { title:'', body:raw, text:raw, selected:true };
+});
+let taCoreSections = TA_DEFAULT_CORE_SECTIONS.map(function(sec){ return { title: sec.title, body: sec.body, selected: true }; });
+let taExtraSigners = [];
+var TA_DEFAULT_AGENT_SIG_URL = '/shm-plugin-assets/images/pma-default-agent-signature.png';
+function syncTaNavButtons(){
+  const nextBtn=document.getElementById('taNextBtn');
+  if(nextBtn) nextBtn.style.display = currentPanel >= 2 ? 'none' : '';
+}
+function goTo(i){
+  const panels=document.querySelectorAll('.section-panel');
+  const tabs=document.querySelectorAll('.tenant-agreement-tabs .tab');
+  if(!panels[i]) return;
+  panels.forEach(p=>p.classList.remove('active'));
+  tabs.forEach(t=>t.classList.remove('active'));
+  panels[i].classList.add('active');
+  if(tabs[i]) tabs[i].classList.add('active');
+  currentPanel=i;
+  const stepEl=document.getElementById('taStepIndicator');
+  if(stepEl) stepEl.textContent='Step '+(i+1)+' of 3';
+  syncTaNavButtons();
+  if(i===1) taRefreshTermsFromDetails();
+  if(i===2 && taIsCreator()) {
+    taSyncSignTabPartyFields();
+  }
+}
+function nextPanel(){ if(currentPanel>=2) return; goTo(Math.min(currentPanel+1,2)); }
+function prevPanel(){ goTo(Math.max(currentPanel-1,0)); }
+syncTaNavButtons();
+function val(id){ const el=document.getElementById(id); return el ? el.value.trim() : ''; }
+function setStatus(msg, err=false){ const s=document.getElementById('taStatus'); s.textContent=msg; s.className='status-msg' + (err ? ' err' : ''); }
+function log(msg){ const l=document.getElementById('taLog'); l.style.display='block'; l.innerHTML += '<div>✓ '+msg+'</div>'; }
+function taEscapeHtml(value){
+  return String(value||'')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+function taIsCreator(){ return currentTaSignerType() === 'creator' || !!(window.SHM_TEMPLATE_MODE || (window.SHM_DOCUMENT_CONTEXT||{}).templateMode); }
+/** Landlord fields: never treat workspace admin / SHM defaults as rental provider prefill. */
+function taLandlordPrefillFromSaved(saved, ctx){
+  ctx=ctx||window.SHM_DOCUMENT_CONTEXT||{};
+  const adminName=String(ctx.adminName||'').trim();
+  const adminEmail=String(ctx.adminEmail||'').trim().toLowerCase();
+  let name=String(saved&&saved.provider_name!=null?saved.provider_name:'').trim();
+  let email=String(saved&&saved.provider_email!=null?saved.provider_email:'').trim().toLowerCase();
+  const disp=typeof window.shmAgentSignDisplayName==='function'?window.shmAgentSignDisplayName(adminName):adminName;
+  const nameCmp=name.toLowerCase().replace(/\s+/g,' ').trim();
+  const adminCmp=adminName.toLowerCase().replace(/\s+/g,' ').trim();
+  const dispCmp=String(disp||'').toLowerCase().replace(/\s+/g,' ').trim();
+  if(!name || nameCmp===adminCmp || nameCmp===dispCmp || /^sharehouse\s*managers?$/i.test(name)) name='';
+  if(!email || email===adminEmail || email==='info@sharehousemanagers.com.au') email='';
+  return { provider_name: name, provider_email: email };
+}
+function taSyncShareHouseRulesHidden(){
+  const hidden=document.getElementById('share_house_rules_json');
+  if(hidden) hidden.value=JSON.stringify(taShareHouseRules);
+}
+function taSyncAdditionalTermsHidden(){
+  const hidden=document.getElementById('additional_terms_json');
+  if(hidden) hidden.value=JSON.stringify(taAdditionalTerms);
+}
+function taSyncCoreSectionsHidden(){
+  const hidden=document.getElementById('core_sections_json');
+  if(hidden) hidden.value=JSON.stringify(taCoreSections);
+}
+function taCoreItemText(item){
+  const title=String(item && item.title != null ? item.title : '').trim();
+  const body=String(item && item.body != null ? item.body : (item && item.text != null ? item.text : '')).trim();
+  if(title && body) return title+'\n'+body;
+  return title || body;
+}
+function taParseCoreItem(raw){
+  if(raw && typeof raw==='object' && !Array.isArray(raw)){
+    const title=String(raw.title != null ? raw.title : '').trim();
+    const body=String(raw.body != null ? raw.body : (raw.text != null ? raw.text : '')).trim();
+    if(title || body){
+      if(title && body) return { title:title, body:body, selected: raw.selected !== false };
+      const split=taSplitTermHeading(title || body);
+      return { title: split.title || ('Section'), body: split.body || title || body, selected: raw.selected !== false };
+    }
+  }
+  const text=String(raw||'').trim();
+  const nl=text.indexOf('\n');
+  if(nl>0){
+    return { title: text.slice(0,nl).trim(), body: text.slice(nl+1).replace(/^\n+/,'').trim(), selected:true };
+  }
+  const split=taSplitTermHeading(text);
+  return { title: split.title || text.slice(0,60) || 'Section', body: split.body || text, selected:true };
+}
+var taCoreEditorFocusIdx=null;
+function taDefaultCoreBodyByTitle(title){
+  const t=String(title||'').trim().toLowerCase();
+  for(let i=0;i<TA_DEFAULT_CORE_SECTIONS.length;i++){
+    const def=TA_DEFAULT_CORE_SECTIONS[i];
+    if(String(def.title||'').trim().toLowerCase()===t) return def.body;
+  }
+  if(/bond/.test(t) && t.indexOf('lodgement')<0){
+    for(let j=0;j<TA_DEFAULT_CORE_SECTIONS.length;j++){
+      const def=TA_DEFAULT_CORE_SECTIONS[j];
+      if(String(def.title||'').toLowerCase().indexOf('bond')>=0) return def.body;
+    }
+  }
+  return null;
+}
+function taCoreSectionTokenKeys(title){
+  const t=String(title||'').trim().toLowerCase();
+  if(t==='premises') return ['[[PREMISES_ADDRESS]]'];
+  if(t==='rent') return ['[[MONTHLY_RENT]]','[[WEEKLY_RENT]]','[[RENT_INCLUDES]]'];
+  if(t==='3. bond' || (/bond/.test(t) && t.indexOf('lodgement')<0 && t.indexOf('refund')<0)) return ['[[BOND_AMOUNT]]','[[BOND_PAYMENT_DUE]]'];
+  if(t==='4. period') return ['[[LEASE_PERIOD]]','[[COMMENCEMENT_DATE]]','[[TERMINATE_DATE]]'];
+  if(t.indexOf('electronic service')>=0) return ['[[TENANT_EMAIL]]'];
+  return null;
+}
+function taSectionUsesDetailTokens(sec){
+  return !!taCoreSectionTokenKeys(sec && sec.title);
+}
+function taEnsureCoreSectionPlaceholders(){
+  taCoreSections.forEach(function(sec){
+    const keys=taCoreSectionTokenKeys(sec.title);
+    if(!keys) return;
+    const body=String(sec.body||'');
+    const missing=keys.some(function(tok){ return body.indexOf(tok)<0; });
+    if(!missing) return;
+    const defBody=taDefaultCoreBodyByTitle(sec.title);
+    if(defBody) sec.body=defBody;
+  });
+}
+function taGetCoreTokenValues(){
+  const ctx=window.SHM_DOCUMENT_CONTEXT||{};
+  const data=ctx.agreementData||{};
+  const fields=data.field_values||data.fieldValues||data.agreement_data||data.agreementData||data;
+  function pickField(key){
+    const el=document.getElementById(key);
+    if(taIsCreator() && el && el.type!=='checkbox') return String(el.value||'').trim();
+    const fromInput=el && el.type!=='checkbox' ? String(el.value||'').trim() : '';
+    const fromData=data && data[key]!=null ? String(data[key]).trim() : '';
+    const fromField=fields && fields[key]!=null ? String(fields[key]).trim() : '';
+    if(key==='bond_payment_due'){
+      const alt=data && data.Date_BondPayment!=null ? String(data.Date_BondPayment).trim() : '';
+      return fromInput || fromData || fromField || alt || '';
+    }
+    return fromInput || fromData || fromField || '';
+  }
+  const tenantName=pickField('tenant_name_field')||pickField('tenant_name')||ctx.tenantName||ctx.recipientName||'';
+  const tenantEmail=pickField('tenant_email_field')||pickField('tenant_email')||ctx.tenantEmail||ctx.recipientEmail||'';
+  function rentToken(v){ return taMoney(v)==='—' ? '' : taMoney(v); }
+  return {
+    premises: pickField('premises_address')||ctx.propertyAddress||'',
+    monthly: rentToken(pickField('monthly_rent')),
+    weekly: rentToken(pickField('weekly_rent')),
+    bond: rentToken(pickField('bond_amount')),
+    bondDue: pickField('bond_payment_due') ? taFormatDateAu(pickField('bond_payment_due')) : '',
+    rentIncludes: taFormatRentIncludesList(taGetRentIncludesLabelsFromDom()),
+    leasePeriod: pickField('lease_period'),
+    start: pickField('commencement_date') ? taFormatDateAu(pickField('commencement_date')) : '',
+    end: pickField('terminate_date') ? taFormatDateAu(pickField('terminate_date')) : '',
+    tenantEmail: tenantEmail
+  };
+}
+function taDisplayBodyForCoreSection(sec){
+  const body=String(sec.body||'');
+  if(!taSectionUsesDetailTokens(sec)) return body;
+  return taFillCoreTokens(body, taGetCoreTokenValues());
+}
+function taRefreshTermsFromDetails(){
+  if(taCoreEditorFocusIdx!=null) return;
+  taEnsureCoreSectionPlaceholders();
+  taRenderCoreSectionsEditor();
+  if(typeof taRenderDocumentView==='function') taRenderDocumentView();
+}
+function taOnCoreBodyFocus(idx, el){
+  taCoreEditorFocusIdx=idx;
+  if(!taCoreSections[idx]) return;
+  el.value=String(taCoreSections[idx].body||'');
+}
+function taOnCoreBodyBlur(idx, el){
+  taCoreEditorFocusIdx=null;
+  taEditCoreSectionBody(idx, el.value);
+  taEnsureCoreSectionPlaceholders();
+  taRefreshTermsFromDetails();
+}
+function taRenderCoreSectionsEditor(){
+  const list=document.getElementById('taCoreSectionsList');
+  if(!list) return;
+  const creator=taIsCreator();
+  const visible=[];
+  taCoreSections.forEach(function(sec, idx){
+    if(creator || sec.selected) visible.push({ sec:sec, idx:idx });
+  });
+  if(!visible.length){
+    list.innerHTML='';
+    taSyncCoreSectionsHidden();
+    return;
+  }
+  list.innerHTML=visible.map(function(row){
+    const sec=row.sec;
+    const idx=row.idx;
+    const title=String(sec.title||'Section');
+    const storageBody=String(sec.body||'');
+    const body=taCoreEditorFocusIdx===idx ? storageBody : taDisplayBodyForCoreSection(sec);
+    if(!creator){
+      const viewBody=taDisplayBodyForCoreSection(sec);
+      return '<div class="ta-rule-card ta-rule-view" data-rule-idx="'+idx+'">'
+        +'<div><div class="ta-rule-num">'+taEscapeHtml(title)+'</div>'
+        +'<textarea readonly>'+taEscapeHtml(viewBody)+'</textarea></div></div>';
+    }
+    const off=sec.selected ? '' : ' ta-rule-off';
+    const checked=sec.selected ? ' checked' : '';
+    const tokenHint=taSectionUsesDetailTokens(sec)
+      ? '<p class="text-xs text-slate-500 mt-1">Amounts and dates update from the Details tab. Click the text box to edit wording; use [[MONTHLY_RENT]], [[WEEKLY_RENT]], etc. for live fields.</p>'
+      : '';
+    return '<div class="ta-rule-card'+off+'" data-rule-idx="'+idx+'">'
+      +'<div><input type="checkbox" aria-label="Include section '+(idx+1)+'"'+checked+' onchange="taToggleCoreSection('+idx+', this.checked)"></div>'
+      +'<div><div class="ta-rule-num">'+taEscapeHtml(title)+'</div>'
+      +'<input class="ta-core-title" style="width:100%;margin:0 0 8px;padding:8px 10px;border:1px solid #e2e8f0;border-radius:8px;font-weight:700" value="'+taEscapeHtml(title)+'" oninput="taEditCoreSectionTitle('+idx+', this.value)">'
+      +'<textarea onfocus="taOnCoreBodyFocus('+idx+', this)" onblur="taOnCoreBodyBlur('+idx+', this)" oninput="taEditCoreSectionBody('+idx+', this.value)">'+taEscapeHtml(body)+'</textarea>'
+      +tokenHint+'</div>'
+      +'<div class="ta-rule-actions">'
+      +'<button type="button" class="sig-btn danger ta-term-delete-btn" data-ta-delete-kind="core" data-ta-delete-idx="'+idx+'">Delete</button>'
+      +'</div></div>';
+  }).join('');
+  taSyncCoreSectionsHidden();
+}
+function taToggleCoreSection(idx, selected){
+  if(!taCoreSections[idx]) return;
+  taCoreSections[idx].selected=!!selected;
+  taRenderCoreSectionsEditor();
+}
+function taEditCoreSectionTitle(idx, title){
+  if(!taCoreSections[idx]) return;
+  taCoreSections[idx].title=String(title||'');
+  taSyncCoreSectionsHidden();
+}
+function taEditCoreSectionBody(idx, body){
+  if(!taCoreSections[idx]) return;
+  taCoreSections[idx].body=String(body||'');
+  taSyncCoreSectionsHidden();
+}
+function taDeleteCoreSection(idx){
+  if(!taIsCreator()) return;
+  if(!confirm('Delete section '+(idx+1)+'?')) return;
+  taCoreSections.splice(idx,1);
+  if(taCoreEditorFocusIdx===idx) taCoreEditorFocusIdx=null;
+  else if(taCoreEditorFocusIdx!=null && taCoreEditorFocusIdx>idx) taCoreEditorFocusIdx--;
+  taRenderCoreSectionsEditor();
+}
+function taBindTermsDeleteButtons(){
+  if(window.__taTermsDeleteBound) return;
+  window.__taTermsDeleteBound=true;
+  document.addEventListener('click', function(ev){
+    const btn=ev.target && ev.target.closest ? ev.target.closest('.ta-term-delete-btn') : null;
+    if(!btn || !taIsCreator()) return;
+    const kind=String(btn.getAttribute('data-ta-delete-kind')||'');
+    const idx=Number(btn.getAttribute('data-ta-delete-idx'));
+    if(!Number.isFinite(idx)) return;
+    ev.preventDefault();
+    if(kind==='core') taDeleteCoreSection(idx);
+    else if(kind==='clause') taDeleteAdditionalTerm(idx);
+    else taDeleteShareHouseRule(idx);
+  });
+}
+function taAddCoreSection(){
+  if(!taIsCreator()) return;
+  taCoreSections.push({ title:'New section', body:'', selected:false });
+  taRenderCoreSectionsEditor();
+  const inputs=document.querySelectorAll('#taCoreSectionsList .ta-core-title');
+  const last=inputs[inputs.length-1];
+  if(last){ last.focus(); last.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+}
+function taSelectAllCoreSections(selected){
+  if(!taIsCreator()) return;
+  taCoreSections.forEach(function(sec){ sec.selected=!!selected; });
+  taRenderCoreSectionsEditor();
+}
+function taSelectAllTermsTab(selected){
+  if(!taIsCreator()) return;
+  taCoreSections.forEach(function(sec){ sec.selected=!!selected; });
+  taAdditionalTerms.forEach(function(rule){ rule.selected=!!selected; });
+  taShareHouseRules.forEach(function(rule){ rule.selected=!!selected; });
+  taRenderCoreSectionsEditor();
+  taRenderAdditionalTerms();
+  taRenderShareHouseRules();
+}
+function taRenderEditableList(listId, items, options){
+  const list=document.getElementById(listId);
+  if(!list) return;
+  const creator=taIsCreator();
+  const label=options.label || 'Item';
+  const onToggle=options.onToggle;
+  const onEdit=options.onEdit;
+  const onDelete=options.onDelete;
+  const emptyMessage=options.emptyMessage || ('No '+label.toLowerCase()+'s selected for this agreement.');
+  const visible=[];
+  items.forEach(function(rule, idx){
+    if(creator || rule.selected) visible.push({ rule:rule, idx:idx });
+  });
+  if(!visible.length){
+    list.innerHTML='';
+    return;
+  }
+  list.innerHTML=visible.map(function(row, displayIdx){
+    const rule=row.rule;
+    const idx=row.idx;
+    if(!creator){
+      return '<div class="ta-rule-card ta-rule-view" data-rule-idx="'+idx+'">'
+        +'<div><div class="ta-rule-num">'+label+' '+(displayIdx+1)+'</div>'
+        +'<textarea readonly>'+taEscapeHtml(rule.text)+'</textarea></div>'
+        +'</div>';
+    }
+    const off=rule.selected ? '' : ' ta-rule-off';
+    const checked=rule.selected ? ' checked' : '';
+    return '<div class="ta-rule-card'+off+'" data-rule-idx="'+idx+'">'
+      +'<div><input type="checkbox" aria-label="Include '+label.toLowerCase()+' '+(idx+1)+'"'+(checked)+' onchange="'+onToggle+'('+idx+', this.checked)"></div>'
+      +'<div><div class="ta-rule-num">'+label+' '+(idx+1)+'</div>'
+      +'<textarea oninput="'+onEdit+'('+idx+', this.value)">'+taEscapeHtml(rule.text)+'</textarea></div>'
+      +'<div class="ta-rule-actions">'
+      +'<button type="button" class="sig-btn danger ta-term-delete-btn" data-ta-delete-kind="'+String(options.deleteKind||'rule')+'" data-ta-delete-idx="'+idx+'">Delete</button>'
+      +'</div></div>';
+  }).join('');
+}
+function taRenderShareHouseRules(){
+  taRenderEditableList('taShareHouseRulesList', taShareHouseRules, {
+    label:'Rule',
+    onToggle:'taToggleShareHouseRule',
+    onEdit:'taEditShareHouseRule',
+    onDelete:'taDeleteShareHouseRule',
+    deleteKind:'rule',
+    emptyMessage:'No share house rules selected for this agreement.'
+  });
+  taSyncShareHouseRulesHidden();
+}
+function taTermParts(rule){
+  if(!rule) return { title:'', body:'' };
+  if(rule.title != null || rule.body != null){
+    return {
+      title: String(rule.title != null ? rule.title : '').trim(),
+      body: String(rule.body != null ? rule.body : '').trim()
+    };
+  }
+  return taSplitTermHeading(String(rule.text || '').trim());
+}
+function taComposeTermText(title, body){
+  const t=String(title||'').trim();
+  const b=String(body||'').trim();
+  if(t && b) return t+'\n'+b;
+  return t || b;
+}
+function taSyncTermText(idx){
+  if(!taAdditionalTerms[idx]) return;
+  const parts=taTermParts(taAdditionalTerms[idx]);
+  taAdditionalTerms[idx].title=parts.title;
+  taAdditionalTerms[idx].body=parts.body;
+  taAdditionalTerms[idx].text=taComposeTermText(parts.title, parts.body);
+}
+function taRenderAdditionalTerms(){
+  const list=document.getElementById('taAdditionalTermsList');
+  if(!list){
+    taSyncAdditionalTermsHidden();
+    return;
+  }
+  const creator=taIsCreator();
+  const visible=[];
+  taAdditionalTerms.forEach(function(rule, idx){
+    if(creator || rule.selected) visible.push({ rule:rule, idx:idx });
+  });
+  if(!visible.length){
+    list.innerHTML='';
+    taSyncAdditionalTermsHidden();
+    return;
+  }
+  list.innerHTML=visible.map(function(row){
+    const rule=row.rule;
+    const idx=row.idx;
+    const parts=taTermParts(rule);
+    const heading=parts.title || 'Untitled clause';
+    if(!creator){
+      return '<div class="ta-rule-card ta-rule-view" data-rule-idx="'+idx+'">'
+        +'<div><div class="ta-rule-num">'+taEscapeHtml(heading)+'</div>'
+        +'<textarea readonly>'+taEscapeHtml(parts.body || rule.text || '')+'</textarea></div></div>';
+    }
+    const off=rule.selected ? '' : ' ta-rule-off';
+    const checked=rule.selected ? ' checked' : '';
+    return '<div class="ta-rule-card'+off+'" data-rule-idx="'+idx+'">'
+      +'<div><input type="checkbox" aria-label="Include clause '+(idx+1)+'"'+checked+' onchange="taToggleAdditionalTerm('+idx+', this.checked)"></div>'
+      +'<div>'
+      +'<label class="field-label" style="display:block;margin:0 0 4px">Heading</label>'
+      +'<input class="ta-term-title" style="width:100%;margin:0 0 8px;padding:8px 10px;border:1px solid #e2e8f0;border-radius:8px;font-weight:700" value="'+taEscapeHtml(parts.title)+'" placeholder="e.g. 45. Parking" oninput="taEditAdditionalTermTitle('+idx+', this.value)">'
+      +'<label class="field-label" style="display:block;margin:0 0 4px">Clause text</label>'
+      +'<textarea oninput="taEditAdditionalTermBody('+idx+', this.value)" placeholder="Write the clause body here">'+taEscapeHtml(parts.body)+'</textarea></div>'
+      +'<div class="ta-rule-actions">'
+      +'<button type="button" class="sig-btn danger ta-term-delete-btn" data-ta-delete-kind="clause" data-ta-delete-idx="'+idx+'">Delete</button>'
+      +'</div></div>';
+  }).join('');
+  taSyncAdditionalTermsHidden();
+}
+function taToggleShareHouseRule(idx, selected){
+  if(!taShareHouseRules[idx]) return;
+  taShareHouseRules[idx].selected=!!selected;
+  taRenderShareHouseRules();
+}
+function taEditShareHouseRule(idx, text){
+  if(!taShareHouseRules[idx]) return;
+  taShareHouseRules[idx].text=String(text||'');
+  taSyncShareHouseRulesHidden();
+}
+function taDeleteShareHouseRule(idx){
+  if(!taIsCreator()) return;
+  if(!confirm('Delete rule '+(idx+1)+'?')) return;
+  taShareHouseRules.splice(idx,1);
+  taRenderShareHouseRules();
+}
+function taAddShareHouseRule(){
+  if(!taIsCreator()) return;
+  taShareHouseRules.push({ text:'', selected:false });
+  taRenderShareHouseRules();
+  const cards=document.querySelectorAll('#taShareHouseRulesList textarea');
+  const last=cards[cards.length-1];
+  if(last){ last.focus(); last.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+}
+function taSelectAllRules(selected){
+  if(!taIsCreator()) return;
+  taShareHouseRules.forEach(function(rule){ rule.selected=!!selected; });
+  taRenderShareHouseRules();
+}
+function taToggleAdditionalTerm(idx, selected){
+  if(!taAdditionalTerms[idx]) return;
+  taAdditionalTerms[idx].selected=!!selected;
+  taRenderAdditionalTerms();
+}
+function taEditAdditionalTerm(idx, text){
+  if(!taAdditionalTerms[idx]) return;
+  const split=taSplitTermHeading(String(text||'').trim());
+  taAdditionalTerms[idx].title=split.title;
+  taAdditionalTerms[idx].body=split.body || String(text||'');
+  taAdditionalTerms[idx].text=taComposeTermText(taAdditionalTerms[idx].title, taAdditionalTerms[idx].body);
+  taSyncAdditionalTermsHidden();
+}
+function taEditAdditionalTermTitle(idx, title){
+  if(!taAdditionalTerms[idx]) return;
+  const parts=taTermParts(taAdditionalTerms[idx]);
+  taAdditionalTerms[idx].title=String(title||'');
+  taAdditionalTerms[idx].body=parts.body;
+  taSyncTermText(idx);
+  taSyncAdditionalTermsHidden();
+}
+function taEditAdditionalTermBody(idx, body){
+  if(!taAdditionalTerms[idx]) return;
+  const parts=taTermParts(taAdditionalTerms[idx]);
+  taAdditionalTerms[idx].title=parts.title;
+  taAdditionalTerms[idx].body=String(body||'');
+  taSyncTermText(idx);
+  taSyncAdditionalTermsHidden();
+}
+function taDeleteAdditionalTerm(idx){
+  if(!taIsCreator()) return;
+  if(!confirm('Delete this clause?')) return;
+  taAdditionalTerms.splice(idx,1);
+  taRenderAdditionalTerms();
+}
+function taAddAdditionalTerm(){
+  if(!taIsCreator()) return;
+  taAdditionalTerms.push({ title:'', body:'', text:'', selected:false });
+  taRenderAdditionalTerms();
+  const inputs=document.querySelectorAll('#taAdditionalTermsList .ta-term-title');
+  const last=inputs[inputs.length-1];
+  if(last){ last.focus(); last.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+}
+function taSelectAllAdditionalTerms(selected){
+  if(!taIsCreator()) return;
+  taAdditionalTerms.forEach(function(rule){ rule.selected=!!selected; });
+  taRenderAdditionalTerms();
+}
+function taNormalizeSavedList(saved){
+  if(typeof saved==='string'){
+    try{ saved=JSON.parse(saved); }catch(e){ saved=null; }
+  }
+  if(!Array.isArray(saved) || !saved.length) return null;
+  return saved.map(function(item){
+    if(typeof item==='string') return { text:item, selected:true };
+    return { text:String(item && item.text != null ? item.text : ''), selected: item && item.selected !== false };
+  });
+}
+function taNormalizeSavedTermsList(saved){
+  if(typeof saved==='string'){
+    try{ saved=JSON.parse(saved); }catch(e){ saved=null; }
+  }
+  if(!Array.isArray(saved) || !saved.length) return null;
+  return saved.map(function(item){
+    if(typeof item==='string'){
+      const split=taSplitTermHeading(item);
+      return { title:split.title, body:split.body || item, text:item, selected:true };
+    }
+    const selected=item && item.selected !== false;
+    if(item && (item.title != null || item.body != null)){
+      const title=String(item.title != null ? item.title : '').trim();
+      const body=String(item.body != null ? item.body : '').trim();
+      return { title:title, body:body, text:taComposeTermText(title, body) || String(item.text || ''), selected:selected };
+    }
+    const text=String(item && item.text != null ? item.text : '');
+    const split=taSplitTermHeading(text);
+    return { title:split.title, body:split.body || text, text:text, selected:selected };
+  });
+}
+function taNormalizeSavedCoreList(saved){
+  if(typeof saved==='string'){
+    try{ saved=JSON.parse(saved); }catch(e){ saved=null; }
+  }
+  if(!Array.isArray(saved) || !saved.length) return null;
+  return saved.map(function(item){ return taParseCoreItem(item); });
+}
+function taLoadShareHouseRulesFromContext(){
+  const ctx=window.SHM_DOCUMENT_CONTEXT || {};
+  const data=ctx.agreementData || {};
+  const fieldValues=data.field_values || data.fieldValues || data.agreement_data || data.agreementData || data;
+  const savedRules=taNormalizeSavedList(fieldValues.share_house_rules || data.share_house_rules || null);
+  if(savedRules) taShareHouseRules=savedRules;
+  const savedTerms=taNormalizeSavedTermsList(fieldValues.additional_terms || data.additional_terms || null);
+  if(savedTerms) taAdditionalTerms=savedTerms;
+  const savedCore=taNormalizeSavedCoreList(fieldValues.core_sections || data.core_sections || null);
+  if(savedCore) taCoreSections=savedCore;
+  const savedExtra=fieldValues.extra_signing_recipients || data.extra_signing_recipients || null;
+  if(Array.isArray(savedExtra) && savedExtra.length){
+    taExtraSigners=savedExtra.map(function(row){
+      return {
+        name:String(row && row.name != null ? row.name : '').trim(),
+        email:String(row && row.email != null ? row.email : '').trim().toLowerCase(),
+        cc:!(row && row.cc===false),
+      };
+    });
+  }
+  taEnsureDefaultTermsSelectedForCreator();
+  taEnsureCoreSectionPlaceholders();
+  taRenderShareHouseRules();
+  taRenderAdditionalTerms();
+  taRenderCoreSectionsEditor();
+  taRenderExtraSigners();
+}
+function taEnsureDefaultTermsSelectedForCreator(){
+  if(!taIsCreator()) return;
+  const noneSelected=function(list){
+    return list.length > 0 && list.every(function(row){ return row && row.selected === false; });
+  };
+  if(noneSelected(taCoreSections) && noneSelected(taAdditionalTerms) && noneSelected(taShareHouseRules)){
+    taSelectAllTermsTab(true);
+  }
+}
+function taSelectedShareHouseRulesText(){
+  return taShareHouseRules
+    .filter(function(rule){ return rule.selected && String(rule.text||'').trim(); })
+    .map(function(rule, idx){ return (idx+1)+'. '+String(rule.text).trim(); })
+    .join('\n\n');
+}
+function taSplitTermHeading(text){
+  const raw=String(text||'').trim();
+  if(!raw) return { title:'', body:'' };
+  const nl=raw.indexOf('\n');
+  if(nl>0){
+    const title=raw.slice(0,nl).trim();
+    const body=raw.slice(nl+1).replace(/^\n+/,'').trim();
+    if(title && body) return { title:title, body:body };
+  }
+  const match=raw.match(/^(\d+[A-Za-z]?\.?\s+.+?)(?=\s+(?:The |Rental |Renter |If |All |With |Please |Without |In accordance|This Agreement|Notice |Adhesive |Ownership |Friends |Monthly |Bond |There |After |A \d|Bills |It's |Sticky |Residents |Room |Deep |Grass |Weekly |No |Loud |Suppose |Tenants |Before |Family |1\. ))([\s\S]*)$/);
+  if(match) return { title:match[1].trim(), body:match[2].trim() };
+  return { title:'', body:raw };
+}
+function taSelectedAdditionalTermsText(){
+  const selected=taAdditionalTerms.filter(function(rule){
+    return rule.selected && (String(rule.title||'').trim() || String(rule.body||'').trim() || String(rule.text||'').trim());
+  });
+  let nextNum=null;
+  return selected.map(function(rule){
+    const parts=taTermParts(rule);
+    if(parts.title){
+      const m=String(parts.title).match(/^(\d+)/);
+      if(nextNum===null) nextNum=m ? Number(m[1]) : 11;
+      const titleText=String(parts.title).replace(/^\d+[A-Za-z]?\.?\s+/, '').trim() || parts.title;
+      const titled=(nextNum++)+'. '+titleText;
+      return titled+'\n'+parts.body;
+    }
+    const text=String(rule.text||'').trim();
+    if(nextNum===null) nextNum=11;
+    return (nextNum++)+'. '+text.replace(/^\d+[A-Za-z]?\.?\s+/, '').trim();
+  }).join('\n\n');
+}
+function taSelectedCoreSectionsText(){
+  return taCoreSections
+    .filter(function(sec){ return sec.selected && (String(sec.title||'').trim() || String(sec.body||'').trim()); })
+    .map(function(sec){ return taCoreItemText(sec); })
+    .join('\n\n');
+}
+function taFillCoreTokens(text, values){
+  const v=values||{};
+  return String(text||'')
+    .replace(/\[\[PREMISES_ADDRESS\]\]/g, v.premises || '—')
+    .replace(/\[\[MONTHLY_RENT\]\]/g, v.monthly || '—')
+    .replace(/\[\[WEEKLY_RENT\]\]/g, v.weekly || '—')
+    .replace(/\[\[BOND_AMOUNT\]\]/g, v.bond || '—')
+    .replace(/\[\[BOND_PAYMENT_DUE\]\]/g, v.bondDue || '—')
+    .replace(/\[\[RENT_INCLUDES\]\]/g, v.rentIncludes || '—')
+    .replace(/\[\[LEASE_PERIOD\]\]/g, v.leasePeriod || '—')
+    .replace(/\[\[COMMENCEMENT_DATE\]\]/g, v.start || '—')
+    .replace(/\[\[TERMINATE_DATE\]\]/g, v.end || '—')
+    .replace(/\[\[TENANT_EMAIL\]\]/g, v.tenantEmail || '—');
+}
+function taRenderCoreBodyHtml(body){
+  const lines=String(body||'').split(/\n/);
+  const html=[];
+  const bankLines=[];
+  function flushBank(){
+    if(!bankLines.length) return;
+    html.push('<div class="ta-doc-payment-details">'
+      +'<div class="ta-doc-payment-details-title">Payment details</div>'
+      +bankLines.join('')
+      +'</div>');
+    bankLines.length=0;
+  }
+  lines.forEach(function(line){
+    const t=line.trim();
+    if(!t){ flushBank(); return; }
+    if(/^(Express Consent|\(2\)|\(3\)|\(4\))/.test(t)){
+      flushBank();
+      html.push('<p class="ta-doc-p"><strong>'+taEscapeHtml(t)+'</strong></p>');
+      return;
+    }
+    if(/^(Account Name|BSB|Account Number|Bank)\b/.test(t)){
+      const m=t.match(/^(Account Name|BSB|Account Number|Bank)\s*(.*)$/);
+      if(m){
+        const label=m[1];
+        const value=String(m[2]||'').trim();
+        const copyable=label!=='Bank';
+        const copyBtn=copyable
+          ? '<button type="button" class="ta-doc-payment-copy" data-copy="'+taEscapeHtml(value).replace(/"/g,'&quot;')+'" onclick="taCopyPaymentDetail(this)">Copy</button>'
+          : '';
+        bankLines.push('<div class="ta-doc-payment-row">'
+          +'<span class="ta-doc-payment-label">'+taEscapeHtml(label)+'</span>'
+          +'<span class="ta-doc-payment-right">'
+          +'<strong class="ta-doc-payment-value">'+taEscapeHtml(value)+'</strong>'
+          +copyBtn
+          +'</span></div>');
+        return;
+      }
+    }
+    flushBank();
+    if(/^(Address|Bond amount|Date bond payment due:|Email)\b/.test(t)){
+      const m=t.match(/^(Address|Bond amount|Date bond payment due:|Email)\s*(.*)$/);
+      if(m){
+        html.push('<p class="ta-doc-field"><strong>'+taEscapeHtml(m[1])+'</strong> '+taEscapeHtml(m[2])+'</p>');
+        return;
+      }
+    }
+    if(/^\$/.test(t) && /Per Calendar Month/i.test(t)){
+      html.push('<p class="ta-doc-p ta-doc-rent-lead">'+taEscapeHtml(t)+'</p>');
+      return;
+    }
+    html.push('<p class="ta-doc-p">'+taEscapeHtml(t)+'</p>');
+  });
+  flushBank();
+  return html.join('');
+}
+function taClauseRefFromTitle(title){
+  const t=String(title||'').trim();
+  const m=t.match(/^(\d+[A-Za-z]?)\.?/);
+  return m ? m[1] : null;
+}
+function taCompareClauseRef(a,b){
+  const na=parseInt(String(a),10);
+  const nb=parseInt(String(b),10);
+  if(na!==nb) return na-nb;
+  return String(a).localeCompare(String(b));
+}
+function taFormatClauseRange(refs){
+  const list=(refs||[]).filter(Boolean).slice().sort(taCompareClauseRef);
+  if(!list.length) return '';
+  if(list.length===1) return 'Clause '+list[0];
+  return 'Clauses '+list[0]+'–'+list[list.length-1];
+}
+function taCoreSectionBucket(title){
+  const t=String(title||'').trim().toLowerCase();
+  if(/^premises/.test(t)) return 'premises';
+  if(/^rent/.test(t)) return 'rent';
+  if(/^3\.?\s*bond/.test(t) || t==='bond') return 'rent';
+  if(/^4\.?\s*period/.test(t) || /^period/.test(t)) return 'rent';
+  return 'terms';
+}
+function taRenderCoreSectionBlocks(sections, values){
+  return (sections||[]).map(function(sec){
+    const title=String(sec.title||'').trim();
+    const body=taFillCoreTokens(String(sec.body||''), values);
+    const fieldsLayout=/^(bond|period|premises|rent)$/i.test(title) ? ' ta-doc-core-block-fields' : '';
+    return '<div class="ta-doc-core-block'+fieldsLayout+'">'
+      +(title ? '<div class="ta-doc-clause">'+taEscapeHtml(title)+'</div>' : '')
+      +taRenderCoreBodyHtml(body)
+      +'</div>';
+  }).join('');
+}
+function taSelectedCoreSectionsForView(){
+  let selected=taCoreSections.filter(function(sec){
+    return sec && sec.selected===true && (String(sec.title||'').trim() || String(sec.body||'').trim());
+  });
+  if(!taIsCreator()){
+    const hasBond=selected.some(function(sec){
+      return /bond/i.test(String(sec.title||'')) && !/lodgement|refund/i.test(String(sec.title||''));
+    });
+    if(!hasBond){
+      for(let bi=0;bi<TA_DEFAULT_CORE_SECTIONS.length;bi++){
+        const def=TA_DEFAULT_CORE_SECTIONS[bi];
+        if(String(def.title||'').toLowerCase().indexOf('bond')>=0){
+          selected=selected.concat([{ title:def.title, body:def.body, selected:true }]); /* bond required on signer view */
+          break;
+        }
+      }
+    }
+  }
+  return selected;
+}
+function taAdditionalTermsClauseRefs(){
+  return taAdditionalTerms
+    .filter(function(item){ return item && item.selected===true; })
+    .map(function(item){
+      const parts=taTermParts(item);
+      return taClauseRefFromTitle(parts.title || item.text || '');
+    })
+    .filter(Boolean);
+}
+function taSetSignerAccordionOpen(acc, open){
+  if(!acc) return;
+  acc.setAttribute('data-open', open ? 'true' : 'false');
+  const head=acc.querySelector('.ta-signer-accordion-head');
+  const body=acc.querySelector('.ta-signer-accordion-body');
+  const toggle=acc.querySelector('.ta-signer-accordion-toggle');
+  if(head) head.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if(body) body.hidden=!open;
+  if(toggle) toggle.textContent=open ? '−' : '+';
+}
+let taSignerAccordionsReady=false;
+function taInitSignerAccordions(){
+  if(taSignerAccordionsReady) return;
+  const shell=document.querySelector('.tenant-agreement-shell.ta-recipient-mode');
+  if(!shell) return;
+  taSignerAccordionsReady=true;
+  document.querySelectorAll('.ta-signer-accordion').forEach(function(acc){
+    const head=acc.querySelector('.ta-signer-accordion-head');
+    if(!head || head.dataset.taAccordionBound) return;
+    head.dataset.taAccordionBound='1';
+    head.addEventListener('click', function(){
+      const open=acc.getAttribute('data-open')==='true';
+      taSetSignerAccordionOpen(acc, !open);
+      if(!open && acc.id==='taSignerAccordionAdditional'){
+        taRefreshSignerClauseTools();
+      }
+    });
+    taSetSignerAccordionOpen(acc, acc.getAttribute('data-open')==='true');
+  });
+}
+let taSignerClauseToolsReady=false;
+function taInitSignerClauseTools(){
+  if(taSignerClauseToolsReady) return;
+  const search=document.getElementById('taClauseSearch');
+  const jump=document.getElementById('taClauseJump');
+  if(!search && !jump) return;
+  taSignerClauseToolsReady=true;
+  if(search){
+    search.addEventListener('input', function(){
+      taFilterAdditionalTerms(search.value);
+    });
+  }
+  if(jump){
+    jump.addEventListener('change', function(){
+      const id=String(jump.value||'').trim();
+      if(!id) return;
+      const acc=document.getElementById('taSignerAccordionAdditional');
+      if(acc && acc.getAttribute('data-open')!=='true') taSetSignerAccordionOpen(acc, true);
+      const target=document.getElementById(id);
+      if(target){
+        target.scrollIntoView({ behavior:'smooth', block:'start' });
+        target.classList.add('ta-doc-term-highlight');
+        window.setTimeout(function(){ target.classList.remove('ta-doc-term-highlight'); }, 1600);
+      }
+      jump.value='';
+    });
+  }
+}
+function taFilterAdditionalTerms(query){
+  const host=document.getElementById('taDocAdditionalTerms');
+  if(!host) return;
+  const q=String(query||'').trim().toLowerCase();
+  host.querySelectorAll('.ta-doc-term').forEach(function(term){
+    if(!q){
+      term.style.display='';
+      return;
+    }
+    const text=term.textContent.replace(/\s+/g,' ').toLowerCase();
+    term.style.display=text.indexOf(q)>=0 ? '' : 'none';
+  });
+}
+function taRefreshSignerClauseTools(){
+  const jump=document.getElementById('taClauseJump');
+  const tools=document.getElementById('taSignerClauseTools');
+  const host=document.getElementById('taDocAdditionalTerms');
+  if(!jump || !host) return;
+  const terms=host.querySelectorAll('.ta-doc-term');
+  if(tools) tools.style.display=terms.length ? '' : 'none';
+  jump.innerHTML='<option value="">Jump to clause</option>'
+    +Array.from(terms).map(function(term){
+      const titleEl=term.querySelector('.ta-doc-term-title');
+      const label=titleEl ? titleEl.textContent.trim() : term.textContent.trim().slice(0,80);
+      const id=term.id || '';
+      if(!id) return '';
+      return '<option value="'+taEscapeHtml(id)+'">'+taEscapeHtml(label)+'</option>';
+    }).join('');
+}
+function taRenderGlancePanel(values, ctx){
+  const facts=document.getElementById('taDocGlanceFacts');
+  const signersEl=document.getElementById('taDocGlanceSigners');
+  if(!facts && !signersEl) return;
+  const monthly=values.monthly && values.monthly!=='—' ? '$'+values.monthly : '—';
+  const weekly=values.weekly && values.weekly!=='—' ? ' ($'+values.weekly+'/week)' : '';
+  const bond=values.bond && values.bond!=='—' ? '$'+values.bond : '—';
+  if(facts){
+    facts.innerHTML=
+      '<dt>Rent</dt><dd>'+taEscapeHtml(monthly+weekly)+'</dd>'
+      +'<dt>Bond</dt><dd>'+taEscapeHtml(bond)+'</dd>'
+      +'<dt>Lease period</dt><dd>'+taEscapeHtml(values.leasePeriod||'—')+'</dd>'
+      +'<dt>Commencement</dt><dd>'+taEscapeHtml(values.start||'—')+'</dd>'
+      +'<dt>Premises</dt><dd>'+taEscapeHtml(values.premises||'—')+'</dd>';
+  }
+  if(signersEl){
+    const signers=(ctx.signers||[]).slice();
+    if(!signers.length){
+      signersEl.innerHTML='<li><strong>'+taEscapeHtml(ctx.tenantName||ctx.recipientName||'Tenant')+'</strong>'
+        +(ctx.tenantEmail||ctx.recipientEmail ? ' · '+taEscapeHtml(ctx.tenantEmail||ctx.recipientEmail) : '')
+        +'</li>';
+      return;
+    }
+    signersEl.innerHTML=signers.map(function(s){
+      const signed=String(s.status||'').toLowerCase()==='signed';
+      const status=signed ? 'Signed' : 'Awaiting signature';
+      return '<li><strong>'+taEscapeHtml(s.name||'—')+'</strong>'
+        +(s.email ? ' · '+taEscapeHtml(s.email) : '')
+        +'<span style="display:block;font-size:11px;font-weight:700;color:'+(signed?'#047857':'#6b7280')+';margin-top:2px">'+status+'</span></li>';
+    }).join('');
+  }
+}
+function taUpdateSignerAccordionMeta(termsSections){
+  const termsMeta=document.getElementById('taSignerTermsMeta');
+  const addMeta=document.getElementById('taSignerAdditionalMeta');
+  const rulesMeta=document.getElementById('taSignerRulesMeta');
+  if(termsMeta){
+    const refs=(termsSections||[]).map(function(sec){ return taClauseRefFromTitle(sec.title); }).filter(Boolean);
+    const range=taFormatClauseRange(refs);
+    termsMeta.textContent=range || 'Terms';
+  }
+  if(addMeta){
+    const range=taFormatClauseRange(taAdditionalTermsClauseRefs());
+    addMeta.textContent=range || 'Additional terms';
+  }
+  if(rulesMeta){
+    const count=taShareHouseRules.filter(function(r){ return r && r.selected===true && String(r.text||'').trim(); }).length;
+    const countLabel=count===1 ? '1 rule' : (count ? count+' rules' : '');
+    rulesMeta.textContent=countLabel ? ('Share house rules · '+countLabel) : 'Share house rules';
+  }
+}
+
+const canvas=document.getElementById('taSigCanvas'); let ctx=null, drawing=false, sigReady=false, hasTaInk=false, taSigMode='draw', taCurrentFont='Dancing Script', taSigDataUrl=null;
+if(canvas){ ctx=canvas.getContext('2d'); ctx.lineWidth=2.3; ctx.lineCap='round'; ctx.strokeStyle='#16213e'; function pos(e){ const r=canvas.getBoundingClientRect(); const t=e.touches?e.touches[0]:e; return {x:(t.clientX-r.left)*(canvas.width/r.width), y:(t.clientY-r.top)*(canvas.height/r.height)}; } canvas.addEventListener('mousedown',e=>{drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y);}); canvas.addEventListener('mousemove',e=>{if(!drawing)return; const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); hasTaInk=true;}); window.addEventListener('mouseup',()=>drawing=false); canvas.addEventListener('touchstart',e=>{e.preventDefault(); drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y);}); canvas.addEventListener('touchmove',e=>{e.preventDefault(); if(!drawing)return; const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); hasTaInk=true;}); window.addEventListener('touchend',()=>drawing=false); }
+function clearTaSignature(){ if(ctx){ ctx.clearRect(0,0,canvas.width,canvas.height); } sigReady=false; hasTaInk=false; taSigDataUrl=null; document.getElementById('ta_signature_data').value=''; document.getElementById('taSigConfirmed').style.display='none'; }
+function currentTaSignerType(){ return String(window.SHM_SIGNER_TYPE || window.SHM_SIGNER_ROLE || '').toLowerCase() === 'creator' ? 'creator' : 'recipient'; }
+function renderTaSignaturePreview(role, dataUrl){
+  if(!dataUrl) return;
+  const imgHtml='<img src="'+dataUrl+'" alt="Signature" style="max-width:160px;max-height:55px;display:block;margin:0 auto"><div style="font-size:11px;color:#047857;font-weight:700;margin-top:6px;text-align:center">Signed</div>';
+  if(role==='creator'){
+    const creatorHolder=document.getElementById('taCreatorSigPreviewHolder');
+    if(creatorHolder) creatorHolder.innerHTML=imgHtml;
+  }
+  const holders=document.querySelectorAll('.signature-summary .sig-preview-holder');
+  const idx=role==='creator'?0:1;
+  if(holders[idx]) holders[idx].innerHTML=imgHtml;
+}
+function taToggleSigningEmailEditors(){
+  const panel=document.getElementById('taSigningEmailEditPanel');
+  if(!panel) return;
+  const open=panel.style.display==='none' || !panel.style.display;
+  panel.style.display=open?'block':'none';
+}
+function taIsPlaceholderAgentName(name){
+  const s=String(name||'').trim();
+  return !s || /^sharehouse\s*managers?$/i.test(s) || s.toLowerCase()==='sharehousemanagers';
+}
+function taDefaultCreatorSignName(){
+  if(typeof window.shmAgentSignDisplayName==='function'){
+    return window.shmAgentSignDisplayName((window.SHM_DOCUMENT_CONTEXT||{}).adminName);
+  }
+  const fromCtx=String((window.SHM_DOCUMENT_CONTEXT||{}).adminName||'').trim();
+  if(taIsPlaceholderAgentName(fromCtx)) return 'Ishaq M';
+  return fromCtx || 'Ishaq M';
+}
+async function applyTaDefaultCreatorSignatureIfNeeded(){
+  /* Tenant Agreement: property manager does not sign; tenant + landlord only. */
+}
+function taSyncSignTabPartyFields(){
+  if(!taIsCreator()) return;
+  const d=collectAgreement();
+  const tenantNameEl=document.getElementById('ta_tenant_sign_display_name');
+  const tenantEmailEl=document.getElementById('ta_tenant_sign_display_email');
+  const landlordNameEl=document.getElementById('ta_landlord_sign_name');
+  const landlordEmailEl=document.getElementById('ta_landlord_sign_email');
+  const creatorNameEl=document.getElementById('ta_creator_sign_name');
+  if(tenantNameEl) tenantNameEl.value=String(d.tenant_name||'').trim();
+  if(tenantEmailEl) tenantEmailEl.value=String(d.tenant_email||'').trim();
+  if(landlordNameEl && !landlordNameEl.dataset.taUserEdited){
+    landlordNameEl.value=String(d.provider_name||'').trim();
+  }
+  if(landlordEmailEl && !landlordEmailEl.dataset.taUserEdited){
+    landlordEmailEl.value=String(d.provider_email||'').trim();
+  }
+  if(creatorNameEl) creatorNameEl.value='Ishaq M';
+}
+function taBindSignTabPartySync(){
+  const landlordNameEl=document.getElementById('ta_landlord_sign_name');
+  const landlordEmailEl=document.getElementById('ta_landlord_sign_email');
+  const providerNameEl=document.getElementById('provider_name');
+  const providerEmailEl=document.getElementById('provider_email');
+  function syncToDetails(fromSign){
+    if(fromSign && providerNameEl && landlordNameEl){
+      providerNameEl.value=landlordNameEl.value;
+      scheduleTaSigningEmailPreview();
+    }
+    if(fromSign && providerEmailEl && landlordEmailEl){
+      providerEmailEl.value=landlordEmailEl.value;
+      scheduleTaSigningEmailPreview();
+    }
+  }
+  if(landlordNameEl && !landlordNameEl.dataset.taSignBound){
+    landlordNameEl.dataset.taSignBound='1';
+    landlordNameEl.addEventListener('input', function(){
+      landlordNameEl.dataset.taUserEdited='1';
+      syncToDetails(true);
+    });
+  }
+  if(landlordEmailEl && !landlordEmailEl.dataset.taSignBound){
+    landlordEmailEl.dataset.taSignBound='1';
+    landlordEmailEl.addEventListener('input', function(){
+      landlordEmailEl.dataset.taUserEdited='1';
+      syncToDetails(true);
+    });
+  }
+  ['tenant_name_field','tenant_email_field','provider_name','provider_email'].forEach(function(id){
+    const el=document.getElementById(id);
+    if(!el || el.dataset.taSignMirrorBound) return;
+    el.dataset.taSignMirrorBound='1';
+    el.addEventListener('input', function(){ taSyncSignTabPartyFields(); scheduleTaSigningEmailPreview(); });
+  });
+}
+function taRenderExtraSigners(){
+  const list=document.getElementById('taExtraSignersList');
+  if(!list) return;
+  if(!taExtraSigners.length){
+    list.innerHTML='<p style="margin:0;font-size:13px;color:#64748b">No extra signers yet. Click &quot;Add signer&quot; to CC someone or add another signing party.</p>';
+    return;
+  }
+  list.innerHTML=taExtraSigners.map(function(row, idx){
+    return '<div class="ta-extra-signer-row" data-extra-idx="'+idx+'">'
+      +'<div><label>Name</label><input type="text" class="ta-extra-signer-name" value="'+taEscapeHtml(row.name)+'" data-idx="'+idx+'"></div>'
+      +'<div><label>Email</label><input type="email" class="ta-extra-signer-email" value="'+taEscapeHtml(row.email)+'" data-idx="'+idx+'"></div>'
+      +'<label style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;margin-bottom:8px"><input type="checkbox" class="ta-extra-signer-cc" data-idx="'+idx+'"'+(row.cc!==false?' checked':'')+'> CC only</label>'
+      +'<button type="button" class="sig-btn danger ta-extra-signer-remove" data-idx="'+idx+'">Remove</button>'
+      +'</div>';
+  }).join('');
+  list.querySelectorAll('.ta-extra-signer-name, .ta-extra-signer-email').forEach(function(el){
+    el.addEventListener('input', function(){
+      const i=Number(el.getAttribute('data-idx'));
+      if(!taExtraSigners[i]) return;
+      if(el.classList.contains('ta-extra-signer-name')) taExtraSigners[i].name=el.value;
+      else taExtraSigners[i].email=String(el.value||'').trim().toLowerCase();
+      scheduleTaSigningEmailPreview();
+    });
+  });
+  list.querySelectorAll('.ta-extra-signer-cc').forEach(function(el){
+    el.addEventListener('change', function(){
+      const i=Number(el.getAttribute('data-idx'));
+      if(!taExtraSigners[i]) return;
+      taExtraSigners[i].cc=!!el.checked;
+      scheduleTaSigningEmailPreview();
+    });
+  });
+  list.querySelectorAll('.ta-extra-signer-remove').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const i=Number(btn.getAttribute('data-idx'));
+      taExtraSigners.splice(i,1);
+      taRenderExtraSigners();
+      scheduleTaSigningEmailPreview();
+    });
+  });
+}
+function taAddExtraSigner(){
+  if(!taIsCreator()) return;
+  taExtraSigners.push({ name:'', email:'', cc:true });
+  taRenderExtraSigners();
+  const inputs=document.querySelectorAll('#taExtraSignersList .ta-extra-signer-name');
+  const last=inputs[inputs.length-1];
+  if(last){ last.focus(); last.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+}
+function taCollectExtraSigners(){
+  return taExtraSigners
+    .map(function(row){
+      return {
+        name:String(row.name||'').trim(),
+        email:String(row.email||'').trim().toLowerCase(),
+        cc:row.cc!==false,
+      };
+    })
+    .filter(function(row){ return row.name && row.email.includes('@'); });
+}
+function taEmailPreviewRecipients(d){
+  const out=[];
+  const multi=taCollectMultiRenterRecipientsFromDetails();
+  const multiList=multi && multi.length>=2 ? multi : (Array.isArray(d.multi_tenant_recipients) ? d.multi_tenant_recipients : []);
+  if(multiList.length>=2){
+    multiList.forEach(function(r, i){
+      out.push({
+        key:'tenant-'+(i+1),
+        label:'Tenant email preview (co-renter '+(i+1)+')',
+        name:String(r.tenant_name||r.name||'').trim(),
+        email:String(r.tenant_email||r.email||'').trim(),
+        kind:'tenant',
+      });
+    });
+  }else{
+    out.push({
+      key:'tenant-1',
+      label:'Tenant email preview',
+      name:String(d.tenant_name||'').trim()||'Tenant',
+      email:String(d.tenant_email||'').trim()||'tenant@example.com',
+      kind:'tenant',
+    });
+  }
+  const providerName=String(d.provider_name||'').trim();
+  const providerEmail=String(d.provider_email||'').trim().toLowerCase();
+  const tenantEmails=out.map(function(r){ return String(r.email||'').toLowerCase(); });
+  if(providerName && providerEmail.includes('@') && tenantEmails.indexOf(providerEmail)===-1){
+    out.push({
+      key:'provider',
+      label:'Rental provider email preview',
+      name:providerName,
+      email:providerEmail,
+      kind:'provider',
+    });
+  }
+  taCollectExtraSigners().forEach(function(row, i){
+    out.push({
+      key:'extra-'+(i+1),
+      label:(row.cc ? 'CC email preview' : 'Additional signer preview')+' — '+row.name,
+      name:row.name,
+      email:row.email,
+      kind:row.cc ? 'cc' : 'tenant',
+    });
+  });
+  return out;
+}
+function taResizeSigningEmailIframe(iframe){
+  if(!iframe) return;
+  try{
+    const doc=iframe.contentDocument;
+    if(!doc || !doc.body) return;
+    const h=Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
+    iframe.style.height=Math.min(Math.max(h+12, 160), 640)+'px';
+  }catch(e){}
+}
+function taFormatDateAu(value){
+  const raw=String(value||'').trim();
+  if(!raw) return '—';
+  const iso=raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(iso) return iso[3]+'/'+iso[2]+'/'+iso[1];
+  return raw;
+}
+function taLocalDateInputValue(date){
+  const d=date instanceof Date ? date : new Date();
+  const y=d.getFullYear();
+  const m=String(d.getMonth()+1).padStart(2,'0');
+  const day=String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
+}
+function taDateInputPlusDays(isoDate, days){
+  const parts=String(isoDate||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(!parts) return '';
+  const dt=new Date(Number(parts[1]), Number(parts[2])-1, Number(parts[3]));
+  dt.setDate(dt.getDate()+Number(days||0));
+  return taLocalDateInputValue(dt);
+}
+function taMoney(value){
+  const raw=String(value||'').trim().replace(/^\$/, '');
+  return raw || '—';
+}
+function taParseRentAmount(value){
+  const n=parseFloat(String(value||'').replace(/[^\d.]/g,''));
+  return Number.isFinite(n)?n:NaN;
+}
+/** VIC calendar monthly rent: (daily × 365) / 12, daily = weekly / 7 — see consumer.vic.gov.au rent calculator. */
+function taCalendarMonthlyFromWeekly(weekly){
+  const w=taParseRentAmount(weekly);
+  if(!(w>0)) return '';
+  return (((w/7)*365)/12).toFixed(2);
+}
+function taBondFromWeekly(weekly){
+  const w=taParseRentAmount(weekly);
+  if(!(w>0)) return '';
+  return (w*4).toFixed(2);
+}
+function taWeeklyFromMonthly(monthly){
+  const m=taParseRentAmount(monthly);
+  if(!(m>0)) return '';
+  return ((m*84)/365).toFixed(2);
+}
+var taRentSyncLock=false;
+function taSyncRentFromWeekly(){
+  if(taRentSyncLock) return;
+  const weeklyEl=document.getElementById('weekly_rent');
+  const monthlyEl=document.getElementById('monthly_rent');
+  const bondEl=document.getElementById('bond_amount');
+  if(!weeklyEl) return;
+  taRentSyncLock=true;
+  const weeklyRaw=String(weeklyEl.value||'').trim();
+  const monthly=taCalendarMonthlyFromWeekly(weeklyEl.value);
+  const bond=taBondFromWeekly(weeklyEl.value);
+  if(monthlyEl) monthlyEl.value=monthly||'';
+  if(bondEl) bondEl.value=bond||'';
+  if(!weeklyRaw){
+    if(monthlyEl) monthlyEl.value='';
+    if(bondEl) bondEl.value='';
+  }
+  taRentSyncLock=false;
+  taRefreshTermsFromDetails();
+}
+function taSyncRentFromMonthly(){
+  if(taRentSyncLock) return;
+  const weeklyEl=document.getElementById('weekly_rent');
+  const monthlyEl=document.getElementById('monthly_rent');
+  const bondEl=document.getElementById('bond_amount');
+  if(!monthlyEl) return;
+  taRentSyncLock=true;
+  const monthlyRaw=String(monthlyEl.value||'').trim();
+  const weekly=taWeeklyFromMonthly(monthlyEl.value);
+  const bond=weekly?taBondFromWeekly(weekly):'';
+  if(weeklyEl) weeklyEl.value=weekly||'';
+  if(bondEl) bondEl.value=bond||'';
+  if(!monthlyRaw){
+    if(weeklyEl) weeklyEl.value='';
+    if(bondEl) bondEl.value='';
+  }
+  taRentSyncLock=false;
+  taRefreshTermsFromDetails();
+}
+function taSyncRentFieldsOnLoad(){
+  const weeklyVal=(document.getElementById('weekly_rent')?.value||'').trim();
+  const monthlyVal=(document.getElementById('monthly_rent')?.value||'').trim();
+  if(weeklyVal) taSyncRentFromWeekly();
+  else if(monthlyVal) taSyncRentFromMonthly();
+}
+function setupTaWeeklyRentAutoMonthly(){
+  const weeklyEl=document.getElementById('weekly_rent');
+  const monthlyEl=document.getElementById('monthly_rent');
+  if(weeklyEl) ['input','change','blur'].forEach(function(ev){ weeklyEl.addEventListener(ev, taSyncRentFromWeekly); });
+  if(monthlyEl) ['input','change','blur'].forEach(function(ev){ monthlyEl.addEventListener(ev, taSyncRentFromMonthly); });
+  ['bond_amount','bond_payment_due','premises_address','lease_period','commencement_date','terminate_date','tenant_email_field','tenant_name_field'].forEach(function(id){
+    const el=document.getElementById(id);
+    if(!el) return;
+    ['input','change','blur'].forEach(function(ev){
+      el.addEventListener(ev, taRefreshTermsFromDetails);
+    });
+  });
+}
+const TA_RENT_INCLUDE_ROWS=[
+  { id:'rent_include_gas', key:'gas', label:'gas' },
+  { id:'rent_include_water', key:'water', label:'water' },
+  { id:'rent_include_electricity', key:'electricity', label:'electricity' },
+  { id:'rent_include_internet', key:'internet', label:'internet' }
+];
+function taFormatRentIncludesList(labels){
+  const list=(labels||[]).map(function(x){ return String(x||'').trim(); }).filter(Boolean);
+  if(!list.length) return 'no utilities specified';
+  if(list.length===1) return list[0];
+  return list.slice(0,-1).join(', ')+' and '+list[list.length-1];
+}
+function taGetRentIncludesLabelsFromDom(){
+  return TA_RENT_INCLUDE_ROWS.filter(function(row){
+    const el=document.getElementById(row.id);
+    return el && el.checked;
+  }).map(function(row){ return row.label; });
+}
+function taCollectRentIncludesObject(){
+  const out={};
+  TA_RENT_INCLUDE_ROWS.forEach(function(row){
+    const el=document.getElementById(row.id);
+    out[row.key]=el ? !!el.checked : true;
+  });
+  return out;
+}
+function taApplyRentIncludesFromSaved(saved){
+  const inc=(saved && saved.rent_includes && typeof saved.rent_includes==='object') ? saved.rent_includes : {};
+  TA_RENT_INCLUDE_ROWS.forEach(function(row){
+    const el=document.getElementById(row.id);
+    if(!el) return;
+    const v=inc[row.key];
+    el.checked=(v===false || v==='false') ? false : (v===undefined ? true : !!v);
+  });
+}
+function taRentIncludesTextFromSaved(saved){
+  const inc=(saved && saved.rent_includes && typeof saved.rent_includes==='object') ? saved.rent_includes : null;
+  const labels=TA_RENT_INCLUDE_ROWS.filter(function(row){
+    if(!inc) return true;
+    const v=inc[row.key];
+    return (v===false || v==='false') ? false : (v===undefined ? true : !!v);
+  }).map(function(row){ return row.label; });
+  return taFormatRentIncludesList(labels);
+}
+function taUpdateRentSectionIncludesLine(){
+  taEnsureCoreSectionPlaceholders();
+}
+function setupTaRentIncludesSync(){
+  TA_RENT_INCLUDE_ROWS.forEach(function(row){
+    const el=document.getElementById(row.id);
+    if(!el) return;
+    el.addEventListener('change', function(){
+      taRefreshTermsFromDetails();
+    });
+  });
+}
+function taParseLeasePeriodDuration(text){
+  const raw=String(text||'').trim().toLowerCase();
+  if(!raw) return null;
+  let m=raw.match(/(\d+(?:\.\d+)?)\s*(year|years|yr|yrs)\b/);
+  if(m) return { kind:'months', amount:parseFloat(m[1])*12 };
+  m=raw.match(/(\d+(?:\.\d+)?)\s*(month|months|mth|mths|mo)\b/);
+  if(m) return { kind:'months', amount:parseFloat(m[1]) };
+  m=raw.match(/(\d+(?:\.\d+)?)\s*(week|weeks|wk|wks)\b/);
+  if(m) return { kind:'days', amount:parseFloat(m[1])*7 };
+  return null;
+}
+function taIsoDateFromParts(y, mo, d){
+  return y+'-'+String(mo).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+}
+function taTerminateDateFromCommencement(isoCommence, duration){
+  if(!isoCommence || !duration) return '';
+  const parts=isoCommence.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(!parts) return '';
+  const y=Number(parts[1]);
+  const mo=Number(parts[2]);
+  const d=Number(parts[3]);
+  let end;
+  if(duration.kind==='months'){
+    end=new Date(y, mo-1+duration.amount, d);
+  } else {
+    end=new Date(y, mo-1, d+duration.amount);
+  }
+  end.setDate(end.getDate()-1);
+  return taIsoDateFromParts(end.getFullYear(), end.getMonth()+1, end.getDate());
+}
+let taLeasePeriodSyncLock=false;
+function taSyncTerminateDateFromLeasePeriod(){
+  if(taLeasePeriodSyncLock) return;
+  const leaseEl=document.getElementById('lease_period');
+  const startEl=document.getElementById('commencement_date');
+  const endEl=document.getElementById('terminate_date');
+  if(!startEl || !endEl) return;
+  const duration=taParseLeasePeriodDuration(leaseEl ? leaseEl.value : '');
+  const commence=String(startEl.value||'').trim();
+  if(!duration || !commence) return;
+  taLeasePeriodSyncLock=true;
+  const terminate=taTerminateDateFromCommencement(commence, duration);
+  if(terminate) endEl.value=terminate;
+  taLeasePeriodSyncLock=false;
+  taRefreshTermsFromDetails();
+}
+function setupTaLeasePeriodAutoTerminate(){
+  const leaseEl=document.getElementById('lease_period');
+  const startEl=document.getElementById('commencement_date');
+  ['input','change','blur'].forEach(function(ev){
+    if(leaseEl) leaseEl.addEventListener(ev, taSyncTerminateDateFromLeasePeriod);
+    if(startEl) startEl.addEventListener(ev, taSyncTerminateDateFromLeasePeriod);
+  });
+}
+function taSetDocText(id, value){
+  const el=document.getElementById(id);
+  if(el) el.textContent = value && String(value).trim() ? String(value).trim() : '—';
+}
+function taRenderSelectedTermsHtml(items, options){
+  const numbered=!(options && options.numbered===false);
+  const withClauseIds=!!(options && options.clauseIds);
+  const selected=(items||[]).filter(function(item){
+    if(!item || item.selected===false) return false;
+    if(numbered) return String(item.text||'').trim();
+    const parts=taTermParts(item);
+    return parts.title || parts.body || String(item.text||'').trim();
+  });
+  if(!selected.length){
+    return '';
+  }
+  let nextNum=null;
+  return selected.map(function(item, idx){
+    if(numbered){
+      const text=String(item.text||'').trim().replace(/^\d+[A-Za-z]?\.?\s+/, '');
+      return '<div class="ta-doc-term"><div class="ta-doc-term-body"><strong>'+(idx+1)+'.</strong> '+taEscapeHtml(text)+'</div></div>';
+    }
+    const parts=taTermParts(item);
+    let clauseRef=null;
+    let domId='';
+    if(parts.title){
+      const m=String(parts.title).match(/^(\d+)/);
+      if(nextNum===null) nextNum=m ? Number(m[1]) : 11;
+      clauseRef=taClauseRefFromTitle(parts.title);
+      if(withClauseIds && clauseRef){
+        domId=' id="ta-additional-clause-'+String(clauseRef).replace(/[^a-z0-9]/gi,'')+'"';
+      }
+      const titleText=String(parts.title).replace(/^\d+[A-Za-z]?\.?\s+/, '').trim() || parts.title;
+      const titled=(nextNum++)+'. '+titleText;
+      return '<div class="ta-doc-term"'+domId+'><div class="ta-doc-term-title">'+taEscapeHtml(titled)+'</div><div class="ta-doc-term-body">'+taEscapeHtml(parts.body)+'</div></div>';
+    }
+    if(withClauseIds){
+      domId=' id="ta-additional-clause-'+idx+'"';
+    }
+    return '<div class="ta-doc-term"'+domId+'><div class="ta-doc-term-body">'+taEscapeHtml(parts.body || item.text || '')+'</div></div>';
+  }).join('');
+}
+function taRenderDocumentView(){
+  const page=document.getElementById('taDocumentView');
+  if(!page) return;
+  const ctx=window.SHM_DOCUMENT_CONTEXT || {};
+  const data=ctx.agreementData || {};
+  const fields=data.field_values || data.fieldValues || data.agreement_data || data.agreementData || data;
+  const get=function(){
+    for(let i=0;i<arguments.length;i++){
+      const key=arguments[i];
+      const el=document.getElementById(key);
+      if(taIsCreator() && el && el.type!=='checkbox') return String(el.value||'').trim();
+      const fromField=fields && fields[key]!=null ? fields[key] : null;
+      const fromData=data && data[key]!=null ? data[key] : null;
+      const fromInput=el ? el.value : null;
+      const value=fromField!=null && String(fromField).trim()!=='' ? fromField
+        : (fromData!=null && String(fromData).trim()!=='' ? fromData : fromInput);
+      if(value!=null && String(value).trim()!=='') return String(value).trim();
+    }
+    return '';
+  };
+
+  const tenantName=get('tenant_name','tenant_name_field') || ctx.tenantName || ctx.recipientName || '';
+  const tenantEmail=get('tenant_email','tenant_email_field') || ctx.tenantEmail || ctx.recipientEmail || '';
+  const providerName=get('provider_name') || '';
+  const tokenValues=taGetCoreTokenValues();
+  const values={
+    premises: tokenValues.premises || '—',
+    monthly: tokenValues.monthly || '—',
+    weekly: tokenValues.weekly || '—',
+    bond: tokenValues.bond || '—',
+    bondDue: tokenValues.bondDue || '—',
+    rentIncludes: tokenValues.rentIncludes || '—',
+    leasePeriod: tokenValues.leasePeriod || '—',
+    start: tokenValues.start || '—',
+    end: tokenValues.end || '—',
+    tenantEmail: tokenValues.tenantEmail || tenantEmail || '—'
+  };
+
+  taSetDocText('taDocAgreementDate', taFormatDateAu(get('agreement_date')));
+  taSetDocText('taDocProviderName', providerName);
+  taSetDocText('taDocTenantName', tenantName);
+  taSetDocText('taDocTenantEmail', tenantEmail);
+
+  const coHost=document.getElementById('taDocCoRenters');
+  const recipientSigners=(ctx.signers||[]).filter(function(s){ return s.signerType==='recipient'; });
+  if(coHost && ctx.multiTenantRecipients && recipientSigners.length>1){
+    coHost.style.display='block';
+    coHost.innerHTML='<p class="ta-doc-field"><strong>All co-renters on this agreement</strong></p>'
+      +recipientSigners.map(function(r){
+        const signed=r.status==='Signed';
+        const sig=signed && r.signature
+          ? '<img alt="" src="'+String(r.signature).replace(/"/g,'&quot;')+'"/>'
+          : '';
+        const statusPill=signed
+          ? '<span class="ta-doc-status-pill signed">Signed</span>'
+          : '<span class="ta-doc-status-pill">Awaiting signature</span>';
+        const roleLabel=String(r.role||'Tenant').trim();
+        return '<div class="ta-doc-co-row"><div><strong>'+taEscapeHtml(r.name)+'</strong> <span class="ta-doc-co-role">('+taEscapeHtml(roleLabel)+')</span><br>'+taEscapeHtml(r.email)+(sig ? '<br>'+sig : '')+'</div>'+statusPill+'</div>';
+      }).join('');
+  } else if(coHost){
+    coHost.style.display='none';
+    coHost.innerHTML='';
+  }
+
+  const selectedCore=taSelectedCoreSectionsForView();
+  const premisesSections=selectedCore.filter(function(sec){ return taCoreSectionBucket(sec.title)==='premises'; });
+  const rentSections=selectedCore.filter(function(sec){ return taCoreSectionBucket(sec.title)==='rent'; });
+  const termsSections=selectedCore.filter(function(sec){ return taCoreSectionBucket(sec.title)==='terms'; });
+  const premisesEl=document.getElementById('taDocCorePremises');
+  const rentEl=document.getElementById('taDocCoreRent');
+  const coreTermsEl=document.getElementById('taDocCoreTerms');
+  if(premisesEl) premisesEl.innerHTML=taRenderCoreSectionBlocks(premisesSections, values);
+  if(rentEl) rentEl.innerHTML=taRenderCoreSectionBlocks(rentSections, values);
+  if(coreTermsEl) coreTermsEl.innerHTML=taRenderCoreSectionBlocks(termsSections, values);
+
+  const termsEl=document.getElementById('taDocAdditionalTerms');
+  if(termsEl) termsEl.innerHTML=taRenderSelectedTermsHtml(taAdditionalTerms, { numbered:false, clauseIds:true });
+  const rulesEl=document.getElementById('taDocShareHouseRules');
+  if(rulesEl) rulesEl.innerHTML=taRenderSelectedTermsHtml(taShareHouseRules, { numbered:true });
+
+  taUpdateSignerAccordionMeta(termsSections);
+  taRenderGlancePanel(values, ctx);
+  taInitSignerAccordions();
+  taInitSignerClauseTools();
+  taRefreshSignerClauseTools();
+  const search=document.getElementById('taClauseSearch');
+  if(search && search.value) taFilterAdditionalTerms(search.value);
+
+  const ack=document.getElementById('taAckCheckbox');
+  if(ack && currentTaSignerType()==='creator'){
+    ack.checked=true;
+    ack.disabled=true;
+  }
+}
+function taEscapeHtml(value){
+  return String(value||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function taCopyPaymentDetail(btn){
+  if(!btn) return;
+  const raw=btn.getAttribute('data-copy')||'';
+  const done=function(){
+    const prev=btn.textContent;
+    btn.textContent='Copied';
+    btn.disabled=true;
+    setTimeout(function(){ btn.textContent=prev; btn.disabled=false; }, 1400);
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(raw).then(done).catch(function(){
+      taCopyPaymentDetailFallback(raw,done);
+    });
+    return;
+  }
+  taCopyPaymentDetailFallback(raw,done);
+}
+function taCopyPaymentDetailFallback(text, done){
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text;
+    ta.setAttribute('readonly','');
+    ta.style.position='fixed';
+    ta.style.left='-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    done();
+  }catch(e){}
+}
+function taRenterRowsFromContext(ctx, saved){
+  const multiList=Array.isArray(saved.multi_tenant_recipients)?saved.multi_tenant_recipients:[];
+  if(multiList.length>=2){
+    return multiList.map(function(r){
+      return {
+        tenant_name:String(r.tenant_name||r.name||'').trim(),
+        tenant_email:String(r.tenant_email||r.email||'').trim().toLowerCase(),
+      };
+    }).filter(function(r){ return r.tenant_name && r.tenant_email.includes('@'); });
+  }
+  const signers=(ctx.signers||[]).filter(function(s){
+    return s.signerType==='recipient' && String(s.role||'').toLowerCase()==='tenant';
+  });
+  if(signers.length>=2){
+    return signers.map(function(s){
+      return { tenant_name:String(s.name||'').trim(), tenant_email:String(s.email||'').trim().toLowerCase() };
+    }).filter(function(r){ return r.tenant_name && r.tenant_email.includes('@'); });
+  }
+  return [];
+}
+function taRenderMultiRenterDetailsRows(rows){
+  const host=document.getElementById('taMultiRenterFields');
+  const single=document.getElementById('taSingleRenterFields');
+  if(!host||!single) return;
+  if(!rows||rows.length<2){
+    host.style.display='none';
+    host.innerHTML='';
+    single.style.display='';
+    return;
+  }
+  single.style.display='none';
+  host.style.display='grid';
+  host.innerHTML=rows.map(function(row, index){
+    const name=taEscapeHtml(row.tenant_name);
+    const email=taEscapeHtml(row.tenant_email);
+    return '<div class="ta-multi-renter-detail-row" data-renter-index="'+index+'">'
+      +'<div class="sec-header" style="margin-bottom:10px"><span class="sec-num">'+(index+1)+'</span><span class="sec-title">Co-renter '+(index+1)+'</span></div>'
+      +'<div class="g2">'
+      +'<div class="field-wrap"><label class="field-label">Renter Name</label>'
+      +'<input class="ta-renter-detail-name" value="'+name+'" data-index="'+index+'"></div>'
+      +'<div class="field-wrap"><label class="field-label">Renter Email</label>'
+      +'<input type="email" class="ta-renter-detail-email" value="'+email+'" data-index="'+index+'"></div>'
+      +'</div></div>';
+  }).join('');
+  host.querySelectorAll('input').forEach(function(el){
+    el.addEventListener('input', scheduleTaSigningEmailPreview);
+  });
+}
+function taCollectMultiRenterRecipientsFromDetails(){
+  const host=document.getElementById('taMultiRenterFields');
+  if(!host||host.style.display==='none'||!host.children.length) return null;
+  const rows=[];
+  host.querySelectorAll('.ta-multi-renter-detail-row').forEach(function(block){
+    const name=String(block.querySelector('.ta-renter-detail-name')?.value||'').trim();
+    const email=String(block.querySelector('.ta-renter-detail-email')?.value||'').trim().toLowerCase();
+    if(name&&email.includes('@')) rows.push({ tenant_name:name, tenant_email:email });
+  });
+  return rows.length>=2?rows:null;
+}
+function taFirstRenterForEmailPreview(d){
+  const multi=taCollectMultiRenterRecipientsFromDetails();
+  if(multi&&multi.length) return { name:multi[0].tenant_name, email:multi[0].tenant_email };
+  const ctx=window.SHM_DOCUMENT_CONTEXT||{};
+  const saved=(ctx.agreementData)||{};
+  const list=Array.isArray(saved.multi_tenant_recipients)?saved.multi_tenant_recipients:[];
+  if(list.length){
+    const first=list[0];
+    return {
+      name:String(first.tenant_name||first.name||'').trim()||'Tenant',
+      email:String(first.tenant_email||first.email||'').trim()||'tenant@example.com',
+    };
+  }
+  return { name:d.tenant_name||'Tenant', email:d.tenant_email||'tenant@example.com' };
+}
+function setupMultiTenantSigningUi(){
+  const ctx=window.SHM_DOCUMENT_CONTEXT || {};
+  if(!ctx.multiTenantRecipients && !ctx.multiTenantSharedDoc) return;
+  const recipients=(ctx.signers||[]).filter(function(s){ return s.signerType==='recipient'; });
+  if(recipients.length<2 && !ctx.multiTenantSharedDoc) return;
+  const active=ctx.activeSigner||{};
+  let host=document.getElementById('taMultiTenantPanel');
+  if(!host){
+    const sigBox=document.querySelector('#panel-2 .sig-box');
+    host=document.createElement('div');
+    host.id='taMultiTenantPanel';
+    host.className='ta-multi-tenant-panel';
+    if(sigBox && sigBox.parentNode) sigBox.parentNode.insertBefore(host, sigBox);
+  }
+  host.innerHTML=recipients.map(function(r){
+    const isActive=String(r.email||'').toLowerCase()===String(active.email||'').toLowerCase() || r.id===active.id;
+    const signed=r.status==='Signed';
+    const isRentalProvider=/rental provider/i.test(String(r.role||''));
+    const statusText=signed
+      ? 'Signed'
+      : (isActive
+        ? 'You can sign below'
+        : (isRentalProvider
+          ? 'Only the rental provider can sign from their email link'
+          : 'Only this tenant can sign from their email link'));
+    const sigPreview=signed && r.signature
+      ? '<img class="ta-mt-sig-img" alt="" src="'+String(r.signature).replace(/"/g,'&quot;')+'"/>'
+      : (signed
+        ? '<div class="ta-mt-sig-slot">Signature on file</div>'
+        : (!isActive
+          ? '<div class="ta-mt-sig-slot">Signature field — waiting for '+(isRentalProvider ? 'rental provider' : 'this tenant')+'</div>'
+          : ''));
+    const roleLabel=String(r.role||'Tenant').trim();
+    return '<div class="ta-multi-tenant-card '+(isActive?'active':'locked')+(signed?' signed':'')+'">'
+      +'<strong>'+taEscapeHtml(r.name)+'</strong>'
+      +'<div class="ta-mt-email">'+taEscapeHtml(r.email)+'</div>'
+      +'<div class="ta-mt-role">'+taEscapeHtml(roleLabel)+'</div>'
+      +'<div class="ta-mt-status">'+statusText+'</div>'
+      +sigPreview
+      +'</div>';
+  }).join('');
+
+  const sigBox=document.querySelector('#panel-2 .sig-box');
+  const submitArea=document.getElementById('taTenantSubmitArea');
+  const isActiveRecipient=String(active.signerType||'').toLowerCase()==='recipient';
+  const activeSigned=active.status==='Signed';
+  if(sigBox) sigBox.style.display=(isActiveRecipient && !activeSigned)?'':'none';
+  if(submitArea) submitArea.style.display=(isActiveRecipient && !activeSigned)?'':'none';
+  if(isActiveRecipient && !activeSigned){
+    ['tenant_name_field','tenant_email_field'].forEach(function(id){
+      const el=document.getElementById(id);
+      if(!el) return;
+      el.value=id==='tenant_name_field'
+        ? String(active.name || ctx.tenantName || ctx.recipientName || '')
+        : String(active.email || ctx.tenantEmail || ctx.recipientEmail || '');
+    });
+  }
+}
+function setupTenantAgreementRoleUi(){
+  const ctx=window.SHM_DOCUMENT_CONTEXT || {};
+  const templateMode=!!(window.SHM_TEMPLATE_MODE || ctx.templateMode);
+  const role=currentTaSignerType();
+  const isCreator=role==='creator' || templateMode;
+  const shell=document.querySelector('.tenant-agreement-shell');
+  if(shell){
+    shell.classList.toggle('ta-recipient-mode', !isCreator && !templateMode);
+    shell.classList.toggle('ta-creator-mode', isCreator || templateMode);
+    shell.classList.toggle('ta-template-mode', templateMode);
+    shell.classList.remove('ta-creator-single');
+  }
+  const adminArea=document.getElementById('taAdminSubmitArea');
+  const tenantArea=document.getElementById('taTenantSubmitArea');
+  const sentInfo=document.getElementById('taSentInfo');
+  const completedInfo=document.getElementById('taCompletedInfo');
+  const templateHint=document.getElementById('taTemplateSaveHint');
+  const adminBtn=document.getElementById('taAdminSubmitBtn');
+  const label=document.getElementById('taSignatureRoleLabel');
+  if(adminArea) adminArea.style.display=(isCreator || templateMode)?'':'none';
+  if(tenantArea) tenantArea.style.display=(isCreator || templateMode)?'none':'';
+  if(sentInfo) sentInfo.style.display='none';
+  if(completedInfo) completedInfo.style.display='none';
+  if(templateHint) templateHint.style.display=templateMode?'':'none';
+  if(adminBtn){
+    if(templateMode){
+      adminBtn.textContent='Save Template';
+      adminBtn.setAttribute('onclick','saveTenantAgreementTemplate()');
+    } else {
+      adminBtn.textContent='Send';
+      adminBtn.setAttribute('onclick','adminSendTenantAgreement()');
+    }
+  }
+  const draftBtn=document.getElementById('taSaveDraftBtn');
+  if(draftBtn) draftBtn.style.display=(isCreator && !templateMode)?'':'none';
+  const signStepLayout=document.getElementById('taSignStepLayout');
+  if(signStepLayout) signStepLayout.style.display=(isCreator && !templateMode)?'':'none';
+  const legacySummary=document.getElementById('taSignatureSummary');
+  if(legacySummary) legacySummary.style.display='none';
+  if(label){
+    if(templateMode) label.textContent='Save template content';
+    else if(isCreator) label.textContent='Send for tenant & landlord signatures';
+    else {
+      const activeRole=String((ctx.activeSigner&&ctx.activeSigner.role)||'').toLowerCase();
+      label.textContent=activeRole.includes('rental provider')?'Residential Rental Provider signature':'Tenant / Renter signature';
+    }
+  }
+  const tabs=document.querySelectorAll('.tenant-agreement-tabs .tab');
+  if(templateMode && tabs[2]) tabs[2].textContent='3 · Save';
+  if(ctx.adminSignature) renderTaSignaturePreview('creator', ctx.adminSignature);
+  if(ctx.tenantSignature) renderTaSignaturePreview('recipient', ctx.tenantSignature);
+
+  // Prefill details from saved agreement data before locking recipient fields.
+  const data=ctx.agreementData || {};
+  const nestedSaved=data.field_values || data.fieldValues || data.agreement_data || data.agreementData;
+  const saved=Object.assign({}, typeof nestedSaved==='object' && !Array.isArray(nestedSaved) ? nestedSaved : {}, data);
+  if(data.bond_payment_due) saved.bond_payment_due=data.bond_payment_due;
+  if(data.bond_amount) saved.bond_amount=data.bond_amount;
+  function setIfEmpty(id, value){
+    const el=document.getElementById(id);
+    if(!el) return;
+    if(el.value && String(el.value).trim()) return;
+    if(value==null || String(value).trim()==='') return;
+    el.value=String(value);
+  }
+  function setAlways(id, value){
+    const el=document.getElementById(id);
+    if(!el) return;
+    if(value==null) return;
+    el.value=String(value);
+  }
+  const setFn=templateMode ? setAlways : setIfEmpty;
+  setFn('agreement_date', saved.agreement_date);
+  setFn('premises_address', saved.premises_address || ctx.propertyAddress);
+  const landlordPrefill=taLandlordPrefillFromSaved(saved, ctx);
+  if(isCreator && !templateMode){
+    setAlways('provider_name', landlordPrefill.provider_name);
+    setAlways('provider_email', landlordPrefill.provider_email);
+  }else{
+    setFn('provider_name', landlordPrefill.provider_name);
+    setFn('provider_email', landlordPrefill.provider_email);
+  }
+  const renterRows=taRenterRowsFromContext(ctx, saved);
+  if(renterRows.length>=2){
+    taRenderMultiRenterDetailsRows(renterRows);
+  }else{
+    taRenderMultiRenterDetailsRows([]);
+    setFn('tenant_name_field', saved.tenant_name || saved.tenant_name_field || ctx.tenantName || ctx.recipientName);
+    setFn('tenant_email_field', saved.tenant_email || saved.tenant_email_field || ctx.tenantEmail || ctx.recipientEmail);
+  }
+  setFn('weekly_rent', saved.weekly_rent);
+  setFn('monthly_rent', saved.monthly_rent);
+  setFn('bond_amount', saved.bond_amount);
+  taSyncRentFieldsOnLoad();
+  setFn('bond_payment_due', saved.bond_payment_due || data.bond_payment_due || data.Date_BondPayment);
+  taApplyRentIncludesFromSaved(saved);
+  setFn('lease_period', saved.lease_period);
+  setFn('commencement_date', saved.commencement_date);
+  setFn('terminate_date', saved.terminate_date);
+  taSyncTerminateDateFromLeasePeriod();
+  if(isCreator){
+    const agreementDate=document.getElementById('agreement_date');
+    const bondDueEl=document.getElementById('bond_payment_due');
+    if(agreementDate && !String(agreementDate.value||'').trim()){
+      agreementDate.value=taLocalDateInputValue(new Date());
+    }
+    if(bondDueEl && !String(bondDueEl.value||'').trim() && agreementDate && agreementDate.value){
+      bondDueEl.value=taDateInputPlusDays(agreementDate.value, 1);
+    }
+  }
+
+  if(!isCreator && !templateMode){
+    document.querySelectorAll('#panel-0 input, #panel-0 textarea').forEach(function(el){
+      el.setAttribute('readonly','readonly');
+      if(el.tagName==='INPUT' && (el.type==='date' || el.type==='checkbox')) el.setAttribute('disabled','disabled');
+    });
+    document.querySelectorAll('#taMultiRenterFields input').forEach(function(el){
+      el.setAttribute('readonly','readonly');
+    });
+  }
+  ['provider_name','provider_email','tenant_name_field','tenant_email_field'].forEach(function(id){
+    const el=document.getElementById(id);
+    if(el && !el.dataset.taPreviewBound){
+      el.dataset.taPreviewBound='1';
+      el.addEventListener('input', scheduleTaSigningEmailPreview);
+    }
+  });
+  taLoadShareHouseRulesFromContext();
+  taEnsureCoreSectionPlaceholders();
+  taRefreshTermsFromDetails();
+  taBindSignTabPartySync();
+  taSyncSignTabPartyFields();
+  if(templateMode){
+    goTo(0);
+    const partTitle=document.querySelector('#panel-2 .part-title');
+    if(partTitle) partTitle.textContent='Save Template';
+    const partLabel=document.querySelector('#panel-2 .part-label');
+    if(partLabel) partLabel.textContent='Step 3';
+  } else if(isCreator){
+    goTo(0);
+    if(ctx.multiTenantSharedDoc || ctx.multiTenantRecipients){
+      setTimeout(setupMultiTenantSigningUi, 50);
+    }
+  } else {
+    taRenderDocumentView();
+    goTo(2);
+    const partTitle=document.querySelector('#panel-2 .part-title');
+    if(partTitle) partTitle.textContent='Sign Agreement';
+    const partLabel=document.querySelector('#panel-2 .part-label');
+    if(partLabel) partLabel.textContent='Signature';
+    setTimeout(taRenderDocumentView, 50);
+    setTimeout(taRenderDocumentView, 300);
+    setupMultiTenantSigningUi();
+  }
+}
+document.addEventListener('DOMContentLoaded', function(){
+  taBindTermsDeleteButtons();
+  setupTenantAgreementRoleUi();
+  setupTaWeeklyRentAutoMonthly();
+  setupTaRentIncludesSync();
+  setupTaLeasePeriodAutoTerminate();
+  setupTenantAgreementDraftAutosave();
+  initTaSigningEmailEditor();
+  taSigMode = 'draw';
+  const drawBtn = document.querySelector('.sig-tab[onclick*="\'draw\'"]');
+  if (drawBtn && typeof switchTaSigTab === 'function') switchTaSigTab('draw', drawBtn);
+});
+function showTaSigConfirmed(dataUrl,label){
+  document.getElementById('ta_signature_data').value=dataUrl;
+  sigReady=true;
+  taSigDataUrl=dataUrl;
+  renderTaSignaturePreview(currentTaSignerType(), dataUrl);
+  const box=document.getElementById('taSigConfirmed');
+  if(box){ box.textContent='✓ '+label; box.style.display='block'; }
+  const boxCreator=document.getElementById('taSigConfirmedCreator');
+  if(boxCreator){ boxCreator.textContent='✓ '+label; boxCreator.style.display='block'; }
+}
+function confirmTaSignature(){ if(!canvas) return; const data=canvas.toDataURL('image/png'); hasTaInk=true; showTaSigConfirmed(data,'Drawn signature captured.'); }
+function updateTaTypeSig(){ const val=document.getElementById('sigTypeInput')?.value || ''; const preview=document.getElementById('sigTypePreview'); if(preview){ preview.textContent=val; preview.style.setProperty('font-family', `'${taCurrentFont}', cursive`, 'important'); } }
+function setTaFont(font,el){ taCurrentFont=font; document.querySelectorAll('.font-pill').forEach(pill=>pill.classList.remove('active')); if(el) el.classList.add('active'); updateTaTypeSig(); }
+async function confirmTaTypeSig(){ const input=document.getElementById('sigTypeInput'); const val=(input?.value||'').trim(); if(!val){ alert('Please type your name first.'); return false; } if(document.fonts){ try{ await document.fonts.load(`56px '${taCurrentFont}'`); await document.fonts.ready; }catch(e){} } const tc=document.createElement('canvas'); tc.width=700; tc.height=140; const tctx=tc.getContext('2d'); tctx.clearRect(0,0,tc.width,tc.height); tctx.font=`500 56px '${taCurrentFont}', cursive`; tctx.fillStyle='#1a2a30'; tctx.textBaseline='middle'; tctx.fillText(val,18,74); const data=tc.toDataURL('image/png'); showTaSigConfirmed(data,'Typed signature captured.'); return true; }
+function handleTaSigUpload(e){ const file=e.target.files[0]; if(!file) return; const reader=new FileReader(); reader.onload=ev=>{ taSigDataUrl=ev.target.result; document.getElementById('uploadPreviewImg').src=taSigDataUrl; document.getElementById('uploadPreview').style.display='block'; document.getElementById('uploadZone').style.display='none'; }; reader.readAsDataURL(file); }
+function clearTaUpload(){ document.getElementById('uploadPreview').style.display='none'; document.getElementById('uploadZone').style.display='block'; document.getElementById('sigFileInput').value=''; taSigDataUrl=null; sigReady=false; document.getElementById('ta_signature_data').value=''; document.getElementById('taSigConfirmed').style.display='none'; }
+function confirmTaUploadSig(){ if(!taSigDataUrl){ alert('Please upload a signature image first.'); return false; } showTaSigConfirmed(taSigDataUrl,'Uploaded signature captured.'); return true; }
+function switchTaSigTab(mode,btn){ taSigMode=mode; document.querySelectorAll('.sig-panel').forEach(p=>p.classList.remove('active')); document.querySelectorAll('.sig-tab').forEach(t=>t.classList.remove('active')); const panel=document.getElementById('ta-sig-panel-'+mode); if(panel) panel.classList.add('active'); if(btn) btn.classList.add('active'); if(mode==='draw') setTimeout(()=>{},50); }
+async function ensureTaSignatureCaptured(){ if(sigReady && document.getElementById('ta_signature_data').value) return true; if(taSigMode==='draw' && hasTaInk){ confirmTaSignature(); return true; } if(taSigMode==='type'){ return await confirmTaTypeSig(); } if(taSigMode==='upload'){ return confirmTaUploadSig(); } return false; }
+function collectAgreement(){
+  taSyncShareHouseRulesHidden();
+  taSyncAdditionalTermsHidden();
+  taSyncCoreSectionsHidden();
+  const ctx=window.SHM_DOCUMENT_CONTEXT || {};
+  const data=ctx.agreementData || {};
+  const saved=data.field_values || data.fieldValues || data.agreement_data || data.agreementData || data || {};
+  function pick(){
+    for(let i=0;i<arguments.length;i++){
+      const key=arguments[i];
+      const fromInput=val(key);
+      if(fromInput) return fromInput;
+      const fromSaved=saved && saved[key]!=null ? String(saved[key]).trim() : '';
+      if(fromSaved) return fromSaved;
+      const fromCtx=ctx[key]!=null ? String(ctx[key]).trim() : '';
+      if(fromCtx) return fromCtx;
+    }
+    return '';
+  }
+  const multiRenters=taCollectMultiRenterRecipientsFromDetails();
+  const rosterFromMulti=multiRenters
+    ? {
+        tenant_name: multiRenters.map(function(r){ return r.tenant_name; }).join(', '),
+        tenant_email: multiRenters.map(function(r){ return r.tenant_email; }).join(', '),
+        multi_tenant_send: true,
+        multi_tenant_recipients: multiRenters,
+      }
+    : null;
+  const persistedMulti=Array.isArray(saved.multi_tenant_recipients)?saved.multi_tenant_recipients:[];
+  return {
+    agreement_date: pick('agreement_date') || new Date().toISOString().slice(0,10),
+    premises_address: pick('premises_address') || ctx.propertyAddress || '',
+    provider_name: pick('provider_name') || saved.provider_name || '',
+    provider_email: pick('provider_email') || saved.provider_email || '',
+    tenant_name: rosterFromMulti
+      ? rosterFromMulti.tenant_name
+      : (pick('tenant_name_field','tenant_name') || ctx.tenantName || ctx.recipientName || ''),
+    tenant_email: rosterFromMulti
+      ? rosterFromMulti.tenant_email
+      : (pick('tenant_email_field','tenant_email') || ctx.tenantEmail || ctx.recipientEmail || ''),
+    ...(rosterFromMulti
+      ? { multi_tenant_send: true, multi_tenant_recipients: multiRenters }
+      : (persistedMulti.length>=2 && saved.multi_tenant_send
+        ? { multi_tenant_send: true, multi_tenant_recipients: persistedMulti }
+        : {})),
+    monthly_rent: pick('monthly_rent'),
+    weekly_rent: pick('weekly_rent'),
+    bond_amount: pick('bond_amount'),
+    bond_payment_due: pick('bond_payment_due'),
+    rent_includes: taCollectRentIncludesObject(),
+    lease_period: pick('lease_period'),
+    commencement_date: pick('commencement_date'),
+    terminate_date: pick('terminate_date'),
+    core_sections: taCoreSections,
+    core_sections_text: taSelectedCoreSectionsText(),
+    additional_terms: taAdditionalTerms,
+    additional_terms_text: taSelectedAdditionalTermsText(),
+    share_house_rules: taShareHouseRules,
+    additional_share_house_rules: taSelectedShareHouseRulesText(),
+    ...(function(){
+      const emails=collectSigningEmailFields();
+      return { signing_email: emails.tenant, signing_email_provider: emails.provider };
+    })(),
+    extra_signing_recipients: taCollectExtraSigners()
+  };
+}
+function collectSigningEmailFields(){
+  const subjectEl=document.getElementById('taSigningEmailSubject');
+  const bodyEl=document.getElementById('taSigningEmailBody');
+  const providerSubjectEl=document.getElementById('taSigningEmailProviderSubject');
+  const providerBodyEl=document.getElementById('taSigningEmailProviderBody');
+  const defaults=window.SHM_SIGNING_EMAIL_DEFAULTS||{};
+  const providerDefaults=window.SHM_SIGNING_EMAIL_PROVIDER_DEFAULTS||{};
+  const ctx=window.SHM_DOCUMENT_CONTEXT||{};
+  const saved=(ctx.agreementData&&ctx.agreementData.signing_email)||{};
+  const savedProvider=(ctx.agreementData&&ctx.agreementData.signing_email_provider)||{};
+  const tenant={
+    subject:(subjectEl&&subjectEl.value)||saved.subject||defaults.subject||'',
+    body:(bodyEl&&bodyEl.value)||saved.body||defaults.body||'',
+  };
+  const provider={
+    subject:(providerSubjectEl&&providerSubjectEl.value)||savedProvider.subject||providerDefaults.subject||'',
+    body:(providerBodyEl&&providerBodyEl.value)||savedProvider.body||providerDefaults.body||'',
+  };
+  return {
+    tenant:{ subject:String(tenant.subject).trim(), body:String(tenant.body).trim() },
+    provider:{ subject:String(provider.subject).trim(), body:String(provider.body).trim() },
+  };
+}
+let taSigningEmailPreviewTimer=null;
+function scheduleTaSigningEmailPreview(){
+  if(taSigningEmailPreviewTimer) clearTimeout(taSigningEmailPreviewTimer);
+  taSigningEmailPreviewTimer=setTimeout(refreshTaSigningEmailPreview, 350);
+}
+async function taLoadSigningEmailPreviewInto(iframe, payload){
+  if(!iframe) return;
+  try{
+    const res=await fetch('/api/shm-docs/signing-email-preview',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    const json=await res.json().catch(function(){ return {}; });
+    if(json&&json.html){
+      iframe.srcdoc=json.html;
+      iframe.onload=function(){ taResizeSigningEmailIframe(iframe); };
+    }
+  }catch(e){}
+}
+async function refreshTaSigningEmailPreview(){
+  const host=document.getElementById('taAllEmailPreviews');
+  if(!host) return;
+  const d=collectAgreement();
+  const fields=collectSigningEmailFields();
+  const recipients=taEmailPreviewRecipients(d);
+  const primary=recipients.filter(function(r){ return r.kind==='tenant' || r.kind==='provider'; });
+  const extra=recipients.filter(function(r){ return r.kind!=='tenant' && r.kind!=='provider'; });
+  const ordered=primary.length?primary.concat(extra):recipients;
+  host.className=primary.length>=2?'ta-email-previews-grid':'';
+  host.innerHTML=ordered.map(function(rec){
+    return '<div class="ta-email-preview-block" data-preview-key="'+taEscapeHtml(rec.key)+'">'
+      +'<div class="ta-email-preview-head"><span style="font-size:12px;font-weight:700">'+taEscapeHtml(rec.label)+'</span></div>'
+      +'<iframe class="ta-signing-email-preview-frame" title="'+taEscapeHtml(rec.label)+'" sandbox=""></iframe>'
+      +'</div>';
+  }).join('');
+  const frames=host.querySelectorAll('.ta-signing-email-preview-frame');
+  for(let i=0;i<ordered.length;i++){
+    const rec=ordered[i];
+    const iframe=frames[i];
+    if(!iframe) continue;
+    const isProvider=rec.kind==='provider';
+    const emailFields=isProvider ? fields.provider : fields.tenant;
+    await taLoadSigningEmailPreviewInto(iframe,{
+      documentType:'Tenant Agreement',
+      recipientName:rec.name,
+      recipientEmail:rec.email,
+      propertyAddress:d.premises_address||'',
+      subject:emailFields.subject,
+      body:emailFields.body,
+      hasAttachment:true,
+      hasDocxAttachment:true,
+      documentId:window.SHM_DOC_ID||'PREVIEW'
+    });
+  }
+}
+function initTaSigningEmailEditor(){
+  if(window.SHM_TEMPLATE_MODE||(window.SHM_DOCUMENT_CONTEXT||{}).templateMode) return;
+  if(currentTaSignerType()!=='creator') return;
+  const panel=document.getElementById('taSigningEmailPanel');
+  const subjectEl=document.getElementById('taSigningEmailSubject');
+  const bodyEl=document.getElementById('taSigningEmailBody');
+  const providerSubjectEl=document.getElementById('taSigningEmailProviderSubject');
+  const providerBodyEl=document.getElementById('taSigningEmailProviderBody');
+  if(!panel||!subjectEl||!bodyEl) return;
+  const defaults=window.SHM_SIGNING_EMAIL_DEFAULTS||{};
+  const providerDefaults=window.SHM_SIGNING_EMAIL_PROVIDER_DEFAULTS||{};
+  const ctx=window.SHM_DOCUMENT_CONTEXT||{};
+  const saved=(ctx.agreementData&&ctx.agreementData.signing_email)||{};
+  const savedProvider=(ctx.agreementData&&ctx.agreementData.signing_email_provider)||{};
+  subjectEl.value=saved.subject||defaults.subject||'';
+  bodyEl.value=saved.body||defaults.body||'';
+  if(providerSubjectEl) providerSubjectEl.value=savedProvider.subject||providerDefaults.subject||'';
+  if(providerBodyEl) providerBodyEl.value=savedProvider.body||providerDefaults.body||'';
+  subjectEl.addEventListener('input', scheduleTaSigningEmailPreview);
+  bodyEl.addEventListener('input', scheduleTaSigningEmailPreview);
+  if(providerSubjectEl) providerSubjectEl.addEventListener('input', scheduleTaSigningEmailPreview);
+  if(providerBodyEl) providerBodyEl.addEventListener('input', scheduleTaSigningEmailPreview);
+  refreshTaSigningEmailPreview();
+}
+async function fetchJsonWithTimeout(url, init, timeoutMs){
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { ...init, signal: controller.signal });
+    const json = await res.json().catch(() => ({}));
+    return { res, json };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+function taNavigateAfterTemplateSave(url){
+  var target=url || window.SHM_DASHBOARD_URL || '/dashboard/templates';
+  var origin='';
+  try{ origin=window.location.origin || ''; }catch(e){}
+  try{
+    if(window.parent && window.parent!==window){
+      window.parent.postMessage({ type:'shm_template_saved', url:target }, origin || '*');
+    }
+  }catch(e2){}
+  try{
+    window.top.location.href=target;
+  }catch(e3){}
+}
+async function saveTenantAgreementTemplate(){
+  const templateId=window.SHM_TEMPLATE_ID || (window.SHM_DOCUMENT_CONTEXT||{}).templateId;
+  if(!templateId){ setStatus('Template id is missing. Open the template from the dashboard again.', true); return; }
+  const btn=document.getElementById('taAdminSubmitBtn');
+  if(btn){ btn.disabled=true; btn.textContent='Saving…'; }
+  setStatus('Saving template…');
+  try{
+    const d=collectAgreement();
+    const { res, json }=await fetchJsonWithTimeout('/api/shm-templates/'+encodeURIComponent(templateId),{
+      method:'PUT',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name: window.SHM_TEMPLATE_NAME || (window.SHM_DOCUMENT_CONTEXT||{}).templateName,
+        agreementData:d
+      })
+    }, 60000);
+    if(!res.ok || json.ok===false){
+      throw new Error((json && json.message) || 'Could not save template.');
+    }
+    setStatus('Template saved. Returning to Templates…');
+    setTimeout(function(){
+      taNavigateAfterTemplateSave(window.SHM_DASHBOARD_URL || '/dashboard/templates');
+      setTimeout(function(){
+        if(btn && document.visibilityState==='visible'){
+          btn.disabled=false;
+          btn.textContent='Save Template';
+          setStatus('Template saved. Use Templates in the menu if you were not redirected.');
+        }
+      }, 3000);
+    }, 400);
+  }catch(e){
+    if(btn){ btn.disabled=false; btn.textContent='Save Template'; }
+    var msg=(e && e.name==='AbortError') ? 'Save timed out. Check your connection and try again.' : ((e && e.message) || 'Could not save template.');
+    setStatus(msg, true);
+  }
+}
+async function saveTenantAgreementDraft(options){
+  const silent = !!(options && options.silent);
+  if(window.SHM_TEMPLATE_MODE || (window.SHM_DOCUMENT_CONTEXT||{}).templateMode) return { ok:true, skipped:true };
+  const docId = window.SHM_DOC_ID;
+  if(!docId || !window.SHM_TOKEN) return { ok:false };
+  if(currentTaSignerType() !== 'creator') return { ok:false };
+  if(typeof window.shmShouldSkipDraftSave === 'function' ? window.shmShouldSkipDraftSave(docId) : false){
+    return { ok:false, skipped:true };
+  }
+  const d = collectAgreement();
+  try{
+    if(!silent) setStatus('Saving draft…');
+    const res = await fetch(window.SHM_API_URL + 'save-draft', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ doc_id: docId, token: window.SHM_TOKEN, agreement_data: d }),
+      keepalive: true,
+    });
+    const json = await res.json().catch(function(){ return {}; });
+    if(!res.ok || json.ok === false){
+      if(!silent) setStatus((json && json.message) || 'Could not save draft.', true);
+      return { ok:false, message: (json && json.message) || 'Could not save draft.' };
+    }
+    if(window.SHM_DOCUMENT_CONTEXT){
+      window.SHM_DOCUMENT_CONTEXT.agreementData = Object.assign({}, window.SHM_DOCUMENT_CONTEXT.agreementData || {}, d, { is_draft: true });
+      window.SHM_DOCUMENT_CONTEXT.status = 'Draft';
+    }
+    if(!silent) setStatus('Draft saved. You can leave and continue later from the dashboard.');
+    return { ok:true };
+  }catch(e){
+    if(!silent) setStatus((e && e.message) || 'Could not save draft.', true);
+    return { ok:false };
+  }
+}
+function setupTenantAgreementDraftAutosave(){
+  if(window.SHM_TEMPLATE_MODE || (window.SHM_DOCUMENT_CONTEXT||{}).templateMode) return;
+  if(currentTaSignerType() !== 'creator') return;
+  if(window.__taDraftAutosaveBound) return;
+  window.__taDraftAutosaveBound = true;
+  window.__taDraftAutosaveTimer = null;
+  function schedule(){
+    if(typeof window.shmShouldSkipDraftSave === 'function' && window.shmShouldSkipDraftSave(window.SHM_DOC_ID)) return;
+    if(window.__taDraftAutosaveTimer) clearTimeout(window.__taDraftAutosaveTimer);
+    window.__taDraftAutosaveTimer = setTimeout(function(){ saveTenantAgreementDraft({ silent: true }); }, 12000);
+  }
+  const form = document.getElementById('main-form') || document.querySelector('.tenant-agreement-shell');
+  if(form){
+    form.addEventListener('input', schedule, true);
+    form.addEventListener('change', schedule, true);
+  }
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState === 'hidden') saveTenantAgreementDraft({ silent: true });
+  });
+  window.addEventListener('pagehide', function(){ saveTenantAgreementDraft({ silent: true }); });
+}
+async function adminSendTenantAgreement(){
+  const sigEl = document.getElementById('ta_signature_data');
+  const adminSig = sigEl ? String(sigEl.value || '').trim() : '';
+  if(adminSig) renderTaSignaturePreview('creator', adminSig);
+  const d=collectAgreement();
+  const ctx=window.SHM_DOCUMENT_CONTEXT||{};
+  const multiShared=!!(d.multi_tenant_send || ctx.multiTenantSharedDoc);
+  const multiList=Array.isArray(d.multi_tenant_recipients)?d.multi_tenant_recipients:[];
+  let tenantName=String(d.tenant_name||'').trim();
+  let tenantEmail=String(d.tenant_email||'').trim().toLowerCase();
+  if(multiShared && multiList.length>=2){
+    tenantName=multiList.map(function(r){ return String(r.tenant_name||'').trim(); }).filter(Boolean).join(', ');
+    tenantEmail=String(multiList[0].tenant_email||'').trim().toLowerCase();
+  }
+  if(!tenantName) tenantName=String(prompt('Tenant name')||'').trim();
+  if(!tenantEmail) tenantEmail=String(prompt('Tenant email')||'').trim().toLowerCase();
+  if(!tenantName||!tenantEmail||!tenantEmail.includes('@')){ setStatus('Tenant name and email are required.', true); return; }
+  d.tenant_name=tenantName;
+  d.tenant_email=tenantEmail;
+  if(multiShared) d.multi_tenant_send=true;
+  const sendingDocId = window.SHM_DOC_ID;
+  if(typeof window.shmBeginSendLock === 'function') window.shmBeginSendLock(sendingDocId);
+  if(window.__taDraftAutosaveTimer){ clearTimeout(window.__taDraftAutosaveTimer); window.__taDraftAutosaveTimer = null; }
+  const providerEmail=String(d.provider_email||'').trim().toLowerCase();
+  const providerName=String(d.provider_name||'').trim();
+  if(!providerName){ setStatus('Landlord / rental provider name is required.', true); if(typeof window.shmClearSendLock==='function') window.shmClearSendLock(); return; }
+  if(!providerEmail||!providerEmail.includes('@')){ setStatus('Landlord / rental provider email is required.', true); if(typeof window.shmClearSendLock==='function') window.shmClearSendLock(); return; }
+  if(providerEmail===String(tenantEmail||'').trim().toLowerCase()){ setStatus('Landlord email must be different from the tenant email so each party can sign.', true); if(typeof window.shmClearSendLock==='function') window.shmClearSendLock(); return; }
+  d.provider_name=providerName;
+  d.provider_email=providerEmail;
+  const alsoProvider=true;
+  const tenantCount=multiShared && multiList.length>=2 ? multiList.length : 1;
+  setStatus(
+    multiShared && tenantCount>1
+      ? (alsoProvider
+        ? 'Sending agreement to '+tenantCount+' tenants and the rental provider...'
+        : 'Sending agreement to '+tenantCount+' tenants (each gets their own signing link)...')
+      : (alsoProvider ? 'Sending agreement to renter and rental provider...' : 'Sending agreement to tenant...')
+  );
+  const res=await fetch(window.SHM_API_URL+'tenant-agreement/admin-send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({doc_id:window.SHM_DOC_ID,token:window.SHM_TOKEN,tenant_name:tenantName,tenant_email:tenantEmail,admin_signature:adminSig,agreement_data:d})});
+  const raw=await res.text();
+  let json=null;
+  try{ json=JSON.parse(raw); }catch(e){}
+  if(!res.ok || (json && json.success===false)){
+    if(typeof window.shmClearSendLock === 'function') window.shmClearSendLock();
+    const link = (json && (json.tenant_url || json.recipient_url || json.direct_link)) || '';
+    const base = (json&&json.message)||raw||'Unable to send the agreement. Please try again.';
+    setStatus(link ? base + ' You can copy this signing link for the tenant: ' + link : base, true);
+    return;
+  }
+  log(adminSig ? 'Creator signed' : 'Sent to tenant');
+  if(json && json.email_sent){
+    if(typeof window.shmMarkDocSent === 'function') window.shmMarkDocSent(sendingDocId);
+    log('Tenant email sent');
+    if(json.provider_email_sent) log('Rental provider email sent');
+    setStatus((json.message||'Agreement sent successfully.')+' Redirecting to dashboard...');
+    setTimeout(function(){ window.location.href = window.SHM_DASHBOARD_URL || '/dashboard'; },900);
+    return;
+  }
+  if(typeof window.shmClearSendLock === 'function') window.shmClearSendLock();
+  const fallbackLink = (json && (json.tenant_url || json.recipient_url || json.direct_link)) || '';
+  setStatus(
+    (adminSig
+      ? 'Your signature was saved, but the tenant email was not sent.'
+      : 'The agreement was saved, but the tenant email was not sent.')
+    + ' Check Resend settings in Hostinger, then resend from the dashboard.'
+    + (fallbackLink ? ' Signing link: ' + fallbackLink : ''),
+    true
+  );
+}
+function taResolveAgreementSignatures(ctx){
+  const active=ctx.activeSigner||{};
+  const role=String(active.role||'').toLowerCase();
+  const isProviderRecipient=role.includes('rental provider');
+  const pending=String(document.getElementById('ta_signature_data')?.value||'').trim();
+  const signers=ctx.signers||[];
+  let tenantSig=String(ctx.tenantSignature||'').trim();
+  let providerSig='';
+  signers.forEach(function(s){
+    if(s.signerType!=='recipient'||!s.signature) return;
+    if(String(s.role||'').toLowerCase().includes('rental provider')) providerSig=String(s.signature).trim();
+    else if(!tenantSig) tenantSig=String(s.signature).trim();
+  });
+  if(currentTaSignerType()==='recipient'){
+    if(isProviderRecipient && pending) providerSig=pending;
+    else if(pending) tenantSig=pending;
+  }
+  return { tenantSig, providerSig };
+}
+async function buildAgreementFileBase64(){
+  const ctx = window.SHM_DOCUMENT_CONTEXT || {};
+  const d = collectAgreement();
+  const sigs=taResolveAgreementSignatures(ctx);
+  const tenantSig=sigs.tenantSig;
+  const providerSig=sigs.providerSig;
+  const { res, json } = await fetchJsonWithTimeout(
+    window.SHM_API_URL + "tenant-agreement/generate-pdf",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        doc_id: window.SHM_DOC_ID,
+        token: window.SHM_TOKEN,
+        agreement_data: d,
+        tenant_signature: tenantSig,
+        provider_signature: providerSig,
+        admin_signature: ctx.adminSignature || "",
+      }),
+    },
+    45000,
+  );
+  if (!res.ok || !json.fileContent) {
+    const detail = json && json.details ? ` (${json.details})` : "";
+    throw new Error((json.message || "Could not generate tenant agreement from the Word template.") + detail);
+  }
+  return {
+    content: json.fileContent,
+    fileType: json.fileType || "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    extension: json.isDocx ? "docx" : "pdf",
+  };
+}
+async function tenantSignAgreement(){ const ack=document.getElementById('taAckCheckbox'); if(!ack || !ack.checked){ setStatus('Please tick the Acknowledgement checkbox before signing.', true); const box=document.querySelector('.ta-doc-ack'); if(box) box.scrollIntoView({behavior:'smooth',block:'center'}); return; } if(!(await ensureTaSignatureCaptured())){ setStatus('Please add your signature first.', true); return; } const submitBtn=document.querySelector('#taTenantSubmitArea .btn-submit'); if(submitBtn){ submitBtn.disabled=true; submitBtn.textContent='Sending...'; } renderTaSignaturePreview('recipient', document.getElementById('ta_signature_data').value); setStatus('Sending...'); let file64=''; let fileType='application/vnd.openxmlformats-officedocument.wordprocessingml.document'; let ext='docx'; try{ const generated=await buildAgreementFileBase64(); file64=generated.content; fileType=generated.fileType; ext=generated.extension; }catch(e){ if(submitBtn){ submitBtn.disabled=false; submitBtn.textContent='Send'; } setStatus(e.message||'Could not send agreement.', true); return; } const stem='Tenant-Agreement-'+(val('tenant_name_field')||'Tenant').replace(/\s+/g,'-')+'-'+new Date().toISOString().slice(0,10); const fname=stem+'.'+ext; try{ const { res, json }=await fetchJsonWithTimeout(window.SHM_API_URL+'tenant-agreement/tenant-sign',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({doc_id:window.SHM_DOC_ID,token:window.SHM_TOKEN,tenant_signature:document.getElementById('ta_signature_data').value,fileName:fname,fileContent:file64,fileType:fileType,acknowledged:true})},65000); if(!res.ok){ throw new Error('Could not send agreement. Please try again.'); } document.getElementById('main-form').style.display='none'; document.getElementById('ok-view').style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ if(submitBtn){ submitBtn.disabled=false; submitBtn.textContent='Send'; } setStatus((e && e.name==='AbortError') ? 'Sending timed out. Please try again.' : 'Could not send agreement. Please try again.', true); } }
+</script>

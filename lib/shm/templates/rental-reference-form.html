@@ -1,0 +1,695 @@
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Pinyon+Script&family=Sacramento&family=Satisfy&display=swap" rel="stylesheet">
+<div class="page-shell rental-reference-shell">
+  <style>
+    .rental-reference-shell .main-card{font-family:Arial,Helvetica,sans-serif;}
+    .rental-reference-shell .takeover-table th{background:#fff7ed;color:#9a3412;}
+    .rental-reference-shell .takeover-table td{color:#1e293b;vertical-align:middle;}
+    .rental-reference-shell .takeover-table tr.pm-sub-row td:first-child{padding-left:28px;color:#475569;}
+    .rental-reference-shell .pm-choice-input{position:absolute;opacity:0;width:0;height:0;pointer-events:none;}
+    .rental-reference-shell .pm-choice{display:flex;align-items:center;justify-content:center;min-height:40px;width:100%;cursor:pointer;margin:0;}
+    .rental-reference-shell .pm-choice-mark{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:24px;height:24px;border:2px solid #f47a21;border-radius:50%;
+      background:#fff;color:#f47a21;font-size:13px;font-weight:800;line-height:1;
+      transition:background .15s,border-color .15s,color .15s,box-shadow .15s;
+    }
+    .rental-reference-shell .pm-choice-cell.pm-selected{background:#ffedd5 !important;box-shadow:inset 0 0 0 2px #fdba74;}
+    .rental-reference-shell .pm-choice-cell.pm-selected .pm-choice-mark{background:#f47a21;border-color:#ea580c;color:#fff;box-shadow:0 0 0 3px rgba(244,122,33,.25);}
+    .rental-reference-shell .pm-attachments-panel{border:1px solid #dbe4f0;border-radius:14px;padding:18px;background:#f8fafc;}
+    .rental-reference-shell .pm-attachment-files{margin:10px 0 0;padding:0;list-style:none;}
+    .rental-reference-shell .pm-attachment-files li{
+      display:flex;align-items:center;gap:8px;padding:10px 12px;margin-top:8px;
+      border:1px solid #fed7aa;border-radius:10px;background:#fff7ed;color:#9a3412;font-size:13px;font-weight:600;
+    }
+    .rental-reference-shell .pm-attachment-files li::before{content:'📎';font-size:14px;}
+    .rental-reference-shell .pm-no-files{margin:10px 0 0;color:#94a3b8;font-size:13px;font-style:italic;}
+    .rental-reference-shell #other_items,.rental-reference-shell #signer_name,.rental-reference-shell #sign_date{
+      border:1.5px solid #d6deea;border-radius:9px;padding:12px;font-size:14px;width:100%;box-sizing:border-box;
+    }
+    .rental-reference-shell .field-label{display:block;margin-bottom:7px;font-size:13px;font-weight:800;color:#27344f;}
+    .rental-reference-shell.pm-capture-mode .pm-upload-hint,.rental-reference-shell.pm-capture-mode .pm-upload-control,.rental-reference-shell.pm-capture-mode .sig-actions,.rental-reference-shell.pm-capture-mode .sig-tabs,.rental-reference-shell.pm-capture-mode #rrInfoBox,.rental-reference-shell.pm-capture-mode #rrSigConfirmed .sig-btn{display:none !important;}
+    .rental-reference-shell.pm-capture-mode .pm-attachment-files li{border-color:#f47a21;}
+    .rental-reference-shell .sig-upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .rental-reference-shell .sig-upload-zone{position:relative;text-align:center;padding:28px 16px;}
+    .rental-reference-shell .sig-upload-preview{display:none;text-align:center;}
+    .rental-reference-shell .sig-upload-preview img{max-width:280px;max-height:120px;object-fit:contain;border:1px solid #dbe4f0;border-radius:10px;background:#fff;padding:8px;}
+    .rental-reference-shell .sig-canvas-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#94a3b8;font-size:13px;pointer-events:none;}
+    .rental-reference-shell .sig-canvas-wrap.has-sig .sig-canvas-placeholder{display:none;}
+    .rental-reference-shell .sig-canvas-wrap{position:relative;min-height:140px;}
+    .rental-reference-shell .sig-box.signature-locked .sig-tabs,.rental-reference-shell .sig-box.signature-locked .sig-panel{display:none !important;}
+    .rental-reference-shell .sig-confirmed{display:none;align-items:center;gap:12px;margin-top:14px;background:#ecfdf3;border:1px solid #bbf7d0;border-radius:12px;padding:14px 16px;color:#166534;font-weight:700;}
+    .rental-reference-shell .sig-confirmed.show{display:flex;}
+    .rental-reference-shell .sig-confirmed-thumb{width:120px;height:42px;object-fit:contain;background:#fff;border:1px solid #bbf7d0;border-radius:8px;padding:4px;}
+  </style>
+  <div id="main-form">
+    <div class="main-card" style="background:#fff;padding:28px;max-width:940px;margin:0 auto;">
+      <div style="border:2px solid #f47a21;border-radius:14px 14px 0 0;padding:22px 26px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <h1 style="margin:0;color:#f47a21;font-size:24px;letter-spacing:.04em">RENTAL REFERENCE</h1>
+          <p style="margin:.35rem 0 0;color:#475569;font-weight:700">Reference checklist</p>
+        </div>
+        <div style="text-align:right;font-weight:800;color:#334155">ShareHouse<br>Managers</div>
+      </div>
+
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:14px 16px;margin-bottom:18px;color:#1e3a8a;font-size:13px;line-height:1.55" id="rrInfoBox">
+        Select Yes or No for each reference question below, add any comments, sign, and attach supporting files (such as the rental ledger). Your answers are filled into the official Word template and saved.
+      </div>
+
+      <table class="takeover-table" style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px;border:2px solid #f47a21;">
+        <thead>
+          <tr><th style="text-align:left;border:1px solid #f47a21;padding:10px;width:66%;font-size:16px">Documents</th><th colspan="2" style="border:1px solid #f47a21;padding:10px;font-size:16px">Attached</th></tr>
+          <tr><th style="border:1px solid #f47a21;padding:8px"></th><th style="border:1px solid #f47a21;padding:8px;width:13%">Yes</th><th style="border:1px solid #f47a21;padding:8px;width:13%">No</th></tr>
+        </thead>
+        <tbody id="itemsBody"></tbody>
+      </table>
+
+      <div class="field-wrap" style="margin-top:22px"><label class="field-label">Any other items / notes</label><textarea id="other_items" style="min-height:90px"></textarea></div>
+
+      <div class="field-wrap pm-attachments-panel" style="margin-top:22px">
+        <label class="field-label">Upload supporting documents</label>
+        <div class="pm-upload-control">
+          <input type="file" id="reference_files" class="pm-upload-input" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx,.csv,.txt" style="width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px;background:#fff">
+        </div>
+        <p class="pm-upload-hint" style="margin:10px 0 0;color:#64748b;font-size:12px;line-height:1.45">Attached files are submitted together with your signed form and saved to the same Google Drive folder.</p>
+        <ul id="attachmentList" class="pm-attachment-files"></ul>
+        <p id="attachmentEmpty" class="pm-no-files" style="display:none">No supporting documents uploaded.</p>
+      </div>
+
+      <div class="sig-box" id="rrSigBox" style="margin-top:24px">
+        <div class="g2 field-wrap">
+          <div><label class="field-label">Referee name *</label><input type="text" id="signer_name"></div>
+          <div><label class="field-label">Date</label><input type="date" id="sign_date"></div>
+        </div>
+        <label class="field-label" style="margin-bottom:.5rem">Signature</label>
+        <div class="sig-tabs">
+          <button class="sig-tab active" type="button" onclick="switchRrSigTab('draw',this)">✏️ Draw</button>
+          <button class="sig-tab" type="button" onclick="switchRrSigTab('type',this)">Aa Type</button>
+          <button class="sig-tab" type="button" onclick="switchRrSigTab('upload',this)">⬆ Upload</button>
+        </div>
+        <div class="sig-panel active" id="rr-sig-panel-draw">
+          <div class="sig-canvas-wrap" id="rrSigCanvasWrap">
+            <canvas id="rrSigCanvas"></canvas>
+            <div class="sig-canvas-placeholder">Sign here with mouse or finger</div>
+          </div>
+          <div class="sig-actions">
+            <button class="sig-btn danger" type="button" onclick="clearRrDrawSignature()">Clear</button>
+            <button class="sig-btn" type="button" onclick="confirmRrDrawSignature()">Use this signature</button>
+          </div>
+        </div>
+        <div class="sig-panel" id="rr-sig-panel-type">
+          <input type="text" id="rrSigTypeInput" placeholder="Type your full legal name…" oninput="updateRrTypeSig()" style="font-size:15px;width:100%;box-sizing:border-box;border:1.5px solid #d6deea;border-radius:9px;padding:12px;margin-bottom:12px">
+          <div class="sig-font-picker" id="rrFontPicker">
+            <span class="font-pill active" onclick="setRrSigFont('Dancing Script',this)" style="font-family:'Dancing Script',cursive">Cursive</span>
+            <span class="font-pill" onclick="setRrSigFont('Pinyon Script',this)" style="font-family:'Pinyon Script',cursive">Elegant</span>
+            <span class="font-pill" onclick="setRrSigFont('Sacramento',this)" style="font-family:'Sacramento',cursive">Script</span>
+            <span class="font-pill" onclick="setRrSigFont('Satisfy',this)" style="font-family:'Satisfy',cursive">Flowing</span>
+          </div>
+          <div class="sig-type-preview"><span id="rrSigTypePreview" style="font-family:'Dancing Script',cursive"></span></div>
+          <div class="sig-actions">
+            <button class="sig-btn" type="button" onclick="confirmRrTypeSignature()">Use this signature</button>
+          </div>
+        </div>
+        <div class="sig-panel" id="rr-sig-panel-upload">
+          <div class="sig-upload-zone" id="rrUploadZone">
+            <input type="file" id="rrSigFileInput" accept="image/*" onchange="handleRrSigUpload(event)">
+            <div style="font-size:28px;margin-bottom:8px">🖼️</div>
+            <strong style="font-size:13.5px;color:#334155">Click or drag to upload</strong>
+            <p style="margin:6px 0 0;color:#64748b;font-size:12px">PNG, JPG or GIF signature image</p>
+          </div>
+          <div class="sig-upload-preview" id="rrUploadPreview">
+            <img id="rrUploadPreviewImg" src="" alt="Signature preview">
+            <div class="sig-actions" style="justify-content:center;margin-top:12px">
+              <button class="sig-btn danger" type="button" onclick="clearRrSigUpload()">Remove</button>
+              <button class="sig-btn" type="button" onclick="confirmRrUploadSignature()">Use this signature</button>
+            </div>
+          </div>
+        </div>
+        <div class="sig-confirmed" id="rrSigConfirmed">
+          <img class="sig-confirmed-thumb" id="rrSigConfirmedThumb" src="" alt="">
+          <span id="rrSigConfirmedText">Signature captured</span>
+          <button class="sig-btn" type="button" onclick="resetRrSignature()" style="margin-left:auto;font-size:12px">Change</button>
+        </div>
+        <input type="hidden" id="rr_signature_data">
+      </div>
+    </div>
+
+    <div class="submit-area" style="max-width:940px;margin:22px auto 0"><button class="btn-submit" id="rrSubmitBtn" type="button" onclick="submitRentalReference()"><span class="btn-label">Submit Reference Form</span></button><span class="status-msg" id="rrStatus"></span></div>
+  </div>
+  <div id="ok-view" class="success-view"><div class="success-icon">✓</div><h2>Reference form submitted</h2><p>Thank you. Your completed form has been saved, and any supporting documents were uploaded to Google Drive.</p></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const rrItems=[
+  '1. You are completing a rental reference for this tenant/property',
+  '2. Please confirm you have been the Property Manager for this tenant at this property',
+  'Is the tenant currently renting with you?',
+  '3a. Have you received a notice to vacate?',
+  '4. Confirm the length of the tenancy agreement',
+  '5. Does the tenant make rent payments on time?',
+  '6. Were any notices for rent issued?',
+  '7. Was the property in good condition upon routine inspections?',
+  'Have you issued notices after routine inspections?',
+  'Did you make a bond claim at the end of their tenancy? (if applicable)',
+  'Would you be happy to recommend this tenant?',
+  "Please upload the tenant's rental ledger (PDF, CSV, JPG, or PNG)",
+  'I would like to provide my own questionnaire and answers for this reference.'
+];
+const rrSubRowIndexes={};
+function rowHtml(label, idx){
+  const subClass=rrSubRowIndexes[idx]?' pm-sub-row':'';
+  return '<tr class="pm-item-row'+subClass+'" data-item-idx="'+idx+'">'
+    +'<td style="border:1px solid #f47a21;padding:9px 10px">'+label+'</td>'
+    +'<td class="pm-choice-cell pm-yes-cell" style="border:1px solid #f47a21;text-align:center;padding:0">'
+    +'<label class="pm-choice" for="item_'+idx+'_yes">'
+    +'<input type="radio" class="pm-choice-input" id="item_'+idx+'_yes" name="item_'+idx+'" value="Yes">'
+    +'<span class="pm-choice-mark" aria-hidden="true"></span>'
+    +'</label></td>'
+    +'<td class="pm-choice-cell pm-no-cell" style="border:1px solid #f47a21;text-align:center;padding:0">'
+    +'<label class="pm-choice" for="item_'+idx+'_no">'
+    +'<input type="radio" class="pm-choice-input" id="item_'+idx+'_no" name="item_'+idx+'" value="No">'
+    +'<span class="pm-choice-mark" aria-hidden="true"></span>'
+    +'</label></td></tr>';
+}
+function syncRrChoiceHighlight(radio){
+  if(!radio)return;
+  const row=radio.closest('tr');
+  if(!row)return;
+  const yesCell=row.querySelector('.pm-yes-cell');
+  const noCell=row.querySelector('.pm-no-cell');
+  const yesRadio=row.querySelector('input[value="Yes"]');
+  const noRadio=row.querySelector('input[value="No"]');
+  if(yesCell&&yesRadio){
+    yesCell.classList.toggle('pm-selected',!!yesRadio.checked);
+    const mark=yesCell.querySelector('.pm-choice-mark');
+    if(mark)mark.textContent=yesRadio.checked?'✓':'';
+  }
+  if(noCell&&noRadio){
+    noCell.classList.toggle('pm-selected',!!noRadio.checked);
+    const mark=noCell.querySelector('.pm-choice-mark');
+    if(mark)mark.textContent=noRadio.checked?'✓':'';
+  }
+}
+function syncAllRrChoiceHighlights(){
+  document.querySelectorAll('.pm-choice-input').forEach(function(radio){
+    if(radio.checked)syncRrChoiceHighlight(radio);
+  });
+}
+function initRrTable(){
+  const body=document.getElementById('itemsBody');
+  if(!body)return;
+  body.innerHTML=rrItems.map(function(label,idx){return rowHtml(label,idx);}).join('');
+  body.querySelectorAll('.pm-choice-input').forEach(function(radio){
+    radio.addEventListener('change',function(){syncRrChoiceHighlight(radio);});
+  });
+}
+initRrTable();
+(function(){const d=document.getElementById('sign_date');if(d&&!d.value)d.value=new Date().toISOString().slice(0,10);})();
+function rrVal(id){const el=document.getElementById(id);return el?el.value.trim():'';}
+function rrStatus(msg,err=false){const el=document.getElementById('rrStatus');el.textContent=msg;el.className='status-msg'+(err?' err':'');}
+let rrSigMode='draw',rrCurrentFont='Dancing Script',rrSigDataUrl=null,rrSigReady=false,rrDrawing=false,rrHasSig=false,rrLastX=0,rrLastY=0;
+const rrCanvas=document.getElementById('rrSigCanvas');
+const rrCtx=rrCanvas?rrCanvas.getContext('2d'):null;
+function resizerrSigCanvas(){
+  if(!rrCanvas)return;
+  const wrap=document.getElementById('rrSigCanvasWrap');
+  if(!wrap)return;
+  const ratio=window.devicePixelRatio||1;
+  const w=wrap.offsetWidth||760;
+  rrCanvas.width=w*ratio;
+  rrCanvas.height=140*ratio;
+  rrCanvas.style.width='100%';
+  rrCanvas.style.height='140px';
+  rrCtx.setTransform(1,0,0,1,0,0);
+  rrCtx.scale(ratio,ratio);
+  rrCtx.strokeStyle='#16213e';
+  rrCtx.lineWidth=2.3;
+  rrCtx.lineCap='round';
+  rrCtx.lineJoin='round';
+}
+function rrSigPos(e){
+  const r=rrCanvas.getBoundingClientRect();
+  const t=e.touches?e.touches[0]:e;
+  return{x:t.clientX-r.left,y:t.clientY-r.top};
+}
+function startRrDraw(e){e.preventDefault();rrDrawing=true;const p=rrSigPos(e);rrLastX=p.x;rrLastY=p.y;rrCtx.beginPath();rrCtx.moveTo(rrLastX,rrLastY);}
+function moveRrDraw(e){
+  e.preventDefault();
+  if(!rrDrawing)return;
+  const p=rrSigPos(e);
+  rrCtx.beginPath();
+  rrCtx.moveTo(rrLastX,rrLastY);
+  rrCtx.lineTo(p.x,p.y);
+  rrCtx.stroke();
+  rrLastX=p.x;
+  rrLastY=p.y;
+  if(!rrHasSig){
+    rrHasSig=true;
+    document.getElementById('rrSigCanvasWrap').classList.add('has-sig');
+  }
+}
+function endRrDraw(){rrDrawing=false;}
+function clearRrDrawSignature(){
+  if(!rrCtx||!rrCanvas)return;
+  rrCtx.clearRect(0,0,rrCanvas.width,rrCanvas.height);
+  rrHasSig=false;
+  document.getElementById('rrSigCanvasWrap').classList.remove('has-sig');
+}
+function confirmRrDrawSignature(){
+  if(!rrHasSig){rrStatus('Please draw your signature first.',true);return;}
+  showRrSigConfirmed(rrCanvas.toDataURL('image/png'),'Drawn signature captured');
+}
+function updateRrTypeSig(){
+  const val=document.getElementById('rrSigTypeInput').value;
+  const preview=document.getElementById('rrSigTypePreview');
+  if(preview){
+    preview.textContent=val;
+    preview.style.setProperty('font-family',"'"+rrCurrentFont+"', cursive",'important');
+  }
+}
+function setRrSigFont(font,el){
+  rrCurrentFont=font;
+  document.querySelectorAll('#rrFontPicker .font-pill').forEach(function(pill){pill.classList.remove('active');});
+  if(el)el.classList.add('active');
+  updateRrTypeSig();
+}
+async function confirmRrTypeSignature(){
+  const val=(document.getElementById('rrSigTypeInput').value||'').trim();
+  if(!val){rrStatus('Please type your name first.',true);return false;}
+  if(document.fonts){
+    try{await document.fonts.load("56px '"+rrCurrentFont+"'");await document.fonts.ready;}catch(e){}
+  }
+  const tc=document.createElement('canvas');
+  tc.width=700;
+  tc.height=140;
+  const tctx=tc.getContext('2d');
+  tctx.clearRect(0,0,tc.width,tc.height);
+  tctx.font="500 56px '"+rrCurrentFont+"', cursive";
+  tctx.fillStyle='#16213e';
+  tctx.textBaseline='middle';
+  tctx.fillText(val,18,74);
+  showRrSigConfirmed(tc.toDataURL('image/png'),'Typed signature captured');
+  return true;
+}
+function handleRrSigUpload(e){
+  const file=e.target.files&&e.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    rrSigDataUrl=String(ev.target&&ev.target.result||'');
+    document.getElementById('rrUploadPreviewImg').src=rrSigDataUrl;
+    document.getElementById('rrUploadPreview').style.display='block';
+    document.getElementById('rrUploadZone').style.display='none';
+  };
+  reader.readAsDataURL(file);
+}
+function clearRrSigUpload(){
+  document.getElementById('rrUploadPreview').style.display='none';
+  document.getElementById('rrUploadZone').style.display='block';
+  document.getElementById('rrSigFileInput').value='';
+  rrSigDataUrl=null;
+}
+function confirmRrUploadSignature(){
+  if(!rrSigDataUrl){rrStatus('Please upload a signature image first.',true);return;}
+  showRrSigConfirmed(rrSigDataUrl,'Uploaded signature captured');
+}
+function showRrSigConfirmed(dataUrl,label){
+  const box=document.getElementById('rrSigConfirmed');
+  const sigBox=document.getElementById('rrSigBox');
+  document.getElementById('rrSigConfirmedThumb').src=dataUrl;
+  document.getElementById('rrSigConfirmedText').textContent='✓ '+label;
+  document.getElementById('rr_signature_data').value=dataUrl;
+  rrSigReady=true;
+  rrSigDataUrl=dataUrl;
+  box.classList.add('show');
+  if(sigBox)sigBox.classList.add('signature-locked');
+}
+function resetRrSignature(){
+  const box=document.getElementById('rrSigConfirmed');
+  const sigBox=document.getElementById('rrSigBox');
+  box.classList.remove('show');
+  if(sigBox)sigBox.classList.remove('signature-locked');
+  document.getElementById('rr_signature_data').value='';
+  rrSigReady=false;
+  rrSigDataUrl=null;
+  clearRrDrawSignature();
+  clearRrSigUpload();
+  const tabs=document.querySelector('.rental-reference-shell .sig-tabs');
+  if(tabs)tabs.style.display='';
+  document.querySelectorAll('.rental-reference-shell .sig-panel').forEach(function(panel){panel.style.display='';});
+  rrSigMode = 'draw';
+  switchRrSigTab('draw', document.querySelector('.rental-reference-shell .sig-tab[onclick*="\'draw\'"]') || document.querySelector('.rental-reference-shell .sig-tab'));
+}
+function switchRrSigTab(mode,btn){
+  rrSigMode=mode;
+  document.querySelectorAll('.rental-reference-shell .sig-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.rental-reference-shell .sig-tab').forEach(function(t){t.classList.remove('active');});
+  const panel=document.getElementById('rr-sig-panel-'+mode);
+  if(panel)panel.classList.add('active');
+  if(btn)btn.classList.add('active');
+  if(mode==='draw')setTimeout(resizerrSigCanvas,50);
+}
+async function ensureRrSignatureCaptured(){
+  if(rrSigReady&&document.getElementById('rr_signature_data').value)return true;
+  if(rrSigMode==='draw'&&rrHasSig&&rrCanvas){
+    showRrSigConfirmed(rrCanvas.toDataURL('image/png'),'Drawn signature captured');
+    return true;
+  }
+  if(rrSigMode==='type')return confirmRrTypeSignature();
+  if(rrSigMode==='upload'&&rrSigDataUrl){
+    showRrSigConfirmed(rrSigDataUrl,'Uploaded signature captured');
+    return true;
+  }
+  return false;
+}
+if(rrCanvas){
+  rrCanvas.addEventListener('mousedown',startRrDraw);
+  rrCanvas.addEventListener('mousemove',moveRrDraw);
+  rrCanvas.addEventListener('mouseup',endRrDraw);
+  rrCanvas.addEventListener('mouseleave',endRrDraw);
+  rrCanvas.addEventListener('touchstart',startRrDraw,{passive:false});
+  rrCanvas.addEventListener('touchmove',moveRrDraw,{passive:false});
+  rrCanvas.addEventListener('touchend',endRrDraw);
+  window.addEventListener('resize',resizerrSigCanvas);
+  setTimeout(resizerrSigCanvas,200);
+}
+function collectRrData(){
+  const form=document.getElementById('main-form');
+  const data={
+    signer_name:rrVal('signer_name'),
+    sign_date:rrVal('sign_date')||new Date().toISOString().slice(0,10),
+    other_items:rrVal('other_items')
+  };
+  rrItems.forEach(function(label,idx){
+    const key='item_'+idx;
+    const yes=form?form.querySelector('#'+key+'_yes'):null;
+    const no=form?form.querySelector('#'+key+'_no'):null;
+    if(yes&&yes.checked)data[key]='Yes';
+    else if(no&&no.checked)data[key]='No';
+    else data[key]='';
+  });
+  if(typeof shmCollectFieldSnapshot==='function'){
+    const snap=shmCollectFieldSnapshot();
+    rrItems.forEach(function(label,idx){
+      const key='item_'+idx;
+      if(!data[key]&&snap[key])data[key]=String(snap[key]);
+    });
+    if(!data.signer_name&&snap.signer_name)data.signer_name=String(snap.signer_name);
+    if(!data.other_items&&snap.other_items)data.other_items=String(snap.other_items);
+  }
+  return data;
+}
+function countRrAnswers(data){
+  return rrItems.reduce(function(total,label,idx){
+    const val=data['item_'+idx];
+    return total+((val==='Yes'||val==='No')?1:0);
+  },0);
+}
+function base64ToBlob(base64,mime){const bin=atob(base64);const out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return new Blob([out],{type:mime||'application/octet-stream'});}
+function rrFormatDate(raw){
+  if(!raw)return '';
+  const parts=String(raw).split('-');
+  if(parts.length===3)return parts[2]+'/'+parts[1]+'/'+parts[0];
+  return raw;
+}
+function rrPdfNeedPage(pdf,y,h,margin,pageH){
+  if(y+h>pageH-margin){
+    pdf.addPage();
+    return margin;
+  }
+  return y;
+}
+function rrPdfDrawChoiceCell(pdf,x,y,w,h,selected){
+  pdf.setDrawColor(244,122,33);
+  pdf.setLineWidth(0.25);
+  if(selected){
+    pdf.setFillColor(255,237,213);
+    pdf.rect(x,y,w,h,'FD');
+  }else{
+    pdf.rect(x,y,w,h);
+  }
+  const cx=x+w/2;
+  const cy=y+h/2;
+  if(selected){
+    pdf.setFillColor(244,122,33);
+    pdf.circle(cx,cy,2.2,'F');
+    pdf.setFont('helvetica','bold');
+    pdf.setFontSize(8);
+    pdf.setTextColor(255,255,255);
+    pdf.text('X',cx,cy+0.9,{align:'center'});
+  }else{
+    pdf.circle(cx,cy,2.2);
+  }
+  pdf.setFont('helvetica','normal');
+  pdf.setFontSize(8);
+  pdf.setTextColor(30,41,59);
+}
+function rrFileIsImage(file){
+  return /^image\//i.test(file.type)||/\.(jpg|jpeg|png|gif|webp)$/i.test(file.name||'');
+}
+function rrReadFileAsDataUrl(file){
+  return new Promise(function(resolve,reject){
+    const reader=new FileReader();
+    reader.onload=function(e){resolve(String(e.target&&e.target.result||''));};
+    reader.onerror=function(){reject(new Error('Could not read '+file.name));};
+    reader.readAsDataURL(file);
+  });
+}
+function rrImageFormat(dataUrl){
+  if(/image\/jpe?g/i.test(dataUrl))return 'JPEG';
+  if(/image\/png/i.test(dataUrl))return 'PNG';
+  if(/image\/gif/i.test(dataUrl))return 'GIF';
+  if(/image\/webp/i.test(dataUrl))return 'WEBP';
+  return 'JPEG';
+}
+async function buildRrPdfProgrammatic(data,attachmentFiles){
+  const{jsPDF}=window.jspdf;
+  if(!jsPDF)throw new Error('PDF tools failed to load.');
+  const pdf=new jsPDF('p','mm','a4');
+  const margin=12;
+  const pageW=210;
+  const pageH=297;
+  const contentW=pageW-margin*2;
+  let y=margin;
+  const colDoc=contentW*0.68;
+  const colYes=contentW*0.16;
+  const colNo=contentW*0.16;
+  const orange=[244,122,33];
+
+  pdf.setDrawColor.apply(pdf,orange);
+  pdf.setLineWidth(0.5);
+  pdf.rect(margin,y,contentW,20);
+  pdf.setFont('helvetica','bold');
+  pdf.setFontSize(16);
+  pdf.setTextColor.apply(pdf,orange);
+  pdf.text('RENTAL REFERENCE',margin+4,y+9);
+  pdf.setFontSize(10);
+  pdf.setTextColor(71,85,105);
+  pdf.text('Reference checklist',margin+4,y+15);
+  pdf.setFontSize(9);
+  pdf.setTextColor(51,65,85);
+  pdf.text('ShareHouse',pageW-margin-4,y+8,{align:'right'});
+  pdf.text('Managers',pageW-margin-4,y+13,{align:'right'});
+  y+=26;
+
+  function drawTableHeader(){
+    const headerH=12;
+    y=rrPdfNeedPage(pdf,y,headerH,margin,pageH);
+    pdf.setFillColor(255,247,237);
+    pdf.setDrawColor.apply(pdf,orange);
+    pdf.setLineWidth(0.3);
+    pdf.rect(margin,y,contentW,headerH,'FD');
+    pdf.line(margin+colDoc,y,margin+colDoc,y+headerH);
+    pdf.line(margin+colDoc+colYes,y,margin+colDoc+colYes,y+headerH);
+    pdf.line(margin+colDoc,y+6,pageW-margin,y+6);
+    pdf.setFont('helvetica','bold');
+    pdf.setFontSize(9);
+    pdf.setTextColor(154,52,18);
+    pdf.text('Documents',margin+3,y+4.5);
+    pdf.text('Attached',margin+colDoc+colYes+colNo/2,y+4.5,{align:'center'});
+    pdf.text('Yes',margin+colDoc+colYes/2,y+10,{align:'center'});
+    pdf.text('No',margin+colDoc+colYes+colNo/2,y+10,{align:'center'});
+    y+=headerH;
+  }
+  drawTableHeader();
+
+  rrItems.forEach(function(label,idx){
+    const val=data['item_'+idx]||'';
+    const isSub=!!rrSubRowIndexes[idx];
+    const labelW=colDoc-(isSub?10:6);
+    const lines=pdf.splitTextToSize(label,labelW);
+    const rowH=Math.max(isSub?6.5:7.5,lines.length*4.2+2.5);
+    y=rrPdfNeedPage(pdf,y,rowH,margin,pageH);
+    if(y===margin)drawTableHeader();
+    pdf.setDrawColor.apply(pdf,orange);
+    pdf.setLineWidth(0.25);
+    pdf.rect(margin,y,contentW,rowH);
+    pdf.line(margin+colDoc,y,margin+colDoc,y+rowH);
+    pdf.line(margin+colDoc+colYes,y,margin+colDoc+colYes,y+rowH);
+    pdf.setFont('helvetica','normal');
+    pdf.setFontSize(isSub?7.5:8);
+    pdf.setTextColor(isSub?71:30, isSub?85:41, isSub?105:59);
+    pdf.text(lines,margin+(isSub?8:3),y+4.5);
+    rrPdfDrawChoiceCell(pdf,margin+colDoc,y,colYes,rowH,val==='Yes');
+    rrPdfDrawChoiceCell(pdf,margin+colDoc+colYes,y,colNo,rowH,val==='No');
+    y+=rowH;
+  });
+
+  y+=5;
+  y=rrPdfNeedPage(pdf,y,18,margin,pageH);
+  pdf.setFont('helvetica','bold');
+  pdf.setFontSize(9);
+  pdf.setTextColor(39,52,79);
+  pdf.text('Any other items / notes',margin,y);
+  y+=5;
+  pdf.setFont('helvetica','normal');
+  pdf.setFontSize(8.5);
+  pdf.setTextColor(30,41,59);
+  const notes=(data.other_items||'').trim()||'—';
+  pdf.splitTextToSize(notes,contentW).forEach(function(line){
+    y=rrPdfNeedPage(pdf,y,5,margin,pageH);
+    pdf.text(line,margin,y);
+    y+=4.5;
+  });
+
+  y+=4;
+  y=rrPdfNeedPage(pdf,y,38,margin,pageH);
+  pdf.setDrawColor(219,231,251);
+  pdf.setFillColor(248,251,255);
+  pdf.setLineWidth(0.3);
+  pdf.rect(margin,y,contentW,34,'FD');
+  pdf.setFont('helvetica','bold');
+  pdf.setFontSize(9);
+  pdf.setTextColor(39,52,79);
+  pdf.text('Referee name: '+(data.signer_name||''),margin+4,y+8);
+  pdf.text('Date: '+rrFormatDate(data.sign_date||''),margin+4,y+14);
+  pdf.text('Signature:',margin+4,y+20);
+  const sigData=document.getElementById('rr_signature_data').value;
+  if(sigData){
+    try{pdf.addImage(sigData,'PNG',margin+4,y+22,70,10);}catch(e){}
+  }
+  y+=40;
+
+  if(attachmentFiles&&attachmentFiles.length){
+    y=rrPdfNeedPage(pdf,y,14,margin,pageH);
+    pdf.setDrawColor.apply(pdf,orange);
+    pdf.setLineWidth(0.4);
+    pdf.line(margin,y,pageW-margin,y);
+    y+=7;
+    pdf.setFont('helvetica','bold');
+    pdf.setFontSize(11);
+    pdf.setTextColor.apply(pdf,orange);
+    pdf.text('Supporting Documents',margin,y);
+    y+=8;
+    for(let i=0;i<attachmentFiles.length;i++){
+      const file=attachmentFiles[i];
+      y=rrPdfNeedPage(pdf,y,12,margin,pageH);
+      pdf.setFont('helvetica','bold');
+      pdf.setFontSize(9);
+      pdf.setTextColor(39,52,79);
+      pdf.text((i+1)+'. '+file.name,margin,y);
+      y+=5;
+      if(rrFileIsImage(file)&&file.size<=1500000){
+        try{
+          const dataUrl=await rrReadFileAsDataUrl(file);
+          const fmt=rrImageFormat(dataUrl);
+          const imgH=55;
+          y=rrPdfNeedPage(pdf,y,imgH+6,margin,pageH);
+          pdf.addImage(dataUrl,fmt,margin,y,contentW,imgH);
+          y+=imgH+8;
+        }catch(e){
+          pdf.setFont('helvetica','normal');
+          pdf.setFontSize(8);
+          pdf.setTextColor(100,116,139);
+          pdf.text('(Image could not be embedded)',margin+2,y);
+          y+=6;
+        }
+      }else{
+        pdf.setFont('helvetica','normal');
+        pdf.setFontSize(8);
+        pdf.setTextColor(100,116,139);
+        pdf.text('Attached file: '+file.name+' ('+Math.ceil(file.size/1024)+' KB)',margin+2,y);
+        y+=7;
+      }
+    }
+  }
+  return pdf.output('datauristring').split(',')[1];
+}
+async function buildRrPdfBase64(data,attachmentFiles){
+  return buildRrPdfProgrammatic(data,attachmentFiles);
+}
+document.getElementById('reference_files').addEventListener('change',refreshAttachmentList);
+function refreshAttachmentList(){
+  const list=document.getElementById('attachmentList');
+  const empty=document.getElementById('attachmentEmpty');
+  const files=Array.from(document.getElementById('reference_files').files||[]);
+  list.innerHTML=files.map(function(f){
+    return '<li>'+f.name+' <span style="color:#c2410c;font-weight:500;margin-left:6px">('+Math.ceil(f.size/1024)+' KB)</span></li>';
+  }).join('');
+  if(empty)empty.style.display='none';
+}
+function collectAttachmentFiles(){
+  const input=document.getElementById('reference_files');
+  const files=Array.from(input?.files||[]);
+  const maxFiles=12;
+  const maxSingle=25*1024*1024;
+  const selected=files.slice(0,maxFiles);
+  for(const file of selected){
+    if(file.size>maxSingle){throw new Error(file.name+' is larger than 25 MB. Please upload a smaller file.');}
+  }
+  return selected;
+}
+async function rrFetchWithTimeout(url,options,timeoutMs){
+  const controller=new AbortController();
+  const timer=setTimeout(function(){controller.abort();},timeoutMs||120000);
+  try{
+    return await fetch(url,Object.assign({},options||{},{signal:controller.signal}));
+  }finally{
+    clearTimeout(timer);
+  }
+}
+
+async function submitRentalReference(){
+  if(!rrVal('signer_name')){rrStatus('Please enter signer name.',true);return;}
+  if(!(await ensureRrSignatureCaptured())){rrStatus('Please add and confirm your signature.',true);return;}
+  const btn=document.getElementById('rrSubmitBtn');
+  if(btn)btn.disabled=true;
+  rrStatus('Submitting reference form...');
+  const data=collectRrData();
+  const answered=countRrAnswers(data);
+  if(answered===0){
+    rrStatus('Please select Yes or No for at least one checklist item.',true);
+    if(btn)btn.disabled=false;
+    return;
+  }
+  let attachmentFiles=[];
+  try{attachmentFiles=collectAttachmentFiles();}catch(e){rrStatus(e.message||'Attachment error.',true);if(btn)btn.disabled=false;return;}
+  if(!window.SHM_DOC_ID||!window.SHM_TOKEN){rrStatus('Signing session expired. Please reopen the link from your email.',true);if(btn)btn.disabled=false;return;}
+  try{
+    const fd=new FormData();
+    fd.append('doc_id',window.SHM_DOC_ID);
+    fd.append('token',window.SHM_TOKEN);
+    fd.append('signature',document.getElementById('rr_signature_data').value);
+    fd.append('agreement_data',JSON.stringify({...data,attachment_count:attachmentFiles.length,attachment_names:attachmentFiles.map(function(f){return f.name;})}));
+    for(let i=0;i<attachmentFiles.length;i++){
+      fd.append('attachment_'+i,attachmentFiles[i],attachmentFiles[i].name);
+    }
+    if(attachmentFiles.length)rrStatus('Submitting reference form and '+attachmentFiles.length+' supporting document'+(attachmentFiles.length>1?'s':'')+'...');
+    const res=await rrFetchWithTimeout(window.SHM_API_URL+'rental-reference/submit',{method:'POST',body:fd},300000);
+    if(!res.ok){
+      let msg=await res.text();
+      try{const j=JSON.parse(msg);msg=j.message||msg;}catch(e){}
+      rrStatus(msg||'Submit failed.',true);
+      if(btn)btn.disabled=false;
+      return;
+    }
+    await res.json().catch(()=>({}));
+    document.getElementById('main-form').style.display='none';
+    document.getElementById('ok-view').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(e){
+    const aborted=e&&e.name==='AbortError';
+    rrStatus(aborted?'Upload timed out. Please check your connection and try again.':'Network error while submitting. Please try again.',true);
+    if(btn)btn.disabled=false;
+  }
+}
+</script>

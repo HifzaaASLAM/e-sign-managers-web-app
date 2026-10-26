@@ -1,0 +1,1899 @@
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Pinyon+Script&family=Sacramento&family=Satisfy&display=swap" rel="stylesheet">
+
+<div class="page-shell property-management-agreement-shell">
+  <div id="main-form">
+    <div class="pma-form-shell">
+    <div class="pma-top-bar">
+      <div class="pma-brand-row" aria-label="ShareHouse Managers">
+        <div class="shm-header-logo-wrap pma-logo-wrap">
+          <img class="shm-header-logo" src="/shm-logo.png" alt="ShareHouse Managers">
+        </div>
+      </div>
+      <div class="pma-step-indicator" id="pmaStepIndicator" aria-live="polite">Step 1 of 6</div>
+    </div>
+    <div class="pma-doc-header-sr">
+      <h1>Property Management Agreement</h1>
+      <div class="act-ref">Instructions to Act as Managing Agent</div>
+    </div>
+
+    <div class="progress-tabs pma-progress-tabs">
+      <div class="tab active" onclick="goTo(0)">A · Property</div>
+      <div class="tab" onclick="goTo(1)">B · Owner</div>
+      <div class="tab" onclick="goTo(2)">C · Instructions</div>
+      <div class="tab" onclick="goTo(3)">D · Terms</div>
+      <div class="tab" onclick="goTo(4)">E · Fees</div>
+      <div class="tab" onclick="goTo(5)">F · Signature</div>
+    </div>
+
+    <div class="main-card">
+      <!-- PANEL A -->
+      <div class="section-panel active" id="panel-0">
+        <div class="part-header"><span class="part-label">Part A</span><span class="part-title">Property Details</span><div class="part-divider"></div></div>
+        <div class="info-box"><strong>Agreement overview</strong>This agreement appoints ShareHouseManagers as managing agent for the property. Please complete the details carefully before signing.</div>
+
+        <div class="sec-header"><span class="sec-num">1</span><span class="sec-title">Availability</span></div>
+        <div class="g2 field-wrap">
+          <div><label class="field-label">Available from</label><input type="date" id="pma_available_from"></div>
+          <div><label class="field-label">Available to</label><input type="date" id="pma_available_to"></div>
+        </div>
+
+        <div class="sec-header"><span class="sec-num">2</span><span class="sec-title">Property to be managed</span></div>
+        <div class="field-wrap"><label class="field-label">Property address / property to be managed *</label><input type="text" id="pma_property" placeholder="Full property address"></div>
+        <div class="g3 field-wrap">
+          <div><label class="field-label">Block</label><input type="text" id="pma_block"></div>
+          <div><label class="field-label">Section</label><input type="text" id="pma_section"></div>
+          <div><label class="field-label">Division</label><input type="text" id="pma_division"></div>
+        </div>
+        <div class="g2 field-wrap">
+          <div><label class="field-label">EER</label><input type="text" id="pma_eer"></div>
+          <div><label class="field-label">Property type</label><input type="text" id="pma_property_type" placeholder="House / Apartment / Townhouse / Share house"></div>
+        </div>
+        <div class="field-wrap"><label class="field-label">Property description</label><textarea id="pma_description" placeholder="Brief description of property, rooms, condition or inclusions"></textarea></div>
+
+        <div class="sec-header"><span class="sec-num">3</span><span class="sec-title">Property features</span></div>
+        <div class="g3 field-wrap">
+          <div>
+            <label class="field-label">Heating</label>
+            <div class="pma-feature-field">
+              <select id="pma_heating" onchange="pmaFeatureSelectChanged('pma_heating')">
+                <option value="">Select…</option>
+                <option value="Reverse-Cycle Split System">Reverse-Cycle Split System</option>
+                <option value="Ducted Gas / Electric">Ducted Gas / Electric</option>
+                <option value="Portable Electric">Portable Electric</option>
+                <option value="Hydronic Heating">Hydronic Heating</option>
+                <option value="Other">Other</option>
+              </select>
+              <input type="text" id="pma_heating_other" class="pma-feature-other-input" placeholder="Other" onblur="pmaFeatureOtherBlur('pma_heating')">
+            </div>
+          </div>
+          <div>
+            <label class="field-label">Hot Water</label>
+            <div class="pma-feature-field">
+              <select id="pma_hot_water" onchange="pmaFeatureSelectChanged('pma_hot_water')">
+                <option value="">Select…</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Other">Other</option>
+              </select>
+              <input type="text" id="pma_hot_water_other" class="pma-feature-other-input" placeholder="Other" onblur="pmaFeatureOtherBlur('pma_hot_water')">
+            </div>
+          </div>
+          <div>
+            <label class="field-label">Dishwasher</label>
+            <div class="pma-feature-field">
+              <select id="pma_dishwasher" onchange="pmaFeatureSelectChanged('pma_dishwasher')">
+                <option value="">Select…</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Other">Other</option>
+              </select>
+              <input type="text" id="pma_dishwasher_other" class="pma-feature-other-input" placeholder="Other" onblur="pmaFeatureOtherBlur('pma_dishwasher')">
+            </div>
+          </div>
+        </div>
+        <div class="g3 field-wrap">
+          <div>
+            <label class="field-label">Oven</label>
+            <div class="pma-feature-field">
+              <select id="pma_oven" onchange="pmaFeatureSelectChanged('pma_oven')">
+                <option value="">Select…</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Other">Other</option>
+              </select>
+              <input type="text" id="pma_oven_other" class="pma-feature-other-input" placeholder="Other" onblur="pmaFeatureOtherBlur('pma_oven')">
+            </div>
+          </div>
+          <div>
+            <label class="field-label">Cooktop</label>
+            <div class="pma-feature-field">
+              <select id="pma_cooktop" onchange="pmaFeatureSelectChanged('pma_cooktop')">
+                <option value="">Select…</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Other">Other</option>
+              </select>
+              <input type="text" id="pma_cooktop_other" class="pma-feature-other-input" placeholder="Other" onblur="pmaFeatureOtherBlur('pma_cooktop')">
+            </div>
+          </div>
+          <div>
+            <label class="field-label">Warranties</label>
+            <div class="pma-feature-field">
+              <select id="pma_warranties" onchange="pmaFeatureSelectChanged('pma_warranties')">
+                <option value="">Select…</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Other">Other</option>
+              </select>
+              <input type="text" id="pma_warranties_other" class="pma-feature-other-input" placeholder="Other" onblur="pmaFeatureOtherBlur('pma_warranties')">
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-header"><span class="sec-num">4</span><span class="sec-title">Rent, lease and keys</span></div>
+        <div class="g3 field-wrap">
+          <div><label class="field-label">Rent per week ($)</label><input type="number" id="pma_rent_pw" placeholder="0"></div>
+          <div><label class="field-label">At commencement</label><input type="text" id="pma_commencement"></div>
+          <div><label class="field-label">Preferred lease term</label><input type="text" id="pma_lease_term"></div>
+        </div>
+        <div class="field-wrap"><label class="field-label">Keys supplied</label><input type="text" id="pma_keys" placeholder="Number/type of keys supplied"></div>
+
+        <div class="nav-row"><span></span><button class="btn-nav next" onclick="goTo(1)">Next: Owner Details →</button></div>
+      </div>
+
+      <!-- PANEL B -->
+      <div class="section-panel" id="panel-1">
+        <div class="part-header"><span class="part-label">Part B</span><span class="part-title">Owner / Lessor Details</span><div class="part-divider"></div></div>
+        <div class="sec-header"><span class="sec-num">1</span><span class="sec-title">Owner details</span></div>
+        <div class="field-wrap"><label class="field-label">Owner / lessor name *</label><input type="text" id="pma_owner" placeholder="Owner full legal name"></div>
+        <div class="field-wrap"><label class="field-label">Postal address</label><input type="text" id="pma_postal_address" placeholder="Postal address"></div>
+        <div class="g2 field-wrap">
+          <div><label class="field-label">Phone (A.H.)</label><input type="tel" id="pma_phone_ah"></div>
+          <div><label class="field-label">Phone (B.H.)</label><input type="tel" id="pma_phone_bh"></div>
+        </div>
+        <div class="g2 field-wrap">
+          <div><label class="field-label">Mobile</label><input type="tel" id="pma_mobile"></div>
+          <div><label class="field-label">Email *</label><input type="email" id="pma_email" placeholder="owner@example.com"></div>
+        </div>
+
+        <div class="sec-header"><span class="sec-num">2</span><span class="sec-title">Unit plan details</span></div>
+        <div class="g2 field-wrap">
+          <div><label class="field-label">Unit plan no.</label><input type="text" id="pma_unit_plan_no"></div>
+          <div><label class="field-label">Unit plan manager</label><input type="text" id="pma_unit_plan_manager"></div>
+        </div>
+        <div class="g2 field-wrap">
+          <div><label class="field-label">Unit plan manager phone</label><input type="tel" id="pma_unit_phone"></div>
+          <div><label class="field-label">Fax</label><input type="text" id="pma_fax"></div>
+        </div>
+
+        <div class="nav-row"><button class="btn-nav prev" onclick="goTo(0)">← Back</button><button class="btn-nav next" onclick="goTo(2)">Next: Instructions →</button></div>
+      </div>
+
+      <!-- PANEL C -->
+      <div class="section-panel" id="panel-2">
+        <div class="part-header"><span class="part-label">Part C</span><span class="part-title">Specific Instructions</span><div class="part-divider"></div></div>
+        <div class="sec-header"><span class="sec-num">1</span><span class="sec-title">Payment of monies</span></div>
+        <div class="info-box" id="pma-bank-agency-note" style="display:none"><strong>Bank details from your property manager</strong>Your disbursement account is recorded by ShareHouse Managers (same as PropertyMe). To change it, contact your property manager — you can review the details here and sign to confirm.</div>
+        <div class="field-wrap"><label class="field-label">Deposit to credit of</label><input type="text" id="pma_deposit_to"></div>
+        <div class="g2 field-wrap">
+          <div><label class="field-label">Bank</label><input type="text" id="pma_bank"></div>
+          <div><label class="field-label">Branch</label><input type="text" id="pma_branch"></div>
+        </div>
+        <div class="g2 field-wrap">
+          <div><label class="field-label">BSB No.</label><input type="text" id="pma_bsb"></div>
+          <div><label class="field-label">Account No.</label><input type="text" id="pma_account"></div>
+        </div>
+        <div class="field-wrap"><label class="field-label">Repairs instruction</label><input type="text" id="pma_repairs" value="Refer to landlord for advice"></div>
+
+        <div class="sec-header"><span class="sec-num">2</span><span class="sec-title">Compliance and property instructions</span></div>
+        <table class="disc-table">
+          <thead><tr><th>Instruction</th><th>Yes</th><th>No</th><th>Unknown / Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Presence of asbestos: is the owner aware of any asbestos?</td><td class="chk"><input type="checkbox" id="pma_asbestos_y"></td><td class="chk"><input type="checkbox" id="pma_asbestos_n"></td><td><input type="text" class="inline-input" id="pma_asbestos_note"></td></tr>
+            <tr><td>Glass compliance: does the owner require a glass audit?</td><td class="chk"><input type="checkbox" id="pma_glass_y"></td><td class="chk"><input type="checkbox" id="pma_glass_n"></td><td><input type="text" class="inline-input" id="pma_glass_note"></td></tr>
+            <tr><td>Smoke detectors: does the owner require them to be fitted?</td><td class="chk"><input type="checkbox" id="pma_smoke_y"></td><td class="chk"><input type="checkbox" id="pma_smoke_n"></td><td><input type="text" class="inline-input" id="pma_smoke_note"></td></tr>
+            <tr><td>Unapproved structures: does the owner know of any?</td><td class="chk"><input type="checkbox" id="pma_structures_y"></td><td class="chk"><input type="checkbox" id="pma_structures_n"></td><td><input type="text" class="inline-input" id="pma_structures_note"></td></tr>
+          </tbody>
+        </table>
+
+        <div class="sec-header"><span class="sec-num">3</span><span class="sec-title">Owner preferences</span></div>
+        <div class="check-group field-wrap">
+          <label class="check-label"><input type="checkbox" id="pma_rates_general"> Rates - general</label>
+          <label class="check-label"><input type="checkbox" id="pma_rates_water"> Rates - water & sewage</label>
+          <label class="check-label"><input type="checkbox" id="pma_land_tax"> Land tax</label>
+          <label class="check-label"><input type="checkbox" id="pma_body_corp"> Body corporate</label>
+          <label class="check-label"><input type="checkbox" id="pma_fair_clause"> Fair clause for posted people</label>
+          <label class="check-label"><input type="checkbox" id="pma_email_statements"> Email statements</label>
+          <label class="check-label"><input type="checkbox" id="pma_pets"> Pets preference</label>
+          <label class="check-label"><input type="checkbox" id="pma_groups"> Groups preference</label>
+        </div>
+        <div class="g2 field-wrap">
+          <div><label class="field-label">Preferred contact</label><input type="text" id="pma_preferred_contact" placeholder="Phone / Email"></div>
+          <div><label class="field-label">Do you intend to sell at end of fixed tenancy?</label><select id="pma_intend_sell"><option value="">Select…</option><option>Yes</option><option>No</option></select></div>
+        </div>
+        <div class="info-box"><strong>Note</strong>Legislation does not permit discrimination in relation to children, groups, pets and smokers. This is a preference only.</div>
+
+        <div class="sec-header"><span class="sec-num">4</span><span class="sec-title">Insurance</span></div>
+        <div class="g3 field-wrap"><div><label class="field-label">Building policy insurer</label><input type="text" id="pma_building_insurer"></div><div><label class="field-label">Policy No.</label><input type="text" id="pma_building_policy"></div><div><label class="field-label">Renewal date</label><input type="date" id="pma_building_renewal"></div></div>
+        <div class="g3 field-wrap"><div><label class="field-label">Contents policy insurer</label><input type="text" id="pma_contents_insurer"></div><div><label class="field-label">Policy No.</label><input type="text" id="pma_contents_policy"></div><div><label class="field-label">Renewal date</label><input type="date" id="pma_contents_renewal"></div></div>
+        <div class="g3 field-wrap"><div><label class="field-label">Landlord insurance insurer</label><input type="text" id="pma_landlord_insurer"></div><div><label class="field-label">Policy No.</label><input type="text" id="pma_landlord_policy"></div><div><label class="field-label">Renewal date</label><input type="date" id="pma_landlord_renewal"></div></div>
+
+        <div class="sec-header"><span class="sec-num">5</span><span class="sec-title">Emergency contact and other instructions</span></div>
+        <div class="g2 field-wrap"><div><label class="field-label">Friend / Power of Attorney to contact in emergency</label><input type="text" id="pma_emergency_contact"></div><div><label class="field-label">Phone</label><input type="tel" id="pma_emergency_phone"></div></div>
+        <div class="field-wrap"><label class="field-label">Other instructions</label><textarea id="pma_other_instructions"></textarea></div>
+
+        <div class="nav-row"><button class="btn-nav prev" onclick="goTo(1)">← Back</button><button class="btn-nav next" onclick="goTo(3)">Next: Terms →</button></div>
+      </div>
+
+      <!-- PANEL D -->
+      <div class="section-panel" id="panel-3">
+        <div class="part-header"><span class="part-label">Part D</span><span class="part-title">Terms and Conditions</span><div class="part-divider"></div></div>
+        <div class="info-box"><strong>Terms summary</strong>Please review the agreement terms below. These terms will be included in the signed document saved to Google Drive.</div>
+        <div id="terms-block">
+          <div class="field-wrap">
+            <label class="sub-header" for="pma_term_appointment">Appointment of Agent</label>
+            <textarea id="pma_term_appointment" class="terms-body" rows="3">The Owner appoints Sharehousemanagers.com.au Pty Ltd Lic. Agent ABN 27 685 383 493 exclusive from the date hereof to lease and manage the Property in accordance with the terms of this Agreement.</textarea>
+          </div>
+          <div class="field-wrap">
+            <label class="sub-header" for="pma_term_management_fees">Management Fees</label>
+            <textarea id="pma_term_management_fees" class="terms-body" rows="2">Refer to attached schedule of fees.</textarea>
+          </div>
+          <div class="field-wrap">
+            <label class="sub-header" for="pma_term_termination">Termination of Agreement</label>
+            <textarea id="pma_term_termination" class="terms-body" rows="3">This Agreement may be terminated by either party by thirty days’ notice in writing. Upon termination of the agreement the Owner agrees to pay the Agent one week rent if the agency agreement is terminated in less than 12 months.</textarea>
+          </div>
+          <div class="field-wrap">
+            <label class="sub-header" for="pma_term_keys">Keys</label>
+            <textarea id="pma_term_keys" class="terms-body" rows="2">The Owner agrees to supply the Agent with three (3) full and complete sets of keys for the property to be managed by the Agent.</textarea>
+          </div>
+          <div class="field-wrap">
+            <label class="sub-header" for="pma_term_insurance">Insurance</label>
+            <textarea id="pma_term_insurance" class="terms-body" rows="3">The Owner agrees to have and maintain sufficient building and contents insurance over the premises. The insurance policy must include public liability and the Owner agrees to notify the insurer that the property is rented.</textarea>
+          </div>
+          <div class="field-wrap">
+            <label class="sub-header" for="pma_term_duties">Duties of Agent (one duty per line)</label>
+            <textarea id="pma_term_duties" class="terms-body" rows="6">Execute documentation in accordance with the Residential Tenancies Act 1997 on behalf of the Owner including the tenancy agreement.
+Collect rent and other monies due to the Principal and pay it to the Owner on the last business day of each month.
+Collect, lodge, refund or otherwise deal with bond monies.
+Repair and maintain the Property as specified in this Agreement.
+Issue notices and termination of tenancy including eviction if required.
+Advertise the Property as available for letting and conduct inspections.</textarea>
+          </div>
+          <div class="field-wrap">
+            <label class="sub-header" for="pma_term_expenditure">Expenditure, deductions and indemnity</label>
+            <textarea id="pma_term_expenditure" class="terms-body" rows="3">The Agent may incur expenditure for repairs and maintenance up to the specified expenditure amount without reference to the Owner, except in emergencies. The Agent is authorised to deduct statutory charges, body corporate fees, repair and maintenance amounts, and other authorised charges from rent or other monies received.</textarea>
+          </div>
+          <div class="field-wrap">
+            <label class="sub-header" for="pma_term_privacy">Privacy Act 1988 Collection Notice</label>
+            <textarea id="pma_term_privacy" class="terms-body" rows="3">The Agent uses personal information collected from and about the Owner to act as the Owner’s Agent and perform obligations under this agreement. Information may be disclosed where necessary to perform duties under the agreement or as otherwise allowed under the Privacy Act 1988.</textarea>
+          </div>
+        </div>
+        <div class="field-wrap"><label class="field-label">Special instructions</label><textarea id="pma_special_instructions" placeholder="Spa/pool, pets, garden maintenance or other managing instructions"></textarea></div>
+        <div class="g2 field-wrap"><div><label class="field-label">Instruction books for appliances</label><input type="text" id="pma_instruction_books"></div><div><label class="field-label">Hot water system location</label><input type="text" id="pma_hot_water_location"></div></div>
+        <div class="g2 field-wrap"><div><label class="field-label">Electrical meter box location</label><input type="text" id="pma_meter_box"></div><div><label class="field-label">Water meter / stopcock location</label><input type="text" id="pma_water_meter"></div></div>
+        <div class="field-wrap"><label class="field-label">Additional information</label><textarea id="pma_additional_info"></textarea></div>
+        <div class="nav-row"><button class="btn-nav prev" onclick="goTo(2)">← Back</button><button class="btn-nav next" onclick="goTo(4)">Next: Fees →</button></div>
+      </div>
+
+      <!-- PANEL E -->
+      <div class="section-panel" id="panel-4">
+        <div class="part-header"><span class="part-label">Part E</span><span class="part-title">Letting and Management Schedule of Fees</span><div class="part-divider"></div></div>
+        <table class="disc-table">
+          <thead><tr><th>Fee item</th><th>Amount / Notes (editable)</th></tr></thead>
+          <tbody>
+            <tr><td>Initial letting fee</td><td><textarea id="pma_fee_initial_letting" class="inline-input fee-notes" rows="2">Equal to 0 weeks rent</textarea></td></tr>
+            <tr><td>Advertising</td><td><textarea id="pma_fee_advertising" class="inline-input fee-notes" rows="2">Included – flatmates.com.au, sharehousemanagers.com.au, Facebook, Instagram and WhatsApp</textarea></td></tr>
+            <tr><td>Quick Rent sign</td><td><textarea id="pma_fee_quick_rent_sign" class="inline-input fee-notes" rows="2">“Is This Your New Rental Share House”</textarea></td></tr>
+            <tr><td>Attendance and leasing tasks</td><td><textarea id="pma_fee_attendance" class="inline-input fee-notes" rows="3">Attendance to show prospective tenants, commencement/final attendance, condition report, inventory update, reference checking, cleaning/repair coordination, lease signing, bond lodgement/finalisation and out-of-pocket expenses.</textarea></td></tr>
+            <tr><td>Renegotiation to secure existing tenants to a new lease</td><td><textarea id="pma_fee_renegotiation" class="inline-input fee-notes" rows="2">0% of a week’s rent</textarea></td></tr>
+            <tr><td>Management fee</td><td><textarea id="pma_fee_management" class="inline-input fee-notes" rows="2" placeholder="10%"></textarea></td></tr>
+            <tr><td>Monthly statement and accounting fee</td><td><textarea id="pma_fee_monthly_statement" class="inline-input fee-notes" rows="2">N/A</textarea></td></tr>
+            <tr><td>Residential tenancy tribunal matters</td><td><textarea id="pma_fee_tribunal" class="inline-input fee-notes" rows="3">Lodgement/application fee at cost; preparation of dispute submission and evidence $100.00; attendance fee $50.00/hr.</textarea></td></tr>
+            <tr><td>GST</td><td><textarea id="pma_fee_gst" class="inline-input fee-notes" rows="2">All charges are plus GST.</textarea></td></tr>
+          </tbody>
+        </table>
+        <div class="nav-row"><button class="btn-nav prev" onclick="goTo(3)">← Back</button><button class="btn-nav next" onclick="goTo(5)">Next: Signature →</button></div>
+      </div>
+
+      <!-- PANEL F -->
+      <div class="section-panel" id="panel-5">
+        <div class="part-header"><span class="part-label">Part F</span><span class="part-title">Declaration and Signature</span><div class="part-divider"></div></div>
+        <div class="sig-box">
+          <p class="body-text" style="font-style:italic;margin-bottom:1.1rem">I/We confirm that the information provided is true and correct and agree to appoint ShareHouseManagers as managing agent in accordance with this Property Management Agreement.</p>
+          <div class="g2 field-wrap" id="pma_sign_identity_row">
+            <div id="pma_sign_name_field">
+              <label class="field-label" id="pma_sign_name_label">Owner name *</label>
+              <input type="text" id="pma_owner_sign_name" placeholder="Owner full name">
+              <input type="text" id="pma_agent_sign_name" placeholder="Agent full name" style="display:none">
+            </div>
+            <div id="pma_sign_date_field">
+              <label class="field-label" id="pma_sign_date_label">Owner date</label>
+              <input type="date" id="pma_sigdt">
+              <input type="date" id="pma_agent_sigdt" style="display:none">
+            </div>
+          </div>
+          <label class="field-label" id="pma_signature_role_label" style="color:var(--teal-dark);margin-bottom:0.5rem">Owner signature</label>
+          <div class="sig-tabs">
+            <button class="sig-tab active" onclick="switchSigTab('draw',this)" type="button">✏️ Draw</button>
+            <button class="sig-tab" onclick="switchSigTab('type',this)" type="button">Aa Type</button>
+            <button class="sig-tab" onclick="switchSigTab('upload',this)" type="button">⬆ Upload</button>
+          </div>
+          <div class="sig-panel active" id="sig-panel-draw">
+            <div class="sig-canvas-wrap" id="sigCanvasWrap">
+              <canvas id="sigCanvas"></canvas>
+              <div class="sig-canvas-placeholder">Sign here with mouse or finger</div>
+            </div>
+            <div class="sig-actions"><button class="sig-btn danger" type="button" onclick="clearCanvas()">Clear</button><button class="sig-btn" type="button" onclick="confirmDrawSig()" style="border-color:var(--teal);color:var(--teal)">Use this signature</button></div>
+          </div>
+          <div class="sig-panel" id="sig-panel-type">
+            <input type="text" id="sigTypeInput" placeholder="Type your full legal name…" oninput="updateTypeSig()" style="font-size:15px">
+            <div class="sig-font-picker" id="fontPicker">
+              <span class="font-pill active" onclick="setFont('Dancing Script',this)" style="font-family:'Dancing Script',cursive">Cursive</span>
+              <span class="font-pill" onclick="setFont('Pinyon Script',this)" style="font-family:'Pinyon Script',cursive">Elegant</span>
+              <span class="font-pill" onclick="setFont('Sacramento',this)" style="font-family:'Sacramento',cursive">Script</span>
+              <span class="font-pill" onclick="setFont('Satisfy',this)" style="font-family:'Satisfy',cursive">Flowing</span>
+            </div>
+            <div class="sig-type-preview"><span id="sigTypePreview" style="font-family:'Dancing Script',cursive"></span></div>
+            <div class="sig-actions"><button class="sig-btn" type="button" onclick="confirmTypeSig()" style="border-color:var(--teal);color:var(--teal)">Use this signature</button></div>
+          </div>
+          <div class="sig-panel" id="sig-panel-upload">
+            <div class="sig-upload-zone" id="uploadZone">
+              <input type="file" id="sigFileInput" accept="image/png,image/jpeg,image/jpg,image/gif,image/webp" onchange="handleSigUpload(event)">
+              <div class="upload-icon" aria-hidden="true">🖼️</div>
+              <strong style="font-size:13.5px;color:var(--text)">Click or drag to upload</strong>
+              <p>PNG, JPG or GIF · Signature image</p>
+            </div>
+            <div class="sig-upload-preview" id="uploadPreview">
+              <img id="uploadPreviewImg" src="" alt="Signature preview">
+              <div class="sig-actions" style="justify-content:center;margin-top:0.5rem"><button class="sig-btn danger" type="button" onclick="clearUpload()">Remove</button><button class="sig-btn" type="button" onclick="confirmUploadSig()" style="border-color:var(--teal);color:var(--teal)">Use this signature</button></div>
+            </div>
+          </div>
+          <div class="sig-confirmed" id="sigConfirmed"><img class="sig-confirmed-thumb" id="sigConfirmedThumb" src="" alt=""><span id="sigConfirmedText">Signature captured</span><button class="sig-btn" type="button" onclick="resetSig()" style="margin-left:auto;font-size:11px">Change</button></div>
+          <input type="hidden" id="pma_sig">
+          <input type="hidden" id="pma_agent_sig">
+        </div>
+        <div class="pma-send-contacts-panel" id="pmaSendContactsPanel" style="display:none">
+          <div class="sec-header"><span class="sec-num">👤</span><span class="sec-title">Recipients</span></div>
+          <p class="body-text pma-signing-email-help">Add who should receive the agreement. <strong>Signer</strong> gets a signing link; <strong>CC</strong> gets a separate view-only email (no signature required).</p>
+          <div id="pmaSendContactsList" class="pma-send-contacts-list"></div>
+          <button type="button" class="btn-nav pma-add-recipient-btn" id="pmaAddSendContactBtn">+ Add recipient</button>
+        </div>
+        <div class="pma-signing-email-panel" id="pmaSigningEmailPanel" style="display:none">
+          <div class="sec-header"><span class="sec-num">✉</span><span class="sec-title">Owner signing email</span></div>
+          <p class="body-text pma-signing-email-help">Edit the email the owner receives when you click <strong>Send to Owner</strong>. The ShareHouseManagers header, signing button, and security footer stay fixed.</p>
+          <label class="field-label">Subject</label>
+          <input type="text" id="pmaSigningEmailSubject" autocomplete="off" placeholder="Email subject line">
+          <label class="field-label pma-signing-email-body-label">Message</label>
+          <textarea id="pmaSigningEmailBody" rows="5" placeholder="Message shown in the owner signing email"></textarea>
+          <label class="field-label pma-signing-email-preview-label">Live preview</label>
+          <div class="pma-email-preview-wrap">
+            <iframe class="pma-signing-email-preview-frame" id="pmaSigningEmailPreviewFrame" title="Signing email preview" sandbox=""></iframe>
+          </div>
+        </div>
+        <div class="submit-area" id="pma_submit_area">
+          <button class="btn-submit" type="button" id="pmaSendOwnerBtn" style="display:none;margin-right:10px;background:#0f766e" onclick="adminSendPropertyManagementAgreement()"><div class="spinner" id="pmaSendSpin"></div><span class="btn-label">Send to Owner</span></button>
+          <button class="btn-submit" id="subBtn" onclick="doSubmit()"><div class="spinner" id="spin"></div><span class="btn-label">Submit Agreement</span></button>
+          <span class="status-msg" id="stmsg"></span>
+        </div>
+        <div class="log-box" id="logBox" style="display:none;"></div>
+        <div class="nav-row"><button class="btn-nav prev" onclick="goTo(4)">← Back</button><span></span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="success-view" id="ok-view" style="display:none;">
+    <div class="success-icon">✓</div>
+    <h2 id="ok_h">Agreement received, ShareHouseManagers!</h2>
+    <p id="ok_p" style="display:none"></p>
+  </div>
+</div>
+
+<script>
+// Signature pad
+let sigMode = 'draw', currentFont = 'Dancing Script', sigDataUrl = null;
+const canvas = document.getElementById('sigCanvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
+let drawing = false, lastX = 0, lastY = 0, hasSig = false;
+
+function resizeCanvas() {
+  if (!canvas) return;
+  const wrap = document.getElementById('sigCanvasWrap');
+  const ratio = window.devicePixelRatio || 1;
+  canvas.width = wrap.offsetWidth * ratio;
+  canvas.height = 140 * ratio;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.strokeStyle = '#1a2a30';
+  ctx.lineWidth = 2.2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+}
+function getPos(e) { const rect = canvas.getBoundingClientRect(); const touch = e.touches ? e.touches[0] : e; return { x: touch.clientX - rect.left, y: touch.clientY - rect.top }; }
+function startDraw(e) { e.preventDefault(); drawing = true; const p = getPos(e); lastX = p.x; lastY = p.y; ctx.beginPath(); ctx.moveTo(lastX, lastY); }
+function draw(e) { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(p.x, p.y); ctx.stroke(); lastX = p.x; lastY = p.y; if (!hasSig) { hasSig = true; document.getElementById('sigCanvasWrap').classList.add('has-sig'); } }
+function endDraw() { drawing = false; }
+function clearCanvas() { if (!ctx) return; ctx.clearRect(0, 0, canvas.width, canvas.height); hasSig = false; document.getElementById('sigCanvasWrap').classList.remove('has-sig'); const hidden = pmaSignatureHiddenEl(); if (hidden) hidden.value = ''; }
+function confirmDrawSig() { if (!hasSig) { alert('Please draw your signature first.'); return; } sigDataUrl = canvas.toDataURL('image/png'); showConfirmed(sigDataUrl, 'Drawn signature captured'); }
+if (canvas) { canvas.addEventListener('mousedown', startDraw); canvas.addEventListener('mousemove', draw); canvas.addEventListener('mouseup', endDraw); canvas.addEventListener('mouseleave', endDraw); canvas.addEventListener('touchstart', startDraw, { passive: false }); canvas.addEventListener('touchmove', draw, { passive: false }); canvas.addEventListener('touchend', endDraw); window.addEventListener('load', resizeCanvas); window.addEventListener('resize', resizeCanvas); setTimeout(resizeCanvas, 200); }
+function updateTypeSig() { const val = document.getElementById('sigTypeInput').value; const preview = document.getElementById('sigTypePreview'); preview.textContent = val; preview.style.setProperty('font-family', `'${currentFont}', cursive`, 'important'); }
+function setFont(font, el) { currentFont = font; const preview = document.getElementById('sigTypePreview'); preview.style.setProperty('font-family', `'${font}', cursive`, 'important'); document.querySelectorAll('.font-pill').forEach(pill => pill.classList.remove('active')); el.classList.add('active'); updateTypeSig(); }
+async function confirmTypeSig() { const val = document.getElementById('sigTypeInput').value.trim(); if (!val) { alert('Please type your name first.'); return; } if (document.fonts) { try { await document.fonts.load(`56px '${currentFont}'`); await document.fonts.ready; } catch (e) {} } const tc = document.createElement('canvas'); tc.width = 700; tc.height = 140; const tctx = tc.getContext('2d'); tctx.clearRect(0, 0, tc.width, tc.height); tctx.font = `500 56px '${currentFont}', cursive`; tctx.fillStyle = '#1a2a30'; tctx.textBaseline = 'middle'; tctx.fillText(val, 18, 74); sigDataUrl = tc.toDataURL('image/png'); showConfirmed(sigDataUrl, 'Typed signature captured'); }
+function handleSigUpload(e) { applySigFile(e.target.files && e.target.files[0]); }
+function applySigFile(file) {
+  if (!file) return;
+  if (!String(file.type || '').startsWith('image/')) {
+    alert('Please upload an image file (PNG, JPG or GIF).');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    sigDataUrl = ev.target.result;
+    document.getElementById('uploadPreviewImg').src = sigDataUrl;
+    document.getElementById('uploadPreview').style.display = 'block';
+    document.getElementById('uploadZone').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+function clearUpload() {
+  document.getElementById('uploadPreview').style.display = 'none';
+  document.getElementById('uploadZone').style.display = 'block';
+  document.getElementById('uploadZone').classList.remove('is-dragover');
+  document.getElementById('sigFileInput').value = '';
+  sigDataUrl = null;
+}
+function confirmUploadSig() { if (!sigDataUrl) { alert('Please upload a signature image first.'); return; } showConfirmed(sigDataUrl, 'Uploaded signature captured'); }
+function pmaSignatureHiddenId() {
+  return pmaIsCreatorSigning() ? 'pma_agent_sig' : 'pma_sig';
+}
+function pmaSignatureHiddenEl() {
+  return document.getElementById(pmaSignatureHiddenId()) || document.getElementById('pma_sig');
+}
+function showConfirmed(dataUrl, label) {
+  const box = document.getElementById('sigConfirmed');
+  const sigBox = box.closest('.sig-box');
+  document.getElementById('sigConfirmedThumb').src = dataUrl;
+  document.getElementById('sigConfirmedText').textContent = '✓ ' + label;
+  const hidden = pmaSignatureHiddenEl();
+  if (hidden) hidden.value = dataUrl;
+  if (!pmaIsCreatorSigning()) {
+    const ownerHidden = document.getElementById('pma_sig');
+    if (ownerHidden) ownerHidden.value = dataUrl;
+  }
+  box.classList.add('show');
+  if (sigBox) sigBox.classList.add('signature-locked');
+  document.querySelectorAll('.sig-panel').forEach(panel => { panel.classList.remove('active'); panel.style.display = 'none'; });
+  document.querySelectorAll('.sig-tab').forEach(tab => tab.classList.remove('active'));
+  const tabs = document.querySelector('.sig-tabs');
+  if (tabs) tabs.style.display = 'none';
+}
+function pickDrawTabBtn() {
+  return document.querySelector('.sig-tab[onclick*="\'draw\'"]') || document.querySelector('.sig-tab[onclick*="draw"]') || document.querySelector('.sig-tabs .sig-tab');
+}
+function activateDrawSignature() {
+  const btn = pickDrawTabBtn();
+  switchSigTab('draw', btn);
+  setTimeout(resizeCanvas, 30);
+  setTimeout(resizeCanvas, 150);
+}
+function resetSig() {
+  window.__pmaDefaultAgentSigSkipped = true;
+  const box = document.getElementById('sigConfirmed');
+  const sigBox = box.closest('.sig-box');
+  box.classList.remove('show');
+  if (sigBox) sigBox.classList.remove('signature-locked');
+  const hidden = pmaSignatureHiddenEl();
+  if (hidden) hidden.value = '';
+  sigDataUrl = null;
+  const tabs = document.querySelector('.sig-tabs');
+  if (tabs) tabs.style.display = '';
+  document.querySelectorAll('.sig-panel').forEach(panel => { panel.style.display = ''; });
+  activateDrawSignature();
+}
+function switchSigTab(mode, btn) {
+  sigMode = mode || 'draw';
+  document.querySelectorAll('.sig-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sig-tab').forEach(t => t.classList.remove('active'));
+  const panel = document.getElementById('sig-panel-' + sigMode);
+  if (panel) panel.classList.add('active');
+  if (btn) btn.classList.add('active');
+  else {
+    const fallback = document.querySelector('.sig-tab[onclick*="' + sigMode + '"]') || pickDrawTabBtn();
+    if (fallback) fallback.classList.add('active');
+  }
+  if (sigMode === 'draw') setTimeout(resizeCanvas, 50);
+}
+function setupSigUploadDragDrop() {
+  const zone = document.getElementById('uploadZone');
+  const input = document.getElementById('sigFileInput');
+  if (!zone || !input || zone.dataset.dndReady === '1') return;
+  zone.dataset.dndReady = '1';
+  function setDrag(on) { zone.classList.toggle('is-dragover', !!on); }
+  function onDragOver(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setDrag(true);
+    if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
+  }
+  function onDragLeave(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setDrag(false);
+  }
+  function onDrop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setDrag(false);
+    const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (!file) return;
+    try {
+      const transfer = new DataTransfer();
+      transfer.items.add(file);
+      input.files = transfer.files;
+    } catch (err) {}
+    applySigFile(file);
+  }
+  [zone, input].forEach(el => {
+    el.addEventListener('dragenter', onDragOver);
+    el.addEventListener('dragover', onDragOver);
+    el.addEventListener('dragleave', onDragLeave);
+    el.addEventListener('dragend', onDragLeave);
+    el.addEventListener('drop', onDrop);
+  });
+}
+
+let currentTab = 0;
+async function pmaSaveClientDraft() {
+  if (!pmaIsCreatorSigning()) return;
+  if (typeof window.shmShouldSkipDraftSave === 'function' && window.shmShouldSkipDraftSave()) return;
+  const payload = pmaStripSignaturesForGenerate(collectAgreementData());
+  const apiUrl = window.SHM_API_URL || '/shm-docs/';
+  try {
+    await fetch(apiUrl + 'save-draft', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        doc_id: window.SHM_DOC_ID || '',
+        token: window.SHM_TOKEN || '',
+        agreement_data: payload,
+        field_values: payload,
+      }),
+    });
+  } catch (e) {}
+}
+
+function pmaAutosizeFeeTextareas(){
+  document.querySelectorAll('#panel-4 textarea.fee-notes').forEach(function(ta){
+    ta.style.height = 'auto';
+    ta.style.overflowY = 'hidden';
+    ta.style.height = Math.max(ta.scrollHeight, 44) + 'px';
+  });
+}
+function pmaInitFeeTextareaAutosize(){
+  document.querySelectorAll('#panel-4 textarea.fee-notes').forEach(function(ta){
+    if (ta.dataset.pmaAutosizeBound === '1') return;
+    ta.dataset.pmaAutosizeBound = '1';
+    ta.addEventListener('input', pmaAutosizeFeeTextareas);
+  });
+  pmaAutosizeFeeTextareas();
+}
+
+function goTo(idx) {
+  if (pmaIsCreatorSigning()) void pmaSaveClientDraft();
+  document.querySelectorAll('.section-panel').forEach((p,i) => p.classList.toggle('active', i === idx));
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i === idx));
+  currentTab = idx;
+  const stepEl = document.getElementById('pmaStepIndicator');
+  if (stepEl) stepEl.textContent = 'Step ' + (idx + 1) + ' of 6';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (idx === 4) {
+    pmaInitFeeTextareaAutosize();
+  }
+  if (idx === 5) {
+    setupPmaSignatureRoleUi();
+    activateDrawSignature();
+    void applyPmaDefaultAgentSignatureIfNeeded();
+    initPmaSigningEmailEditor();
+  }
+}
+setupSigUploadDragDrop();
+activateDrawSignature();
+window.addEventListener('load', activateDrawSignature);
+var PMA_FEATURE_SELECT_IDS = ['pma_heating', 'pma_hot_water', 'pma_dishwasher', 'pma_oven', 'pma_cooktop', 'pma_warranties'];
+function pmaFeatureFieldWrap(selectId) {
+  const sel = document.getElementById(selectId);
+  return sel ? sel.closest('.pma-feature-field') : null;
+}
+function pmaFeatureSelectChanged(selectId) {
+  const sel = document.getElementById(selectId);
+  const other = document.getElementById(selectId + '_other');
+  const wrap = pmaFeatureFieldWrap(selectId);
+  if (!sel || !other || !wrap) return;
+  if (sel.value === 'Other') {
+    wrap.classList.add('pma-feature-other-mode');
+    other.placeholder = 'Other';
+    setTimeout(function() { other.focus(); }, 0);
+  } else {
+    wrap.classList.remove('pma-feature-other-mode');
+    other.value = '';
+  }
+}
+function pmaFeatureOtherBlur(selectId) {
+  const other = document.getElementById(selectId + '_other');
+  const sel = document.getElementById(selectId);
+  const wrap = pmaFeatureFieldWrap(selectId);
+  if (!other || !sel || !wrap || !wrap.classList.contains('pma-feature-other-mode')) return;
+  if (!String(other.value || '').trim()) {
+    wrap.classList.remove('pma-feature-other-mode');
+    sel.value = '';
+  }
+}
+function pmaApplyFeatureSelectValue(selectId, value) {
+  const sel = document.getElementById(selectId);
+  if (!sel) return;
+  const other = document.getElementById(selectId + '_other');
+  const wrap = pmaFeatureFieldWrap(selectId);
+  const s = String(value || '').trim();
+  if (!s) {
+    sel.value = '';
+    if (wrap) wrap.classList.remove('pma-feature-other-mode');
+    if (other) other.value = '';
+    return;
+  }
+  const optionValues = Array.from(sel.options).map(function(o) { return o.value; }).filter(Boolean);
+  if (optionValues.indexOf(s) !== -1) {
+    sel.value = s;
+    if (wrap) wrap.classList.remove('pma-feature-other-mode');
+    if (other) other.value = '';
+  } else if (optionValues.indexOf('Other') !== -1) {
+    sel.value = 'Other';
+    if (other) other.value = s;
+    if (wrap) wrap.classList.add('pma-feature-other-mode');
+  } else {
+    sel.value = s;
+    if (wrap) wrap.classList.remove('pma-feature-other-mode');
+    if (other) other.value = '';
+  }
+}
+function pmaFeatureCollect(selectId) {
+  const wrap = pmaFeatureFieldWrap(selectId);
+  if (wrap && wrap.classList.contains('pma-feature-other-mode')) return g(selectId + '_other');
+  const v = g(selectId);
+  if (v === 'Other') return g(selectId + '_other');
+  return v;
+}
+window.pmaApplyFeatureSelectValue = pmaApplyFeatureSelectValue;
+function g(id) { return (document.getElementById(id)?.value || '').trim(); }
+function chk(id) { return document.getElementById(id)?.checked || false; }
+function ck(id) { return chk(id) ? 'Yes' : 'No'; }
+function escXml(v) { return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;'); }
+function fmtDate(v) { if (!v) return ''; const d = new Date(v + 'T00:00:00'); return isNaN(d) ? v : d.toLocaleDateString('en-AU'); }
+function fmtDateStrict(v) { if (!v) return ''; const d = new Date(v + 'T00:00:00'); return isNaN(d) ? '' : d.toLocaleDateString('en-AU'); }
+function todayMelbourneDate() { return new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }); }
+function pmaTodayInputValue() { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Australia/Melbourne' }).format(new Date()); }
+function pmaSigningDate(v) { return fmtDateStrict(v) || todayMelbourneDate(); }
+var PMA_DEFAULT_AGENT_SIG_URLS = [
+  '/shm-plugin-assets/images/creator-auto-signature-word-embed.png',
+  '/shm-plugin-assets/images/pma-default-agent-signature-word-embed.png',
+  '/shm-plugin-assets/images/creator-auto-signature-original.png',
+  '/shm-plugin-assets/images/pma-default-agent-signature-original.png',
+  '/shm-plugin-assets/images/creator-auto-signature.png',
+  '/shm-plugin-assets/images/pma-default-agent-signature.png'
+];
+function money(v) { return v ? '$' + v : ''; }
+
+function setupMutualExclusiveChecks() {
+  const pairs = [
+    ['pma_asbestos_y','pma_asbestos_n'], ['pma_glass_y','pma_glass_n'],
+    ['pma_smoke_y','pma_smoke_n'], ['pma_structures_y','pma_structures_n']
+  ];
+  pairs.forEach(([a,b]) => {
+    const ea = document.getElementById(a), eb = document.getElementById(b);
+    if (!ea || !eb) return;
+    ea.addEventListener('change', () => { if (ea.checked) eb.checked = false; });
+    eb.addEventListener('change', () => { if (eb.checked) ea.checked = false; });
+  });
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupMutualExclusiveChecks); else setupMutualExclusiveChecks();
+
+function captureSignatureBeforeSubmit() {
+  const hidden = pmaSignatureHiddenEl();
+  if (!hidden) return;
+  if (hidden.value && hidden.value.trim()) return;
+  if (sigMode === 'draw' && hasSig && canvas) { hidden.value = canvas.toDataURL('image/png'); return; }
+  if (sigMode === 'type') {
+    const typed = document.getElementById('sigTypeInput')?.value.trim();
+    if (typed) { confirmTypeSig(); return; }
+  }
+  if (sigMode === 'upload' && sigDataUrl) hidden.value = sigDataUrl;
+}
+
+function pmaStripSignaturesForGenerate(data) {
+  const copy = Object.assign({}, data || {});
+  const sigKeys = ['signature', 'agent_signature', 'pma_sig', 'pma_agent_sig', 'owner_signature', 'tenant_signature'];
+  sigKeys.forEach(function(key) { delete copy[key]; });
+  return copy;
+}
+
+async function pmaBlobToBase64(blob) {
+  return new Promise(function(resolve, reject) {
+    const reader = new FileReader();
+    reader.onload = function() {
+      const result = String(reader.result || '');
+      const comma = result.indexOf(',');
+      resolve(comma >= 0 ? result.slice(comma + 1) : result);
+    };
+    reader.onerror = function() { reject(reader.error || new Error('Could not read generated document.')); };
+    reader.readAsDataURL(blob);
+  });
+}
+
+function loadExternalScript(src) {
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[src="${src}"]`);
+    if (existing) {
+      if (existing.dataset.loaded === 'true') return resolve();
+      existing.addEventListener('load', resolve, { once: true });
+      existing.addEventListener('error', reject, { once: true });
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.onload = () => { script.dataset.loaded = 'true'; resolve(); };
+    script.onerror = () => reject(new Error('Unable to load DOCX library.'));
+    document.head.appendChild(script);
+  });
+}
+async function ensurePizZipLoaded() {
+  if (window.PizZip) return window.PizZip;
+  const urls = [
+    'https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.1.8/pizzip.min.js',
+    'https://cdn.jsdelivr.net/npm/pizzip@3.1.8/dist/pizzip.min.js',
+    'https://unpkg.com/pizzip@3.1.8/dist/pizzip.min.js'
+  ];
+  let lastError = null;
+  for (const url of urls) {
+    try { await loadExternalScript(url); await new Promise(r => setTimeout(r, 80)); if (window.PizZip) return window.PizZip; }
+    catch (e) { lastError = e; }
+  }
+  throw new Error('PizZip library is not loaded. ' + (lastError ? lastError.message : ''));
+}
+function blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64 = String(reader.result || '').split(',')[1];
+      if (!base64) reject(new Error('Could not convert DOCX file to base64.'));
+      else resolve(base64);
+    };
+    reader.onerror = () => reject(new Error('Could not read generated DOCX file.'));
+    reader.readAsDataURL(blob);
+  });
+}
+
+function p(text, opts = {}) {
+  const bold = opts.bold ? '<w:b/>' : '';
+  const color = opts.color || '000000';
+  const size = opts.size || '22';
+  const align = opts.align ? `<w:jc w:val="${opts.align}"/>` : '';
+  const spacing = '<w:spacing w:after="120"/>';
+  return `<w:p><w:pPr>${align}${spacing}</w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:color w:val="${color}"/><w:sz w:val="${size}"/><w:szCs w:val="${size}"/>${bold}</w:rPr><w:t xml:space="preserve">${escXml(text)}</w:t></w:r></w:p>`;
+}
+function h(text) { return p(text, { bold: true, color: '1F2937', size: '28' }); }
+function h2(text) { return p(text, { bold: true, color: '1F2937', size: '24' }); }
+function bullet(text) { return `<w:p><w:pPr><w:ind w:left="360" w:hanging="180"/><w:spacing w:after="80"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="21"/><w:szCs w:val="21"/></w:rPr><w:t xml:space="preserve">• ${escXml(text)}</w:t></w:r></w:p>`; }
+function cell(text, opts = {}) {
+  const width = opts.width ? `<w:tcW w:w="${opts.width}" w:type="dxa"/>` : '';
+  const shade = opts.shade ? `<w:shd w:fill="${opts.shade}"/>` : '';
+  const bold = opts.bold ? '<w:b/>' : '';
+  return `<w:tc><w:tcPr>${width}${shade}</w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="20"/><w:szCs w:val="20"/>${bold}</w:rPr><w:t xml:space="preserve">${escXml(text)}</w:t></w:r></w:p></w:tc>`;
+}
+function row(cells) { return `<w:tr>${cells}</w:tr>`; }
+function table(rows) { return `<w:tbl><w:tblPr><w:tblW w:w="0" w:type="auto"/><w:tblBorders><w:top w:val="single" w:sz="6" w:space="0" w:color="808080"/><w:left w:val="single" w:sz="6" w:space="0" w:color="808080"/><w:bottom w:val="single" w:sz="6" w:space="0" w:color="808080"/><w:right w:val="single" w:sz="6" w:space="0" w:color="808080"/><w:insideH w:val="single" w:sz="6" w:space="0" w:color="808080"/><w:insideV w:val="single" w:sz="6" w:space="0" w:color="808080"/></w:tblBorders></w:tblPr>${rows}</w:tbl>`; }
+function pageBreak() { return '<w:p><w:r><w:br w:type="page"/></w:r></w:p>'; }
+
+function signatureDrawingRel(ext) {
+  return `<Relationship Id="rIdSig" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/signature.${ext}"/>`;
+}
+function signatureDrawing(ext) {
+  return `<w:p><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="2200000" cy="700000"/><wp:docPr id="1" name="Owner Signature"/><a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="0" name="signature.${ext}"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="rIdSig"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="2200000" cy="700000"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>`;
+}
+function getSignatureInfo(dataUrl) {
+  if (!dataUrl || !String(dataUrl).startsWith('data:image/')) return null;
+  const m = String(dataUrl).match(/^data:image\/(png|jpeg|jpg);base64,(.+)$/i);
+  if (!m) return null;
+  const ext = m[1].toLowerCase() === 'jpeg' ? 'jpg' : m[1].toLowerCase();
+  return { ext, base64: m[2] };
+}
+
+function collectAgreementData() {
+  return {
+    available_from: fmtDate(g('pma_available_from')), available_to: fmtDate(g('pma_available_to')),
+    property: g('pma_property'), block: g('pma_block'), section: g('pma_section'), division: g('pma_division'), eer: g('pma_eer'),
+    property_type: g('pma_property_type'), description: g('pma_description'), heating: pmaFeatureCollect('pma_heating'), hot_water: pmaFeatureCollect('pma_hot_water'),
+    dishwasher: pmaFeatureCollect('pma_dishwasher'), oven: pmaFeatureCollect('pma_oven'), cooktop: pmaFeatureCollect('pma_cooktop'), warranties: pmaFeatureCollect('pma_warranties'),
+    rent_pw: money(g('pma_rent_pw')), commencement: g('pma_commencement'), lease_term: g('pma_lease_term'), keys: g('pma_keys'),
+    owner: g('pma_owner'), postal_address: g('pma_postal_address'), phone_ah: g('pma_phone_ah'), phone_bh: g('pma_phone_bh'), mobile: g('pma_mobile'), email: g('pma_email'),
+    unit_plan_no: g('pma_unit_plan_no'), unit_plan_manager: g('pma_unit_plan_manager'), unit_phone: g('pma_unit_phone'), fax: g('pma_fax'),
+    deposit_to: g('pma_deposit_to'), bank: g('pma_bank'), branch: g('pma_branch'), bsb: g('pma_bsb'), account: g('pma_account'), repairs: g('pma_repairs'),
+    asbestos: chk('pma_asbestos_y') ? 'Yes' : chk('pma_asbestos_n') ? 'No' : 'Unknown', asbestos_note: g('pma_asbestos_note'),
+    glass: chk('pma_glass_y') ? 'Yes' : chk('pma_glass_n') ? 'No' : '', glass_note: g('pma_glass_note'),
+    smoke: chk('pma_smoke_y') ? 'Yes' : chk('pma_smoke_n') ? 'No' : '', smoke_note: g('pma_smoke_note'),
+    structures: chk('pma_structures_y') ? 'Yes' : chk('pma_structures_n') ? 'No' : '', structures_note: g('pma_structures_note'),
+    rates_general: ck('pma_rates_general'), rates_water: ck('pma_rates_water'), land_tax: ck('pma_land_tax'), body_corp: ck('pma_body_corp'), fair_clause: ck('pma_fair_clause'), email_statements: ck('pma_email_statements'), pets: ck('pma_pets'), groups: ck('pma_groups'),
+    preferred_contact: g('pma_preferred_contact'), intend_sell: g('pma_intend_sell'),
+    building_insurer: g('pma_building_insurer'), building_policy: g('pma_building_policy'), building_renewal: fmtDate(g('pma_building_renewal')),
+    contents_insurer: g('pma_contents_insurer'), contents_policy: g('pma_contents_policy'), contents_renewal: fmtDate(g('pma_contents_renewal')),
+    landlord_insurer: g('pma_landlord_insurer'), landlord_policy: g('pma_landlord_policy'), landlord_renewal: fmtDate(g('pma_landlord_renewal')),
+    emergency_contact: g('pma_emergency_contact'), emergency_phone: g('pma_emergency_phone'), other_instructions: g('pma_other_instructions'),
+    special_instructions: g('pma_special_instructions'), instruction_books: g('pma_instruction_books'), hot_water_location: g('pma_hot_water_location'), meter_box: g('pma_meter_box'), water_meter: g('pma_water_meter'), additional_info: g('pma_additional_info'),
+    owner_sign_name: g('pma_owner_sign_name') || g('pma_owner'), sig_date: pmaSigningDate(g('pma_sigdt')), signature: g('pma_sig'), agent_sign_name: g('pma_agent_sign_name'), agent_sig_date: pmaSigningDate(g('pma_agent_sigdt')), agent_signature: g('pma_agent_sig'),
+    term_appointment: g('pma_term_appointment'), term_management_fees: g('pma_term_management_fees'), term_termination: g('pma_term_termination'), term_keys: g('pma_term_keys'), term_insurance: g('pma_term_insurance'), term_duties: g('pma_term_duties'), term_expenditure: g('pma_term_expenditure'), term_privacy: g('pma_term_privacy'),
+    fee_initial_letting: g('pma_fee_initial_letting'), fee_advertising: g('pma_fee_advertising'), fee_quick_rent_sign: g('pma_fee_quick_rent_sign'), fee_attendance: g('pma_fee_attendance'), fee_renegotiation: g('pma_fee_renegotiation'), fee_management: g('pma_fee_management'), fee_monthly_statement: g('pma_fee_monthly_statement'), fee_tribunal: g('pma_fee_tribunal'), fee_gst: g('pma_fee_gst'),
+    signing_email: collectPmaSigningEmailFields(),
+    pma_send_contacts: collectPmaSendContacts(),
+    submittedAt: new Date().toLocaleString('en-AU', { timeZone: 'Australia/Melbourne' })
+  };
+}
+
+var PMA_SEND_CONTACT_ROLES = ['Owner', 'Co-owner', 'Authorised representative', 'Power of Attorney', 'Accountant', 'Other'];
+var PMA_MAX_SEND_CONTACTS = 5;
+
+function pmaDefaultSendContacts() {
+  return [{
+    name: g('pma_owner') || g('pma_owner_sign_name') || (window.SHM_DOCUMENT_CONTEXT || {}).recipientName || '',
+    email: g('pma_email') || (window.SHM_DOCUMENT_CONTEXT || {}).recipientEmail || '',
+    role: 'Owner',
+    kind: 'signer',
+  }];
+}
+
+function collectPmaSendContacts() {
+  var rows = document.querySelectorAll('#pmaSendContactsList .pma-send-contact-row');
+  var out = [];
+  rows.forEach(function(row) {
+    var name = String((row.querySelector('[data-pma-contact-name]') || {}).value || '').trim();
+    var email = String((row.querySelector('[data-pma-contact-email]') || {}).value || '').trim().toLowerCase();
+    var role = String((row.querySelector('[data-pma-contact-role]') || {}).value || '').trim() || 'Owner';
+    var kindEl = row.querySelector('[data-pma-contact-kind]');
+    var kind = kindEl && kindEl.value === 'cc' ? 'cc' : 'signer';
+    if (!name && !email) return;
+    if (!name || !email) return;
+    out.push({ name: name, email: email, role: role, kind: kind });
+  });
+  return out.slice(0, PMA_MAX_SEND_CONTACTS);
+}
+
+function pmaLoadSendContactsFromContext() {
+  var ctx = window.SHM_DOCUMENT_CONTEXT || {};
+  var saved = ctx.agreementData && ctx.agreementData.pma_send_contacts;
+  if (Array.isArray(saved) && saved.length) {
+    return saved.map(function(c) {
+      return {
+        name: String(c.name || '').trim(),
+        email: String(c.email || '').trim().toLowerCase(),
+        role: String(c.role || 'Owner').trim() || 'Owner',
+        kind: String(c.kind || 'signer').toLowerCase() === 'cc' ? 'cc' : 'signer',
+      };
+    }).filter(function(c) { return c.name && c.email; });
+  }
+  return pmaDefaultSendContacts();
+}
+
+function pmaRenderSendContactRow(contact, index) {
+  var row = document.createElement('div');
+  row.className = 'pma-send-contact-row';
+  var roleOpts = PMA_SEND_CONTACT_ROLES.map(function(r) {
+    var sel = r === (contact.role || 'Owner') ? ' selected' : '';
+    return '<option value="' + pmaEscapeHtml(r) + '"' + sel + '>' + pmaEscapeHtml(r) + '</option>';
+  }).join('');
+  var kindSigner = contact.kind !== 'cc' ? ' selected' : '';
+  var kindCc = contact.kind === 'cc' ? ' selected' : '';
+  row.innerHTML =
+    '<div class="pma-send-contact-row-head"><span class="pma-send-contact-num">Recipient ' + (index + 1) + '</span>' +
+    (index > 0 ? '<button type="button" class="sig-btn danger pma-remove-contact-btn" data-pma-remove-contact>Remove</button>' : '') +
+    '</div>' +
+    '<div class="g2 field-wrap">' +
+    '<div><label class="field-label">Name</label><input type="text" data-pma-contact-name value="' + pmaEscapeHtml(contact.name || '') + '" placeholder="Full name"></div>' +
+    '<div><label class="field-label">Email</label><input type="email" data-pma-contact-email value="' + pmaEscapeHtml(contact.email || '') + '" placeholder="email@example.com"></div>' +
+    '</div>' +
+    '<div class="g2 field-wrap">' +
+    '<div><label class="field-label">Role</label><select data-pma-contact-role>' + roleOpts + '</select></div>' +
+    '<div><label class="field-label">Delivery</label><select data-pma-contact-kind>' +
+    '<option value="signer"' + kindSigner + '>Signer (signing link)</option>' +
+    '<option value="cc"' + kindCc + '>CC (copy only)</option>' +
+    '</select></div>' +
+    '</div>';
+  var removeBtn = row.querySelector('[data-pma-remove-contact]');
+  if (removeBtn) {
+    removeBtn.addEventListener('click', function() {
+      row.remove();
+      pmaRenderSendContactsList(collectPmaSendContacts());
+      schedulePmaSigningEmailPreview();
+    });
+  }
+  row.querySelectorAll('input, select').forEach(function(el) {
+    el.addEventListener('input', function() {
+      if (index === 0 && el.hasAttribute('data-pma-contact-name')) {
+        var ownerEl = document.getElementById('pma_owner');
+        if (ownerEl) ownerEl.value = el.value;
+      }
+      if (index === 0 && el.hasAttribute('data-pma-contact-email')) {
+        var emailEl = document.getElementById('pma_email');
+        if (emailEl) emailEl.value = el.value;
+      }
+      schedulePmaSigningEmailPreview();
+    });
+    el.addEventListener('change', function() {
+      schedulePmaSigningEmailPreview();
+    });
+  });
+  return row;
+}
+
+function pmaRenderSendContactsList(contacts) {
+  var list = document.getElementById('pmaSendContactsList');
+  var addBtn = document.getElementById('pmaAddSendContactBtn');
+  if (!list) return;
+  var items = (contacts && contacts.length) ? contacts : pmaDefaultSendContacts();
+  list.innerHTML = '';
+  items.forEach(function(c, i) {
+    list.appendChild(pmaRenderSendContactRow(c, i));
+  });
+  if (addBtn) {
+    addBtn.disabled = items.length >= PMA_MAX_SEND_CONTACTS;
+  }
+}
+
+function initPmaSendContactsEditor() {
+  if (!pmaIsCreatorSigning() || !pmaRecipientEmailPending()) return;
+  var panel = document.getElementById('pmaSendContactsPanel');
+  if (!panel) return;
+  panel.style.display = 'block';
+  if (panel.dataset.pmaContactsBound !== '1') {
+    panel.dataset.pmaContactsBound = '1';
+    var addBtn = document.getElementById('pmaAddSendContactBtn');
+    if (addBtn) {
+      addBtn.addEventListener('click', function() {
+        var current = collectPmaSendContacts();
+        if (current.length >= PMA_MAX_SEND_CONTACTS) return;
+        current.push({ name: '', email: '', role: 'Owner', kind: 'signer' });
+        pmaRenderSendContactsList(current);
+      });
+    }
+  }
+  pmaRenderSendContactsList(pmaLoadSendContactsFromContext());
+}
+
+function pmaCopy(value, fallback) {
+  const text = String(value || '').trim();
+  return text || fallback;
+}
+
+function pmaDutyBullets(text) {
+  return String(text || '').split(/\n+/).map(function(line){ return line.trim(); }).filter(Boolean).map(function(line){ return bullet(line); }).join('');
+}
+
+async function buildDocx(data) {
+  const PizZip = await ensurePizZipLoaded();
+  const zip = new PizZip();
+  const sig = getSignatureInfo(data.signature);
+
+  const sigRel = sig ? signatureDrawingRel(sig.ext) : '';
+  const sigBlock = sig ? signatureDrawing(sig.ext) : p('Signature captured electronically.');
+
+  const rowsProperty = [
+    row(cell('Property to be managed', {bold:true, shade:'F3F6FB', width:2600}) + cell(data.property, {width:6500})),
+    row(cell('Available from', {bold:true}) + cell(data.available_from) + cell('Available to', {bold:true}) + cell(data.available_to)),
+    row(cell('Block', {bold:true}) + cell(data.block) + cell('Section', {bold:true}) + cell(data.section)),
+    row(cell('Division', {bold:true}) + cell(data.division) + cell('EER', {bold:true}) + cell(data.eer)),
+    row(cell('Property description', {bold:true}) + cell(data.description)),
+    row(cell('Property type', {bold:true}) + cell(data.property_type) + cell('Heating', {bold:true}) + cell(data.heating)),
+    row(cell('Hot water', {bold:true}) + cell(data.hot_water) + cell('Dishwasher', {bold:true}) + cell(data.dishwasher)),
+    row(cell('Oven', {bold:true}) + cell(data.oven) + cell('Cooktop', {bold:true}) + cell(data.cooktop)),
+    row(cell('Warranties', {bold:true}) + cell(data.warranties) + cell('Rent (PW)', {bold:true}) + cell(data.rent_pw)),
+    row(cell('At commencement', {bold:true}) + cell(data.commencement) + cell('Preferred lease term', {bold:true}) + cell(data.lease_term)),
+    row(cell('Keys supplied', {bold:true}) + cell(data.keys))
+  ].join('');
+
+  const rowsOwner = [
+    row(cell('Owner / lessor(s)', {bold:true}) + cell(data.owner)),
+    row(cell('Postal address', {bold:true}) + cell(data.postal_address)),
+    row(cell('Phone (A.H.)', {bold:true}) + cell(data.phone_ah) + cell('Phone (B.H.)', {bold:true}) + cell(data.phone_bh)),
+    row(cell('Mobile', {bold:true}) + cell(data.mobile) + cell('Email', {bold:true}) + cell(data.email)),
+    row(cell('Unit plan no.', {bold:true}) + cell(data.unit_plan_no) + cell('Unit plan manager', {bold:true}) + cell(data.unit_plan_manager)),
+    row(cell('Phone', {bold:true}) + cell(data.unit_phone) + cell('Fax', {bold:true}) + cell(data.fax))
+  ].join('');
+
+  const rowsInstructions = [
+    row(cell('Deposit to credit of', {bold:true}) + cell(data.deposit_to)),
+    row(cell('Bank', {bold:true}) + cell(data.bank) + cell('Branch', {bold:true}) + cell(data.branch)),
+    row(cell('BSB No.', {bold:true}) + cell(data.bsb) + cell('Account No.', {bold:true}) + cell(data.account)),
+    row(cell('Repairs', {bold:true}) + cell(data.repairs)),
+    row(cell('Asbestos', {bold:true}) + cell(data.asbestos + (data.asbestos_note ? ' - ' + data.asbestos_note : ''))),
+    row(cell('Glass compliance', {bold:true}) + cell(data.glass + (data.glass_note ? ' - ' + data.glass_note : ''))),
+    row(cell('Smoke detectors', {bold:true}) + cell(data.smoke + (data.smoke_note ? ' - ' + data.smoke_note : ''))),
+    row(cell('Unapproved structures', {bold:true}) + cell(data.structures + (data.structures_note ? ' - ' + data.structures_note : ''))),
+    row(cell('Rates-general', {bold:true}) + cell(data.rates_general) + cell('Rates-water & sewage', {bold:true}) + cell(data.rates_water)),
+    row(cell('Land tax', {bold:true}) + cell(data.land_tax) + cell('Preferred contact', {bold:true}) + cell(data.preferred_contact)),
+    row(cell('Body corporate', {bold:true}) + cell(data.body_corp) + cell('Email statements', {bold:true}) + cell(data.email_statements)),
+    row(cell('Pets', {bold:true}) + cell(data.pets) + cell('Groups', {bold:true}) + cell(data.groups)),
+    row(cell('Emergency contact', {bold:true}) + cell(data.emergency_contact) + cell('Phone', {bold:true}) + cell(data.emergency_phone)),
+    row(cell('Intend to sell at end of fixed tenancy?', {bold:true}) + cell(data.intend_sell)),
+    row(cell('Other instructions', {bold:true}) + cell(data.other_instructions))
+  ].join('');
+
+  const rowsInsurance = [
+    row(cell('Building policy insurer', {bold:true}) + cell(data.building_insurer) + cell('Policy No.', {bold:true}) + cell(data.building_policy) + cell('Renewal', {bold:true}) + cell(data.building_renewal)),
+    row(cell('Contents policy insurer', {bold:true}) + cell(data.contents_insurer) + cell('Policy No.', {bold:true}) + cell(data.contents_policy) + cell('Renewal', {bold:true}) + cell(data.contents_renewal)),
+    row(cell('Landlord insurance insurer', {bold:true}) + cell(data.landlord_insurer) + cell('Policy No.', {bold:true}) + cell(data.landlord_policy) + cell('Renewal', {bold:true}) + cell(data.landlord_renewal))
+  ].join('');
+
+  const rowsSpecial = [
+    row(cell('Special instructions', {bold:true}) + cell(data.special_instructions)),
+    row(cell('Instruction books', {bold:true}) + cell(data.instruction_books)),
+    row(cell('Hot water system', {bold:true}) + cell(data.hot_water_location)),
+    row(cell('Electrical meter box', {bold:true}) + cell(data.meter_box)),
+    row(cell('Water meter / stopcock', {bold:true}) + cell(data.water_meter)),
+    row(cell('Additional information', {bold:true}) + cell(data.additional_info))
+  ].join('');
+
+  const body = [
+    p('PROPERTY MANAGEMENT AGREEMENT', {bold:true, color:'1F2937', size:'36', align:'center'}),
+    p('ShareHouseManagers.com.au Pty Ltd · ABN: 27 685 383 493', {bold:true, color:'333333', size:'22', align:'center'}),
+    p('Instructions to Act as Managing Agent', {bold:true, color:'1F2937', size:'28', align:'center'}),
+    h('PROPERTY DETAILS'), table(rowsProperty), h('OWNER DETAILS'), table(rowsOwner), h('SPECIFIC INSTRUCTIONS'), table(rowsInstructions), h('INSURANCE'), table(rowsInsurance), pageBreak(),
+    h('TERMS AND CONDITIONS'),
+    h2('1. Appointment of Agent'), p(pmaCopy(data.term_appointment, 'The Owner appoints Sharehousemanagers.com.au Pty Ltd Lic. Agent ABN 27 685 383 493 exclusive from the date hereof to lease and manage the Property in accordance with the terms of this Agreement.')),
+    h2('2. Management Fees'), p(pmaCopy(data.term_management_fees, 'Refer to attached schedule of Fees.')),
+    h2('3. Termination of Agreement'), p(pmaCopy(data.term_termination, 'This Agreement may be terminated by either party by thirty days’ notice in writing. Upon termination of the agreement the Owner agrees to pay the Agent one week rent if agency agreement is terminated in less than 12 months.')),
+    h2('4. Keys'), p(pmaCopy(data.term_keys, 'The Owner agrees to supply the Agent with three (3) full and complete sets of keys for the property to be managed by the Agent.')),
+    h2('5. Insurance'), p(pmaCopy(data.term_insurance, 'The Owner agrees to have and maintain sufficient building and contents insurance over the premises. The insurance policy must include public liability and the Owner agrees to notify the insurer that the property is rented.')),
+    h2('6. Duties of Agent'), pmaDutyBullets(pmaCopy(data.term_duties, 'Execute all documentation in accordance with the Residential Tenancies Act 1997 on behalf of the Owner including the tenancy agreement.\nCollect rent and other monies due and pay it to the Owner on the last business day of each month.\nCollect and lodge bond, and deal with bond at termination or expiration of each letting.\nRepair and maintain the Property as specified in this Agreement.\nIssue notices and termination of tenancy including eviction if required.\nAdvertise the Property and enter the Property for inspections.')),
+    h2('7. Expenditure'), p(pmaCopy(data.term_expenditure, 'The Agent may incur expenditure for repairs and maintenance to the Property up to the specified expenditure amount without reference to the Owner, except in emergencies where expenditure is necessary to protect the Property and/or maintain essential services.')),
+    h2('12. Special Instructions and Location of Items'), table(rowsSpecial),
+    h2('Privacy Act 1988 Collection Notice'), p(pmaCopy(data.term_privacy, 'The Agent uses personal information collected from and about the Owner to act as the Owner’s Agent and to perform obligations under this agreement. The Agent may disclose information to other parties where required to perform duties under this agreement, to promote services, or as otherwise allowed by law.')),
+    pageBreak(),
+    h('LETTING AND MANAGEMENT SCHEDULE OF FEES'),
+    bullet('Initial letting fee: ' + pmaCopy(data.fee_initial_letting, 'Equal to 0 weeks rent.')),
+    bullet('Advertising: ' + pmaCopy(data.fee_advertising, 'Included – flatmates.com.au, sharehousemanagers.com.au, Facebook, Instagram and WhatsApp.')),
+    bullet('Quick Rent sign: ' + pmaCopy(data.fee_quick_rent_sign, '“Is This Your New Rental Share House”.')),
+    bullet('Attendance and leasing tasks: ' + pmaCopy(data.fee_attendance, 'Attendance to show prospective tenants; commencement/final attendance; condition report; inventory update; reference checking; cleaning/repair coordination; lease signing; bond lodgement/finalisation and out-of-pocket expenses.')),
+    bullet('Renegotiation to secure existing tenants to a new lease: ' + pmaCopy(data.fee_renegotiation, '0% of a week’s rent.')),
+    bullet('Management fee: ' + pmaCopy(data.fee_management, '10%.')),
+    bullet('Monthly statement and accounting fee: ' + pmaCopy(data.fee_monthly_statement, 'N/A.')),
+    bullet('Residential tenancy tribunal matters: ' + pmaCopy(data.fee_tribunal, 'Lodgement/application fee at cost; preparation of dispute submission and evidence $100.00; attendance fee $50.00/hr.')),
+    p('N.B. ' + pmaCopy(data.fee_gst, 'all charges are plus GST.'), {bold:true}),
+    h('SIGNATURES'),
+    h2('OWNER SIGNATURE'),
+    p('Owner name: ' + data.owner_sign_name),
+    p('Signature:'), sigBlock,
+    p('Date: ' + data.sig_date),
+    p('Submitted electronically: ' + data.submittedAt, {size:'16', color:'6B7280'})
+  ].join('');
+
+  const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="720" w:right="720" w:bottom="720" w:left="720" w:header="360" w:footer="360" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+
+  zip.file('[Content_Types].xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Default Extension="jpg" ContentType="image/jpeg"/><Default Extension="jpeg" ContentType="image/jpeg"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`);
+  zip.file('_rels/.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`);
+  zip.file('word/_rels/document.xml.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${sigRel}</Relationships>`);
+  zip.file('word/document.xml', documentXml);
+  if (sig) zip.file(`word/media/signature.${sig.ext}`, sig.base64, {base64: true});
+
+  return zip.generate({type:'blob', mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', compression:'DEFLATE'});
+}
+
+function setLog(steps) {
+  const b = document.getElementById('logBox');
+  if (!b) return;
+  if (!steps || !steps.length) {
+    b.innerHTML = '';
+    b.style.display = 'none';
+    return;
+  }
+  b.style.display = 'block';
+  b.innerHTML = steps.map(s => {
+    const c = s.s === 'done' ? 'log-done' : s.s === 'run' ? 'log-run' : 'log-wait';
+    const i = s.s === 'done' ? '✓' : s.s === 'run' ? '→' : '○';
+    return `<div class="${c}">${i} ${s.t}</div>`;
+  }).join('');
+}
+
+
+
+// ═══════════════════════════════
+// OFFICIAL PDF GENERATION FOR DRIVE
+// Front-end remains the same. This only creates the stored PDF file.
+// Requires: /assets/pdfs/property-management-agreement-template.pdf
+// ═══════════════════════════════
+const PMA_TEMPLATE_PDF_URL = '/shm-plugin-assets/pdfs/property-management-agreement-template.pdf';
+const PMA_HEADER_IMAGE_URL = ''; // Header already exists in the official PDF template; do not stamp it again.
+
+async function ensurePdfLibLoaded() {
+  if (window.PDFLib) return window.PDFLib;
+
+  const urls = [
+    'https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js',
+    'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js'
+  ];
+
+  let lastError = null;
+  for (const url of urls) {
+    try {
+      await loadExternalScript(url);
+      await new Promise(r => setTimeout(r, 100));
+      if (window.PDFLib) return window.PDFLib;
+    } catch (e) {
+      lastError = e;
+    }
+  }
+
+  throw new Error('PDF library could not be loaded. ' + (lastError ? lastError.message : ''));
+}
+
+function dataUrlToBytes(dataUrl) {
+  if (!dataUrl || !dataUrl.includes(',')) return null;
+  const base64 = dataUrl.split(',')[1];
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes;
+}
+
+function wrapPdfText(text, maxChars) {
+  text = String(text || '').trim();
+  if (!text) return [];
+  const words = text.split(/\s+/);
+  const lines = [];
+  let line = '';
+  words.forEach(word => {
+    const test = line ? line + ' ' + word : word;
+    if (test.length > maxChars && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  });
+  if (line) lines.push(line);
+  return lines;
+}
+
+function pdfDrawText(page, text, x, yTop, options = {}) {
+  if (!text) return;
+  const font = options.font;
+  const size = options.size || 7;
+  const color = options.color;
+  const lineHeight = options.lineHeight || size + 2;
+  const maxChars = options.maxChars || 45;
+  const width = page.getWidth();
+  const height = page.getHeight();
+  const xPos = typeof x === 'string' && x.endsWith('%') ? (parseFloat(x) / 100) * width : x;
+  const yPosTop = typeof yTop === 'string' && yTop.endsWith('%') ? (parseFloat(yTop) / 100) * height : yTop;
+  const lines = wrapPdfText(text, maxChars);
+  lines.slice(0, options.maxLines || 3).forEach((line, i) => {
+    page.drawText(line, {
+      x: xPos,
+      y: height - yPosTop - (i * lineHeight),
+      size,
+      font,
+      color,
+      maxWidth: options.maxWidth || undefined,
+    });
+  });
+}
+
+
+function getNestedValue(obj, path) {
+  try {
+    return path.split('.').reduce((acc, key) => acc && acc[key], obj) || '';
+  } catch (e) { return ''; }
+}
+
+function getStoredPmaField(key) {
+  const ctx = window.SHM_DOCUMENT_CONTEXT || {};
+  const data = ctx.agreementData || {};
+  const candidates = [
+    data,
+    data.field_values,
+    data.fieldValues,
+    data.agreement_data,
+    data.agreementData,
+    getNestedValue(data, 'last_submission.agreement_data'),
+    getNestedValue(data, 'last_submission.field_values')
+  ];
+  for (const item of candidates) {
+    if (item && item[key]) return item[key];
+  }
+  return '';
+}
+
+function pmaIsCreatorSigning() {
+  return String(window.SHM_SIGNER_TYPE || window.SHM_SIGNER_ROLE || '').toLowerCase() === 'creator';
+}
+
+function pmaContextValue(key) {
+  const ctx = window.SHM_DOCUMENT_CONTEXT || {};
+  return ctx[key] || '';
+}
+function pmaIsPlaceholderAgentName(name) {
+  const s = String(name || '').trim();
+  return !s || /^sharehouse\s*managers?$/i.test(s) || s.toLowerCase() === 'sharehousemanagers';
+}
+function pmaDefaultAgentSignName() {
+  if (typeof window.shmAgentSignDisplayName === 'function') {
+    return window.shmAgentSignDisplayName(pmaContextValue('adminName'));
+  }
+  const fromCtx = String(pmaContextValue('adminName') || '').trim();
+  if (pmaIsPlaceholderAgentName(fromCtx)) return 'Ishaq M';
+  return fromCtx;
+}
+function pmaResolveAgentSignName(value) {
+  if (typeof window.shmAgentSignDisplayName === 'function') {
+    return window.shmAgentSignDisplayName(value);
+  }
+  if (pmaIsPlaceholderAgentName(value)) return 'Ishaq M';
+  return String(value || '').trim();
+}
+
+var PMA_AGENCY_BANK_FIELD_IDS = ['pma_deposit_to', 'pma_bank', 'pma_branch', 'pma_bsb', 'pma_account'];
+
+function pmaOwnerNameForDeposit() {
+  const fromField = String(g('pma_owner') || '').trim();
+  if (fromField) return fromField;
+  const ctx = window.SHM_DOCUMENT_CONTEXT || {};
+  return String(ctx.recipientName || ctx.tenantName || '').trim();
+}
+
+function pmaSyncDepositToFromOwner() {
+  const depositEl = document.getElementById('pma_deposit_to');
+  if (!depositEl || String(depositEl.value || '').trim()) return;
+  const ownerName = pmaOwnerNameForDeposit();
+  if (!ownerName) return;
+  depositEl.value = ownerName;
+  try { depositEl.dispatchEvent(new Event('input', { bubbles: true })); } catch (e) {}
+  try { depositEl.dispatchEvent(new Event('change', { bubbles: true })); } catch (e) {}
+}
+
+function pmaBindOwnerToDepositSync() {
+  const ownerEl = document.getElementById('pma_owner');
+  if (!ownerEl || ownerEl.dataset.pmaDepositSync === '1') return;
+  ownerEl.dataset.pmaDepositSync = '1';
+  ownerEl.addEventListener('input', pmaSyncDepositToFromOwner);
+  ownerEl.addEventListener('change', pmaSyncDepositToFromOwner);
+}
+
+function setupPmaAgencyBankLock() {
+  if (pmaIsCreatorSigning()) return;
+  PMA_AGENCY_BANK_FIELD_IDS.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.readOnly = true;
+    el.classList.add('pma-client-locked');
+  });
+  var bankNote = document.getElementById('pma-bank-agency-note');
+  if (bankNote) bankNote.style.display = 'block';
+}
+
+function setupPmaClientTermsLock() {
+  if (pmaIsCreatorSigning()) return;
+  document.querySelectorAll('#terms-block textarea, #panel-4 textarea').forEach(function(el) {
+    el.readOnly = true;
+    el.classList.add('pma-client-locked');
+  });
+  setupPmaAgencyBankLock();
+  const termsInfo = document.querySelector('#panel-3 .info-box');
+  if (termsInfo) {
+    termsInfo.innerHTML = '<strong>Terms set by ShareHouse Managers</strong>Part D and Part E are prepared by your property manager. Review them here, then complete your details and sign in Part F.';
+  }
+}
+
+function pmaRecipientEmailPending() {
+  if (!pmaIsCreatorSigning()) return false;
+  const ctx = window.SHM_DOCUMENT_CONTEXT || {};
+  if (window.__shmSentDocIds && window.__shmSentDocIds[window.SHM_DOC_ID]) return false;
+  const status = String(ctx.status || '').trim();
+  if (status === 'Signed' || status === 'Processing') return false;
+  const recipient = (ctx.signers || []).find(function(s) { return s.signerType === 'recipient'; });
+  const recipStatus = String((recipient && recipient.status) || '').trim();
+  const emailed = Boolean(ctx.sentAt || ctx.tenantSentAt);
+  if (emailed && recipStatus !== 'Email failed' && recipStatus !== 'Not Sent' && recipStatus !== 'Waiting') return false;
+  return status === 'Draft' || !emailed || recipStatus === 'Waiting' || recipStatus === 'Not Sent' || recipStatus === 'Email failed';
+}
+
+async function applyPmaDefaultAgentSignatureIfNeeded() {
+  if (!pmaIsCreatorSigning()) return;
+  if (window.__pmaDefaultAgentSigSkipped) return;
+  const hidden = document.getElementById('pma_agent_sig');
+  if (hidden && String(hidden.value || '').trim()) return;
+  const confirmed = document.getElementById('sigConfirmed');
+  if (confirmed && confirmed.classList.contains('show')) return;
+  try {
+    for (var i = 0; i < PMA_DEFAULT_AGENT_SIG_URLS.length; i++) {
+      const res = await fetch(PMA_DEFAULT_AGENT_SIG_URLS[i], { cache: 'no-store' });
+      if (!res.ok) continue;
+      const blob = await res.blob();
+      const dataUrl = await new Promise(function(resolve, reject) {
+        const reader = new FileReader();
+        reader.onloadend = function() { resolve(reader.result); };
+        reader.onerror = function() { reject(new Error('Could not read default signature.')); };
+        reader.readAsDataURL(blob);
+      });
+      if (!dataUrl) continue;
+      showConfirmed(dataUrl, 'Agent signature attached');
+      window.__pmaDefaultAgentSigApplied = true;
+      return;
+    }
+  } catch (e) {}
+}
+
+function pmaEscapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function collectPmaSigningEmailFields() {
+  const subjectEl = document.getElementById('pmaSigningEmailSubject');
+  const bodyEl = document.getElementById('pmaSigningEmailBody');
+  const defaults = window.SHM_SIGNING_EMAIL_DEFAULTS || {};
+  const ctx = window.SHM_DOCUMENT_CONTEXT || {};
+  const saved = (ctx.agreementData && ctx.agreementData.signing_email) || {};
+  return {
+    subject: String((subjectEl && subjectEl.value) || saved.subject || defaults.subject || '').trim(),
+    body: String((bodyEl && bodyEl.value) || saved.body || defaults.body || '').trim(),
+  };
+}
+
+let pmaSigningEmailPreviewTimer = null;
+function schedulePmaSigningEmailPreview() {
+  if (pmaSigningEmailPreviewTimer) clearTimeout(pmaSigningEmailPreviewTimer);
+  pmaSigningEmailPreviewTimer = setTimeout(refreshPmaSigningEmailPreview, 350);
+}
+
+function pmaResizeSigningEmailIframe(iframe) {
+  if (!iframe) return;
+  try {
+    const doc = iframe.contentDocument;
+    if (!doc || !doc.body) return;
+    const h = Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
+    iframe.style.height = Math.min(Math.max(h + 12, 160), 640) + 'px';
+  } catch (e) {}
+}
+
+async function refreshPmaSigningEmailPreview() {
+  const iframe = document.getElementById('pmaSigningEmailPreviewFrame');
+  if (!iframe) return;
+  const fields = collectPmaSigningEmailFields();
+  var contacts = collectPmaSendContacts();
+  var primarySigner = contacts.find(function(c) { return c.kind === 'signer'; }) || contacts[0];
+  const ownerName = (primarySigner && primarySigner.name) || g('pma_owner') || g('pma_owner_sign_name') || (window.SHM_DOCUMENT_CONTEXT || {}).recipientName || 'Owner';
+  const ownerEmail = (primarySigner && primarySigner.email) || g('pma_email') || (window.SHM_DOCUMENT_CONTEXT || {}).recipientEmail || 'owner@example.com';
+  const propertyAddress = g('pma_property') || (window.SHM_DOCUMENT_CONTEXT || {}).propertyAddress || '';
+  try {
+    const res = await fetch('/api/shm-docs/signing-email-preview', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        documentType: 'Property Management Agreement',
+        recipientName: ownerName,
+        recipientEmail: ownerEmail,
+        propertyAddress: propertyAddress,
+        subject: fields.subject,
+        body: fields.body,
+        documentId: window.SHM_DOC_ID || 'PREVIEW',
+      }),
+    });
+    const json = await res.json().catch(function() { return {}; });
+    if (json && json.html) {
+      iframe.srcdoc = json.html;
+      iframe.onload = function() { pmaResizeSigningEmailIframe(iframe); };
+    }
+  } catch (e) {}
+}
+
+function initPmaSigningEmailEditor() {
+  if (!pmaIsCreatorSigning() || !pmaRecipientEmailPending()) return;
+  const panel = document.getElementById('pmaSigningEmailPanel');
+  const subjectEl = document.getElementById('pmaSigningEmailSubject');
+  const bodyEl = document.getElementById('pmaSigningEmailBody');
+  if (!panel || !subjectEl || !bodyEl) return;
+  if (subjectEl.dataset.pmaEmailBound !== '1') {
+    subjectEl.dataset.pmaEmailBound = '1';
+    bodyEl.dataset.pmaEmailBound = '1';
+    const defaults = window.SHM_SIGNING_EMAIL_DEFAULTS || {};
+    const ctx = window.SHM_DOCUMENT_CONTEXT || {};
+    const saved = (ctx.agreementData && ctx.agreementData.signing_email) || {};
+    subjectEl.value = saved.subject || defaults.subject || '';
+    bodyEl.value = saved.body || defaults.body || '';
+    subjectEl.addEventListener('input', schedulePmaSigningEmailPreview);
+    bodyEl.addEventListener('input', schedulePmaSigningEmailPreview);
+    ['pma_owner', 'pma_email', 'pma_property'].forEach(function(id) {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', schedulePmaSigningEmailPreview);
+    });
+  }
+  refreshPmaSigningEmailPreview();
+}
+
+function setupPmaSignatureRoleUi() {
+  const isCreator = pmaIsCreatorSigning();
+  const label = document.getElementById('pma_signature_role_label');
+  const ownerName = document.getElementById('pma_owner_sign_name');
+  const ownerDate = document.getElementById('pma_sigdt');
+  const nameLabel = document.getElementById('pma_sign_name_label');
+  const dateLabel = document.getElementById('pma_sign_date_label');
+  const agentName = document.getElementById('pma_agent_sign_name');
+  const agentDate = document.getElementById('pma_agent_sigdt');
+  const sendBtn = document.getElementById('pmaSendOwnerBtn');
+  const submitBtn = document.getElementById('subBtn');
+  const sendHint = document.getElementById('pma-creator-send-hint');
+  if (sendHint) sendHint.style.display = 'none';
+  const contactsPanel = document.getElementById('pmaSendContactsPanel');
+  const emailPanel = document.getElementById('pmaSigningEmailPanel');
+  const ownerEmailPending = pmaRecipientEmailPending();
+  if (contactsPanel) {
+    contactsPanel.style.display = isCreator && ownerEmailPending ? 'block' : 'none';
+    if (isCreator && ownerEmailPending) initPmaSendContactsEditor();
+  }
+  if (emailPanel) {
+    emailPanel.style.display = isCreator && ownerEmailPending ? 'block' : 'none';
+    if (isCreator && ownerEmailPending) initPmaSigningEmailEditor();
+  }
+  if (label) label.textContent = isCreator ? 'Agent signature' : 'Owner signature';
+  if (isCreator) {
+    if (ownerName) ownerName.style.display = 'none';
+    if (ownerDate) ownerDate.style.display = 'none';
+    if (agentName) {
+      agentName.style.display = '';
+      agentName.readOnly = false;
+      if (pmaIsPlaceholderAgentName(agentName.value)) agentName.value = pmaDefaultAgentSignName();
+      else if (!String(agentName.value || '').trim()) agentName.value = pmaDefaultAgentSignName();
+    }
+    if (agentDate) {
+      agentDate.style.display = '';
+      agentDate.readOnly = false;
+      agentDate.value = pmaTodayInputValue();
+    }
+    if (nameLabel) nameLabel.textContent = 'Agent Name :';
+    if (dateLabel) dateLabel.textContent = 'Date :';
+    if (sendBtn) {
+      sendBtn.style.display = 'inline-flex';
+      sendBtn.style.order = ownerEmailPending ? '1' : '2';
+    }
+    if (submitBtn) {
+      const submitLabel = submitBtn.querySelector('.btn-label');
+      if (submitLabel) submitLabel.textContent = 'Sign as Agent & Submit';
+      submitBtn.style.display = ownerEmailPending ? 'none' : 'inline-flex';
+      submitBtn.style.order = '2';
+    }
+  } else {
+    if (ownerName) ownerName.style.display = '';
+    if (ownerDate) ownerDate.style.display = '';
+    if (agentName) agentName.style.display = 'none';
+    if (agentDate) agentDate.style.display = 'none';
+    if (nameLabel) nameLabel.textContent = 'Owner name *';
+    if (dateLabel) dateLabel.textContent = 'Owner date';
+    if (sendBtn) sendBtn.style.display = 'none';
+    if (agentName) agentName.readOnly = true;
+    if (agentDate) agentDate.readOnly = true;
+    setupPmaClientTermsLock();
+  }
+}
+
+async function adminSendPropertyManagementAgreement() {
+  const contacts = collectPmaSendContacts();
+  const primary = contacts.find(function(c) { return c.kind === 'signer'; });
+  const owner = (primary && primary.name) || g('pma_owner') || g('pma_owner_sign_name');
+  const email = (primary && primary.email) || g('pma_email');
+  const property = g('pma_property');
+  const st = document.getElementById('stmsg');
+  const sendBtn = document.getElementById('pmaSendOwnerBtn');
+  const spin = document.getElementById('pmaSendSpin');
+  if (!primary || !owner || !email || !property) {
+    if (st) {
+      st.textContent = 'Add at least one signer with name and email, and fill in property address before sending.';
+      st.className = 'status-msg err';
+    }
+    return;
+  }
+  for (var i = 0; i < contacts.length; i++) {
+    var c = contacts[i];
+    if ((!c.name || !c.email) && (c.name || c.email)) {
+      if (st) {
+        st.textContent = 'Each recipient needs both name and email.';
+        st.className = 'status-msg err';
+      }
+      return;
+    }
+  }
+  if (sendBtn) sendBtn.disabled = true;
+  if (spin) spin.style.display = 'inline-block';
+  if (st) { st.textContent = ''; st.className = 'status-msg'; }
+  try {
+    await pmaSaveClientDraft();
+    const data = pmaStripSignaturesForGenerate(collectAgreementData());
+    const apiUrl = window.SHM_API_URL || '/shm-docs/';
+    const res = await fetch(apiUrl + 'property-management-agreement/admin-send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        doc_id: window.SHM_DOC_ID || '',
+        token: window.SHM_TOKEN || '',
+        owner_name: owner,
+        owner_email: email,
+        send_contacts: contacts,
+        agreement_data: data,
+      }),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || json.ok === false) {
+      throw new Error(json.message || ('Could not send email (HTTP ' + res.status + ').'));
+    }
+    if (typeof window.shmMarkDocSent === 'function') window.shmMarkDocSent(window.SHM_DOC_ID);
+    if (window.SHM_DOCUMENT_CONTEXT) {
+      window.SHM_DOCUMENT_CONTEXT.status = 'Sent';
+      window.SHM_DOCUMENT_CONTEXT.sentAt = new Date().toISOString();
+      window.SHM_DOCUMENT_CONTEXT.tenantSentAt = window.SHM_DOCUMENT_CONTEXT.sentAt;
+      var recip = (window.SHM_DOCUMENT_CONTEXT.signers || []).find(function(s) { return s.signerType === 'recipient'; });
+      if (recip) recip.status = 'Sent';
+    }
+    setupPmaSignatureRoleUi();
+    if (st) {
+      st.textContent = json.message || ('Signing email sent to ' + email + '.');
+      st.className = 'status-msg ok';
+    }
+    document.getElementById('main-form').style.display = 'none';
+    const okView = document.getElementById('ok-view');
+    okView.style.display = 'block';
+    document.getElementById('ok_h').textContent = 'Sent to property owner';
+    const okP = document.getElementById('ok_p');
+    if (okP) {
+      okP.style.display = 'block';
+      okP.textContent = 'We emailed ' + email + ' a link to review and sign the updated agreement. You can close this tab or return to the dashboard.';
+    }
+  } catch (err) {
+    if (st) {
+      st.textContent = err && err.message ? err.message : 'Could not send to owner.';
+      st.className = 'status-msg err';
+    }
+  } finally {
+    if (sendBtn) sendBtn.disabled = false;
+    if (spin) spin.style.display = 'none';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  PMA_FEATURE_SELECT_IDS.forEach(pmaFeatureSelectChanged);
+  setupPmaSignatureRoleUi();
+  setupPmaClientTermsLock();
+  pmaInitFeeTextareaAutosize();
+  pmaBindOwnerToDepositSync();
+  pmaSyncDepositToFromOwner();
+  if (currentTab === 5) void applyPmaDefaultAgentSignatureIfNeeded();
+});
+
+async function drawPmaSignatureImage(pdfDoc, page, dataUrl, x, yTop, width, height) {
+  if (!dataUrl || !String(dataUrl).includes(',')) return;
+  const sigBytes = dataUrlToBytes(dataUrl);
+  if (!sigBytes) return;
+  let sigImg;
+  if (String(dataUrl).startsWith('data:image/jpeg') || String(dataUrl).startsWith('data:image/jpg')) {
+    sigImg = await pdfDoc.embedJpg(sigBytes);
+  } else {
+    sigImg = await pdfDoc.embedPng(sigBytes);
+  }
+  page.drawImage(sigImg, {
+    x,
+    y: page.getHeight() - yTop - height,
+    width,
+    height,
+  });
+}
+
+async function buildOfficialPropertyManagementPdf(data) {
+  const { PDFDocument, StandardFonts, rgb } = await ensurePdfLibLoaded();
+
+  if (!PMA_TEMPLATE_PDF_URL) {
+    throw new Error('Property management PDF template URL is missing.');
+  }
+
+  const templateResponse = await fetch(PMA_TEMPLATE_PDF_URL, { cache: 'no-store' });
+  if (!templateResponse.ok) {
+    throw new Error('Could not load official PDF template. Please upload assets/pdfs/property-management-agreement-template.pdf');
+  }
+
+  const existingPdfBytes = await templateResponse.arrayBuffer();
+  const pdfDoc = await PDFDocument.load(existingPdfBytes);
+  const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+  const black = rgb(0, 0, 0);
+  const orange = rgb(0.95, 0.41, 0.10);
+  const pages = pdfDoc.getPages();
+  const p1 = pages[0];
+  const p2 = pages[1] || pages[0];
+  const p3 = pages[2] || pages[0];
+  const p4 = pages[3] || pages[pages.length - 1];
+
+  // Keep the official PDF as the master template. Do not redraw or rewrite the body.
+  // This only replaces/stamps the supplied ShareHouseManagers header image on page 1.
+  if (PMA_HEADER_IMAGE_URL) {
+    try {
+      const headerResponse = await fetch(PMA_HEADER_IMAGE_URL, { cache: 'no-store' });
+      if (headerResponse.ok) {
+        const headerBytes = await headerResponse.arrayBuffer();
+        const headerLower = PMA_HEADER_IMAGE_URL.toLowerCase();
+        const headerImg = (headerLower.endsWith('.jpg') || headerLower.endsWith('.jpeg'))
+          ? await pdfDoc.embedJpg(headerBytes)
+          : await pdfDoc.embedPng(headerBytes);
+
+        // A4 page. These coordinates match the top branding panel in the official PDF.
+        p1.drawImage(headerImg, {
+          x: 16,
+          y: p1.getHeight() - 146,
+          width: 562,
+          height: 116,
+        });
+      } else {
+        console.warn('PMA header image not found. Keeping the header already present in the PDF template.');
+      }
+    } catch (err) {
+      console.warn('PMA header image could not be loaded. Keeping original PDF header.', err);
+    }
+  }
+
+  const t = (page, value, x, y, opts = {}) => pdfDrawText(page, value, x, y, { font, color: black, size: 7, maxChars: 34, ...opts });
+  const tb = (page, value, x, y, opts = {}) => pdfDrawText(page, value, x, y, { font: boldFont, color: black, size: 7, maxChars: 34, ...opts });
+
+  // Page 1 - property, owner and specific instructions.
+  // Coordinates below are matched to the official PDF template. yTop is measured from the top of the A4 page.
+  t(p1, data.available_from, 246, 222, { maxChars: 18, maxLines: 1 });
+  t(p1, data.available_to, 392, 222, { maxChars: 18, maxLines: 1 });
+  t(p1, data.property, 130, 244, { maxChars: 78, maxLines: 1, size: 6.3 });
+  t(p1, data.block, 32, 266, { maxChars: 16, maxLines: 1 });
+  t(p1, data.section, 118, 266, { maxChars: 20, maxLines: 1 });
+  t(p1, data.division, 288, 266, { maxChars: 22, maxLines: 1 });
+  t(p1, data.eer, 410, 266, { maxChars: 12, maxLines: 1 });
+  t(p1, data.owner, 32, 302, { maxChars: 45, maxLines: 2, size: 6.5 });
+  t(p1, data.postal_address, 280, 302, { maxChars: 52, maxLines: 2, size: 6.5 });
+  t(p1, data.phone_ah, 72, 326, { maxChars: 16, maxLines: 1 });
+  t(p1, data.phone_bh, 184, 326, { maxChars: 16, maxLines: 1 });
+  t(p1, data.mobile, 320, 326, { maxChars: 16, maxLines: 1 });
+  t(p1, data.email, 390, 326, { maxChars: 34, maxLines: 1, size: 6.2 });
+  t(p1, data.unit_plan_no, 70, 348, { maxChars: 18, maxLines: 1 });
+  t(p1, data.unit_plan_manager, 160, 348, { maxChars: 28, maxLines: 1 });
+  t(p1, data.unit_phone, 330, 348, { maxChars: 16, maxLines: 1 });
+  t(p1, data.fax, 455, 348, { maxChars: 16, maxLines: 1 });
+  tb(p1, data.description, 118, 372, { maxChars: 70, maxLines: 5, size: 6.1, lineHeight: 11 });
+  tb(p1, data.property_type, 430, 392, { maxChars: 28, maxLines: 1, size: 6.3 });
+  tb(p1, data.heating, 70, 415, { maxChars: 24, maxLines: 1, size: 6.3 });
+  tb(p1, data.hot_water, 220, 415, { maxChars: 24, maxLines: 1, size: 6.3 });
+  tb(p1, data.dishwasher, 430, 415, { maxChars: 24, maxLines: 1, size: 6.3 });
+  tb(p1, data.oven, 70, 438, { maxChars: 24, maxLines: 1, size: 6.3 });
+  tb(p1, data.cooktop, 220, 438, { maxChars: 24, maxLines: 1, size: 6.3 });
+  tb(p1, data.warranties, 430, 438, { maxChars: 24, maxLines: 1, size: 6.3 });
+  tb(p1, data.rent_pw, 86, 458, { maxChars: 12, maxLines: 1, size: 6.3 });
+  tb(p1, data.commencement, 96, 468, { maxChars: 18, maxLines: 1, size: 6.3 });
+  tb(p1, data.lease_term, 250, 458, { maxChars: 32, maxLines: 1, size: 6.3 });
+  tb(p1, data.keys, 448, 458, { maxChars: 26, maxLines: 1, size: 6.3 });
+
+  tb(p1, data.deposit_to, 220, 508, { maxChars: 54, maxLines: 1, size: 6.3 });
+  tb(p1, data.bank, 70, 530, { maxChars: 20, maxLines: 1, size: 6.3 });
+  tb(p1, data.branch, 170, 530, { maxChars: 22, maxLines: 1, size: 6.3 });
+  tb(p1, data.bsb, 330, 530, { maxChars: 16, maxLines: 1, size: 6.3 });
+  tb(p1, data.account, 455, 530, { maxChars: 20, maxLines: 1, size: 6.3 });
+  t(p1, data.repairs || 'Refer to landlord for advice', 42, 552, { maxChars: 84, maxLines: 1, size: 6.3 });
+  tb(p1, data.asbestos, 322, 575, { maxChars: 14, maxLines: 1, size: 6.3 });
+  tb(p1, data.glass, 322, 597, { maxChars: 14, maxLines: 1, size: 6.3 });
+  tb(p1, data.smoke, 322, 620, { maxChars: 14, maxLines: 1, size: 6.3 });
+  tb(p1, data.structures, 322, 642, { maxChars: 14, maxLines: 1, size: 6.3 });
+  tb(p1, data.rates_general, 126, 664, { maxChars: 6, maxLines: 1, size: 6.3 });
+  tb(p1, data.rates_water, 280, 664, { maxChars: 6, maxLines: 1, size: 6.3 });
+  tb(p1, data.land_tax, 420, 664, { maxChars: 6, maxLines: 1, size: 6.3 });
+  tb(p1, data.preferred_contact, 506, 664, { maxChars: 18, maxLines: 1, size: 6 });
+  tb(p1, data.body_corp, 126, 686, { maxChars: 6, maxLines: 1, size: 6.3 });
+  tb(p1, data.fair_clause, 280, 686, { maxChars: 6, maxLines: 1, size: 6.3 });
+  tb(p1, data.email_statements, 420, 686, { maxChars: 6, maxLines: 1, size: 6.3 });
+  tb(p1, data.building_insurer, 92, 733, { maxChars: 30, maxLines: 1, size: 6.2 });
+  tb(p1, data.building_policy, 302, 733, { maxChars: 24, maxLines: 1, size: 6.2 });
+  tb(p1, data.building_renewal, 456, 733, { maxChars: 16, maxLines: 1, size: 6.2 });
+  tb(p1, data.contents_insurer, 92, 755, { maxChars: 30, maxLines: 1, size: 6.2 });
+  tb(p1, data.contents_policy, 302, 755, { maxChars: 24, maxLines: 1, size: 6.2 });
+  tb(p1, data.contents_renewal, 456, 755, { maxChars: 16, maxLines: 1, size: 6.2 });
+
+  // Page 2 - remaining instructions and terms area.
+  t(p2, data.landlord_insurer, 92, 40, { maxChars: 30, maxLines: 1, size: 6.5 });
+  t(p2, data.landlord_policy, 302, 40, { maxChars: 24, maxLines: 1, size: 6.5 });
+  t(p2, data.landlord_renewal, 456, 40, { maxChars: 16, maxLines: 1, size: 6.5 });
+  t(p2, data.other_instructions, 120, 63, { maxChars: 76, maxLines: 2, size: 6.5 });
+  t(p2, data.pets, 105, 85, { maxChars: 8, maxLines: 1 });
+  t(p2, data.groups, 176, 85, { maxChars: 8, maxLines: 1 });
+  t(p2, data.emergency_contact, 250, 122, { maxChars: 42, maxLines: 1, size: 6.5 });
+  t(p2, data.emergency_phone, 505, 122, { maxChars: 16, maxLines: 1, size: 6.5 });
+  t(p2, data.intend_sell, 330, 145, { maxChars: 10, maxLines: 1 });
+
+  // Page 3 - special instructions and location of items.
+  t(p3, data.special_instructions, 84, 378, { maxChars: 88, maxLines: 2, size: 6.5 });
+  t(p3, data.instruction_books, 250, 421, { maxChars: 58, maxLines: 1, size: 6.5 });
+  t(p3, data.hot_water_location, 150, 445, { maxChars: 68, maxLines: 1, size: 6.5 });
+  t(p3, data.meter_box, 150, 470, { maxChars: 68, maxLines: 1, size: 6.5 });
+  t(p3, data.water_meter, 150, 494, { maxChars: 68, maxLines: 1, size: 6.5 });
+  t(p3, data.additional_info, 42, 686, { maxChars: 96, maxLines: 4, size: 6.5 });
+
+  // Page 4 - signatures.
+  // The uploaded official template already contains the OWNER/AGENT labels and lines.
+  // Do not print signer names or submitted timestamps above the lines.
+  const isCreator = pmaIsCreatorSigning();
+  const storedOwnerSignature = getStoredPmaField('pma_sig');
+  const storedOwnerDate = pmaSigningDate(getStoredPmaField('pma_sigdt')) || data.sig_date;
+
+  const ownerNameForSignature = getStoredPmaField('pma_owner_sign_name') || getStoredPmaField('pma_owner') || data.owner_sign_name || data.owner;
+  const currentSignerName = data.owner_sign_name || data.owner || pmaContextValue('recipientName') || pmaContextValue('tenantName');
+  const creatorNameForSignature = pmaResolveAgentSignName(data.agent_sign_name || pmaContextValue('adminName'));
+
+  if (isCreator) {
+    // Final stage: keep the existing owner signature/name on the OWNER line and place the creator signature/name on the AGENT line.
+    await drawPmaSignatureImage(pdfDoc, p4, storedOwnerSignature, 150, 664, 120, 34);
+    t(p4, ownerNameForSignature, 155, 718, { maxChars: 28, size: 6.2 });
+    t(p4, storedOwnerDate, 462, 696, { maxChars: 12, size: 7 });
+    await drawPmaSignatureImage(pdfDoc, p4, data.agent_signature || data.signature, 150, 729, 120, 34);
+    t(p4, creatorNameForSignature, 155, 783, { maxChars: 28, size: 6.2 });
+    t(p4, data.agent_sig_date || data.sig_date, 462, 761, { maxChars: 12, size: 7 });
+  } else {
+    // First stage: signer/owner signature and printed name go into the OWNER (sign) field. Agent signature stays blank.
+    await drawPmaSignatureImage(pdfDoc, p4, data.signature, 150, 664, 120, 34);
+    t(p4, currentSignerName, 155, 718, { maxChars: 28, size: 6.2 });
+    t(p4, data.sig_date, 462, 696, { maxChars: 12, size: 7 });
+  }
+
+  const pdfBytes = await pdfDoc.save();
+  return new Blob([pdfBytes], { type: 'application/pdf' });
+}
+async function doSubmit() {
+  const owner = g('pma_owner_sign_name') || g('pma_owner');
+  const email = g('pma_email');
+  const property = g('pma_property');
+
+  if (pmaIsCreatorSigning() && pmaRecipientEmailPending()) {
+    const s = document.getElementById('stmsg');
+    s.textContent = 'This agreement has not been emailed to the owner yet. Click Send to Owner first (green button above).';
+    s.className = 'status-msg err';
+    return;
+  }
+
+  if (!owner || !email || !property) {
+    const s = document.getElementById('stmsg');
+    s.textContent = 'Please fill in owner name, email address, and property address.';
+    s.className = 'status-msg err';
+    return;
+  }
+
+  const btn = document.getElementById('subBtn');
+  const spin = document.getElementById('spin');
+  btn.disabled = true;
+  btn.classList.add('loading');
+  if (spin) spin.style.display = 'inline-block';
+  document.getElementById('stmsg').textContent = '';
+
+  const steps = [
+    { t: 'Collecting agreement data…', s: 'done' },
+    { t: 'Generating agreement document…', s: 'run' },
+    { t: 'Uploading to secure server…', s: 'wait' },
+  ];
+  setLog(steps);
+
+  try {
+    captureSignatureBeforeSubmit();
+    if (pmaIsCreatorSigning()) {
+      const agentName = document.getElementById('pma_agent_sign_name');
+      const agentDate = document.getElementById('pma_agent_sigdt');
+      if (agentName && pmaIsPlaceholderAgentName(agentName.value)) agentName.value = pmaDefaultAgentSignName();
+      else if (agentName && !agentName.value) agentName.value = pmaDefaultAgentSignName();
+      if (agentDate && !agentDate.value) agentDate.value = pmaTodayInputValue();
+    }
+    const data = collectAgreementData();
+    const activeSignature = pmaIsCreatorSigning()
+      ? (data.agent_signature || data.signature || g('pma_agent_sig') || g('pma_sig'))
+      : (data.signature || g('pma_sig'));
+    if (!activeSignature) {
+      const s = document.getElementById('stmsg');
+      s.textContent = 'Please capture your signature before submitting.';
+      s.className = 'status-msg err';
+      btn.disabled = false;
+      btn.classList.remove('loading');
+      if (spin) spin.style.display = 'none';
+      return;
+    }
+    if (pmaIsCreatorSigning()) {
+      data.agent_signature = activeSignature;
+    } else {
+      data.signature = activeSignature;
+    }
+    const dateStr = new Date().toISOString().slice(0, 10);
+    const safeOwner = owner.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '');
+    const fileName = 'Property-Management-Agreement-' + safeOwner + '-' + dateStr + '.docx';
+    const apiUrl = window.SHM_API_URL || '/shm-docs/';
+    const docId = window.SHM_DOC_ID || '';
+    const token = window.SHM_TOKEN || '';
+
+    const storedOwnerSignature = pmaIsCreatorSigning() ? getStoredPmaField('pma_sig') : '';
+    const genRes = await fetch(apiUrl + 'property-management-agreement/generate-pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        doc_id: docId,
+        token: token,
+        agreement_data: pmaStripSignaturesForGenerate(data),
+        signature: activeSignature,
+        owner_signature: pmaIsCreatorSigning()
+          ? (storedOwnerSignature || g('pma_sig') || undefined)
+          : activeSignature,
+        agent_signature: pmaIsCreatorSigning() ? activeSignature : undefined,
+        signer_type: window.SHM_SIGNER_TYPE || window.SHM_SIGNER_ROLE || 'recipient',
+      }),
+    });
+    const genJson = await genRes.json().catch(() => ({}));
+    let base64Docx = genRes.ok ? (genJson.docxContent || genJson.fileContent) : '';
+    let outputMimeType = genJson.fileType || 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+    if (!genRes.ok || !base64Docx) {
+      try {
+        const fallbackData = Object.assign({}, data);
+        if (pmaIsCreatorSigning()) fallbackData.signature = activeSignature;
+        const fallbackBlob = await buildDocx(fallbackData);
+        base64Docx = await pmaBlobToBase64(fallbackBlob);
+        outputMimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+      } catch (fallbackErr) {
+        throw new Error(genJson.message || (fallbackErr && fallbackErr.message) || 'Could not generate property management agreement document.');
+      }
+    }
+
+    steps[1] = { t: 'Agreement document generated ✓', s: 'done' };
+    steps[2] = { t: 'Uploading to secure server…', s: 'run' };
+    setLog(steps);
+
+    const response = await fetch(apiUrl + 'property-management-agreement/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        doc_id: docId,
+        token: token,
+        signature: activeSignature,
+        owner_signature: data.signature || g('pma_sig') || activeSignature,
+        tenant_signature: activeSignature,
+        fileName: fileName,
+        fileContent: base64Docx,
+        fileType: outputMimeType,
+        docxContent: base64Docx,
+        agreement_data: pmaStripSignaturesForGenerate(data),
+        recipient: { name: owner, email: email }
+      })
+    });
+
+    const submitJson = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const detail = submitJson.message || submitJson.details || '';
+      throw new Error(detail || ('Server error ' + response.status));
+    }
+
+    steps[2] = { t: '✓ Agreement submitted successfully!', s: 'done' };
+    setLog(steps);
+
+    setTimeout(() => {
+      document.getElementById('main-form').style.display = 'none';
+      const okView = document.getElementById('ok-view');
+      okView.style.display = 'block';
+      document.getElementById('ok_h').textContent = 'Agreement received, ShareHouseManagers!';
+    }, 700);
+  } catch (e) {
+    const sm = document.getElementById('stmsg');
+    sm.textContent = 'Submission failed – please try again. (' + e.message + ')';
+    sm.className = 'status-msg err';
+    btn.disabled = false;
+    btn.classList.remove('loading');
+    if (spin) spin.style.display = 'none';
+  }
+}
+
+</script>

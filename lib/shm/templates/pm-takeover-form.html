@@ -1,0 +1,850 @@
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Pinyon+Script&family=Sacramento&family=Satisfy&display=swap" rel="stylesheet">
+<div class="page-shell pm-takeover-shell">
+  <style>
+    .pm-takeover-shell .main-card{font-family:Arial,Helvetica,sans-serif;}
+    .pm-takeover-shell .takeover-table th{background:#fff7ed;color:#9a3412;}
+    .pm-takeover-shell .takeover-table td{color:#1e293b;vertical-align:middle;}
+    .pm-takeover-shell .takeover-table tr.pm-sub-row td:first-child{padding-left:28px;color:#475569;}
+    .pm-takeover-shell .pm-choice-input{position:absolute;opacity:0;width:0;height:0;pointer-events:none;}
+    .pm-takeover-shell .pm-choice{display:flex;align-items:center;justify-content:center;min-height:40px;width:100%;cursor:pointer;margin:0;}
+    .pm-takeover-shell .pm-choice-mark{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:24px;height:24px;border:2px solid #f47a21;border-radius:50%;
+      background:#fff;color:#f47a21;font-size:13px;font-weight:800;line-height:1;
+      transition:background .15s,border-color .15s,color .15s,box-shadow .15s;
+    }
+    .pm-takeover-shell .pm-choice-cell.pm-selected{background:#ffedd5 !important;box-shadow:inset 0 0 0 2px #fdba74;}
+    .pm-takeover-shell .pm-choice-cell.pm-selected .pm-choice-mark{background:#f47a21;border-color:#ea580c;color:#fff;box-shadow:0 0 0 3px rgba(244,122,33,.25);}
+    .pm-takeover-shell .pm-attachments-panel{border:1px solid #dbe4f0;border-radius:14px;padding:18px;background:#f8fafc;}
+    .pm-takeover-shell .pm-slot{margin-top:14px;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;}
+    .pm-takeover-shell .pm-slot:first-of-type{margin-top:12px;}
+    .pm-takeover-shell .pm-slot-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;}
+    .pm-takeover-shell .pm-slot-title{font-size:13px;font-weight:800;color:#27344f;}
+    .pm-takeover-shell .pm-slot-sub{margin:0;color:#64748b;font-size:12px;line-height:1.4;font-weight:500;}
+    .pm-takeover-shell .pm-slot-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+    .pm-takeover-shell .pm-slot-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      border:1px solid #cbd5e1;border-radius:10px;background:#f8fafc;color:#334155;
+      font-size:12.5px;font-weight:700;padding:10px 12px;cursor:pointer;
+    }
+    .pm-takeover-shell .pm-slot-btn.primary{background:#fff7ed;border-color:#fdba74;color:#9a3412;}
+    .pm-takeover-shell .pm-slot-btn:disabled{opacity:.55;cursor:not-allowed;}
+    .pm-takeover-shell .pm-slot input[type="file"].pm-slot-file{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:10px;background:#fff;}
+    .pm-takeover-shell .pm-slot input[type="file"].pm-camera-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+    .pm-takeover-shell .pm-attachment-files{margin:10px 0 0;padding:0;list-style:none;}
+    .pm-takeover-shell .pm-attachment-files li{
+      display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;margin-top:8px;
+      border:1px solid #fed7aa;border-radius:10px;background:#fff7ed;color:#9a3412;font-size:13px;font-weight:600;
+    }
+    .pm-takeover-shell .pm-attachment-files li .pm-att-meta{display:flex;align-items:center;gap:8px;min-width:0;}
+    .pm-takeover-shell .pm-attachment-files li .pm-att-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .pm-takeover-shell .pm-attachment-files li button{
+      border:0;background:transparent;color:#c2410c;font-size:12px;font-weight:800;cursor:pointer;flex-shrink:0;
+    }
+    .pm-takeover-shell .pm-no-files{margin:10px 0 0;color:#94a3b8;font-size:13px;font-style:italic;}
+    .pm-takeover-shell #other_items,.pm-takeover-shell #signer_name,.pm-takeover-shell #sign_date{
+      border:1.5px solid #d6deea;border-radius:9px;padding:12px;font-size:14px;width:100%;box-sizing:border-box;
+    }
+    .pm-takeover-shell .field-label{display:block;margin-bottom:7px;font-size:13px;font-weight:800;color:#27344f;}
+    .pm-takeover-shell.pm-capture-mode .pm-upload-hint,.pm-takeover-shell.pm-capture-mode .pm-slot-actions,.pm-takeover-shell.pm-capture-mode .pm-slot-file,.pm-takeover-shell.pm-capture-mode .sig-actions,.pm-takeover-shell.pm-capture-mode .sig-tabs,.pm-takeover-shell.pm-capture-mode #pmInfoBox,.pm-takeover-shell.pm-capture-mode #pmSigConfirmed .sig-btn{display:none !important;}
+    .pm-takeover-shell.pm-capture-mode .pm-attachment-files li{border-color:#f47a21;}
+    .pm-takeover-shell.pm-capture-mode .pm-attachment-files li button{display:none !important;}
+    .pm-takeover-shell .sig-upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .pm-takeover-shell .sig-upload-zone{position:relative;text-align:center;padding:28px 16px;}
+    .pm-takeover-shell .sig-upload-preview{display:none;text-align:center;}
+    .pm-takeover-shell .sig-upload-preview img{max-width:280px;max-height:120px;object-fit:contain;border:1px solid #dbe4f0;border-radius:10px;background:#fff;padding:8px;}
+    .pm-takeover-shell .sig-canvas-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#94a3b8;font-size:13px;pointer-events:none;}
+    .pm-takeover-shell .sig-canvas-wrap.has-sig .sig-canvas-placeholder{display:none;}
+    .pm-takeover-shell .sig-canvas-wrap{position:relative;min-height:140px;}
+    .pm-takeover-shell .sig-box.signature-locked .sig-tabs,.pm-takeover-shell .sig-box.signature-locked .sig-panel{display:none !important;}
+    .pm-takeover-shell .sig-confirmed{display:none;align-items:center;gap:12px;margin-top:14px;background:#ecfdf3;border:1px solid #bbf7d0;border-radius:12px;padding:14px 16px;color:#166534;font-weight:700;}
+    .pm-takeover-shell .sig-confirmed.show{display:flex;}
+    .pm-takeover-shell .sig-confirmed-thumb{width:120px;height:42px;object-fit:contain;background:#fff;border:1px solid #bbf7d0;border-radius:8px;padding:4px;}
+  </style>
+  <div id="main-form">
+    <div class="main-card" style="background:#fff;padding:28px;max-width:940px;margin:0 auto;">
+      <div style="border:2px solid #f47a21;border-radius:14px 14px 0 0;padding:22px 26px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <h1 style="margin:0;color:#f47a21;font-size:24px;letter-spacing:.04em">TAKEOVER OF MANAGEMENT</h1>
+          <p style="margin:.35rem 0 0;color:#475569;font-weight:700">List of Items</p>
+        </div>
+        <div style="text-align:right;font-weight:800;color:#334155">ShareHouse<br>Managers</div>
+      </div>
+
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:14px 16px;margin-bottom:18px;color:#1e3a8a;font-size:13px;line-height:1.55" id="pmInfoBox">
+        Select Yes or No for each item below, add any notes, sign, and attach supporting docs or photos (keys, condition/meters, other). Everything is saved together in one Google Drive folder.
+      </div>
+
+      <table class="takeover-table" style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px;border:2px solid #f47a21;">
+        <thead>
+          <tr><th style="text-align:left;border:1px solid #f47a21;padding:10px;width:66%;font-size:16px">Documents</th><th colspan="2" style="border:1px solid #f47a21;padding:10px;font-size:16px">Attached</th></tr>
+          <tr><th style="border:1px solid #f47a21;padding:8px"></th><th style="border:1px solid #f47a21;padding:8px;width:13%">Yes</th><th style="border:1px solid #f47a21;padding:8px;width:13%">No</th></tr>
+        </thead>
+        <tbody id="itemsBody"></tbody>
+      </table>
+
+      <div class="field-wrap" style="margin-top:22px"><label class="field-label">Any other items / notes</label><textarea id="other_items" style="min-height:90px"></textarea></div>
+
+      <div class="field-wrap pm-attachments-panel" style="margin-top:22px">
+        <label class="field-label">Upload supporting documents &amp; photos</label>
+        <p class="pm-upload-hint" style="margin:0 0 4px;color:#64748b;font-size:12px;line-height:1.45">Optional. Files go into the same Drive folder as the signed form. On phone you can take a photo directly.</p>
+
+        <div class="pm-slot" data-slot="keys">
+          <div class="pm-slot-head">
+            <div>
+              <div class="pm-slot-title">Keys / FOBs / remotes</div>
+              <p class="pm-slot-sub">Photos or PDFs of key sets, FOBs, and remotes</p>
+            </div>
+          </div>
+          <input type="file" id="pm_files_keys" class="pm-slot-file" multiple accept=".pdf,.jpg,.jpeg,.png,.gif,.webp,.heic,.heif,image/*">
+          <input type="file" id="pm_camera_keys" class="pm-camera-input" accept="image/*" capture="environment">
+          <div class="pm-slot-actions">
+            <button type="button" class="pm-slot-btn primary" onclick="triggerPmCamera('keys')">Take photo</button>
+            <button type="button" class="pm-slot-btn" onclick="clearPmSlot('keys')">Clear</button>
+          </div>
+          <ul id="pm_list_keys" class="pm-attachment-files"></ul>
+        </div>
+
+        <div class="pm-slot" data-slot="condition">
+          <div class="pm-slot-head">
+            <div>
+              <div class="pm-slot-title">Condition / meter photos</div>
+              <p class="pm-slot-sub">Property condition, meters, compliance photos</p>
+            </div>
+          </div>
+          <input type="file" id="pm_files_condition" class="pm-slot-file" multiple accept=".pdf,.jpg,.jpeg,.png,.gif,.webp,.heic,.heif,image/*">
+          <input type="file" id="pm_camera_condition" class="pm-camera-input" accept="image/*" capture="environment">
+          <div class="pm-slot-actions">
+            <button type="button" class="pm-slot-btn primary" onclick="triggerPmCamera('condition')">Take photo</button>
+            <button type="button" class="pm-slot-btn" onclick="clearPmSlot('condition')">Clear</button>
+          </div>
+          <ul id="pm_list_condition" class="pm-attachment-files"></ul>
+        </div>
+
+        <div class="pm-slot" data-slot="other">
+          <div class="pm-slot-head">
+            <div>
+              <div class="pm-slot-title">Other documents</div>
+              <p class="pm-slot-sub">Agreements, ledgers, bills, insurance, or any other files</p>
+            </div>
+          </div>
+          <input type="file" id="pm_files_other" class="pm-slot-file" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.webp,.heic,.heif,.xls,.xlsx,.csv,.txt,image/*">
+          <input type="file" id="pm_camera_other" class="pm-camera-input" accept="image/*" capture="environment">
+          <div class="pm-slot-actions">
+            <button type="button" class="pm-slot-btn primary" onclick="triggerPmCamera('other')">Take photo</button>
+            <button type="button" class="pm-slot-btn" onclick="clearPmSlot('other')">Clear</button>
+          </div>
+          <ul id="pm_list_other" class="pm-attachment-files"></ul>
+        </div>
+
+        <p id="attachmentEmpty" class="pm-no-files">No supporting documents uploaded yet.</p>
+      </div>
+
+      <div class="sig-box" id="pmSigBox" style="margin-top:24px">
+        <div class="g2 field-wrap">
+          <div><label class="field-label">Signer name *</label><input type="text" id="signer_name"></div>
+          <div><label class="field-label">Date</label><input type="date" id="sign_date"></div>
+        </div>
+        <label class="field-label" style="margin-bottom:.5rem">Signature</label>
+        <div class="sig-tabs">
+          <button class="sig-tab active" type="button" onclick="switchPmSigTab('draw',this)">✏️ Draw</button>
+          <button class="sig-tab" type="button" onclick="switchPmSigTab('type',this)">Aa Type</button>
+          <button class="sig-tab" type="button" onclick="switchPmSigTab('upload',this)">⬆ Upload</button>
+        </div>
+        <div class="sig-panel active" id="pm-sig-panel-draw">
+          <div class="sig-canvas-wrap" id="pmSigCanvasWrap">
+            <canvas id="pmSigCanvas"></canvas>
+            <div class="sig-canvas-placeholder">Sign here with mouse or finger</div>
+          </div>
+          <div class="sig-actions">
+            <button class="sig-btn danger" type="button" onclick="clearPmDrawSignature()">Clear</button>
+            <button class="sig-btn" type="button" onclick="confirmPmDrawSignature()">Use this signature</button>
+          </div>
+        </div>
+        <div class="sig-panel" id="pm-sig-panel-type">
+          <input type="text" id="pmSigTypeInput" placeholder="Type your full legal name…" oninput="updatePmTypeSig()" style="font-size:15px;width:100%;box-sizing:border-box;border:1.5px solid #d6deea;border-radius:9px;padding:12px;margin-bottom:12px">
+          <div class="sig-font-picker" id="pmFontPicker">
+            <span class="font-pill active" onclick="setPmSigFont('Dancing Script',this)" style="font-family:'Dancing Script',cursive">Cursive</span>
+            <span class="font-pill" onclick="setPmSigFont('Pinyon Script',this)" style="font-family:'Pinyon Script',cursive">Elegant</span>
+            <span class="font-pill" onclick="setPmSigFont('Sacramento',this)" style="font-family:'Sacramento',cursive">Script</span>
+            <span class="font-pill" onclick="setPmSigFont('Satisfy',this)" style="font-family:'Satisfy',cursive">Flowing</span>
+          </div>
+          <div class="sig-type-preview"><span id="pmSigTypePreview" style="font-family:'Dancing Script',cursive"></span></div>
+          <div class="sig-actions">
+            <button class="sig-btn" type="button" onclick="confirmPmTypeSignature()">Use this signature</button>
+          </div>
+        </div>
+        <div class="sig-panel" id="pm-sig-panel-upload">
+          <div class="sig-upload-zone" id="pmUploadZone">
+            <input type="file" id="pmSigFileInput" accept="image/*" onchange="handlePmSigUpload(event)">
+            <div style="font-size:28px;margin-bottom:8px">🖼️</div>
+            <strong style="font-size:13.5px;color:#334155">Click or drag to upload</strong>
+            <p style="margin:6px 0 0;color:#64748b;font-size:12px">PNG, JPG or GIF signature image</p>
+          </div>
+          <div class="sig-upload-preview" id="pmUploadPreview">
+            <img id="pmUploadPreviewImg" src="" alt="Signature preview">
+            <div class="sig-actions" style="justify-content:center;margin-top:12px">
+              <button class="sig-btn danger" type="button" onclick="clearPmSigUpload()">Remove</button>
+              <button class="sig-btn" type="button" onclick="confirmPmUploadSignature()">Use this signature</button>
+            </div>
+          </div>
+        </div>
+        <div class="sig-confirmed" id="pmSigConfirmed">
+          <img class="sig-confirmed-thumb" id="pmSigConfirmedThumb" src="" alt="">
+          <span id="pmSigConfirmedText">Signature captured</span>
+          <button class="sig-btn" type="button" onclick="resetPmSignature()" style="margin-left:auto;font-size:12px">Change</button>
+        </div>
+        <input type="hidden" id="pm_signature_data">
+      </div>
+    </div>
+
+    <div class="submit-area" style="max-width:940px;margin:22px auto 0"><button class="btn-submit" id="pmSubmitBtn" type="button" onclick="submitPmTakeover()"><span class="btn-label">Submit Takeover Form</span></button><span class="status-msg" id="pmStatus"></span></div>
+  </div>
+  <div id="ok-view" class="success-view"><div class="success-icon">✓</div><h2>Takeover form submitted</h2><p>Thank you. Your completed form has been saved, and any supporting documents were uploaded to Google Drive.</p></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const pmItems=[
+ '1. Tenancy Application Form','2. Residential Tenancy Agreement','3. Condition Reports','3a. Incoming Condition Reports','4. Routine Inspection Reports','5. Signed key registration form','6. Renter Ledger - Latest','7. All Renters\' Contacts','Renter 1 - email','Renter 1 - Mobile','Renter 2 - email','Renter 2 - Mobile','Renter 3 - email','Renter 3 - Mobile','8. Current VCAT Items (if any)','9. Compliance checks','Electrical','Gas','Smoke Alarm','10. Bills','10a. OC Bill','10b. Council Rate Bill','10c. Water Rates Bill','10d. Any other Bills relevant','RTBA Items','RTBA Number','Registered Bond Number','Signed RTBA Bond Transfer form (to be attached)','All sets of available Keys, FOBs, Remotes','Landlord & building insurance policy details','Any other Items'
+];
+const pmSubRowIndexes={8:1,9:1,10:1,11:1,12:1,13:1,16:1,17:1,18:1,20:1,21:1,22:1,23:1,25:1,26:1,27:1};
+function rowHtml(label, idx){
+  const subClass=pmSubRowIndexes[idx]?' pm-sub-row':'';
+  return '<tr class="pm-item-row'+subClass+'" data-item-idx="'+idx+'">'
+    +'<td style="border:1px solid #f47a21;padding:9px 10px">'+label+'</td>'
+    +'<td class="pm-choice-cell pm-yes-cell" style="border:1px solid #f47a21;text-align:center;padding:0">'
+    +'<label class="pm-choice" for="item_'+idx+'_yes">'
+    +'<input type="radio" class="pm-choice-input" id="item_'+idx+'_yes" name="item_'+idx+'" value="Yes">'
+    +'<span class="pm-choice-mark" aria-hidden="true"></span>'
+    +'</label></td>'
+    +'<td class="pm-choice-cell pm-no-cell" style="border:1px solid #f47a21;text-align:center;padding:0">'
+    +'<label class="pm-choice" for="item_'+idx+'_no">'
+    +'<input type="radio" class="pm-choice-input" id="item_'+idx+'_no" name="item_'+idx+'" value="No">'
+    +'<span class="pm-choice-mark" aria-hidden="true"></span>'
+    +'</label></td></tr>';
+}
+function syncPmChoiceHighlight(radio){
+  if(!radio)return;
+  const row=radio.closest('tr');
+  if(!row)return;
+  const yesCell=row.querySelector('.pm-yes-cell');
+  const noCell=row.querySelector('.pm-no-cell');
+  const yesRadio=row.querySelector('input[value="Yes"]');
+  const noRadio=row.querySelector('input[value="No"]');
+  if(yesCell&&yesRadio){
+    yesCell.classList.toggle('pm-selected',!!yesRadio.checked);
+    const mark=yesCell.querySelector('.pm-choice-mark');
+    if(mark)mark.textContent=yesRadio.checked?'✓':'';
+  }
+  if(noCell&&noRadio){
+    noCell.classList.toggle('pm-selected',!!noRadio.checked);
+    const mark=noCell.querySelector('.pm-choice-mark');
+    if(mark)mark.textContent=noRadio.checked?'✓':'';
+  }
+}
+function syncAllPmChoiceHighlights(){
+  document.querySelectorAll('.pm-choice-input').forEach(function(radio){
+    if(radio.checked)syncPmChoiceHighlight(radio);
+  });
+}
+function initPmTakeoverTable(){
+  const body=document.getElementById('itemsBody');
+  if(!body)return;
+  body.innerHTML=pmItems.map(function(label,idx){return rowHtml(label,idx);}).join('');
+  body.querySelectorAll('.pm-choice-input').forEach(function(radio){
+    radio.addEventListener('change',function(){syncPmChoiceHighlight(radio);});
+  });
+}
+initPmTakeoverTable();
+(function(){const d=document.getElementById('sign_date');if(d&&!d.value)d.value=new Date().toISOString().slice(0,10);})();
+function pmVal(id){const el=document.getElementById(id);return el?el.value.trim():'';}
+function pmStatus(msg,err=false){const el=document.getElementById('pmStatus');el.textContent=msg;el.className='status-msg'+(err?' err':'');}
+let pmSigMode='draw',pmCurrentFont='Dancing Script',pmSigDataUrl=null,pmSigReady=false,pmDrawing=false,pmHasSig=false,pmLastX=0,pmLastY=0;
+const pmCanvas=document.getElementById('pmSigCanvas');
+const pmCtx=pmCanvas?pmCanvas.getContext('2d'):null;
+function resizePmSigCanvas(){
+  if(!pmCanvas)return;
+  const wrap=document.getElementById('pmSigCanvasWrap');
+  if(!wrap)return;
+  const ratio=window.devicePixelRatio||1;
+  const w=wrap.offsetWidth||760;
+  pmCanvas.width=w*ratio;
+  pmCanvas.height=140*ratio;
+  pmCanvas.style.width='100%';
+  pmCanvas.style.height='140px';
+  pmCtx.setTransform(1,0,0,1,0,0);
+  pmCtx.scale(ratio,ratio);
+  pmCtx.strokeStyle='#16213e';
+  pmCtx.lineWidth=2.3;
+  pmCtx.lineCap='round';
+  pmCtx.lineJoin='round';
+}
+function pmSigPos(e){
+  const r=pmCanvas.getBoundingClientRect();
+  const t=e.touches?e.touches[0]:e;
+  return{x:t.clientX-r.left,y:t.clientY-r.top};
+}
+function startPmDraw(e){e.preventDefault();pmDrawing=true;const p=pmSigPos(e);pmLastX=p.x;pmLastY=p.y;pmCtx.beginPath();pmCtx.moveTo(pmLastX,pmLastY);}
+function movePmDraw(e){
+  e.preventDefault();
+  if(!pmDrawing)return;
+  const p=pmSigPos(e);
+  pmCtx.beginPath();
+  pmCtx.moveTo(pmLastX,pmLastY);
+  pmCtx.lineTo(p.x,p.y);
+  pmCtx.stroke();
+  pmLastX=p.x;
+  pmLastY=p.y;
+  if(!pmHasSig){
+    pmHasSig=true;
+    document.getElementById('pmSigCanvasWrap').classList.add('has-sig');
+  }
+}
+function endPmDraw(){pmDrawing=false;}
+function clearPmDrawSignature(){
+  if(!pmCtx||!pmCanvas)return;
+  pmCtx.clearRect(0,0,pmCanvas.width,pmCanvas.height);
+  pmHasSig=false;
+  document.getElementById('pmSigCanvasWrap').classList.remove('has-sig');
+}
+function confirmPmDrawSignature(){
+  if(!pmHasSig){pmStatus('Please draw your signature first.',true);return;}
+  showPmSigConfirmed(pmCanvas.toDataURL('image/png'),'Drawn signature captured');
+}
+function updatePmTypeSig(){
+  const val=document.getElementById('pmSigTypeInput').value;
+  const preview=document.getElementById('pmSigTypePreview');
+  if(preview){
+    preview.textContent=val;
+    preview.style.setProperty('font-family',"'"+pmCurrentFont+"', cursive",'important');
+  }
+}
+function setPmSigFont(font,el){
+  pmCurrentFont=font;
+  document.querySelectorAll('#pmFontPicker .font-pill').forEach(function(pill){pill.classList.remove('active');});
+  if(el)el.classList.add('active');
+  updatePmTypeSig();
+}
+async function confirmPmTypeSignature(){
+  const val=(document.getElementById('pmSigTypeInput').value||'').trim();
+  if(!val){pmStatus('Please type your name first.',true);return false;}
+  if(document.fonts){
+    try{await document.fonts.load("56px '"+pmCurrentFont+"'");await document.fonts.ready;}catch(e){}
+  }
+  const tc=document.createElement('canvas');
+  tc.width=700;
+  tc.height=140;
+  const tctx=tc.getContext('2d');
+  tctx.clearRect(0,0,tc.width,tc.height);
+  tctx.font="500 56px '"+pmCurrentFont+"', cursive";
+  tctx.fillStyle='#16213e';
+  tctx.textBaseline='middle';
+  tctx.fillText(val,18,74);
+  showPmSigConfirmed(tc.toDataURL('image/png'),'Typed signature captured');
+  return true;
+}
+function handlePmSigUpload(e){
+  const file=e.target.files&&e.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    pmSigDataUrl=String(ev.target&&ev.target.result||'');
+    document.getElementById('pmUploadPreviewImg').src=pmSigDataUrl;
+    document.getElementById('pmUploadPreview').style.display='block';
+    document.getElementById('pmUploadZone').style.display='none';
+  };
+  reader.readAsDataURL(file);
+}
+function clearPmSigUpload(){
+  document.getElementById('pmUploadPreview').style.display='none';
+  document.getElementById('pmUploadZone').style.display='block';
+  document.getElementById('pmSigFileInput').value='';
+  pmSigDataUrl=null;
+}
+function confirmPmUploadSignature(){
+  if(!pmSigDataUrl){pmStatus('Please upload a signature image first.',true);return;}
+  showPmSigConfirmed(pmSigDataUrl,'Uploaded signature captured');
+}
+function showPmSigConfirmed(dataUrl,label){
+  const box=document.getElementById('pmSigConfirmed');
+  const sigBox=document.getElementById('pmSigBox');
+  document.getElementById('pmSigConfirmedThumb').src=dataUrl;
+  document.getElementById('pmSigConfirmedText').textContent='✓ '+label;
+  document.getElementById('pm_signature_data').value=dataUrl;
+  pmSigReady=true;
+  pmSigDataUrl=dataUrl;
+  box.classList.add('show');
+  if(sigBox)sigBox.classList.add('signature-locked');
+}
+function resetPmSignature(){
+  const box=document.getElementById('pmSigConfirmed');
+  const sigBox=document.getElementById('pmSigBox');
+  box.classList.remove('show');
+  if(sigBox)sigBox.classList.remove('signature-locked');
+  document.getElementById('pm_signature_data').value='';
+  pmSigReady=false;
+  pmSigDataUrl=null;
+  clearPmDrawSignature();
+  clearPmSigUpload();
+  const tabs=document.querySelector('.pm-takeover-shell .sig-tabs');
+  if(tabs)tabs.style.display='';
+  document.querySelectorAll('.pm-takeover-shell .sig-panel').forEach(function(panel){panel.style.display='';});
+  pmSigMode = 'draw';
+  switchPmSigTab('draw', document.querySelector('.pm-takeover-shell .sig-tab[onclick*="\'draw\'"]') || document.querySelector('.pm-takeover-shell .sig-tab'));
+}
+function switchPmSigTab(mode,btn){
+  pmSigMode=mode;
+  document.querySelectorAll('.pm-takeover-shell .sig-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.pm-takeover-shell .sig-tab').forEach(function(t){t.classList.remove('active');});
+  const panel=document.getElementById('pm-sig-panel-'+mode);
+  if(panel)panel.classList.add('active');
+  if(btn)btn.classList.add('active');
+  if(mode==='draw')setTimeout(resizePmSigCanvas,50);
+}
+async function ensurePmSignatureCaptured(){
+  if(pmSigReady&&document.getElementById('pm_signature_data').value)return true;
+  if(pmSigMode==='draw'&&pmHasSig&&pmCanvas){
+    showPmSigConfirmed(pmCanvas.toDataURL('image/png'),'Drawn signature captured');
+    return true;
+  }
+  if(pmSigMode==='type')return confirmPmTypeSignature();
+  if(pmSigMode==='upload'&&pmSigDataUrl){
+    showPmSigConfirmed(pmSigDataUrl,'Uploaded signature captured');
+    return true;
+  }
+  return false;
+}
+if(pmCanvas){
+  pmCanvas.addEventListener('mousedown',startPmDraw);
+  pmCanvas.addEventListener('mousemove',movePmDraw);
+  pmCanvas.addEventListener('mouseup',endPmDraw);
+  pmCanvas.addEventListener('mouseleave',endPmDraw);
+  pmCanvas.addEventListener('touchstart',startPmDraw,{passive:false});
+  pmCanvas.addEventListener('touchmove',movePmDraw,{passive:false});
+  pmCanvas.addEventListener('touchend',endPmDraw);
+  window.addEventListener('resize',resizePmSigCanvas);
+  setTimeout(resizePmSigCanvas,200);
+}
+function collectPmData(){
+  const form=document.getElementById('main-form');
+  const data={
+    signer_name:pmVal('signer_name'),
+    sign_date:pmVal('sign_date')||new Date().toISOString().slice(0,10),
+    other_items:pmVal('other_items')
+  };
+  pmItems.forEach(function(label,idx){
+    const key='item_'+idx;
+    const yes=form?form.querySelector('#'+key+'_yes'):null;
+    const no=form?form.querySelector('#'+key+'_no'):null;
+    if(yes&&yes.checked)data[key]='Yes';
+    else if(no&&no.checked)data[key]='No';
+    else data[key]='';
+  });
+  if(typeof shmCollectFieldSnapshot==='function'){
+    const snap=shmCollectFieldSnapshot();
+    pmItems.forEach(function(label,idx){
+      const key='item_'+idx;
+      if(!data[key]&&snap[key])data[key]=String(snap[key]);
+    });
+    if(!data.signer_name&&snap.signer_name)data.signer_name=String(snap.signer_name);
+    if(!data.other_items&&snap.other_items)data.other_items=String(snap.other_items);
+  }
+  return data;
+}
+function countPmAnswers(data){
+  return pmItems.reduce(function(total,label,idx){
+    const val=data['item_'+idx];
+    return total+((val==='Yes'||val==='No')?1:0);
+  },0);
+}
+function base64ToBlob(base64,mime){const bin=atob(base64);const out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return new Blob([out],{type:mime||'application/octet-stream'});}
+function pmFormatDate(raw){
+  if(!raw)return '';
+  const parts=String(raw).split('-');
+  if(parts.length===3)return parts[2]+'/'+parts[1]+'/'+parts[0];
+  return raw;
+}
+function pmPdfNeedPage(pdf,y,h,margin,pageH){
+  if(y+h>pageH-margin){
+    pdf.addPage();
+    return margin;
+  }
+  return y;
+}
+function pmPdfDrawChoiceCell(pdf,x,y,w,h,selected){
+  pdf.setDrawColor(244,122,33);
+  pdf.setLineWidth(0.25);
+  if(selected){
+    pdf.setFillColor(255,237,213);
+    pdf.rect(x,y,w,h,'FD');
+  }else{
+    pdf.rect(x,y,w,h);
+  }
+  const cx=x+w/2;
+  const cy=y+h/2;
+  if(selected){
+    pdf.setFillColor(244,122,33);
+    pdf.circle(cx,cy,2.2,'F');
+    pdf.setFont('helvetica','bold');
+    pdf.setFontSize(8);
+    pdf.setTextColor(255,255,255);
+    pdf.text('X',cx,cy+0.9,{align:'center'});
+  }else{
+    pdf.circle(cx,cy,2.2);
+  }
+  pdf.setFont('helvetica','normal');
+  pdf.setFontSize(8);
+  pdf.setTextColor(30,41,59);
+}
+function pmFileIsImage(file){
+  return /^image\//i.test(file.type)||/\.(jpg|jpeg|png|gif|webp)$/i.test(file.name||'');
+}
+function pmReadFileAsDataUrl(file){
+  return new Promise(function(resolve,reject){
+    const reader=new FileReader();
+    reader.onload=function(e){resolve(String(e.target&&e.target.result||''));};
+    reader.onerror=function(){reject(new Error('Could not read '+file.name));};
+    reader.readAsDataURL(file);
+  });
+}
+function pmImageFormat(dataUrl){
+  if(/image\/jpe?g/i.test(dataUrl))return 'JPEG';
+  if(/image\/png/i.test(dataUrl))return 'PNG';
+  if(/image\/gif/i.test(dataUrl))return 'GIF';
+  if(/image\/webp/i.test(dataUrl))return 'WEBP';
+  return 'JPEG';
+}
+async function buildPmPdfProgrammatic(data,attachmentFiles){
+  const{jsPDF}=window.jspdf;
+  if(!jsPDF)throw new Error('PDF tools failed to load.');
+  const pdf=new jsPDF('p','mm','a4');
+  const margin=12;
+  const pageW=210;
+  const pageH=297;
+  const contentW=pageW-margin*2;
+  let y=margin;
+  const colDoc=contentW*0.68;
+  const colYes=contentW*0.16;
+  const colNo=contentW*0.16;
+  const orange=[244,122,33];
+
+  pdf.setDrawColor.apply(pdf,orange);
+  pdf.setLineWidth(0.5);
+  pdf.rect(margin,y,contentW,20);
+  pdf.setFont('helvetica','bold');
+  pdf.setFontSize(16);
+  pdf.setTextColor.apply(pdf,orange);
+  pdf.text('TAKEOVER OF MANAGEMENT',margin+4,y+9);
+  pdf.setFontSize(10);
+  pdf.setTextColor(71,85,105);
+  pdf.text('List of Items',margin+4,y+15);
+  pdf.setFontSize(9);
+  pdf.setTextColor(51,65,85);
+  pdf.text('ShareHouse',pageW-margin-4,y+8,{align:'right'});
+  pdf.text('Managers',pageW-margin-4,y+13,{align:'right'});
+  y+=26;
+
+  function drawTableHeader(){
+    const headerH=12;
+    y=pmPdfNeedPage(pdf,y,headerH,margin,pageH);
+    pdf.setFillColor(255,247,237);
+    pdf.setDrawColor.apply(pdf,orange);
+    pdf.setLineWidth(0.3);
+    pdf.rect(margin,y,contentW,headerH,'FD');
+    pdf.line(margin+colDoc,y,margin+colDoc,y+headerH);
+    pdf.line(margin+colDoc+colYes,y,margin+colDoc+colYes,y+headerH);
+    pdf.line(margin+colDoc,y+6,pageW-margin,y+6);
+    pdf.setFont('helvetica','bold');
+    pdf.setFontSize(9);
+    pdf.setTextColor(154,52,18);
+    pdf.text('Documents',margin+3,y+4.5);
+    pdf.text('Attached',margin+colDoc+colYes+colNo/2,y+4.5,{align:'center'});
+    pdf.text('Yes',margin+colDoc+colYes/2,y+10,{align:'center'});
+    pdf.text('No',margin+colDoc+colYes+colNo/2,y+10,{align:'center'});
+    y+=headerH;
+  }
+  drawTableHeader();
+
+  pmItems.forEach(function(label,idx){
+    const val=data['item_'+idx]||'';
+    const isSub=!!pmSubRowIndexes[idx];
+    const labelW=colDoc-(isSub?10:6);
+    const lines=pdf.splitTextToSize(label,labelW);
+    const rowH=Math.max(isSub?6.5:7.5,lines.length*4.2+2.5);
+    y=pmPdfNeedPage(pdf,y,rowH,margin,pageH);
+    if(y===margin)drawTableHeader();
+    pdf.setDrawColor.apply(pdf,orange);
+    pdf.setLineWidth(0.25);
+    pdf.rect(margin,y,contentW,rowH);
+    pdf.line(margin+colDoc,y,margin+colDoc,y+rowH);
+    pdf.line(margin+colDoc+colYes,y,margin+colDoc+colYes,y+rowH);
+    pdf.setFont('helvetica','normal');
+    pdf.setFontSize(isSub?7.5:8);
+    pdf.setTextColor(isSub?71:30, isSub?85:41, isSub?105:59);
+    pdf.text(lines,margin+(isSub?8:3),y+4.5);
+    pmPdfDrawChoiceCell(pdf,margin+colDoc,y,colYes,rowH,val==='Yes');
+    pmPdfDrawChoiceCell(pdf,margin+colDoc+colYes,y,colNo,rowH,val==='No');
+    y+=rowH;
+  });
+
+  y+=5;
+  y=pmPdfNeedPage(pdf,y,18,margin,pageH);
+  pdf.setFont('helvetica','bold');
+  pdf.setFontSize(9);
+  pdf.setTextColor(39,52,79);
+  pdf.text('Any other items / notes',margin,y);
+  y+=5;
+  pdf.setFont('helvetica','normal');
+  pdf.setFontSize(8.5);
+  pdf.setTextColor(30,41,59);
+  const notes=(data.other_items||'').trim()||'—';
+  pdf.splitTextToSize(notes,contentW).forEach(function(line){
+    y=pmPdfNeedPage(pdf,y,5,margin,pageH);
+    pdf.text(line,margin,y);
+    y+=4.5;
+  });
+
+  y+=4;
+  y=pmPdfNeedPage(pdf,y,38,margin,pageH);
+  pdf.setDrawColor(219,231,251);
+  pdf.setFillColor(248,251,255);
+  pdf.setLineWidth(0.3);
+  pdf.rect(margin,y,contentW,34,'FD');
+  pdf.setFont('helvetica','bold');
+  pdf.setFontSize(9);
+  pdf.setTextColor(39,52,79);
+  pdf.text('Signer name: '+(data.signer_name||''),margin+4,y+8);
+  pdf.text('Date: '+pmFormatDate(data.sign_date||''),margin+4,y+14);
+  pdf.text('Signature:',margin+4,y+20);
+  const sigData=document.getElementById('pm_signature_data').value;
+  if(sigData){
+    try{pdf.addImage(sigData,'PNG',margin+4,y+22,70,10);}catch(e){}
+  }
+  y+=40;
+
+  if(attachmentFiles&&attachmentFiles.length){
+    y=pmPdfNeedPage(pdf,y,14,margin,pageH);
+    pdf.setDrawColor.apply(pdf,orange);
+    pdf.setLineWidth(0.4);
+    pdf.line(margin,y,pageW-margin,y);
+    y+=7;
+    pdf.setFont('helvetica','bold');
+    pdf.setFontSize(11);
+    pdf.setTextColor.apply(pdf,orange);
+    pdf.text('Supporting Documents',margin,y);
+    y+=8;
+    for(let i=0;i<attachmentFiles.length;i++){
+      const file=attachmentFiles[i];
+      y=pmPdfNeedPage(pdf,y,12,margin,pageH);
+      pdf.setFont('helvetica','bold');
+      pdf.setFontSize(9);
+      pdf.setTextColor(39,52,79);
+      pdf.text((i+1)+'. '+file.name,margin,y);
+      y+=5;
+      if(pmFileIsImage(file)&&file.size<=1500000){
+        try{
+          const dataUrl=await pmReadFileAsDataUrl(file);
+          const fmt=pmImageFormat(dataUrl);
+          const imgH=55;
+          y=pmPdfNeedPage(pdf,y,imgH+6,margin,pageH);
+          pdf.addImage(dataUrl,fmt,margin,y,contentW,imgH);
+          y+=imgH+8;
+        }catch(e){
+          pdf.setFont('helvetica','normal');
+          pdf.setFontSize(8);
+          pdf.setTextColor(100,116,139);
+          pdf.text('(Image could not be embedded)',margin+2,y);
+          y+=6;
+        }
+      }else{
+        pdf.setFont('helvetica','normal');
+        pdf.setFontSize(8);
+        pdf.setTextColor(100,116,139);
+        pdf.text('Attached file: '+file.name+' ('+Math.ceil(file.size/1024)+' KB)',margin+2,y);
+        y+=7;
+      }
+    }
+  }
+  return pdf.output('datauristring').split(',')[1];
+}
+async function buildPmPdfBase64(data,attachmentFiles){
+  return buildPmPdfProgrammatic(data,attachmentFiles);
+}
+
+const PM_ATTACHMENT_SLOTS=['keys','condition','other'];
+const PM_SLOT_LABELS={keys:'Keys',condition:'Condition',other:'Other'};
+const PM_SLOT_MAX={keys:6,condition:8,other:8};
+const PM_MAX_SINGLE=25*1024*1024;
+const pmAttachmentsBySlot={keys:[],condition:[],other:[]};
+
+function pmSanitizeFileBase(name){
+  return String(name||'file').replace(/[\\/:*?"<>|]+/g,'_').replace(/\s+/g,' ').trim()||'file';
+}
+function pmPrefixedFileName(slot,fileName){
+  const base=pmSanitizeFileBase(fileName);
+  const prefix=slot+'__';
+  if(base.toLowerCase().indexOf(prefix)===0)return base;
+  return prefix+base;
+}
+function pmTotalAttachmentCount(){
+  return PM_ATTACHMENT_SLOTS.reduce(function(sum,slot){return sum+pmAttachmentsBySlot[slot].length;},0);
+}
+function refreshPmAttachmentLists(){
+  PM_ATTACHMENT_SLOTS.forEach(function(slot){
+    const list=document.getElementById('pm_list_'+slot);
+    if(!list)return;
+    const files=pmAttachmentsBySlot[slot];
+    list.innerHTML=files.map(function(f,idx){
+      return '<li><span class="pm-att-meta"><span class="pm-att-name">'+pmSanitizeFileBase(f.name)+'</span><span style="color:#c2410c;font-weight:500">('+Math.ceil(f.size/1024)+' KB)</span></span><button type="button" onclick="removePmSlotFile(\''+slot+'\','+idx+')">Remove</button></li>';
+    }).join('');
+  });
+  const empty=document.getElementById('attachmentEmpty');
+  if(empty)empty.style.display=pmTotalAttachmentCount()?'none':'block';
+}
+function addPmSlotFiles(slot,fileList){
+  if(PM_ATTACHMENT_SLOTS.indexOf(slot)===-1)return;
+  const incoming=Array.from(fileList||[]);
+  if(!incoming.length)return;
+  const bucket=pmAttachmentsBySlot[slot];
+  const room=Math.max(0,(PM_SLOT_MAX[slot]||4)-bucket.length);
+  const accepted=incoming.slice(0,room);
+  for(const file of accepted){
+    if(file.size>PM_MAX_SINGLE){
+      pmStatus(file.name+' is larger than 25 MB. Please upload a smaller file.',true);
+      continue;
+    }
+    bucket.push(file);
+  }
+  if(incoming.length>room){
+    pmStatus('Only '+(PM_SLOT_MAX[slot]||4)+' files allowed in '+PM_SLOT_LABELS[slot]+'. Extra files were skipped.',true);
+  }
+  refreshPmAttachmentLists();
+}
+function removePmSlotFile(slot,index){
+  if(!pmAttachmentsBySlot[slot])return;
+  pmAttachmentsBySlot[slot].splice(index,1);
+  refreshPmAttachmentLists();
+}
+function clearPmSlot(slot){
+  if(!pmAttachmentsBySlot[slot])return;
+  pmAttachmentsBySlot[slot]=[];
+  const fileInput=document.getElementById('pm_files_'+slot);
+  const cameraInput=document.getElementById('pm_camera_'+slot);
+  if(fileInput)fileInput.value='';
+  if(cameraInput)cameraInput.value='';
+  refreshPmAttachmentLists();
+}
+function triggerPmCamera(slot){
+  const cameraInput=document.getElementById('pm_camera_'+slot);
+  if(cameraInput)cameraInput.click();
+}
+function bindPmAttachmentInputs(){
+  PM_ATTACHMENT_SLOTS.forEach(function(slot){
+    const fileInput=document.getElementById('pm_files_'+slot);
+    const cameraInput=document.getElementById('pm_camera_'+slot);
+    if(fileInput){
+      fileInput.addEventListener('change',function(){
+        addPmSlotFiles(slot,fileInput.files);
+        fileInput.value='';
+      });
+    }
+    if(cameraInput){
+      cameraInput.addEventListener('change',function(){
+        addPmSlotFiles(slot,cameraInput.files);
+        cameraInput.value='';
+      });
+    }
+  });
+  refreshPmAttachmentLists();
+}
+bindPmAttachmentInputs();
+
+function collectAttachmentFiles(){
+  const selected=[];
+  for(const slot of PM_ATTACHMENT_SLOTS){
+    const files=pmAttachmentsBySlot[slot]||[];
+    for(const file of files){
+      if(file.size>PM_MAX_SINGLE){
+        throw new Error(file.name+' is larger than 25 MB. Please upload a smaller file.');
+      }
+      selected.push(new File([file],pmPrefixedFileName(slot,file.name),{type:file.type||'application/octet-stream',lastModified:file.lastModified}));
+    }
+  }
+  if(selected.length>18){
+    throw new Error('Too many attachments (max 18). Please remove some files.');
+  }
+  return selected;
+}
+function collectAttachmentManifest(attachmentFiles){
+  return attachmentFiles.map(function(file){
+    const name=String(file.name||'');
+    const slot=PM_ATTACHMENT_SLOTS.find(function(s){return name.toLowerCase().indexOf(s+'__')===0;})||'other';
+    return {slot:slot,fileName:name,size:file.size,type:file.type||''};
+  });
+}
+async function pmFetchWithTimeout(url,options,timeoutMs){
+  const controller=new AbortController();
+  const timer=setTimeout(function(){controller.abort();},timeoutMs||120000);
+  try{
+    return await fetch(url,Object.assign({},options||{},{signal:controller.signal}));
+  }finally{
+    clearTimeout(timer);
+  }
+}
+
+async function submitPmTakeover(){
+  if(!pmVal('signer_name')){pmStatus('Please enter signer name.',true);return;}
+  if(!(await ensurePmSignatureCaptured())){pmStatus('Please add and confirm your signature.',true);return;}
+  const btn=document.getElementById('pmSubmitBtn');
+  if(btn)btn.disabled=true;
+  pmStatus('Submitting takeover form...');
+  const data=collectPmData();
+  const answered=countPmAnswers(data);
+  if(answered===0){
+    pmStatus('Please select Yes or No for at least one checklist item.',true);
+    if(btn)btn.disabled=false;
+    return;
+  }
+  let attachmentFiles=[];
+  try{attachmentFiles=collectAttachmentFiles();}catch(e){pmStatus(e.message||'Attachment error.',true);if(btn)btn.disabled=false;return;}
+  if(!window.SHM_DOC_ID||!window.SHM_TOKEN){pmStatus('Signing session expired. Please reopen the link from your email.',true);if(btn)btn.disabled=false;return;}
+  try{
+    const manifest=collectAttachmentManifest(attachmentFiles);
+    const fd=new FormData();
+    fd.append('doc_id',window.SHM_DOC_ID);
+    fd.append('token',window.SHM_TOKEN);
+    fd.append('signature',document.getElementById('pm_signature_data').value);
+    fd.append('agreement_data',JSON.stringify({
+      ...data,
+      attachment_count:attachmentFiles.length,
+      attachment_names:attachmentFiles.map(function(f){return f.name;}),
+      attachment_manifest:manifest,
+      attachment_slots:{
+        keys:pmAttachmentsBySlot.keys.length,
+        condition:pmAttachmentsBySlot.condition.length,
+        other:pmAttachmentsBySlot.other.length
+      }
+    }));
+    for(let i=0;i<attachmentFiles.length;i++){
+      fd.append('attachment_'+i,attachmentFiles[i],attachmentFiles[i].name);
+    }
+    if(attachmentFiles.length)pmStatus('Submitting takeover form and '+attachmentFiles.length+' supporting file'+(attachmentFiles.length>1?'s':'')+'...');
+    const res=await pmFetchWithTimeout(window.SHM_API_URL+'pm-takeover/submit',{method:'POST',body:fd},300000);
+    if(!res.ok){
+      let msg=await res.text();
+      try{const j=JSON.parse(msg);msg=j.message||msg;}catch(e){}
+      pmStatus(msg||'Submit failed.',true);
+      if(btn)btn.disabled=false;
+      return;
+    }
+    await res.json().catch(()=>({}));
+    document.getElementById('main-form').style.display='none';
+    document.getElementById('ok-view').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(e){
+    const aborted=e&&e.name==='AbortError';
+    pmStatus(aborted?'Upload timed out. Please check your connection and try again.':'Network error while submitting. Please try again.',true);
+    if(btn)btn.disabled=false;
+  }
+}
+</script>

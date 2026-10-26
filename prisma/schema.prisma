@@ -1,0 +1,455 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────
+// AUTH (Phase 3)
+// ─────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  companyUsers  CompanyUser[]
+  contracts     Contract[]
+  auditLogs     AuditLog[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─────────────────────────────────────────
+// COMPANY / WORKSPACE (Phase 4)
+// ─────────────────────────────────────────
+
+model Company {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  logo      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  companyUsers     CompanyUser[]
+  teamInvitations  TeamInvitation[]
+  templates        Template[]
+  contracts        Contract[]
+  files            File[]
+}
+
+model CompanyUser {
+  id        String      @id @default(cuid())
+  companyId String
+  userId    String
+  role      CompanyRole @default(MEMBER)
+  createdAt DateTime    @default(now())
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, userId])
+  @@index([userId])
+}
+
+enum CompanyRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+model TeamInvitation {
+  id        String           @id @default(cuid())
+  companyId String
+  email     String
+  role      CompanyRole      @default(MEMBER)
+  token     String           @unique @default(cuid())
+  status    InvitationStatus @default(PENDING)
+  expiresAt DateTime
+  createdAt DateTime         @default(now())
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+}
+
+// ─────────────────────────────────────────
+// TEMPLATES (Phase 6)
+// ─────────────────────────────────────────
+
+model Template {
+  id          String   @id @default(cuid())
+  companyId   String
+  name        String
+  description String?
+  content     String   @db.Text
+  fields      String   @default("[]") @db.Text
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  company   Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  contracts Contract[]
+}
+
+// ─────────────────────────────────────────
+// CONTRACTS (Phase 7)
+// ─────────────────────────────────────────
+
+model Contract {
+  id          String         @id @default(cuid())
+  companyId   String
+  createdById String
+  templateId  String?
+  title       String
+  content     String         @db.Text
+  status      ContractStatus @default(DRAFT)
+  expiresAt   DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  company   Company           @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  createdBy User              @relation(fields: [createdById], references: [id])
+  template  Template?         @relation(fields: [templateId], references: [id])
+  signers   ContractSigner[]
+  auditLogs AuditLog[]
+  files     ContractFile[]
+}
+
+enum ContractStatus {
+  DRAFT
+  SENT
+  VIEWED
+  SIGNED
+  COMPLETED
+  EXPIRED
+  CANCELLED
+}
+
+model ContractSigner {
+  id          String       @id @default(cuid())
+  contractId  String
+  name        String
+  email       String
+  token       String       @unique @default(cuid())
+  status      SignerStatus @default(PENDING)
+  signedAt    DateTime?
+  ipAddress   String?
+  userAgent   String?
+  fieldValues String   @default("{}") @db.Text
+  createdAt   DateTime     @default(now())
+
+  contract   Contract    @relation(fields: [contractId], references: [id], onDelete: Cascade)
+  signatures Signature[]
+}
+
+enum SignerStatus {
+  PENDING
+  VIEWED
+  SIGNED
+}
+
+model Signature {
+  id        String   @id @default(cuid())
+  signerId  String
+  imageUrl  String
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  signer ContractSigner @relation(fields: [signerId], references: [id], onDelete: Cascade)
+}
+
+// ─────────────────────────────────────────
+// AUDIT TRAIL (Phase 10)
+// ─────────────────────────────────────────
+
+model AuditLog {
+  id         String    @id @default(cuid())
+  contractId String
+  userId     String?
+  signerId   String?
+  event      AuditEvent
+  ipAddress  String?
+  userAgent  String?
+  metadata   String?  @db.Text
+  createdAt  DateTime  @default(now())
+
+  contract Contract @relation(fields: [contractId], references: [id], onDelete: Cascade)
+  user     User?    @relation(fields: [userId], references: [id])
+}
+
+enum AuditEvent {
+  CONTRACT_CREATED
+  CONTRACT_SENT
+  CONTRACT_VIEWED
+  CONTRACT_SIGNED
+  CONTRACT_COMPLETED
+  CONTRACT_CANCELLED
+  CONTRACT_EXPIRED
+  PDF_GENERATED
+  PDF_DOWNLOADED
+  SIGNER_OPENED_LINK
+  SIGNER_VIEWED_DOCUMENT
+  EMAIL_SENT
+}
+
+// ─────────────────────────────────────────
+// FILE STORAGE (Phase 12)
+// ─────────────────────────────────────────
+
+model File {
+  id          String   @id @default(cuid())
+  companyId   String
+  fileType    String
+  fileName    String
+  storageKey  String   @unique
+  mimeType    String
+  size        Int
+  createdAt   DateTime @default(now())
+
+  company       Company        @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  contractFiles ContractFile[]
+}
+
+model ContractFile {
+  id         String   @id @default(cuid())
+  contractId String
+  fileId     String
+  fileRole   String   // "signed_pdf" | "preview" | "attachment"
+  createdAt  DateTime @default(now())
+
+  contract Contract @relation(fields: [contractId], references: [id], onDelete: Cascade)
+  file     File     @relation(fields: [fileId], references: [id])
+}
+
+// ─────────────────────────────────────────
+// EMAIL LOGS (Phase 8)
+// ─────────────────────────────────────────
+
+model EmailLog {
+  id         String   @id @default(cuid())
+  to         String
+  subject    String
+  type       String
+  status     String   @default("sent")
+  contractId String?
+  metadata   String?  @db.Text
+  createdAt  DateTime @default(now())
+}
+
+// ─────────────────────────────────────────
+// SHM DOCUMENT SIGNING PLUGIN MIGRATION
+// ─────────────────────────────────────────
+
+model ShmDocument {
+  id                String   @id @default(cuid())
+  companyId          String?
+  createdById        String?
+  documentId         String   @unique
+  documentType       String
+  recipientName      String
+  recipientEmail     String
+  recipientRole      String
+  propertyAddress    String
+  status             String   @default("Sent")
+  token              String   @unique
+  adminToken         String?  @unique
+  tenantToken        String?  @unique
+  signingUrl         String?
+  tenantSigningUrl   String?
+  signedDriveUrl     String?
+  adminName          String?
+  adminEmail         String?
+  tenantName         String?
+  tenantEmail        String?
+  agreementData      String?
+  adminSignature     String?
+  tenantSignature    String?
+  adminSignedAt      DateTime?
+  tenantSignedAt     DateTime?
+  tenantSentAt       DateTime?
+  sentAt             DateTime?
+  openedAt           DateTime?
+  viewedAt           DateTime?
+  signedAt           DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  events ShmDocumentEvent[]
+  signers ShmDocumentSigner[]
+
+  @@index([companyId])
+  @@index([companyId, createdAt(sort: Desc)])
+}
+
+model ShmDocumentSigner {
+  id          String   @id @default(cuid())
+  documentId  String
+  name        String
+  email       String
+  role        String
+  signerType  String   // creator | recipient
+  token       String   @unique
+  signingUrl  String?
+  status      String   @default("Not Sent")
+  signature   String?
+  sentAt      DateTime?
+  openedAt    DateTime?
+  viewedAt    DateTime?
+  signedAt    DateTime?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  document ShmDocument @relation(fields: [documentId], references: [documentId], onDelete: Cascade)
+
+  @@index([documentId])
+}
+
+model ShmDocumentEvent {
+  id          String   @id @default(cuid())
+  documentId  String
+  eventType   String
+  eventTime   DateTime @default(now())
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+
+  document ShmDocument @relation(fields: [documentId], references: [documentId], onDelete: Cascade)
+}
+
+model ShmTenantAgreementTemplate {
+  id            String   @id @default(cuid())
+  companyId     String
+  createdById   String?
+  name          String
+  description   String?
+  agreementData String   @db.Text
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([companyId])
+}
+
+// ─────────────────────────────────────────
+// RENTAL APPLICATION LAYER (sidecar to ShmDocument)
+// ─────────────────────────────────────────
+
+model RentalApplication {
+  id              String   @id @default(cuid())
+  companyId       String
+  createdById     String?
+  propertyAddress String
+  title           String?
+  /// Under review | Accepted | Declined | Withdrawn
+  decisionStatus  String   @default("Under review")
+  readinessScore  Int      @default(0)
+  inviteToken     String?  @unique
+  inviteEnabled   Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  documents RentalApplicationDocument[]
+
+  @@index([companyId])
+  @@index([decisionStatus])
+}
+
+model RentalApplicationDocument {
+  id                 String   @id @default(cuid())
+  applicationId      String
+  /// Matches ShmDocument.documentId (e.g. SHM-0001)
+  documentId         String
+  applicantProfileId String?
+  isPrimary          Boolean  @default(false)
+  createdAt          DateTime @default(now())
+
+  application      RentalApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicantProfile ApplicantProfile? @relation(fields: [applicantProfileId], references: [id], onDelete: SetNull)
+
+  @@unique([applicationId, documentId])
+  @@index([documentId])
+  @@index([applicantProfileId])
+}
+
+model ApplicantProfile {
+  id          String   @id @default(cuid())
+  companyId   String
+  email       String
+  firstName   String
+  lastName    String
+  phone       String?
+  /// JSON map of tenant-application field ids → values for signing-frame prefill
+  profileData String   @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  documents RentalApplicationDocument[]
+
+  @@unique([companyId, email])
+  @@index([companyId])
+}
+
+model OtpChallenge {
+  id         String    @id @default(cuid())
+  documentId String
+  email      String
+  codeHash   String
+  expiresAt  DateTime
+  verifiedAt DateTime?
+  attempts   Int       @default(0)
+  createdAt  DateTime  @default(now())
+
+  @@index([documentId, email])
+}

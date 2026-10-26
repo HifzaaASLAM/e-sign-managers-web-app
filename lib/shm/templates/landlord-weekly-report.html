@@ -1,0 +1,541 @@
+<div class="page-shell landlord-weekly-report-shell">
+<style>
+.landlord-weekly-report-shell{font-family:"Segoe UI",Calibri,Arial,sans-serif;color:#1e293b;max-width:820px;margin:0 auto;padding:0 0 32px;background:transparent;}
+.landlord-weekly-report-shell *{box-sizing:border-box;}
+.landlord-weekly-report-shell .lwr-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 4px 14px;}
+.landlord-weekly-report-shell .lwr-brand{font-size:16px;font-weight:700;color:#0f172a;text-decoration:none;}
+.landlord-weekly-report-shell .lwr-nav{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;}
+.landlord-weekly-report-shell .lwr-nav a{color:#64748b;text-decoration:none;}
+.landlord-weekly-report-shell .lwr-nav a:hover{color:#0f172a;}
+.landlord-weekly-report-shell .sheet{background:#fff;border-radius:2px;box-shadow:0 10px 30px rgba(15,23,42,.06);overflow:hidden;}
+.landlord-weekly-report-shell .bar{height:6px;background:#f37a20;}
+.landlord-weekly-report-shell .sheet-body{padding:28px 32px 8px;}
+.landlord-weekly-report-shell .brand-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:18px;border-bottom:1px solid #eceff3;}
+.landlord-weekly-report-shell .eyebrow{color:#f37a20;font-size:11px;font-weight:700;letter-spacing:.14em;margin:0 0 8px;}
+.landlord-weekly-report-shell h1{margin:0;font-size:34px;line-height:1.05;font-weight:800;color:#1b2430;letter-spacing:-.03em;}
+.landlord-weekly-report-shell .company{text-align:right;min-width:240px;}
+.landlord-weekly-report-shell .company-line{display:flex;justify-content:flex-end;align-items:flex-start;gap:10px;}
+.landlord-weekly-report-shell .company-name{font-size:16px;font-weight:800;color:#1b2430;margin:0 0 2px;}
+.landlord-weekly-report-shell .company-meta{font-size:11px;line-height:1.45;color:#8b95a1;}
+.landlord-weekly-report-shell .meta-card{margin-top:22px;background:#f4f6f8;border-radius:14px;padding:18px 18px 14px;}
+.landlord-weekly-report-shell .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;}
+.landlord-weekly-report-shell .span-2{grid-column:1 / -1;}
+.landlord-weekly-report-shell .week-range{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;}
+.landlord-weekly-report-shell .date-picks{display:grid;grid-template-columns:0.7fr 1.1fr 0.9fr;gap:8px;}
+.landlord-weekly-report-shell .sub{display:block;margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.06em;color:#8b95a1;text-transform:uppercase;}
+.landlord-weekly-report-shell .week-hint{margin:8px 0 0;min-height:16px;font-size:12px;color:#64748b;}
+.landlord-weekly-report-shell .field label{display:block;margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.06em;color:#8b95a1;text-transform:uppercase;}
+.landlord-weekly-report-shell .field input,.landlord-weekly-report-shell .field textarea,.landlord-weekly-report-shell .field select,.landlord-weekly-report-shell .send-bar select{width:100%;border:1px solid #e6e8ec;background:#fff;border-radius:8px;padding:10px 12px;font:inherit;font-size:14px;color:#1b2430;outline:none;}
+.landlord-weekly-report-shell input[type="date"],.landlord-weekly-report-shell input[type="week"]{min-height:42px;color-scheme:light;}
+.landlord-weekly-report-shell .other-input{margin-top:8px;}
+.landlord-weekly-report-shell .other-input[hidden]{display:none;}
+.landlord-weekly-report-shell .field input::placeholder,.landlord-weekly-report-shell .field textarea::placeholder{color:#c5cad3;}
+.landlord-weekly-report-shell .field textarea{min-height:78px;resize:vertical;line-height:1.45;}
+.landlord-weekly-report-shell .prepared{margin:14px 2px 2px;padding-top:12px;border-top:1px solid #e6e9ee;font-size:13px;color:#64748b;}
+.landlord-weekly-report-shell .prepared strong{color:#1b2430;}
+.landlord-weekly-report-shell .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#f37a20;margin:0 8px 2px;vertical-align:middle;}
+.landlord-weekly-report-shell .sec{display:flex;align-items:center;gap:10px;margin:26px 0 12px;}
+.landlord-weekly-report-shell .num{width:26px;height:26px;border-radius:50%;background:#1b2430;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;}
+.landlord-weekly-report-shell .sec h2{margin:0;font-size:18px;font-weight:700;color:#1b2430;}
+.landlord-weekly-report-shell .occ-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.landlord-weekly-report-shell .soft{background:#f4f6f8;border:1px solid transparent;border-radius:12px;padding:14px 14px 16px;}
+.landlord-weekly-report-shell .warm{background:#fff8f4;border:1px solid #f6d7c4;}
+.landlord-weekly-report-shell .panel{background:#f4f6f8;border-radius:14px;padding:16px 16px 18px;}
+.landlord-weekly-report-shell .stack{display:flex;flex-direction:column;gap:14px;}
+.landlord-weekly-report-shell .tri{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.landlord-weekly-report-shell .summary-box textarea{min-height:92px;background:#fff;}
+.landlord-weekly-report-shell .foot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:22px 32px 16px;color:#9aa3ad;font-size:13px;}
+.landlord-weekly-report-shell .mel{color:#f37a20;font-size:30px;font-weight:650;letter-spacing:-.02em;line-height:1;}
+.landlord-weekly-report-shell .actions{margin-top:16px;background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 8px 24px rgba(15,23,42,.05);}
+.landlord-weekly-report-shell .send-bar{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;}
+.landlord-weekly-report-shell .send-bar .grow{flex:1;min-width:220px;}
+.landlord-weekly-report-shell .send-bar label{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8b95a1;margin-bottom:6px;}
+.landlord-weekly-report-shell .send-bar input{width:100%;border:1px solid #e6e8ec;border-radius:8px;padding:11px 12px;font:inherit;font-size:14px;color:#1b2430;background:#fff;}
+.landlord-weekly-report-shell .btn-send{background:#f37a20;color:#fff;border:0;border-radius:8px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.landlord-weekly-report-shell .btn-send:disabled{opacity:.55;cursor:not-allowed;}
+.landlord-weekly-report-shell .status-msg{font-size:13px;color:#64748b;align-self:center;}
+.landlord-weekly-report-shell .status-msg.err{color:#b91c1c;}
+.landlord-weekly-report-shell .status-msg.ok{color:#15803d;}
+.landlord-weekly-report-shell .another-wrap{margin-top:14px;text-align:center;}
+.landlord-weekly-report-shell .btn-another{background:#0f172a;color:#fff;border:0;border-radius:8px;padding:11px 18px;font-size:13px;font-weight:700;cursor:pointer;}
+.landlord-weekly-report-shell .btn-another:disabled{opacity:.55;cursor:not-allowed;}
+@media (max-width:720px){
+  .landlord-weekly-report-shell .sheet-body{padding:20px 16px 4px;}
+  .landlord-weekly-report-shell .brand-row,.landlord-weekly-report-shell .meta-grid,.landlord-weekly-report-shell .week-range,.landlord-weekly-report-shell .occ-grid,.landlord-weekly-report-shell .tri{display:block;}
+  .landlord-weekly-report-shell .company{text-align:left;margin-top:16px;}
+  .landlord-weekly-report-shell .company-line{justify-content:flex-start;}
+  .landlord-weekly-report-shell .field{margin-bottom:12px;}
+  .landlord-weekly-report-shell h1{font-size:28px;}
+  .landlord-weekly-report-shell .foot{padding:18px 16px 12px;}
+}
+</style>
+<div id="main-form">
+  <header class="lwr-top">
+    <a class="lwr-brand" href="/dashboard">SHM Documents</a>
+    <nav class="lwr-nav">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/dashboard/documents/new">Send New</a>
+      <a href="/dashboard/applications">Applications</a>
+      <a href="/dashboard/profiles">Profiles</a>
+      <a href="/dashboard/templates">Templates</a>
+      <a href="/dashboard/data">Data</a>
+      <a href="/dashboard/settings">Settings</a>
+    </nav>
+  </header>
+
+  <div class="sheet">
+    <div class="bar"></div>
+    <div class="sheet-body">
+      <div class="brand-row">
+        <div>
+          <p class="eyebrow">LANDLORD UPDATE</p>
+          <h1>Weekly Property<br>Report</h1>
+        </div>
+        <div class="company">
+          <div class="company-line">
+            <div>
+              <p class="company-name">ShareHouse Managers</p>
+              <div class="company-meta">
+                ShareHouseManagers.com.au (Pty Ltd)<br>
+                ABN: 27 685 383 493<br>
+                Estate Agent Lic#093949L<br>
+                Rooming H Op Lic#RH0000919U
+              </div>
+            </div>
+            <svg width="44" height="44" viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M6 30 L32 8 L58 30 V56 H6 Z" fill="#f37a20"/>
+              <circle cx="24" cy="34" r="5.2" fill="#fff"/>
+              <path d="M14 54c.4-7 4.2-11 10-11s9.6 4 10 11" fill="#fff"/>
+              <circle cx="42" cy="34" r="5.2" fill="#fff"/>
+              <path d="M32 54c.4-7 4.2-11 10-11s9.6 4 10 11" fill="#fff"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta-card">
+        <div class="meta-grid">
+          <div class="field">
+            <label for="property_name_pick">Property</label>
+            <select id="property_name_pick"></select>
+            <input id="property_name" class="other-input" type="text" autocomplete="off" placeholder="Type property address" hidden>
+          </div>
+          <div class="field">
+            <label for="landlord_name_pick">Landlord</label>
+            <select id="landlord_name_pick"></select>
+            <input id="landlord_name" class="other-input" type="text" autocomplete="off" placeholder="Type landlord name" hidden>
+          </div>
+          <div class="field span-2">
+            <label>Reporting week</label>
+            <div class="week-range">
+              <div>
+                <span class="sub">From</span>
+                <div class="date-picks">
+                  <select id="week_from_day" aria-label="Week start day"></select>
+                  <select id="week_from_month" aria-label="Week start month"></select>
+                  <select id="week_from_year" aria-label="Week start year"></select>
+                </div>
+              </div>
+              <div>
+                <span class="sub">To</span>
+                <div class="date-picks">
+                  <select id="week_to_day" aria-label="Week end day"></select>
+                  <select id="week_to_month" aria-label="Week end month"></select>
+                  <select id="week_to_year" aria-label="Week end year"></select>
+                </div>
+              </div>
+            </div>
+            <p class="week-hint" id="week_hint"></p>
+            <input id="report_week_range" type="hidden">
+            <input id="report_week_start" type="hidden">
+            <input id="report_week_end" type="hidden">
+          </div>
+          <div class="field">
+            <label>Report date</label>
+            <div class="date-picks">
+              <select id="date_day" aria-label="Report day"></select>
+              <select id="date_month" aria-label="Report month"></select>
+              <select id="date_year" aria-label="Report year"></select>
+            </div>
+            <input id="report_date" type="hidden">
+          </div>
+        </div>
+        <p class="prepared">Prepared by <strong>ShareHouseManagers</strong><span class="dot"></span>Report type <strong>Weekly Landlord Update</strong></p>
+      </div>
+
+      <div class="sec"><span class="num">1</span><h2>Occupancy status</h2></div>
+      <div class="occ-grid">
+        <div class="soft field">
+          <label for="total_rooms_pick">Total rooms</label>
+          <select id="total_rooms_pick"></select>
+          <input id="total_rooms" class="other-input" inputmode="numeric" autocomplete="off" placeholder="Type total rooms" hidden>
+        </div>
+        <div class="soft warm field">
+          <label for="vacant_room_status">Vacant room(s)</label>
+          <input id="vacant_room_status" type="text" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="sec"><span class="num">2</span><h2>Advertising &amp; tenant enquiries</h2></div>
+      <div class="panel stack">
+        <div class="field">
+          <label for="vacant_advertised">Vacant room advertised?</label>
+          <input id="vacant_advertised" type="text" placeholder="Yes / No" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="leasing_narrative">Advertising platform(s)</label>
+          <textarea id="leasing_narrative"></textarea>
+        </div>
+        <div class="tri">
+          <div class="field">
+            <label for="enquiries_received">Enquiries received</label>
+            <input id="enquiries_received" type="text" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="suitable_enquiries">Suitable enquiries</label>
+            <input id="suitable_enquiries" type="text" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="inspections_arranged">Inspections arranged</label>
+            <input id="inspections_arranged" type="text" autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <div class="sec"><span class="num">3</span><h2>Final summary</h2></div>
+      <div class="field summary-box">
+        <textarea id="final_summary"></textarea>
+      </div>
+    </div>
+    <div class="foot">
+      <span>Specialists in shared accommodation management in</span>
+      <span class="mel">Melbourne</span>
+    </div>
+    <div class="bar"></div>
+  </div>
+
+  <div class="actions">
+    <div class="send-bar">
+      <div class="grow">
+        <label for="landlord_email_pick">Landlord email</label>
+        <select id="landlord_email_pick"></select>
+        <input id="landlord_email" class="other-input" type="email" autocomplete="email" placeholder="Type landlord email" hidden>
+      </div>
+      <button class="btn-send" type="button" id="lwrSendBtn" onclick="lwrSendToLandlord()">Send to landlord</button>
+      <span class="status-msg" id="lwrStatus"></span>
+    </div>
+    <div class="another-wrap">
+      <button class="btn-another" type="button" id="lwrAnotherBtn" onclick="lwrSendAnother()">Send another weekly report</button>
+      <span class="status-msg" id="lwrAnotherStatus"></span>
+    </div>
+  </div>
+
+  <input type="hidden" id="advertising_platform">
+  <input type="hidden" id="occupied_rooms">
+  <input type="hidden" id="vacant_rooms">
+  <input type="hidden" id="upcoming_vacancies">
+  <input type="hidden" id="move_ins_this_week">
+  <input type="hidden" id="moving_out">
+  <input type="hidden" id="applications_received">
+  <input type="hidden" id="rent_received_week">
+  <input type="hidden" id="new_maintenance_requests">
+  <input type="hidden" id="urgency_level">
+  <input type="hidden" id="contractor_contacted">
+  <input type="hidden" id="quoted">
+  <input type="hidden" id="landlord_approved">
+  <input type="hidden" id="completed_repairs">
+</div>
+<script>
+function lwrSetStatus(msg,isErr){
+  var el=document.getElementById('lwrStatus');
+  if(!el) return;
+  el.textContent=msg||'';
+  el.className='status-msg'+(isErr?' err':msg?' ok':'');
+}
+function lwrRows(){
+  var injected=window.LWR_PROPERTY_LANDLORDS;
+  if(Array.isArray(injected)&&injected.length) return injected;
+  return [
+    {property_name:'12 King St Brunswick',landlord_name:'chilli Patel',landlord_email:'team@digitechdev.com',total_rooms:'6'},
+    {property_name:'52 Glengarry Ave Burwood',landlord_name:'Jordan Remzi',landlord_email:'jordanremzij@gmail.com',total_rooms:'10'},
+    {property_name:'102 North Road Newport',landlord_name:'Jordan Remzi',landlord_email:'jordanremzij@gmail.com',total_rooms:'9'},
+    {property_name:'26 Eucumbene Road Manor Lake',landlord_name:'Cale Ziola',landlord_email:'tech@dentequip.com.au',total_rooms:'5'},
+    {property_name:'1/17 SHADY GROVE, NUNAWADING',landlord_name:'Dr. Omaira',landlord_email:'omaira14@yahoo.com',total_rooms:'3'},
+    {property_name:'8 Rafa Court, Maribyrnong',landlord_name:'Marco Vargas',landlord_email:'marco@marvarcor.com',total_rooms:'3'},
+    {property_name:'2 Studley Street, Mulgrave',landlord_name:'Girish Ravi Nair',landlord_email:'findgns@gmail.com',total_rooms:'5'},
+    {property_name:'17 Cornerstone Crescent, South Morang',landlord_name:'Sikhangezile Dhliwayo',landlord_email:'skhandlo@gmail.com',total_rooms:'3'},
+    {property_name:'3/13 Ridley Station Albion',landlord_name:'Adams HB',landlord_email:'adam.hb.property@gmail.com',total_rooms:'2'},
+    {property_name:'12/13 Ridley Station Albion',landlord_name:'Adams HB',landlord_email:'adam.hb.property@gmail.com',total_rooms:'3'},
+    {property_name:'16/2 Ambrose Treacy Drive, Bundoora',landlord_name:'Quoc Dat Trieu (Daniel)',landlord_email:'trieuquocdat196@gmail.com',total_rooms:'5'}
+  ];
+}
+function lwrUnique(rows,key){
+  var seen={}, out=[];
+  rows.forEach(function(row){
+    var value=String(row[key]||'').trim();
+    if(!value||seen[value]) return;
+    seen[value]=true;
+    out.push(value);
+  });
+  return out;
+}
+function lwrFillSelect(select,values,placeholder){
+  select.innerHTML='';
+  var blank=document.createElement('option');
+  blank.value='';
+  blank.textContent=placeholder;
+  select.appendChild(blank);
+  values.forEach(function(value){
+    var option=document.createElement('option');
+    option.value=value;
+    option.textContent=value;
+    select.appendChild(option);
+  });
+  var other=document.createElement('option');
+  other.value='__other__';
+  other.textContent='Other';
+  select.appendChild(other);
+}
+function lwrBindCombo(selectId,inputId){
+  var select=document.getElementById(selectId);
+  var input=document.getElementById(inputId);
+  function apply(value,silent){
+    var known=false;
+    for(var i=0;i<select.options.length;i++){
+      if(select.options[i].value===value){ known=true; break; }
+    }
+    if(value&&known&&value!=='__other__'){
+      select.value=value;
+      input.hidden=true;
+      input.value=value;
+    }else if(value){
+      select.value='__other__';
+      input.hidden=false;
+      input.value=value;
+    }else{
+      select.value='';
+      input.hidden=true;
+      input.value='';
+    }
+    if(!silent) input.dispatchEvent(new Event('input',{bubbles:true}));
+  }
+  select.addEventListener('change',function(){
+    if(select.value==='__other__'){
+      input.hidden=false;
+      input.value='';
+      input.focus();
+    }else{
+      input.hidden=true;
+      input.value=select.value;
+    }
+  });
+  return {apply:apply,select:select,input:input};
+}
+var lwrCombos={};
+function lwrCollectAgreementData(){
+  var ids=['property_name','landlord_name','landlord_email','report_date','report_week_range','report_week_start','report_week_end','total_rooms','vacant_room_status','occupied_rooms','vacant_rooms','upcoming_vacancies','move_ins_this_week','moving_out','vacant_advertised','advertising_platform','leasing_narrative','enquiries_received','suitable_enquiries','inspections_arranged','applications_received','rent_received_week','new_maintenance_requests','urgency_level','contractor_contacted','quoted','landlord_approved','completed_repairs','final_summary'];
+  var out={};
+  ids.forEach(function(id){ var el=document.getElementById(id); if(el) out[id]=String(el.value||'').trim(); });
+  if(out.report_week_start&&out.report_week_end){
+    out.report_week_range=out.report_week_start+'-'+out.report_week_end;
+  }else if(!out.report_week_start||!out.report_week_end){
+    var week=lwrWeekSpan(out.report_week_range);
+    out.report_week_range=week.range;
+    out.report_week_start=week.start;
+    out.report_week_end=week.end;
+  }
+  out.report_date=lwrAuDate(out.report_date);
+  return out;
+}
+function lwrFillNumberSelect(select,from,to,placeholder){
+  select.innerHTML='';
+  var blank=document.createElement('option');
+  blank.value='';
+  blank.textContent=placeholder;
+  select.appendChild(blank);
+  for(var n=from;n<=to;n++){
+    var option=document.createElement('option');
+    option.value=String(n);
+    option.textContent=placeholder==='Day'?String(n).padStart(2,'0'):String(n);
+    select.appendChild(option);
+  }
+}
+function lwrFillMonthSelect(select){
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  select.innerHTML='';
+  var blank=document.createElement('option');
+  blank.value='';
+  blank.textContent='Month';
+  select.appendChild(blank);
+  months.forEach(function(name,index){
+    var option=document.createElement('option');
+    option.value=String(index+1);
+    option.textContent=name;
+    select.appendChild(option);
+  });
+}
+function lwrReadPickedDate(prefix){
+  var dayEl=document.getElementById(prefix+'_day');
+  var monthEl=document.getElementById(prefix+'_month');
+  var yearEl=document.getElementById(prefix+'_year');
+  if(!dayEl||!monthEl||!yearEl) return null;
+  var day=dayEl.value;
+  var month=monthEl.value;
+  var year=yearEl.value;
+  if(!day||!month||!year) return null;
+  var date=new Date(Number(year),Number(month)-1,Number(day));
+  if(date.getFullYear()!==Number(year)||date.getMonth()!==Number(month)-1||date.getDate()!==Number(day)) return null;
+  return date;
+}
+function lwrFmtAu(date){
+  var dd=String(date.getDate()).padStart(2,'0');
+  var mm=String(date.getMonth()+1).padStart(2,'0');
+  return dd+'/'+mm+'/'+date.getFullYear();
+}
+function lwrSyncWeek(){
+  var fromDate=lwrReadPickedDate('week_from');
+  var toDate=lwrReadPickedDate('week_to');
+  var hint=document.getElementById('week_hint');
+  var range=document.getElementById('report_week_range');
+  var start=document.getElementById('report_week_start');
+  var end=document.getElementById('report_week_end');
+  var from=fromDate?lwrFmtAu(fromDate):'';
+  var to=toDate?lwrFmtAu(toDate):'';
+  if(start) start.value=from;
+  if(end) end.value=to;
+  var text=from&&to?from+'-'+to:'';
+  if(range) range.value=text;
+  if(hint) hint.textContent=text;
+}
+function lwrSyncReportDate(){
+  var picked=lwrReadPickedDate('date');
+  var input=document.getElementById('report_date');
+  if(input) input.value=picked?lwrFmtAu(picked):'';
+}
+function lwrAuDate(value){
+  var m=String(value||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(!m) return String(value||'').trim();
+  return m[3]+'/'+m[2]+'/'+m[1];
+}
+function lwrWeekSpan(value){
+  var m=String(value||'').match(/^(\d{4})-W(\d{2})$/);
+  if(!m) return {range:String(value||'').trim(), start:'', end:''};
+  var year=Number(m[1]), week=Number(m[2]);
+  var jan4=new Date(Date.UTC(year,0,4));
+  var day=jan4.getUTCDay()||7;
+  var monday=new Date(jan4);
+  monday.setUTCDate(jan4.getUTCDate()-day+1+(week-1)*7);
+  var sunday=new Date(monday);
+  sunday.setUTCDate(monday.getUTCDate()+6);
+  function fmt(d){
+    var dd=String(d.getUTCDate()).padStart(2,'0');
+    var mm=String(d.getUTCMonth()+1).padStart(2,'0');
+    return dd+'/'+mm+'/'+d.getUTCFullYear();
+  }
+  return {range:fmt(monday)+' to '+fmt(sunday), start:fmt(monday), end:fmt(sunday)};
+}
+function lwrInitForm(){
+  var rows=lwrRows();
+  lwrFillSelect(document.getElementById('property_name_pick'), lwrUnique(rows,'property_name'), 'Select property');
+  lwrFillSelect(document.getElementById('landlord_name_pick'), lwrUnique(rows,'landlord_name'), 'Select landlord');
+  lwrFillSelect(document.getElementById('landlord_email_pick'), lwrUnique(rows,'landlord_email'), 'Select email');
+  var roomValues=lwrUnique(rows,'total_rooms').sort(function(a,b){ return Number(a)-Number(b); });
+  lwrFillSelect(document.getElementById('total_rooms_pick'), roomValues, 'Select total rooms');
+  lwrCombos.property=lwrBindCombo('property_name_pick','property_name');
+  lwrCombos.landlord=lwrBindCombo('landlord_name_pick','landlord_name');
+  lwrCombos.email=lwrBindCombo('landlord_email_pick','landlord_email');
+  lwrCombos.rooms=lwrBindCombo('total_rooms_pick','total_rooms');
+  document.getElementById('property_name_pick').addEventListener('change',function(){
+    var picked=this.value;
+    if(!picked||picked==='__other__') return;
+    var row=null;
+    rows.forEach(function(item){ if(item.property_name===picked) row=item; });
+    if(!row) return;
+    lwrCombos.landlord.apply(String(row.landlord_name||'').trim(), true);
+    lwrCombos.email.apply(String(row.landlord_email||'').trim(), true);
+    lwrCombos.rooms.apply(String(row.total_rooms||'').trim(), true);
+  });
+  ['week_from','week_to','date'].forEach(function(prefix){
+    lwrFillNumberSelect(document.getElementById(prefix+'_day'),1,31,'Day');
+    lwrFillMonthSelect(document.getElementById(prefix+'_month'));
+    var year=new Date().getFullYear();
+    lwrFillNumberSelect(document.getElementById(prefix+'_year'),year-1,year+1,'Year');
+  });
+  ['week_from_day','week_from_month','week_from_year','week_to_day','week_to_month','week_to_year'].forEach(function(id){
+    document.getElementById(id).addEventListener('change',lwrSyncWeek);
+  });
+  ['date_day','date_month','date_year'].forEach(function(id){
+    document.getElementById(id).addEventListener('change',lwrSyncReportDate);
+  });
+  ['report_week_range','report_week_start','report_week_end','report_date','vacant_room_status','vacant_advertised','leasing_narrative','enquiries_received','suitable_enquiries','inspections_arranged','final_summary'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.value='';
+  });
+}
+async function lwrSendToLandlord(){
+  var d=lwrCollectAgreementData();
+  if(!d.landlord_name||!d.landlord_email||d.landlord_email.indexOf('@')===-1){
+    lwrSetStatus('Enter the landlord name on the report and a valid landlord email.',true);
+    return;
+  }
+  if(!d.property_name){
+    lwrSetStatus('Property is required.',true);
+    return;
+  }
+  var btn=document.getElementById('lwrSendBtn');
+  if(btn) btn.disabled=true;
+  lwrSetStatus('Sending…',false);
+  if(window.shmBeginSendLock) window.shmBeginSendLock();
+  try{
+    var res=await fetch(window.SHM_API_URL+'landlord-weekly-report/admin-send',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        doc_id:window.SHM_DOC_ID,
+        token:window.SHM_TOKEN,
+        landlord_name:d.landlord_name,
+        landlord_email:d.landlord_email,
+        agreement_data:d
+      })
+    });
+    var json=await res.json().catch(function(){ return {}; });
+    if(!res.ok){
+      lwrSetStatus(json.message||'Could not send report.',true);
+      if(window.shmClearSendLock) window.shmClearSendLock();
+      if(btn) btn.disabled=false;
+      return;
+    }
+    if(window.shmMarkDocSent) window.shmMarkDocSent();
+    lwrSetStatus(json.message||'Report sent to landlord.',false);
+  }catch(e){
+    lwrSetStatus('Network error. Please try again.',true);
+    if(window.shmClearSendLock) window.shmClearSendLock();
+    if(btn) btn.disabled=false;
+  }
+}
+async function lwrSendAnother(){
+  var btn=document.getElementById('lwrAnotherBtn');
+  var status=document.getElementById('lwrAnotherStatus');
+  if(btn) btn.disabled=true;
+  if(status){ status.textContent='Opening a new report…'; status.className='status-msg'; }
+  try{
+    var body=new FormData();
+    body.append('documentType','Landlord Weekly Report');
+    body.append('recipientRole','Landlord');
+    body.append('recipientName','Landlord');
+    var res=await fetch('/api/shm-docs/create',{method:'POST',body:body,credentials:'same-origin'});
+    var json=await res.json().catch(function(){ return {}; });
+    if(!res.ok||!json.creatorSigningUrl){
+      if(status){ status.textContent=json.message||'Could not open a new report.'; status.className='status-msg err'; }
+      if(btn) btn.disabled=false;
+      return;
+    }
+    window.location.href=json.creatorSigningUrl;
+  }catch(e){
+    if(status){ status.textContent='Network error. Please try again.'; status.className='status-msg err'; }
+    if(btn) btn.disabled=false;
+  }
+}
+document.addEventListener('DOMContentLoaded', lwrInitForm);
+</script>
+</div>

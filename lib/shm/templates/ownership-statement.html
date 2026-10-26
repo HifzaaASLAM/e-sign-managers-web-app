@@ -1,0 +1,1238 @@
+
+<div class="page-shell ownership-statement-shell">
+<style id="shm-ownership-blue-fix">
+/* Ownership Statement forced blue theme + table width fix */
+#shm-signing-wrapper .ownership-statement-shell .ownership-header,
+#shm-signing-wrapper .ownership-statement-shell .doc-header.ownership-header{
+  background: linear-gradient(135deg,#1677ff 0%,#0f5ed7 100%) !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .part-label,
+#shm-signing-wrapper .ownership-statement-shell .sec-num,
+#shm-signing-wrapper .ownership-statement-shell .btn-submit,
+#shm-signing-wrapper .ownership-statement-shell .btn-nav.next,
+#shm-signing-wrapper .ownership-statement-shell .sig-tab.active,
+#shm-signing-wrapper .ownership-statement-shell .font-pill.active{
+  background:#1677ff !important;
+  color:#fff !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .btn-submit:hover,
+#shm-signing-wrapper .ownership-statement-shell .btn-nav.next:hover{
+  background:#0f5ed7 !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .part-title,
+#shm-signing-wrapper .ownership-statement-shell .sub-header,
+#shm-signing-wrapper .ownership-statement-shell .sec-title,
+#shm-signing-wrapper .ownership-statement-shell .disc-table th,
+#shm-signing-wrapper .ownership-statement-shell .info-box strong{
+  color:#1677ff !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .disc-table th{
+  background:#f2f6ff !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .main-card{
+  overflow:hidden !important;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 34px 38px 28px !important;
+  border-radius: 16px;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-header{
+  max-width: 1080px;
+  margin: 0 auto;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .part-header{
+  margin: 4px 0 14px;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .part-title{
+  font-size: 31px;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .body-text{
+  margin: 0 0 18px;
+  line-height: 1.65;
+  color: #4b5563;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .g2{
+  gap: 18px 24px;
+  margin-bottom: 4px;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .g3{
+  gap: 16px 20px;
+  margin-bottom: 4px;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .field-wrap{
+  margin-bottom: 12px;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .field-label{
+  margin-bottom: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #334155;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow input{
+  min-height: 40px !important;
+  padding: 9px 10px !important;
+  font-size: 13px !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-period-range{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 8px;
+  align-items: end;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-period-range .os-period-sep{
+  padding-bottom: 10px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-period-range .os-period-part{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-period-range .os-period-part span{
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-period-range input[type="date"]{
+  width: 100%;
+  min-height: 40px !important;
+  padding: 9px 10px !important;
+  font-size: 13px !important;
+  box-sizing: border-box;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .disc-table{
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .disc-table th,
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .disc-table td{
+  padding: 11px 10px !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .sec-header{
+  margin: 10px 0 12px;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .inline-actions{
+  margin: 4px 0 12px !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .disc-table{
+  width:100% !important;
+  max-width:100% !important;
+  table-layout:fixed !important;
+  border-collapse:separate !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .disc-table th,
+#shm-signing-wrapper .ownership-statement-shell .disc-table td{
+  padding:9px 8px !important;
+  word-break:break-word !important;
+  overflow:hidden !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(1),
+#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(1){width:22% !important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(2),
+#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(2){width:20% !important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(3),
+#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(3){width:20% !important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(4),
+#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(4){width:22% !important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(5),
+#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(5){width:16% !important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table input,
+#shm-signing-wrapper .ownership-statement-shell .ownership-summary-table input{
+  width:100% !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+  min-height:34px !important;
+  padding:7px 8px !important;
+  font-size:12px !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-document{
+  display:none;
+  width:794px;
+  max-width:794px;
+  margin:0 auto;
+  padding:24px 28px 32px;
+  background:#fff;
+  color:#1f2937;
+  font-family:Calibri, Arial, sans-serif;
+  font-size:11px;
+  line-height:1.35;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-header-img{
+  width:100%;
+  height:auto;
+  display:block;
+  margin:0 0 14px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-title{
+  font-size:20px;
+  font-weight:700;
+  color:#2f5496;
+  text-transform:uppercase;
+  margin:8px 0 12px;
+  letter-spacing:.3px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-meta-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px 24px;
+  margin-bottom:14px;
+  font-size:11px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-meta-label{
+  font-weight:700;
+  margin-right:8px;
+  color:#111827;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-owner-block{
+  margin:12px 0 18px;
+  font-size:11px;
+  line-height:1.55;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-section-title{
+  font-size:13px;
+  font-weight:700;
+  color:#2f5496;
+  text-transform:uppercase;
+  margin:18px 0 8px;
+  letter-spacing:.2px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  margin-bottom:6px;
+  font-size:10.5px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-table th,
+#shm-signing-wrapper .ownership-statement-shell .os-print-table td{
+  border:1px solid #cbd5e1;
+  padding:5px 6px;
+  vertical-align:top;
+  word-break:break-word;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-table th{
+  background:#f3f4f6;
+  color:#2f5496;
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:9.5px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-subtotal-row td{
+  font-weight:700;
+  background:#fafafa;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-total-row td{
+  font-weight:700;
+  background:#eef2ff;
+  color:#1e3a8a;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-footer{
+  margin-top:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
+  font-size:11px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-print-signature-block{
+  text-align:right;
+  min-width:240px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-send-preview{
+  margin:16px 0 20px;
+  max-height:min(75vh, 920px);
+  overflow:hidden;
+  border:1px solid #dbe3f0;
+  border-radius:10px;
+  background:#f8fafc;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-send-preview-loading{
+  margin:0;
+  padding:28px 16px;
+  text-align:center;
+  color:#64748b;
+  font-size:13px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-send-preview-frame{
+  display:block;
+  width:100%;
+  min-height:min(75vh, 920px);
+  border:0;
+  background:#fff;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-send-preview-fallback{
+  margin:0;
+  padding:20px 18px;
+  font-size:13px;
+  color:#334155;
+  line-height:1.5;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-send-preview-fallback a{
+  color:#1677ff;
+  font-weight:600;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .section-panel{
+  display:block !important;
+  padding-bottom:34px;
+  margin-bottom:10px;
+  border-bottom:1px solid #e8edf5;
+}
+#shm-signing-wrapper .ownership-statement-shell .ownership-single-flow .section-panel:last-of-type{
+  border-bottom:none;
+  padding-bottom:8px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-send-actions{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  position:static;
+  bottom:auto;
+  z-index:auto;
+  margin-top:0;
+  padding:0;
+  background:transparent;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-send-actions .btn-submit{
+  display:inline-flex !important;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-inline-status{
+  width:100%;
+  margin:0 0 4px;
+}
+#shm-signing-wrapper .ownership-statement-shell .os-send-actions-wrap{
+  position:sticky;
+  bottom:0;
+  z-index:5;
+  margin-top:8px;
+  padding:16px 0 4px;
+  background:linear-gradient(to top,#fff 75%,rgba(255,255,255,0));
+}
+</style>
+
+  <div id="main-form">
+    <div class="doc-header ownership-header">
+      <div class="doc-header-left">
+        <h1>Ownership<br>Statement</h1>
+        <div class="act-ref">Owner Statement · ShareHouseManagers</div>
+      </div>
+      <div class="shm-header-logo-wrap">
+        <img class="shm-header-logo" src="/shm-logo.png" alt="ShareHouse Managers">
+      </div>
+    </div>
+
+    <div class="main-card ownership-single-flow" id="statementCapture">
+      <div class="section-panel" id="panel-0">
+        <div class="part-header"><span class="part-label">Part A</span><span class="part-title">Owner & Statement Details</span><div class="part-divider"></div></div>
+        <p class="body-text">This ownership statement summarises rent received, management fees, property maintenance expenses, ownership payments and the closing balance for the selected period.</p>
+        <div class="g2">
+          <div class="field-wrap"><label class="field-label">Statement Title</label><input  id="statement_title" value=""></div>
+          <div class="field-wrap">
+            <label class="field-label">Statement Period</label>
+            <div class="os-period-range">
+              <label class="os-period-part"><span>From</span><input type="date" id="statement_period_from" onchange="syncStatementPeriodFromDates()"></label>
+              <span class="os-period-sep">to</span>
+              <label class="os-period-part"><span>To</span><input type="date" id="statement_period_to" onchange="syncStatementPeriodFromDates()"></label>
+            </div>
+            <input type="hidden" id="statement_period" value="">
+          </div>
+        </div>
+        <div class="g2">
+          <div class="field-wrap"><label class="field-label">Owner Name</label><input  id="owner_name_field" value=""></div>
+          <div class="field-wrap"><label class="field-label">Owner Email</label><input  id="owner_email_field" value=""></div>
+        </div>
+        <div class="field-wrap"><label class="field-label">Owner Address</label><input  id="owner_address" value=""></div>
+        <div class="g3">
+          <div class="field-wrap"><label class="field-label">Phone</label><input  id="owner_phone" value=""></div>
+          <div class="field-wrap"><label class="field-label">Ownership ID</label><input  id="ownership_id" value=""></div>
+          <div class="field-wrap"><label class="field-label">Property Address</label><input  id="property_address" value=""></div>
+        </div>
+        <div class="g3">
+          <div class="field-wrap"><label class="field-label">Opening Balance</label><input  id="opening_balance" value=""></div>
+          <div class="field-wrap"><label class="field-label">Closing Balance</label><input  id="closing_balance" value=""></div>
+          <div class="field-wrap"><label class="field-label">Ownership Payment</label><input  id="ownership_payment" value=""></div>
+        </div>
+      </div>
+
+      <div class="section-panel" id="panel-1">
+        <div class="part-header"><span class="part-label">Part B</span><span class="part-title">Rent Income Summary</span><div class="part-divider"></div></div>
+        <table class="disc-table ownership-table">
+          <thead><tr><th>Property</th><th>Tenancy</th><th>Rent Period Amount</th><th>Paid From / Paid To</th><th>Total</th></tr></thead>
+          <tbody id="rentRows">
+              <tr data-rent-row="1">
+                <td><input id="rent_property_1" value="" placeholder="Property / room"></td>
+                <td><input id="rent_tenancy_1" value="" placeholder="Tenant name"></td>
+                <td><input id="rent_amount_1" value="" placeholder="$250/week"></td>
+                <td><input id="rent_period_1" value="" placeholder="01/03/26 To 31/03/26"></td>
+                <td><input id="rent_total_1" value="" placeholder="$0" oninput="calculateRentTotal()" onblur="formatRentTotalField(this)"></td>
+              </tr>
+          </tbody>
+        </table>
+        <div class="inline-actions" style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <button class="sig-btn" type="button" onclick="addRentRow()">+ Add Row</button>
+          <span style="font-size:12px;color:#64748b;">Add multiple properties, rooms or tenancy rent entries.</span>
+        </div>
+        <div class="field-wrap"><label class="field-label">Total Rent for Period (auto sum of all Total fields)</label><input id="total_rent" value="" readonly></div>
+      </div>
+
+      <div class="section-panel" id="panel-2">
+        <div class="part-header"><span class="part-label">Part C</span><span class="part-title">Fees & Maintenance</span><div class="part-divider"></div></div>
+        <div class="sec-header"><span class="sec-num">1</span><span class="sec-title">Total Fees Paid / Credited In Period</span></div>
+        <div class="g3">
+          <div class="field-wrap"><label class="field-label">Fee Description (auto 10% of Total Rent for Period)</label><input id="fee_description" value="" readonly></div>
+          <div class="field-wrap"><label class="field-label">GST Paid (auto 10% of Fee Description)</label><input id="fee_gst" value="" readonly></div>
+          <div class="field-wrap"><label class="field-label">Money Out (auto Fee Description + GST Paid)</label><input id="fee_money_out" value="" readonly></div>
+        </div>
+        <input type="hidden" id="total_fees" value="">
+
+        <div class="sec-header"><span class="sec-num">2</span><span class="sec-title">Property Maintenance Expenses</span></div>
+        <div id="maintenanceRows">
+          <div class="g3 maintenance-row" data-maintenance-row="1">
+            <div class="field-wrap"><label class="field-label">Maintenance Date / INV#</label><input id="maintenance_ref_1" value=""></div>
+            <div class="field-wrap"><label class="field-label">Maintenance Description</label><input id="maintenance_description_1" value=""></div>
+            <div class="field-wrap"><label class="field-label">Maintenance Total</label><div style="display:flex;gap:6px;align-items:center;"><input id="maintenance_total_1" value="" placeholder="$0" oninput="calculateMaintenanceTotal()" onblur="formatMaintenanceTotalField(this)"><button type="button" class="sig-btn danger" style="padding:7px 9px;min-width:auto;" onclick="removeMaintenanceRow(this)">×</button></div></div>
+          </div>
+        </div>
+        <div class="inline-actions" style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <button class="sig-btn" type="button" onclick="addMaintenanceRow()">+ Add Row</button>
+          <span style="font-size:12px;color:#64748b;">Add multiple maintenance expense entries.</span>
+        </div>
+        <div class="field-wrap"><label class="field-label">Total Maintenance Expenses (auto sum of all Maintenance Total fields)</label><input id="total_maintenance" value="" readonly></div>
+        <div class="field-wrap" style="margin-top:16px;"><label class="field-label">Total Money Out & Maintenance (auto Money Out + Total Maintenance Expenses)</label><input id="total_fees_maintenance" value="" readonly></div>
+      </div>
+
+      <div class="section-panel" id="panel-3">
+        <div class="part-header"><span class="part-label">Part D</span><span class="part-title">Ownership Payments & Summary</span><div class="part-divider"></div></div>
+        <div class="g2">
+          <div class="field-wrap"><label class="field-label">Ownership Payment Date / INV#</label><input  id="ownership_payment_ref" value=""></div>
+          <div class="field-wrap"><label class="field-label">Ownership Payment Description</label><input  id="ownership_payment_description" value=""></div>
+        </div>
+        <table class="disc-table ownership-summary-table">
+          <tbody>
+            <tr><th>Description</th><th>Money Out</th><th>Money In</th></tr>
+            <tr><td>Rental Payments</td><td></td><td><input  id="summary_rental_payments" value=""></td></tr>
+            <tr><td>Management Fees (inc. GST)</td><td><input id="summary_management_fees" value="" readonly></td><td></td></tr>
+            <tr><td>Property Maintenance</td><td><input id="summary_maintenance" value="" readonly></td><td></td></tr>
+            <tr><td>Paid To Owner</td><td><input id="summary_paid_to_owner" value="" readonly></td><td></td></tr>
+          </tbody>
+        </table>
+        <div class="g2">
+          <div class="field-wrap"><label class="field-label">Generated On</label><input  id="generated_on" value=""></div>
+          <div class="field-wrap"><label class="field-label">Notes</label><input  id="statement_notes" value=""></div>
+        </div>
+      </div>
+
+      <div class="section-panel" id="panel-4">
+        <div class="part-header"><span class="part-label">Part E</span><span class="part-title">Send to Owner</span><div class="part-divider"></div></div>
+        <p class="body-text">Scroll through all sections above to complete the statement, then review the PDF below and send it to the owner.</p>
+        <div id="osSendPreview" class="os-send-preview" aria-label="Ownership statement preview"></div>
+        <div id="osLog" class="log-box" style="display:none;"></div>
+      </div>
+
+      <div class="os-send-actions-wrap">
+      <div id="osStatus" class="status-msg os-inline-status"></div>
+      <div class="nav-row os-send-actions">
+        <button class="sig-btn" type="button" id="osSaveDraftBtn" onclick="saveOwnershipStatementDraft()">Save draft</button>
+        <button class="sig-btn" type="button" id="osRefreshPreviewBtn" onclick="renderSendPreview()">Refresh PDF Preview</button>
+        <button class="btn-submit" type="button" id="osSendBtn" onclick="adminSendOwnershipStatement()">Send to Owner</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ok-view" class="success-view"><div class="success-icon">✓</div><h2 id="ok_h">Ownership statement sent</h2><p id="ok_p">Thank you. Your ownership statement is being prepared and will be emailed to the owner shortly. You can close this page and continue with other work.</p><p id="ok_status" class="body-text" style="margin-top:12px;color:#64748b;"></p></div>
+
+  <div id="osPrintDocument" class="os-print-document" aria-hidden="true">
+    <img class="os-print-header-img" src="/shm-plugin-assets/images/ownership-statement-header.png" alt="ShareHouse Managers">
+    <div class="os-print-title" id="osPrintTitle">OWNERSHIP STATEMENT</div>
+    <div class="os-print-meta-grid">
+      <div><span class="os-print-meta-label">STATEMENT PERIOD</span><span id="osPrintPeriod"></span></div>
+      <div><span class="os-print-meta-label">OWNERSHIP ID:</span><span id="osPrintOwnershipId"></span></div>
+      <div><span class="os-print-meta-label">OPENING BALANCE:</span><span id="osPrintOpening"></span></div>
+      <div><span class="os-print-meta-label">CLOSING BALANCE:</span><span id="osPrintClosing"></span></div>
+      <div><span class="os-print-meta-label">OWNERSHIP PAYMENT:</span><span id="osPrintOwnershipPayment"></span></div>
+    </div>
+    <div class="os-print-owner-block">
+      <div><strong>Name:</strong> <span id="osPrintOwnerName"></span></div>
+      <div><strong>Company Name:</strong> <span id="osPrintCompanyName"></span></div>
+      <div><strong>Address:</strong> <span id="osPrintOwnerAddress"></span></div>
+      <div><strong>Phone:</strong> <span id="osPrintOwnerPhone"></span></div>
+      <div><strong>Email:</strong> <span id="osPrintOwnerEmail"></span></div>
+    </div>
+
+    <div class="os-print-section-title">RENT INCOME SUMMARY FOR PERIOD</div>
+    <table class="os-print-table">
+      <thead><tr><th>Property</th><th>Tenancy</th><th>Rent period amount</th><th>Paid From</th><th>Paid To</th><th>Total</th></tr></thead>
+      <tbody id="osPrintRentBody"></tbody>
+      <tfoot><tr class="os-print-total-row"><td colspan="5">Total rent for period</td><td id="osPrintRentTotal"></td></tr></tfoot>
+    </table>
+
+    <div class="os-print-section-title">TOTAL FEES PAID/CREDITED IN PERIOD</div>
+    <table class="os-print-table">
+      <thead><tr><th>Fee</th><th>GST Paid</th><th>MONEY OUT</th><th>MONEY IN</th></tr></thead>
+      <tbody>
+        <tr>
+          <td id="osPrintFeeLabel"></td>
+          <td id="osPrintFeeGst"></td>
+          <td id="osPrintFeeMoneyOut"></td>
+          <td></td>
+        </tr>
+        <tr class="os-print-subtotal-row"><td colspan="2">SUBTOTAL</td><td id="osPrintFeeSubtotalOut"></td><td>$0.00</td></tr>
+      </tbody>
+      <tfoot><tr class="os-print-total-row"><td colspan="3">Total Fees paid in period</td><td id="osPrintFeeTotal"></td></tr></tfoot>
+    </table>
+
+    <div class="os-print-section-title">PROPERTY MAINTENANCE EXPENSIS</div>
+    <table class="os-print-table">
+      <thead><tr><th>Date</th><th>INV#</th><th>Description</th><th>GST</th><th>Paid</th><th>MONEY OUT</th><th>MONEY IN</th></tr></thead>
+      <tbody id="osPrintMaintenanceBody"></tbody>
+      <tfoot><tr class="os-print-total-row"><td colspan="5">TOTAL PAID TO LANDLORD OR</td><td id="osPrintMaintenanceTotal"></td><td></td></tr></tfoot>
+    </table>
+
+    <div class="os-print-section-title">OWNERSHIP PAYMENTS</div>
+    <table class="os-print-table">
+      <thead><tr><th>Date</th><th>INV#</th><th>Description</th><th>GST</th><th>Paid</th><th>MONEY OUT</th><th>MONEY IN</th></tr></thead>
+      <tbody>
+        <tr>
+          <td id="osPrintOwnershipPayDate"></td>
+          <td id="osPrintOwnershipPayInv"></td>
+          <td id="osPrintOwnershipPayDesc"></td>
+          <td>$0.00</td>
+          <td id="osPrintOwnershipPayPaid"></td>
+          <td></td>
+          <td id="osPrintOwnershipPayIn"></td>
+        </tr>
+        <tr class="os-print-subtotal-row"><td colspan="4">SUBTOTAL</td><td id="osPrintOwnershipPaySubtotal"></td><td></td><td></td></tr>
+      </tbody>
+      <tfoot><tr class="os-print-total-row"><td colspan="5">TOTAL PAID TO LANDLORD OR</td><td id="osPrintOwnershipPayTotal"></td><td></td></tr></tfoot>
+    </table>
+
+    <div class="os-print-section-title">PROPERTY INCOME, EXPENSIS &amp; OWNERSHIP SUMMARY</div>
+    <table class="os-print-table">
+      <thead><tr><th>Date</th><th>Description</th><th>MONEY OUT</th><th>MONEY IN</th></tr></thead>
+      <tbody>
+        <tr><td></td><td>Rental Payments</td><td></td><td id="osPrintSummaryRent"></td></tr>
+        <tr><td></td><td>Management Fees (inc. GST)</td><td id="osPrintSummaryFees"></td><td></td></tr>
+        <tr><td></td><td>Property Maintenance</td><td id="osPrintSummaryMaintenance"></td><td></td></tr>
+        <tr><td></td><td>Paid To owner</td><td id="osPrintSummaryPaidOwner"></td><td></td></tr>
+        <tr class="os-print-subtotal-row"><td></td><td>SUBTOTAL</td><td id="osPrintSummarySubtotalOut"></td><td id="osPrintSummarySubtotalIn"></td></tr>
+      </tbody>
+      <tfoot>
+        <tr class="os-print-total-row"><td colspan="2">Total ownership payments</td><td colspan="2" id="osPrintSummaryOwnershipTotal"></td></tr>
+        <tr class="os-print-total-row"><td colspan="2">Total Paid to owner</td><td colspan="2" id="osPrintSummaryPaidTotal"></td></tr>
+        <tr class="os-print-total-row"><td colspan="2">CLOSING (CARRIED FORWARD) BALANCE</td><td colspan="2" id="osPrintSummaryClosing"></td></tr>
+      </tfoot>
+    </table>
+
+    <div class="os-print-footer">
+      <div>Generated on <span id="osPrintGeneratedOn"></span></div>
+      <div class="os-print-signature-block">
+        <div><strong>Authorised Signature</strong></div>
+        <img id="osPrintSignatureImg" alt="Signature" style="display:none;max-height:70px;max-width:220px;">
+        <div>Date: <span id="osPrintSignatureDate"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+function val(id){ const el=document.getElementById(id); return el ? el.value.trim() : ''; }
+function formatDateToDisplay(isoDate){
+  if(!isoDate) return '';
+  const parts = String(isoDate).split('-');
+  if(parts.length !== 3) return '';
+  return parts[2] + '/' + parts[1] + '/' + parts[0];
+}
+function parseDisplayDateToIso(value){
+  const raw = String(value || '').trim();
+  if(!raw) return '';
+  if(/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+  const match = raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if(!match) return '';
+  const day = String(match[1]).padStart(2, '0');
+  const month = String(match[2]).padStart(2, '0');
+  let year = match[3];
+  if(year.length === 2) year = (Number(year) >= 70 ? '19' : '20') + year;
+  return year + '-' + month + '-' + day;
+}
+function syncStatementPeriodFromDates(){
+  const fromEl = document.getElementById('statement_period_from');
+  const toEl = document.getElementById('statement_period_to');
+  const periodEl = document.getElementById('statement_period');
+  if(!fromEl || !toEl || !periodEl) return;
+  const fromIso = fromEl.value;
+  const toIso = toEl.value;
+  if(fromIso && toIso && fromIso > toIso){
+    toEl.value = fromIso;
+  }
+  const fromDisplay = formatDateToDisplay(fromEl.value);
+  const toDisplay = formatDateToDisplay(toEl.value);
+  if(fromDisplay && toDisplay) periodEl.value = fromDisplay + ' - ' + toDisplay;
+  else if(fromDisplay) periodEl.value = fromDisplay;
+  else if(toDisplay) periodEl.value = toDisplay;
+  else periodEl.value = '';
+}
+function applyStatementPeriodToDateInputs(periodValue){
+  const fromEl = document.getElementById('statement_period_from');
+  const toEl = document.getElementById('statement_period_to');
+  const periodEl = document.getElementById('statement_period');
+  if(!fromEl || !toEl) return;
+  const raw = String(periodValue || (periodEl && periodEl.value) || '').trim();
+  if(!raw){
+    fromEl.value = '';
+    toEl.value = '';
+    if(periodEl) periodEl.value = '';
+    return;
+  }
+  const parts = raw.split(/\s*-\s*/);
+  fromEl.value = parseDisplayDateToIso(parts[0] || '');
+  toEl.value = parseDisplayDateToIso(parts[1] || parts[0] || '');
+  syncStatementPeriodFromDates();
+}
+function initOwnershipSingleFlow(){
+  const sendSection = document.getElementById('panel-4');
+  if(!sendSection) return;
+  if(!('IntersectionObserver' in window)){
+    renderSendPreview();
+    return;
+  }
+  let previewStarted = false;
+  const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !previewStarted){
+        previewStarted = true;
+        renderSendPreview();
+      }
+    });
+  }, { rootMargin: '120px 0px' });
+  observer.observe(sendSection);
+}
+function setStatus(msg, err=false){ const s=document.getElementById('osStatus'); if(!s) return; s.textContent=msg; s.className='status-msg' + (err ? ' err' : ''); }
+function log(msg){ const l=document.getElementById('osLog'); if(!l) return; l.style.display='block'; l.innerHTML += '<div>✓ '+msg+'</div>'; }
+function formatOsSignatureDate(value){
+  if(!value) return '';
+  const parts=String(value).split('-');
+  if(parts.length===3) return parts[2]+'/'+parts[1]+'/'+parts[0];
+  return value;
+}
+function resolveSendDate(){
+  const generatedOn = val('generated_on');
+  const match = generatedOn.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if(match) return match[3]+'-'+String(match[2]).padStart(2,'0')+'-'+String(match[1]).padStart(2,'0');
+  return new Date().toISOString().slice(0,10);
+}
+let rentRowCount = 1;
+function parseMoney(value){
+  const n = parseFloat(String(value || '').replace(/[^0-9.-]/g,''));
+  return Number.isFinite(n) ? n : 0;
+}
+function formatMoney(value){
+  const n = Number(value || 0);
+  return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function calculateFeeFromRent(){
+  const rent = parseMoney(document.getElementById('total_rent')?.value);
+  const feeAmount = rent * 0.1;
+  const formattedFee = formatMoney(feeAmount);
+  const feeEl = document.getElementById('fee_description');
+  if(feeEl) feeEl.value = formattedFee;
+  const gstAmount = feeAmount * 0.1;
+  const gstEl = document.getElementById('fee_gst');
+  if(gstEl) gstEl.value = formatMoney(gstAmount);
+  const moneyOutAmount = feeAmount + gstAmount;
+  const moneyOutEl = document.getElementById('fee_money_out');
+  if(moneyOutEl) moneyOutEl.value = formatMoney(moneyOutAmount);
+  const totalFeesEl = document.getElementById('total_fees');
+  if(totalFeesEl) totalFeesEl.value = formatMoney(moneyOutAmount);
+  const summaryFeesEl = document.getElementById('summary_management_fees');
+  if(summaryFeesEl) summaryFeesEl.value = formatMoney(moneyOutAmount);
+  calculateFeesMaintenanceTotal();
+}
+function calculateFeesMaintenanceTotal(){
+  const moneyOut = parseMoney(document.getElementById('fee_money_out')?.value);
+  const maintenance = parseMoney(document.getElementById('total_maintenance')?.value);
+  const totalEl = document.getElementById('total_fees_maintenance');
+  if(totalEl) totalEl.value = formatMoney(moneyOut + maintenance);
+  calculatePaidToOwner();
+  calculateOwnershipSummary();
+}
+function calculatePaidToOwner(){
+  const moneyIn = parseMoney(document.getElementById('summary_rental_payments')?.value || document.getElementById('total_rent')?.value);
+  const totalOut = parseMoney(document.getElementById('total_fees_maintenance')?.value);
+  const paidEl = document.getElementById('summary_paid_to_owner');
+  if(paidEl) paidEl.value = formatMoney(moneyIn - totalOut);
+}
+function calculateRentTotal(){
+  let total = 0;
+  document.querySelectorAll('#rentRows input[id^="rent_total_"]').forEach(function(input){
+    total += parseMoney(input.value);
+  });
+  const formattedTotal = formatMoney(total);
+  const totalEl = document.getElementById('total_rent');
+  if(totalEl) totalEl.value = formattedTotal;
+  const summaryEl = document.getElementById('summary_rental_payments');
+  if(summaryEl && !summaryEl.dataset.manualEdit) summaryEl.value = formattedTotal;
+  calculateFeeFromRent();
+  calculateOwnershipSummary();
+}
+function formatRentTotalField(input){
+  if(!input) return;
+  const n = parseMoney(input.value);
+  input.value = input.value.trim() ? formatMoney(n) : '';
+  calculateRentTotal();
+}
+function addRentRow(){
+  rentRowCount += 1;
+  const tbody = document.getElementById('rentRows');
+  if(!tbody) return;
+  const tr = document.createElement('tr');
+  tr.setAttribute('data-rent-row', String(rentRowCount));
+  tr.innerHTML = '<td><input id="rent_property_'+rentRowCount+'" value="" placeholder="Property / room"></td>'+
+    '<td><input id="rent_tenancy_'+rentRowCount+'" value="" placeholder="Tenant name"></td>'+
+    '<td><input id="rent_amount_'+rentRowCount+'" value="" placeholder="$250/week"></td>'+
+    '<td><input id="rent_period_'+rentRowCount+'" value="" placeholder="01/03/26 To 31/03/26"></td>'+
+    '<td><div style="display:flex;gap:6px;align-items:center;"><input id="rent_total_'+rentRowCount+'" value="" placeholder="$0" oninput="calculateRentTotal()" onblur="formatRentTotalField(this)"><button type="button" class="sig-btn danger" style="padding:7px 9px;min-width:auto;" onclick="removeRentRow(this)">×</button></div></td>';
+  tbody.appendChild(tr);
+}
+function removeRentRow(button){
+  const row = button.closest('tr');
+  if(row && document.querySelectorAll('#rentRows tr').length > 1){ row.remove(); calculateRentTotal(); }
+}
+let maintenanceRowCount = 1;
+function calculateMaintenanceTotal(){
+  let total = 0;
+  document.querySelectorAll('#maintenanceRows input[id^="maintenance_total_"]').forEach(function(input){
+    total += parseMoney(input.value);
+  });
+  const formattedTotal = formatMoney(total);
+  const totalEl = document.getElementById('total_maintenance');
+  if(totalEl) totalEl.value = formattedTotal;
+  const summaryEl = document.getElementById('summary_maintenance');
+  if(summaryEl) summaryEl.value = formattedTotal;
+  calculateFeesMaintenanceTotal();
+}
+function formatMaintenanceTotalField(input){
+  if(!input) return;
+  const n = parseMoney(input.value);
+  input.value = input.value.trim() ? formatMoney(n) : '';
+  calculateMaintenanceTotal();
+}
+function addMaintenanceRow(){
+  maintenanceRowCount += 1;
+  const container = document.getElementById('maintenanceRows');
+  if(!container) return;
+  const row = document.createElement('div');
+  row.className = 'g3 maintenance-row';
+  row.setAttribute('data-maintenance-row', String(maintenanceRowCount));
+  row.innerHTML = '<div class="field-wrap"><label class="field-label">Maintenance Date / INV#</label><input id="maintenance_ref_'+maintenanceRowCount+'" value=""></div>'+
+    '<div class="field-wrap"><label class="field-label">Maintenance Description</label><input id="maintenance_description_'+maintenanceRowCount+'" value=""></div>'+
+    '<div class="field-wrap"><label class="field-label">Maintenance Total</label><div style="display:flex;gap:6px;align-items:center;"><input id="maintenance_total_'+maintenanceRowCount+'" value="" placeholder="$0" oninput="calculateMaintenanceTotal()" onblur="formatMaintenanceTotalField(this)"><button type="button" class="sig-btn danger" style="padding:7px 9px;min-width:auto;" onclick="removeMaintenanceRow(this)">×</button></div></div>';
+  container.appendChild(row);
+}
+function removeMaintenanceRow(button){
+  const row = button.closest('.maintenance-row');
+  if(row && document.querySelectorAll('#maintenanceRows .maintenance-row').length > 1){ row.remove(); calculateMaintenanceTotal(); }
+}
+function calculateOwnershipSummary(){
+  const opening = parseMoney(document.getElementById('opening_balance')?.value);
+  const rent = parseMoney(document.getElementById('total_rent')?.value);
+  const fees = parseMoney(document.getElementById('summary_management_fees')?.value || document.getElementById('fee_money_out')?.value || document.getElementById('total_fees')?.value);
+  const maintenance = parseMoney(document.getElementById('summary_maintenance')?.value || document.getElementById('total_maintenance')?.value);
+  const paidOwner = parseMoney(document.getElementById('summary_paid_to_owner')?.value || document.getElementById('ownership_payment')?.value);
+  const closing = opening + rent - fees - maintenance - paidOwner;
+  const closingEl = document.getElementById('closing_balance');
+  if(closingEl) closingEl.value = formatMoney(closing);
+}
+document.addEventListener('DOMContentLoaded', function(){
+  ['opening_balance','ownership_payment'].forEach(function(id){
+    const el=document.getElementById(id); if(el){ el.addEventListener('input', calculateOwnershipSummary); }
+  });
+  const summaryRent=document.getElementById('summary_rental_payments');
+  if(summaryRent){ summaryRent.addEventListener('input', function(){ summaryRent.dataset.manualEdit='true'; calculatePaidToOwner(); calculateOwnershipSummary(); }); }
+  const rentRows=document.getElementById('rentRows');
+  if(rentRows){
+    rentRows.addEventListener('input', function(event){
+      const target = event.target;
+      if(target && target.id && target.id.indexOf('rent_total_') === 0) calculateRentTotal();
+    });
+    rentRows.addEventListener('blur', function(event){
+      const target = event.target;
+      if(target && target.id && target.id.indexOf('rent_total_') === 0) formatRentTotalField(target);
+    }, true);
+  }
+  const maintenanceRows=document.getElementById('maintenanceRows');
+  if(maintenanceRows){
+    maintenanceRows.addEventListener('input', function(event){
+      const target = event.target;
+      if(target && target.id && target.id.indexOf('maintenance_total_') === 0) calculateMaintenanceTotal();
+    });
+    maintenanceRows.addEventListener('blur', function(event){
+      const target = event.target;
+      if(target && target.id && target.id.indexOf('maintenance_total_') === 0) formatMaintenanceTotalField(target);
+    }, true);
+  }
+  calculateRentTotal();
+  calculateMaintenanceTotal();
+  applyStatementPeriodToDateInputs(val('statement_period'));
+  const statementPeriodEl = document.getElementById('statement_period');
+  if(statementPeriodEl){
+    statementPeriodEl.addEventListener('change', function(){
+      applyStatementPeriodToDateInputs(statementPeriodEl.value);
+    });
+  }
+  setTimeout(function(){ applyStatementPeriodToDateInputs(val('statement_period')); }, 0);
+  initOwnershipSingleFlow();
+  setupOwnershipStatementDraftAutosave();
+});
+async function saveOwnershipStatementDraft(options){
+  const silent = !!(options && options.silent);
+  const docId = window.SHM_DOC_ID;
+  if(!docId || !window.SHM_TOKEN) return { ok:false };
+  if(typeof window.shmShouldSkipDraftSave === 'function' ? window.shmShouldSkipDraftSave(docId) : false){
+    return { ok:false, skipped:true };
+  }
+  const d = collectStatement();
+  try{
+    if(!silent) setStatus('Saving draft…');
+    const res = await fetch(window.SHM_API_URL + 'save-draft', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ doc_id: docId, token: window.SHM_TOKEN, agreement_data: d }),
+      keepalive: true,
+    });
+    const json = await res.json().catch(function(){ return {}; });
+    if(!res.ok || json.ok === false){
+      if(!silent) setStatus((json && json.message) || 'Could not save draft.', true);
+      return { ok:false };
+    }
+    if(window.SHM_DOCUMENT_CONTEXT){
+      window.SHM_DOCUMENT_CONTEXT.agreementData = Object.assign({}, window.SHM_DOCUMENT_CONTEXT.agreementData || {}, d, { is_draft: true });
+      window.SHM_DOCUMENT_CONTEXT.status = 'Draft';
+    }
+    if(!silent) setStatus('Draft saved. You can leave and continue later from the dashboard.');
+    return { ok:true };
+  }catch(e){
+    if(!silent) setStatus((e && e.message) || 'Could not save draft.', true);
+    return { ok:false };
+  }
+}
+function setupOwnershipStatementDraftAutosave(){
+  if(window.__osDraftAutosaveBound) return;
+  window.__osDraftAutosaveBound = true;
+  window.__osDraftAutosaveTimer = null;
+  function schedule(){
+    if(typeof window.shmShouldSkipDraftSave === 'function' && window.shmShouldSkipDraftSave(window.SHM_DOC_ID)) return;
+    if(window.__osDraftAutosaveTimer) clearTimeout(window.__osDraftAutosaveTimer);
+    window.__osDraftAutosaveTimer = setTimeout(function(){ saveOwnershipStatementDraft({ silent: true }); }, 4000);
+  }
+  const root = document.querySelector('.ownership-statement-shell') || document.getElementById('main-form') || document.body;
+  root.addEventListener('input', schedule, true);
+  root.addEventListener('change', schedule, true);
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState === 'hidden') saveOwnershipStatementDraft({ silent: true });
+  });
+  window.addEventListener('pagehide', function(){ saveOwnershipStatementDraft({ silent: true }); });
+}
+function collectStatement(){
+  syncStatementPeriodFromDates();
+  const d={ statement_title:val('statement_title'), statement_period:val('statement_period'), owner_name:val('owner_name_field'), owner_email:val('owner_email_field'), owner_address:val('owner_address'), owner_phone:val('owner_phone'), ownership_id:val('ownership_id'), property_address:val('property_address'), opening_balance:val('opening_balance'), closing_balance:val('closing_balance'), ownership_payment:val('ownership_payment'), total_rent:val('total_rent'), fee_description:val('fee_description'), fee_gst:val('fee_gst'), fee_money_out:val('fee_money_out'), total_fees:val('total_fees'), total_fees_maintenance:val('total_fees_maintenance'), maintenance_ref:val('maintenance_ref_1'), maintenance_description:val('maintenance_description_1'), maintenance_total:val('total_maintenance'), total_maintenance:val('total_maintenance'), ownership_payment_ref:val('ownership_payment_ref'), ownership_payment_description:val('ownership_payment_description'), summary_rental_payments:val('summary_rental_payments'), summary_management_fees:val('summary_management_fees'), summary_maintenance:val('summary_maintenance'), summary_paid_to_owner:val('summary_paid_to_owner'), generated_on:val('generated_on'), statement_notes:val('statement_notes') };
+  const rows=[];
+  document.querySelectorAll('#rentRows tr').forEach(function(row, idx){
+    const n = idx + 1;
+    const property = row.querySelector('[id^="rent_property_"]')?.value?.trim() || '';
+    const tenancy = row.querySelector('[id^="rent_tenancy_"]')?.value?.trim() || '';
+    const amount = row.querySelector('[id^="rent_amount_"]')?.value?.trim() || '';
+    const period = row.querySelector('[id^="rent_period_"]')?.value?.trim() || '';
+    const total = row.querySelector('[id^="rent_total_"]')?.value?.trim() || '';
+    d['rent_property_'+n]=property;
+    d['rent_tenancy_'+n]=tenancy;
+    d['rent_amount_'+n]=amount;
+    d['rent_period_'+n]=period;
+    d['rent_total_'+n]=total;
+    if(property || tenancy || amount || period || total) rows.push({ property, tenancy, amount, period, total });
+  });
+  d.rent_rows=rows;
+  d.rent_row_count=rows.length;
+  const maintenanceRows=[];
+  document.querySelectorAll('#maintenanceRows .maintenance-row').forEach(function(row, idx){
+    const n = idx + 1;
+    const ref = row.querySelector('[id^="maintenance_ref_"]')?.value?.trim() || '';
+    const description = row.querySelector('[id^="maintenance_description_"]')?.value?.trim() || '';
+    const total = row.querySelector('[id^="maintenance_total_"]')?.value?.trim() || '';
+    d['maintenance_ref_'+n]=ref;
+    d['maintenance_description_'+n]=description;
+    d['maintenance_total_'+n]=total;
+    if(ref || description || total) maintenanceRows.push({ ref, description, total });
+  });
+  d.maintenance_rows=maintenanceRows;
+  d.maintenance_row_count=maintenanceRows.length;
+  return d;
+}
+function clearOwnershipSendPreview(){
+  const target = document.getElementById('osSendPreview');
+  if(target) target.innerHTML = '';
+  if(osPreviewBlobUrl){
+    URL.revokeObjectURL(osPreviewBlobUrl);
+    osPreviewBlobUrl = null;
+  }
+}
+function resetOwnershipStatementForm(){
+  const capture = document.getElementById('statementCapture');
+  if(capture){
+    capture.querySelectorAll('input').forEach(function(input){
+      input.value = '';
+      delete input.dataset.manualEdit;
+    });
+  }
+
+  rentRowCount = 1;
+  const rentBody = document.getElementById('rentRows');
+  if(rentBody){
+    rentBody.innerHTML = '<tr data-rent-row="1">'+
+      '<td><input id="rent_property_1" value="" placeholder="Property / room"></td>'+
+      '<td><input id="rent_tenancy_1" value="" placeholder="Tenant name"></td>'+
+      '<td><input id="rent_amount_1" value="" placeholder="$250/week"></td>'+
+      '<td><input id="rent_period_1" value="" placeholder="01/03/26 To 31/03/26"></td>'+
+      '<td><input id="rent_total_1" value="" placeholder="$0" oninput="calculateRentTotal()" onblur="formatRentTotalField(this)"></td>'+
+      '</tr>';
+  }
+
+  maintenanceRowCount = 1;
+  const maintenanceBody = document.getElementById('maintenanceRows');
+  if(maintenanceBody){
+    maintenanceBody.innerHTML = '<div class="g3 maintenance-row" data-maintenance-row="1">'+
+      '<div class="field-wrap"><label class="field-label">Maintenance Date / INV#</label><input id="maintenance_ref_1" value=""></div>'+
+      '<div class="field-wrap"><label class="field-label">Maintenance Description</label><input id="maintenance_description_1" value=""></div>'+
+      '<div class="field-wrap"><label class="field-label">Maintenance Total</label><div style="display:flex;gap:6px;align-items:center;"><input id="maintenance_total_1" value="" placeholder="$0" oninput="calculateMaintenanceTotal()" onblur="formatMaintenanceTotalField(this)"><button type="button" class="sig-btn danger" style="padding:7px 9px;min-width:auto;" onclick="removeMaintenanceRow(this)">×</button></div></div>'+
+      '</div>';
+  }
+
+  clearOwnershipSendPreview();
+  const logBox = document.getElementById('osLog');
+  if(logBox){ logBox.innerHTML = ''; logBox.style.display = 'none'; }
+
+  calculateRentTotal();
+  calculateMaintenanceTotal();
+  const status = document.getElementById('osStatus');
+  if(status) status.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+async function prepareNextOwnershipStatement(){
+  try{
+    const formData = new FormData();
+    formData.set('documentType', 'Ownership Statement');
+    formData.set('propertyAddress', '');
+    formData.set('recipientRole', 'Owner');
+    const res = await fetch('/api/shm-docs/create', { method: 'POST', body: formData, credentials: 'same-origin' });
+    const json = await res.json().catch(function(){ return null; });
+    if(!res.ok || !json || !json.creatorSigningUrl) return false;
+    const url = new URL(json.creatorSigningUrl, window.location.origin);
+    const nextDocId = url.searchParams.get('doc_id');
+    const nextToken = url.searchParams.get('token');
+    if(nextDocId) window.SHM_DOC_ID = nextDocId;
+    if(nextToken) window.SHM_TOKEN = nextToken;
+    if(window.history && window.history.replaceState){
+      window.history.replaceState(null, '', url.pathname + '?' + url.searchParams.toString());
+    }
+    return true;
+  }catch(e){
+    return false;
+  }
+}
+async function adminSendOwnershipStatement(){
+  const d=collectStatement();
+  const ownerName=d.owner_name || prompt('Owner name');
+  const ownerEmail=d.owner_email || prompt('Owner email');
+  if(!ownerName||!ownerEmail){ setStatus('Owner name and email are required.', true); return; }
+  const sendingDocId = window.SHM_DOC_ID;
+  if(typeof window.shmBeginSendLock === 'function') window.shmBeginSendLock(sendingDocId);
+  if(window.__osDraftAutosaveTimer){ clearTimeout(window.__osDraftAutosaveTimer); window.__osDraftAutosaveTimer = null; }
+  const signatureDate=resolveSendDate();
+  d.owner_name=ownerName;
+  d.owner_email=ownerEmail;
+  d.admin_signature_date=signatureDate;
+  d.ownership_payment_date=signatureDate;
+  if(!d.generated_on) d.generated_on=formatOsSignatureDate(signatureDate);
+  const generatedOn=document.getElementById('generated_on');
+  if(generatedOn && !generatedOn.value) generatedOn.value=d.generated_on;
+  const sendBtn=document.getElementById('osSendBtn');
+  if(sendBtn){ sendBtn.disabled=true; sendBtn.textContent='Sending...'; }
+  setStatus('Sending ownership statement to owner...');
+  const res=await fetch(window.SHM_API_URL+'ownership-statement/admin-send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({doc_id:window.SHM_DOC_ID,token:window.SHM_TOKEN,owner_name:ownerName,owner_email:ownerEmail,admin_signature:'',admin_signature_date:signatureDate,agreement_data:d})});
+  const raw=await res.text();
+  let json=null;
+  try{ json=JSON.parse(raw); }catch(e){}
+  if(sendBtn){ sendBtn.disabled=false; sendBtn.textContent='Send to Owner'; }
+  if(!res.ok && res.status !== 202){
+    if(typeof window.shmClearSendLock === 'function') window.shmClearSendLock();
+    const errMsg=(json && (json.message||json.error)) || raw || 'Unable to send the ownership statement. Please try again.';
+    setStatus(errMsg, true);
+    return;
+  }
+  const queued = res.status === 202 || (json && (json.queued || json.accepted));
+  if(!queued){
+    if(typeof window.shmClearSendLock === 'function') window.shmClearSendLock();
+    setStatus((json && json.message) || 'Unable to send the ownership statement. Please try again.', true);
+    return;
+  }
+  const jobId = json && json.job_id;
+  const sentDocId = sendingDocId;
+  if(typeof window.shmMarkDocSent === 'function') window.shmMarkDocSent(sentDocId);
+  setStatus((json && json.message) || ('Ownership statement is being sent to ' + ownerEmail + '.'));
+  log('Ownership statement is being sent to ' + ownerEmail);
+  await prepareNextOwnershipStatement();
+  if(window.SHM_DOCUMENT_CONTEXT){
+    window.SHM_DOCUMENT_CONTEXT.status = 'Draft';
+    window.SHM_DOCUMENT_CONTEXT.agreementData = {};
+    window.SHM_DOCUMENT_CONTEXT.sentAt = null;
+    window.SHM_DOCUMENT_CONTEXT.adminSignedAt = null;
+    window.SHM_DOCUMENT_CONTEXT.tenantSentAt = null;
+  }
+  resetOwnershipStatementForm();
+  if(jobId && sentDocId) startOwnershipSendStatusPolling(ownerEmail, jobId, sentDocId);
+}
+let osSendStatusTimer = null;
+function startOwnershipSendStatusPolling(ownerEmail, jobId, sentDocId){
+  if(osSendStatusTimer) clearInterval(osSendStatusTimer);
+  let attempts = 0;
+  async function poll(){
+    attempts += 1;
+    try{
+      const statusUrl = window.SHM_API_URL+'ownership-statement/send-status?doc_id='+encodeURIComponent(sentDocId)+'&job_id='+encodeURIComponent(jobId);
+      const res = await fetch(statusUrl);
+      const json = await res.json().catch(function(){ return null; });
+      const job = json && json.job;
+      if(!job) return;
+      if(job.status === 'queued' || job.status === 'processing'){
+        setStatus(job.message || ('Sending ownership statement to ' + ownerEmail + '…'));
+        return;
+      }
+      if(job.status === 'completed'){
+        setStatus(job.message || ('Ownership statement sent to ' + ownerEmail + '.'));
+        log('Ownership statement sent to ' + ownerEmail);
+        if(job.driveUpload) log('Saved to Google Drive');
+        if(osSendStatusTimer) clearInterval(osSendStatusTimer);
+        return;
+      }
+      if(job.status === 'failed'){
+        setStatus(job.error || job.message || 'The ownership statement could not be sent. Please try again.', true);
+        if(osSendStatusTimer) clearInterval(osSendStatusTimer);
+        return;
+      }
+    }catch(e){
+      // Keep polling quietly in the background.
+    }
+    if(attempts >= 60 && osSendStatusTimer){
+      clearInterval(osSendStatusTimer);
+    }
+  }
+  poll();
+  osSendStatusTimer = setInterval(poll, 2000);
+}
+function displayValue(value, fallback){ return value && String(value).trim() ? String(value).trim() : (fallback || '-'); }
+function splitMaintenanceRef(value){
+  const raw = String(value || '').trim();
+  if(!raw) return { date:'', inv:'' };
+  const parts = raw.split(/\s+/);
+  if(/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(parts[0])) return { date:parts[0], inv:parts.slice(1).join(' ') || '' };
+  return { date:'', inv:raw };
+}
+function splitRentPeriod(value){
+  const raw = String(value || '').trim();
+  const match = raw.match(/^(.*?)\s+To\s+(.*)$/i);
+  if(match) return { from:match[1].trim(), to:match[2].trim() };
+  return { from:raw, to:'' };
+}
+let osPreviewBlobUrl = null;
+let osPreviewRequestId = 0;
+function buildPreviewPayload(){
+  const d = collectStatement();
+  const signatureDate = resolveSendDate();
+  d.owner_name = d.owner_name || val('owner_name_field');
+  d.owner_email = d.owner_email || val('owner_email_field');
+  d.admin_signature_date = signatureDate;
+  d.ownership_payment_date = signatureDate;
+  if(!d.generated_on) d.generated_on = formatOsSignatureDate(signatureDate);
+  return d;
+}
+async function renderSendPreview(){
+  const target = document.getElementById('osSendPreview');
+  if(!target) return;
+  const requestId = ++osPreviewRequestId;
+  target.innerHTML = '<p class="os-send-preview-loading">Generating PDF preview…</p>';
+  if(osPreviewBlobUrl){
+    URL.revokeObjectURL(osPreviewBlobUrl);
+    osPreviewBlobUrl = null;
+  }
+  try{
+    const res = await fetch(window.SHM_API_URL+'ownership-statement/preview',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        doc_id:window.SHM_DOC_ID,
+        token:window.SHM_TOKEN,
+        agreement_data:buildPreviewPayload(),
+      }),
+    });
+    if(requestId !== osPreviewRequestId) return;
+    if(!res.ok){
+      let message = 'Could not generate preview.';
+      try{
+        const json = await res.json();
+        if(json && json.message) message = json.message;
+      }catch(e){}
+      target.innerHTML = '<p class="status-msg err">'+message+'</p>';
+      return;
+    }
+    const blob = await res.blob();
+    if(requestId !== osPreviewRequestId) return;
+    const format = (res.headers.get('X-Preview-Format') || '').toLowerCase();
+    const isPdf = format === 'pdf' || blob.type.includes('pdf');
+    osPreviewBlobUrl = URL.createObjectURL(blob);
+    if(isPdf){
+      target.innerHTML = '<iframe class="os-send-preview-frame" title="Ownership statement PDF preview"></iframe>';
+      const frame = target.querySelector('iframe');
+      if(frame) frame.src = osPreviewBlobUrl;
+      return;
+    }
+    target.innerHTML = '<div class="os-send-preview-fallback"><p>PDF preview is not available on this server right now. The owner email will still try to attach a PDF on send.</p><p><a href="'+osPreviewBlobUrl+'" download="ownership-statement-preview.docx">Download Word preview</a></p></div>';
+  }catch(error){
+    if(requestId !== osPreviewRequestId) return;
+    target.innerHTML = '<p class="status-msg err">Could not generate preview. Please try again.</p>';
+  }
+}
+function renderOwnershipStatementPrint(){
+  syncStatementPeriodFromDates();
+  const headerImg = document.querySelector('.os-print-header-img');
+  if(headerImg && window.OS_HEADER_IMAGE_URL) headerImg.src = window.OS_HEADER_IMAGE_URL;
+  const title = val('statement_title') || val('owner_name_field') || 'OWNERSHIP STATEMENT';
+  const ownershipId = val('ownership_id');
+  document.getElementById('osPrintTitle').textContent = ownershipId ? ('OWNERSHIP STATEMENT#' + ownershipId + ' - ' + title) : ('OWNERSHIP STATEMENT - ' + title);
+  document.getElementById('osPrintPeriod').textContent = displayValue(val('statement_period'));
+  document.getElementById('osPrintOwnershipId').textContent = displayValue(ownershipId);
+  document.getElementById('osPrintOpening').textContent = displayValue(val('opening_balance'), '$0.00');
+  document.getElementById('osPrintClosing').textContent = displayValue(val('closing_balance'), '$0.00');
+  document.getElementById('osPrintOwnershipPayment').textContent = displayValue(val('summary_paid_to_owner') || val('ownership_payment'), '$0.00');
+  document.getElementById('osPrintOwnerName').textContent = displayValue(val('owner_name_field'));
+  document.getElementById('osPrintCompanyName').textContent = displayValue(val('statement_title'));
+  document.getElementById('osPrintOwnerAddress').textContent = displayValue(val('owner_address'));
+  document.getElementById('osPrintOwnerPhone').textContent = displayValue(val('owner_phone'));
+  document.getElementById('osPrintOwnerEmail').textContent = displayValue(val('owner_email_field'));
+
+  const rentBody = document.getElementById('osPrintRentBody');
+  rentBody.innerHTML = '';
+  document.querySelectorAll('#rentRows tr').forEach(function(row){
+    const property = row.querySelector('[id^="rent_property_"]')?.value?.trim() || '';
+    const tenancy = row.querySelector('[id^="rent_tenancy_"]')?.value?.trim() || '';
+    const amount = row.querySelector('[id^="rent_amount_"]')?.value?.trim() || '';
+    const period = row.querySelector('[id^="rent_period_"]')?.value?.trim() || '';
+    const total = row.querySelector('[id^="rent_total_"]')?.value?.trim() || '';
+    if(!property && !tenancy && !amount && !period && !total) return;
+    const split = splitRentPeriod(period);
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td>'+displayValue(property)+'</td><td>'+displayValue(tenancy)+'</td><td>'+displayValue(amount)+'</td><td>'+displayValue(split.from)+'</td><td>'+displayValue(split.to)+'</td><td>'+displayValue(total,'$0.00')+'</td>';
+    rentBody.appendChild(tr);
+  });
+  document.getElementById('osPrintRentTotal').textContent = displayValue(val('total_rent'), '$0.00');
+
+  const feePeriod = val('statement_period') || '';
+  document.getElementById('osPrintFeeLabel').textContent = 'Share House Management Fee' + (feePeriod ? ' ' + feePeriod : '');
+  document.getElementById('osPrintFeeGst').textContent = displayValue(val('fee_gst'), '$0.00');
+  document.getElementById('osPrintFeeMoneyOut').textContent = displayValue(val('fee_description'), '$0.00');
+  document.getElementById('osPrintFeeSubtotalOut').textContent = displayValue(val('fee_money_out'), '$0.00');
+  document.getElementById('osPrintFeeTotal').textContent = '-' + displayValue(val('fee_money_out'), '$0.00');
+
+  const maintenanceBody = document.getElementById('osPrintMaintenanceBody');
+  maintenanceBody.innerHTML = '';
+  let maintenancePrintCount = 0;
+  document.querySelectorAll('#maintenanceRows .maintenance-row').forEach(function(row){
+    const ref = row.querySelector('[id^="maintenance_ref_"]')?.value?.trim() || '';
+    const description = row.querySelector('[id^="maintenance_description_"]')?.value?.trim() || '';
+    const total = row.querySelector('[id^="maintenance_total_"]')?.value?.trim() || '';
+    if(!ref && !description && !total) return;
+    maintenancePrintCount += 1;
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td>'+displayValue(ref)+'</td><td></td><td>'+displayValue(description)+'</td><td>$0.00</td><td></td><td>'+displayValue(total,'$0.00')+'</td><td></td>';
+    maintenanceBody.appendChild(tr);
+  });
+  if(!maintenancePrintCount){
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td></td><td></td><td></td><td>$0.00</td><td></td><td>$0.00</td><td></td>';
+    maintenanceBody.appendChild(tr);
+  }
+  document.getElementById('osPrintMaintenanceTotal').textContent = displayValue(val('total_maintenance'), '$0.00');
+
+  const paidOwner = displayValue(val('summary_paid_to_owner'), '$0.00');
+  document.getElementById('osPrintOwnershipPayDate').textContent = displayValue(val('generated_on'));
+  document.getElementById('osPrintOwnershipPayInv').textContent = displayValue(val('ownership_payment_ref'));
+  document.getElementById('osPrintOwnershipPayDesc').textContent = displayValue(val('ownership_payment_description') || ('Rent Payment - ' + val('statement_period')));
+  document.getElementById('osPrintOwnershipPayPaid').textContent = paidOwner;
+  document.getElementById('osPrintOwnershipPayIn').textContent = displayValue(val('summary_rental_payments') || val('total_rent'), '$0.00');
+  document.getElementById('osPrintOwnershipPaySubtotal').textContent = paidOwner;
+  document.getElementById('osPrintOwnershipPayTotal').textContent = paidOwner;
+
+  const rentIn = displayValue(val('summary_rental_payments') || val('total_rent'), '$0.00');
+  const feesOut = displayValue(val('summary_management_fees'), '$0.00');
+  const maintOut = displayValue(val('summary_maintenance'), '$0.00');
+  document.getElementById('osPrintSummaryRent').textContent = rentIn;
+  document.getElementById('osPrintSummaryFees').textContent = feesOut;
+  document.getElementById('osPrintSummaryMaintenance').textContent = maintOut;
+  document.getElementById('osPrintSummaryPaidOwner').textContent = paidOwner;
+  document.getElementById('osPrintSummarySubtotalOut').textContent = rentIn;
+  document.getElementById('osPrintSummarySubtotalIn').textContent = rentIn;
+  document.getElementById('osPrintSummaryOwnershipTotal').textContent = paidOwner;
+  document.getElementById('osPrintSummaryPaidTotal').textContent = paidOwner.indexOf('-') === 0 ? paidOwner : ('-' + paidOwner);
+  document.getElementById('osPrintSummaryClosing').textContent = displayValue(val('closing_balance'), '$0.00');
+  document.getElementById('osPrintGeneratedOn').textContent = displayValue(val('generated_on'));
+
+  const sigImg = document.getElementById('osPrintSignatureImg');
+  if(sigImg) {
+    sigImg.style.display = 'none';
+    sigImg.removeAttribute('src');
+  }
+  document.getElementById('osPrintSignatureDate').textContent = displayValue(val('generated_on'));
+}
+async function buildStatementPdfBase64(){
+  renderOwnershipStatementPrint();
+  const area = document.getElementById('osPrintDocument');
+  const previousDisplay = area.style.display;
+  const previousPosition = area.style.position;
+  const previousLeft = area.style.left;
+  const previousTop = area.style.top;
+  const previousZIndex = area.style.zIndex;
+  area.style.display = 'block';
+  area.style.position = 'fixed';
+  area.style.left = '0';
+  area.style.top = '0';
+  area.style.zIndex = '-1';
+  await new Promise(function(resolve){ requestAnimationFrame(function(){ requestAnimationFrame(resolve); }); });
+  const canvasShot = await html2canvas(area, { scale:2, useCORS:true, backgroundColor:'#ffffff', width:794 });
+  area.style.display = previousDisplay;
+  area.style.position = previousPosition;
+  area.style.left = previousLeft;
+  area.style.top = previousTop;
+  area.style.zIndex = previousZIndex;
+  const img = canvasShot.toDataURL('image/jpeg', 0.92);
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF('p', 'mm', 'a4');
+  const pageW = 210;
+  const pageH = 297;
+  const imgW = pageW;
+  const imgH = canvasShot.height * imgW / canvasShot.width;
+  let y = 0;
+  pdf.addImage(img, 'JPEG', 0, y, imgW, imgH);
+  let remaining = imgH - pageH;
+  while(remaining > 0){
+    y -= pageH;
+    pdf.addPage();
+    pdf.addImage(img, 'JPEG', 0, y, imgW, imgH);
+    remaining -= pageH;
+  }
+  return pdf.output('datauristring').split(',')[1];
+}
+</script>

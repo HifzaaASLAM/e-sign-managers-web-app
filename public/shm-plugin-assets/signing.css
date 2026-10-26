@@ -1,0 +1,2992 @@
+
+/* signing.css */
+:root {
+    --shm-blue: #1677ff;
+    --shm-blue-dark: #0f5ed7;
+    --shm-blue-soft: #eaf1ff;
+    --shm-bg: #eef2f6;
+    --shm-card: #ffffff;
+    --shm-text: #34405c;
+    --shm-muted: #6d7892;
+    --shm-line: #dfe6f1;
+    --shm-danger: #d93025;
+    --shm-success: #1f9d55;
+}
+
+#shm-signing-wrapper {
+    background: var(--shm-bg);
+    padding: 28px 16px 60px;
+    min-height: 100vh;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--shm-text);
+    box-sizing: border-box;
+}
+
+#shm-signing-wrapper * {
+    box-sizing: border-box;
+}
+
+#shm-signing-wrapper .page-shell {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#shm-signing-wrapper #main-form {
+    background: #f8fafc;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 48px rgba(20, 43, 88, 0.12);
+}
+
+/* Header */
+#shm-signing-wrapper .doc-header {
+    background: linear-gradient(135deg, #1677ff 0%, #1677ff 100%);
+    color: #ffffff;
+    padding: 48px 52px 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+#shm-signing-wrapper .doc-header h1 {
+    margin: 0 0 14px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 44px;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+}
+
+#shm-signing-wrapper .act-ref {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+#shm-signing-wrapper .cav-badge {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 9px;
+    padding: 14px 16px;
+    min-width: 112px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.55;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+#shm-signing-wrapper .shm-header-logo-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+#shm-signing-wrapper .shm-header-logo {
+    display: block;
+    height: 44px;
+    width: auto;
+    max-width: 168px;
+    object-fit: contain;
+}
+
+#shm-signing-wrapper .doc-header {
+    align-items: center;
+}
+
+/* Tabs */
+#shm-signing-wrapper .progress-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: var(--shm-blue);
+}
+
+#shm-signing-wrapper .tab {
+    padding: 19px 10px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+#shm-signing-wrapper .tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#shm-signing-wrapper .tab.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Main card */
+#shm-signing-wrapper .main-card {
+    background: #ffffff;
+    padding: 42px 52px 48px;
+}
+
+#shm-signing-wrapper .section-panel {
+    display: none;
+    animation: shmFadeIn 0.25s ease;
+}
+
+#shm-signing-wrapper .section-panel.active {
+    display: block;
+}
+
+@keyframes shmFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Part headings */
+#shm-signing-wrapper .part-header {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+#shm-signing-wrapper .part-label {
+    background: var(--shm-blue);
+    color: #ffffff;
+    padding: 7px 15px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#shm-signing-wrapper .part-title {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--shm-blue);
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+#shm-signing-wrapper .part-divider {
+    height: 1px;
+    background: var(--shm-line);
+}
+
+/* Text */
+#shm-signing-wrapper .sub-header {
+    margin: 26px 0 14px;
+    color: var(--shm-blue);
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.09em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+#shm-signing-wrapper .body-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--shm-text);
+    margin: 0 0 16px;
+}
+
+#shm-signing-wrapper .styled-list {
+    margin: 0 0 28px;
+    padding-left: 20px;
+}
+
+#shm-signing-wrapper .styled-list li {
+    margin-bottom: 12px;
+    line-height: 1.72;
+    font-size: 15px;
+    color: var(--shm-text);
+}
+
+#shm-signing-wrapper .styled-list li::marker {
+    color: var(--shm-blue);
+}
+
+#shm-signing-wrapper .styled-list ul {
+    margin-top: 8px;
+    padding-left: 20px;
+}
+
+/* Info/help cards */
+#shm-signing-wrapper .info-box,
+#shm-signing-wrapper .help-card {
+    background: #f4f8ff;
+    border: 1px solid #d9e7ff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    color: var(--shm-text);
+    line-height: 1.65;
+    font-size: 14px;
+}
+
+#shm-signing-wrapper .info-box strong,
+#shm-signing-wrapper .help-card strong {
+    display: block;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+#shm-signing-wrapper .help-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 18px 0 24px;
+}
+
+/* Tables */
+#shm-signing-wrapper .disc-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 22px 0 30px;
+    border: 1px solid var(--shm-line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#shm-signing-wrapper .disc-table th {
+    background: #f2f6ff;
+    color: var(--shm-blue);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 13px 14px;
+    text-align: left;
+}
+
+#shm-signing-wrapper .disc-table td {
+    padding: 12px 14px;
+    border-top: 1px solid var(--shm-line);
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+#shm-signing-wrapper .disc-table .chk {
+    width: 70px;
+    text-align: center;
+}
+
+#shm-signing-wrapper .if-row td,
+#shm-signing-wrapper .sub-row td {
+    background: #fbfcff;
+    color: var(--shm-muted);
+}
+
+/* Fields */
+#shm-signing-wrapper .field-wrap {
+    margin-bottom: 18px;
+}
+
+#shm-signing-wrapper .field-label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #27344f;
+}
+
+#shm-signing-wrapper input[type="text"],
+#shm-signing-wrapper input[type="email"],
+#shm-signing-wrapper input[type="tel"],
+#shm-signing-wrapper input[type="date"],
+#shm-signing-wrapper input[type="number"],
+#shm-signing-wrapper textarea,
+#shm-signing-wrapper select,
+#shm-signing-wrapper .inline-input {
+    width: 100%;
+    border: 1.5px solid #d6deea;
+    background: #ffffff;
+    border-radius: 9px;
+    padding: 12px 13px;
+    min-height: 44px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    color: var(--shm-text);
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+#shm-signing-wrapper textarea {
+    min-height: 96px;
+    resize: vertical;
+}
+
+#shm-signing-wrapper input:focus,
+#shm-signing-wrapper textarea:focus,
+#shm-signing-wrapper select:focus {
+    border-color: var(--shm-blue);
+    box-shadow: 0 0 0 4px rgba(47, 114, 234, 0.12);
+}
+
+#shm-signing-wrapper .g2,
+#shm-signing-wrapper .g3,
+#shm-signing-wrapper .g-pc,
+#shm-signing-wrapper .g-dur {
+    display: grid;
+    gap: 16px;
+}
+
+#shm-signing-wrapper .g2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#shm-signing-wrapper .g3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#shm-signing-wrapper .g-pc {
+    grid-template-columns: 1fr 160px;
+}
+
+#shm-signing-wrapper .g-dur {
+    grid-template-columns: 1fr 80px 1fr 80px;
+    align-items: end;
+}
+
+#shm-signing-wrapper .dur-label {
+    align-self: center;
+    color: var(--shm-muted);
+    font-size: 13px;
+}
+
+/* Section headers inside forms */
+#shm-signing-wrapper .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 32px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--shm-line);
+}
+
+#shm-signing-wrapper .sec-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--shm-blue);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+#shm-signing-wrapper .sec-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #25314b;
+}
+
+/* Checkboxes */
+#shm-signing-wrapper input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--shm-blue);
+}
+
+#shm-signing-wrapper .check-group,
+#shm-signing-wrapper .pets-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+#shm-signing-wrapper .check-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    border: 1px solid var(--shm-line);
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Signature */
+#shm-signing-wrapper .sig-box {
+    margin-top: 20px;
+    background: #f8fbff;
+    border: 1px solid #dbe7fb;
+    border-radius: 16px;
+    padding: 22px;
+}
+
+#shm-signing-wrapper .sig-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 18px 0;
+}
+
+#shm-signing-wrapper .sig-tab,
+#shm-signing-wrapper .sig-btn,
+#shm-signing-wrapper .font-pill {
+    border: none;
+    background: #e9f0fc;
+    color: #2c3a55;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+#shm-signing-wrapper .sig-tab.active,
+#shm-signing-wrapper .font-pill.active {
+    background: var(--shm-blue);
+    color: #ffffff;
+}
+
+#shm-signing-wrapper .sig-panel {
+    display: none;
+}
+
+#shm-signing-wrapper .sig-panel.active {
+    display: block;
+}
+
+#shm-signing-wrapper .sig-canvas-wrap,
+#shm-signing-wrapper .sig-upload-zone {
+    background: #ffffff;
+    border: 2px dashed #cbd8ea;
+    border-radius: 13px;
+    min-height: 180px;
+    padding: 16px;
+}
+
+#shm-signing-wrapper .sig-upload-zone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+#shm-signing-wrapper .sig-upload-zone.is-dragover {
+    border-color: #1677ff;
+    background: #f0f7ff;
+    box-shadow: inset 0 0 0 1px rgba(22, 119, 255, 0.25);
+}
+
+#shm-signing-wrapper .sig-upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#shm-signing-wrapper canvas {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+#shm-signing-wrapper .sig-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+#shm-signing-wrapper .sig-btn.danger {
+    background: #ffe8e6;
+    color: var(--shm-danger);
+}
+
+#shm-signing-wrapper .sig-type-preview {
+    background: #ffffff;
+    border: 1px solid var(--shm-line);
+    border-radius: 12px;
+    min-height: 90px;
+    padding: 22px;
+    font-size: 34px;
+    color: #16213e;
+}
+
+#shm-signing-wrapper .sig-confirmed {
+    margin-top: 16px;
+    background: #ecfdf3;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-weight: 700;
+}
+
+#shm-signing-wrapper .sig-confirmed-thumb,
+#shm-signing-wrapper .sig-upload-preview {
+    max-width: 220px;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Navigation */
+#shm-signing-wrapper .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 34px;
+}
+
+#shm-signing-wrapper .btn-nav,
+#shm-signing-wrapper .btn-submit {
+    border: none;
+    border-radius: 8px;
+    padding: 14px 26px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+#shm-signing-wrapper .btn-nav:hover,
+#shm-signing-wrapper .btn-submit:hover {
+    transform: translateY(-1px);
+}
+
+#shm-signing-wrapper .btn-nav.next,
+#shm-signing-wrapper .btn-submit {
+    background: var(--shm-blue);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(47, 114, 234, 0.25);
+}
+
+#shm-signing-wrapper .btn-nav.next:hover,
+#shm-signing-wrapper .btn-submit:hover {
+    background: var(--shm-blue-dark);
+}
+
+#shm-signing-wrapper .btn-nav.prev {
+    background: #edf2f8;
+    color: #2c3a55;
+}
+
+#shm-signing-wrapper .submit-area {
+    margin-top: 28px;
+    text-align: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+}
+
+#shm-signing-wrapper .btn-submit.loading {
+    opacity: 0.75;
+    cursor: wait;
+}
+
+#shm-signing-wrapper .spinner {
+    display: none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,.45);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: shmSpin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes shmSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#shm-signing-wrapper .status-msg {
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#shm-signing-wrapper .status-msg.err {
+    color: var(--shm-danger);
+}
+
+#shm-signing-wrapper .log-box {
+    margin-top: 16px;
+    background: #f8fafc;
+    border: 1px solid var(--shm-line);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+/* Success view */
+#shm-signing-wrapper .success-view {
+    display: none;
+    max-width: 720px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 46px 36px;
+    text-align: center;
+    box-shadow: 0 18px 48px rgba(20, 43, 88, 0.12);
+}
+
+#shm-signing-wrapper .success-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #ecfdf3;
+    color: var(--shm-success);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin-bottom: 18px;
+}
+
+/* Footer/languages */
+#shm-signing-wrapper .help-footer,
+#shm-signing-wrapper .pg-footer {
+    margin-top: 28px;
+    color: var(--shm-muted);
+    font-size: 13px;
+}
+
+#shm-signing-wrapper .lang-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0;
+}
+
+#shm-signing-wrapper .lang-chip {
+    border: 1px solid var(--shm-line);
+    background: #ffffff;
+    color: #334155;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#shm-signing-wrapper .lang-content {
+    display: none;
+    background: #f8fafc;
+    border: 1px solid var(--shm-line);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 12px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #shm-signing-wrapper {
+        padding: 12px;
+    }
+
+    #shm-signing-wrapper .doc-header {
+        padding: 32px 24px;
+        flex-direction: column;
+    }
+
+    #shm-signing-wrapper .doc-header h1 {
+        font-size: 34px;
+    }
+
+    #shm-signing-wrapper .progress-tabs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #shm-signing-wrapper .main-card {
+        padding: 28px 22px 32px;
+    }
+
+    #shm-signing-wrapper .part-header {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    #shm-signing-wrapper .part-divider {
+        display: none;
+    }
+
+    #shm-signing-wrapper .help-row,
+    #shm-signing-wrapper .g2,
+    #shm-signing-wrapper .g3,
+    #shm-signing-wrapper .g-pc,
+    #shm-signing-wrapper .g-dur {
+        grid-template-columns: 1fr;
+    }
+
+    #shm-signing-wrapper .nav-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #shm-signing-wrapper .btn-nav,
+    #shm-signing-wrapper .btn-submit {
+        width: 100%;
+    }
+
+    #shm-signing-wrapper .submit-area {
+        text-align: stretch;
+    }
+}
+
+/* Print */
+@media print {
+    #shm-signing-wrapper {
+        background: #ffffff;
+        padding: 0;
+    }
+
+    #shm-signing-wrapper #main-form {
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    #shm-signing-wrapper .progress-tabs,
+    #shm-signing-wrapper .nav-row,
+    #shm-signing-wrapper .submit-area {
+        display: none !important;
+    }
+
+    #shm-signing-wrapper .section-panel {
+        display: block !important;
+        page-break-inside: avoid;
+        margin-bottom: 30px;
+    }
+}
+
+
+/* Remove document/card shadow */
+#shm-signing-wrapper #main-form,
+#shm-signing-wrapper .main-card,
+#shm-signing-wrapper .success-view {
+    box-shadow: none !important;
+}
+
+/* Hide WordPress/theme header, page title, and site title on signing page */
+.site-header,
+.site-branding,
+.site-title,
+.page-title,
+.entry-title,
+h1.entry-title,
+header.entry-header,
+.ast-page-title-bar,
+.page-header,
+.wp-block-post-title {
+    display: none !important;
+}
+
+/* Remove extra top spacing from theme */
+.site-content,
+.content-area,
+.entry-content,
+.site-main,
+.wp-site-blocks,
+main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Keep signing page clean */
+#shm-signing-wrapper {
+    margin-top: 0 !important;
+}
+/* Tenant Agreement additions */
+#shm-signing-wrapper .tenant-agreement-tabs { grid-template-columns: repeat(5, 1fr); }
+#shm-signing-wrapper .tenant-agreement-shell .audit-table td:first-child { width: 190px; color: var(--shm-muted); }
+#shm-signing-wrapper .tenant-agreement-shell input[readonly],
+#shm-signing-wrapper .tenant-agreement-shell textarea[readonly] {
+    background: #f8fafc;
+    color: #334155;
+}
+#shm-signing-wrapper .signature-summary { margin-top: 18px; }
+#shm-signing-wrapper .sig-preview-holder img { max-height: 70px; object-fit: contain; }
+@media (max-width: 768px) {
+  #shm-signing-wrapper .tenant-agreement-tabs { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Ownership Statement additions - keep same blue SHM theme */
+#shm-signing-wrapper .ownership-tabs { grid-template-columns: repeat(5, 1fr); }
+
+/* Force ownership statement to use same blue theme as all other documents */
+#shm-signing-wrapper .ownership-header {
+    background: linear-gradient(135deg, var(--shm-blue) 0%, #1677ff 100%) !important;
+}
+
+#shm-signing-wrapper .ownership-statement-shell .part-label,
+#shm-signing-wrapper .ownership-statement-shell .sec-num,
+#shm-signing-wrapper .ownership-statement-shell .btn-nav.next,
+#shm-signing-wrapper .ownership-statement-shell .btn-submit,
+#shm-signing-wrapper .ownership-statement-shell .sig-tab.active,
+#shm-signing-wrapper .ownership-statement-shell .font-pill.active {
+    background: var(--shm-blue) !important;
+    color: #ffffff !important;
+}
+
+#shm-signing-wrapper .ownership-statement-shell .btn-nav.next:hover,
+#shm-signing-wrapper .ownership-statement-shell .btn-submit:hover {
+    background: var(--shm-blue-dark) !important;
+}
+
+#shm-signing-wrapper .ownership-statement-shell .part-title,
+#shm-signing-wrapper .ownership-statement-shell .sub-header,
+#shm-signing-wrapper .ownership-statement-shell .disc-table th,
+#shm-signing-wrapper .ownership-statement-shell .info-box strong,
+#shm-signing-wrapper .ownership-statement-shell .help-card strong {
+    color: var(--shm-blue) !important;
+}
+
+#shm-signing-wrapper .ownership-statement-shell .disc-table th {
+    background: #f2f6ff !important;
+}
+
+#shm-signing-wrapper .ownership-statement-shell input[readonly],
+#shm-signing-wrapper .ownership-statement-shell textarea[readonly] {
+    background: #f8fafc;
+    color: #334155;
+}
+
+#shm-signing-wrapper .ownership-table input,
+#shm-signing-wrapper .ownership-summary-table input {
+    min-height: 36px;
+    padding: 8px 9px;
+    font-size: 12px;
+}
+
+#shm-signing-wrapper .ownership-summary-table td:first-child { font-weight: 700; }
+
+@media (max-width: 768px) {
+  #shm-signing-wrapper .ownership-tabs { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+/* === Ownership Statement forced blue theme + table width fix v2 === */
+#shm-signing-wrapper .ownership-statement-shell .ownership-header,
+#shm-signing-wrapper .ownership-statement-shell .doc-header.ownership-header{background:linear-gradient(135deg,#1677ff 0%,#0f5ed7 100%)!important;}
+#shm-signing-wrapper .ownership-statement-shell .part-label,
+#shm-signing-wrapper .ownership-statement-shell .sec-num,
+#shm-signing-wrapper .ownership-statement-shell .btn-submit,
+#shm-signing-wrapper .ownership-statement-shell .btn-nav.next,
+#shm-signing-wrapper .ownership-statement-shell .sig-tab.active,
+#shm-signing-wrapper .ownership-statement-shell .font-pill.active{background:#1677ff!important;color:#fff!important;}
+#shm-signing-wrapper .ownership-statement-shell .btn-submit:hover,
+#shm-signing-wrapper .ownership-statement-shell .btn-nav.next:hover{background:#0f5ed7!important;}
+#shm-signing-wrapper .ownership-statement-shell .part-title,
+#shm-signing-wrapper .ownership-statement-shell .sub-header,
+#shm-signing-wrapper .ownership-statement-shell .sec-title,
+#shm-signing-wrapper .ownership-statement-shell .disc-table th,
+#shm-signing-wrapper .ownership-statement-shell .info-box strong{color:#1677ff!important;}
+#shm-signing-wrapper .ownership-statement-shell .disc-table th{background:#f2f6ff!important;}
+#shm-signing-wrapper .ownership-statement-shell .disc-table{width:100%!important;max-width:100%!important;table-layout:fixed!important;}
+#shm-signing-wrapper .ownership-statement-shell .disc-table th,#shm-signing-wrapper .ownership-statement-shell .disc-table td{padding:9px 8px!important;word-break:break-word!important;overflow:hidden!important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(1),#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(1){width:22%!important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(2),#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(2){width:20%!important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(3),#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(3){width:20%!important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(4),#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(4){width:22%!important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table th:nth-child(5),#shm-signing-wrapper .ownership-statement-shell .ownership-table td:nth-child(5){width:16%!important;}
+#shm-signing-wrapper .ownership-statement-shell .ownership-table input,#shm-signing-wrapper .ownership-statement-shell .ownership-summary-table input{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;min-height:34px!important;padding:7px 8px!important;font-size:12px!important;}
+
+/* signing-new.css */
+:root {
+    --shm-blue: #1677ff;
+    --shm-blue-dark: #0f5ed7;
+    --shm-blue-soft: #eaf1ff;
+    --shm-bg: #eef2f6;
+    --shm-card: #ffffff;
+    --shm-text: #34405c;
+    --shm-muted: #6d7892;
+    --shm-line: #dfe6f1;
+    --shm-danger: #d93025;
+    --shm-success: #1f9d55;
+}
+
+#shm-signing-wrapper {
+    background: var(--shm-bg);
+    padding: 28px 16px 60px;
+    min-height: 100vh;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--shm-text);
+    box-sizing: border-box;
+}
+
+#shm-signing-wrapper * {
+    box-sizing: border-box;
+}
+
+#shm-signing-wrapper .page-shell {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#shm-signing-wrapper #main-form {
+    background: #f8fafc;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 48px rgba(20, 43, 88, 0.12);
+}
+
+/* Header */
+#shm-signing-wrapper .doc-header {
+    background: linear-gradient(135deg, #1677ff 0%, #1677ff 100%);
+    color: #ffffff;
+    padding: 48px 52px 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+#shm-signing-wrapper .doc-header h1 {
+    margin: 0 0 14px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 44px;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+}
+
+#shm-signing-wrapper .act-ref {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+#shm-signing-wrapper .cav-badge {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 9px;
+    padding: 14px 16px;
+    min-width: 112px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.55;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+#shm-signing-wrapper .shm-header-logo-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+#shm-signing-wrapper .shm-header-logo {
+    display: block;
+    height: 44px;
+    width: auto;
+    max-width: 168px;
+    object-fit: contain;
+}
+
+#shm-signing-wrapper .doc-header {
+    align-items: center;
+}
+
+/* Tabs */
+#shm-signing-wrapper .progress-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: var(--shm-blue);
+}
+
+#shm-signing-wrapper .tab {
+    padding: 19px 10px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+#shm-signing-wrapper .tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#shm-signing-wrapper .tab.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Main card */
+#shm-signing-wrapper .main-card {
+    background: #ffffff;
+    padding: 42px 52px 48px;
+}
+
+#shm-signing-wrapper .section-panel {
+    display: none;
+    animation: shmFadeIn 0.25s ease;
+}
+
+#shm-signing-wrapper .section-panel.active {
+    display: block;
+}
+
+@keyframes shmFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Part headings */
+#shm-signing-wrapper .part-header {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+#shm-signing-wrapper .part-label {
+    background: var(--shm-blue);
+    color: #ffffff;
+    padding: 7px 15px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#shm-signing-wrapper .part-title {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--shm-blue);
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+#shm-signing-wrapper .part-divider {
+    height: 1px;
+    background: var(--shm-line);
+}
+
+/* Text */
+#shm-signing-wrapper .sub-header {
+    margin: 26px 0 14px;
+    color: var(--shm-blue);
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.09em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+#shm-signing-wrapper .body-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--shm-text);
+    margin: 0 0 16px;
+}
+
+#shm-signing-wrapper .styled-list {
+    margin: 0 0 28px;
+    padding-left: 20px;
+}
+
+#shm-signing-wrapper .styled-list li {
+    margin-bottom: 12px;
+    line-height: 1.72;
+    font-size: 15px;
+    color: var(--shm-text);
+}
+
+#shm-signing-wrapper .styled-list li::marker {
+    color: var(--shm-blue);
+}
+
+#shm-signing-wrapper .styled-list ul {
+    margin-top: 8px;
+    padding-left: 20px;
+}
+
+/* Info/help cards */
+#shm-signing-wrapper .info-box,
+#shm-signing-wrapper .help-card {
+    background: #f4f8ff;
+    border: 1px solid #d9e7ff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    color: var(--shm-text);
+    line-height: 1.65;
+    font-size: 14px;
+}
+
+#shm-signing-wrapper .info-box strong,
+#shm-signing-wrapper .help-card strong {
+    display: block;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+#shm-signing-wrapper .help-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 18px 0 24px;
+}
+
+/* Tables */
+#shm-signing-wrapper .disc-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 22px 0 30px;
+    border: 1px solid var(--shm-line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#shm-signing-wrapper .disc-table th {
+    background: #f2f6ff;
+    color: var(--shm-blue);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 13px 14px;
+    text-align: left;
+}
+
+#shm-signing-wrapper .disc-table td {
+    padding: 12px 14px;
+    border-top: 1px solid var(--shm-line);
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+#shm-signing-wrapper .disc-table .chk {
+    width: 70px;
+    text-align: center;
+}
+
+#shm-signing-wrapper .if-row td,
+#shm-signing-wrapper .sub-row td {
+    background: #fbfcff;
+    color: var(--shm-muted);
+}
+
+/* Fields */
+#shm-signing-wrapper .field-wrap {
+    margin-bottom: 18px;
+}
+
+#shm-signing-wrapper .field-label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #27344f;
+}
+
+#shm-signing-wrapper input[type="text"],
+#shm-signing-wrapper input[type="email"],
+#shm-signing-wrapper input[type="tel"],
+#shm-signing-wrapper input[type="date"],
+#shm-signing-wrapper input[type="number"],
+#shm-signing-wrapper textarea,
+#shm-signing-wrapper select,
+#shm-signing-wrapper .inline-input {
+    width: 100%;
+    border: 1.5px solid #d6deea;
+    background: #ffffff;
+    border-radius: 9px;
+    padding: 12px 13px;
+    min-height: 44px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    color: var(--shm-text);
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+#shm-signing-wrapper textarea {
+    min-height: 96px;
+    resize: vertical;
+}
+
+#shm-signing-wrapper input:focus,
+#shm-signing-wrapper textarea:focus,
+#shm-signing-wrapper select:focus {
+    border-color: var(--shm-blue);
+    box-shadow: 0 0 0 4px rgba(47, 114, 234, 0.12);
+}
+
+#shm-signing-wrapper .g2,
+#shm-signing-wrapper .g3,
+#shm-signing-wrapper .g-pc,
+#shm-signing-wrapper .g-dur {
+    display: grid;
+    gap: 16px;
+}
+
+#shm-signing-wrapper .g2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#shm-signing-wrapper .g3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#shm-signing-wrapper .g-pc {
+    grid-template-columns: 1fr 160px;
+}
+
+#shm-signing-wrapper .g-dur {
+    grid-template-columns: 1fr 80px 1fr 80px;
+    align-items: end;
+}
+
+#shm-signing-wrapper .dur-label {
+    align-self: center;
+    color: var(--shm-muted);
+    font-size: 13px;
+}
+
+/* Section headers inside forms */
+#shm-signing-wrapper .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 32px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--shm-line);
+}
+
+#shm-signing-wrapper .sec-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--shm-blue);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+#shm-signing-wrapper .sec-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #25314b;
+}
+
+/* Checkboxes */
+#shm-signing-wrapper input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--shm-blue);
+}
+
+#shm-signing-wrapper .check-group,
+#shm-signing-wrapper .pets-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+#shm-signing-wrapper .check-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    border: 1px solid var(--shm-line);
+    border-radius: 999px;
+    padding: 9px 13px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Signature */
+#shm-signing-wrapper .sig-box {
+    margin-top: 20px;
+    background: #f8fbff;
+    border: 1px solid #dbe7fb;
+    border-radius: 16px;
+    padding: 22px;
+}
+
+#shm-signing-wrapper .sig-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 18px 0;
+}
+
+#shm-signing-wrapper .sig-tab,
+#shm-signing-wrapper .sig-btn,
+#shm-signing-wrapper .font-pill {
+    border: none;
+    background: #e9f0fc;
+    color: #2c3a55;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+#shm-signing-wrapper .sig-tab.active,
+#shm-signing-wrapper .font-pill.active {
+    background: var(--shm-blue);
+    color: #ffffff;
+}
+
+#shm-signing-wrapper .sig-panel {
+    display: none;
+}
+
+#shm-signing-wrapper .sig-panel.active {
+    display: block;
+}
+
+#shm-signing-wrapper .sig-canvas-wrap,
+#shm-signing-wrapper .sig-upload-zone {
+    background: #ffffff;
+    border: 2px dashed #cbd8ea;
+    border-radius: 13px;
+    min-height: 180px;
+    padding: 16px;
+}
+
+#shm-signing-wrapper .sig-upload-zone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+#shm-signing-wrapper .sig-upload-zone.is-dragover {
+    border-color: #1677ff;
+    background: #f0f7ff;
+    box-shadow: inset 0 0 0 1px rgba(22, 119, 255, 0.25);
+}
+
+#shm-signing-wrapper .sig-upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#shm-signing-wrapper canvas {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+#shm-signing-wrapper .sig-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+#shm-signing-wrapper .sig-btn.danger {
+    background: #ffe8e6;
+    color: var(--shm-danger);
+}
+
+#shm-signing-wrapper .sig-type-preview {
+    background: #ffffff;
+    border: 1px solid var(--shm-line);
+    border-radius: 12px;
+    min-height: 90px;
+    padding: 22px;
+    font-size: 34px;
+    color: #16213e;
+}
+
+#shm-signing-wrapper .sig-confirmed {
+    margin-top: 16px;
+    background: #ecfdf3;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-weight: 700;
+}
+
+#shm-signing-wrapper .sig-confirmed-thumb,
+#shm-signing-wrapper .sig-upload-preview {
+    max-width: 220px;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Navigation */
+#shm-signing-wrapper .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 34px;
+}
+
+#shm-signing-wrapper .btn-nav,
+#shm-signing-wrapper .btn-submit {
+    border: none;
+    border-radius: 8px;
+    padding: 14px 26px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+#shm-signing-wrapper .btn-nav:hover,
+#shm-signing-wrapper .btn-submit:hover {
+    transform: translateY(-1px);
+}
+
+#shm-signing-wrapper .btn-nav.next,
+#shm-signing-wrapper .btn-submit {
+    background: var(--shm-blue);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(47, 114, 234, 0.25);
+}
+
+#shm-signing-wrapper .btn-nav.next:hover,
+#shm-signing-wrapper .btn-submit:hover {
+    background: var(--shm-blue-dark);
+}
+
+#shm-signing-wrapper .btn-nav.prev {
+    background: #edf2f8;
+    color: #2c3a55;
+}
+
+#shm-signing-wrapper .submit-area {
+    margin-top: 28px;
+    text-align: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+}
+
+#shm-signing-wrapper .btn-submit.loading {
+    opacity: 0.75;
+    cursor: wait;
+}
+
+#shm-signing-wrapper .spinner {
+    display: none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,.45);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: shmSpin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes shmSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#shm-signing-wrapper .status-msg {
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#shm-signing-wrapper .status-msg.err {
+    color: var(--shm-danger);
+}
+
+#shm-signing-wrapper .log-box {
+    margin-top: 16px;
+    background: #f8fafc;
+    border: 1px solid var(--shm-line);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+/* Success view */
+#shm-signing-wrapper .success-view {
+    display: none;
+    max-width: 720px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 46px 36px;
+    text-align: center;
+    box-shadow: 0 18px 48px rgba(20, 43, 88, 0.12);
+}
+
+#shm-signing-wrapper .success-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #ecfdf3;
+    color: var(--shm-success);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin-bottom: 18px;
+}
+
+/* Footer/languages */
+#shm-signing-wrapper .help-footer,
+#shm-signing-wrapper .pg-footer {
+    margin-top: 28px;
+    color: var(--shm-muted);
+    font-size: 13px;
+}
+
+#shm-signing-wrapper .lang-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0;
+}
+
+#shm-signing-wrapper .lang-chip {
+    border: 1px solid var(--shm-line);
+    background: #ffffff;
+    color: #334155;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#shm-signing-wrapper .lang-content {
+    display: none;
+    background: #f8fafc;
+    border: 1px solid var(--shm-line);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 12px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #shm-signing-wrapper {
+        padding: 12px;
+    }
+
+    #shm-signing-wrapper .doc-header {
+        padding: 32px 24px;
+        flex-direction: column;
+    }
+
+    #shm-signing-wrapper .doc-header h1 {
+        font-size: 34px;
+    }
+
+    #shm-signing-wrapper .progress-tabs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #shm-signing-wrapper .main-card {
+        padding: 28px 22px 32px;
+    }
+
+    #shm-signing-wrapper .part-header {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    #shm-signing-wrapper .part-divider {
+        display: none;
+    }
+
+    #shm-signing-wrapper .help-row,
+    #shm-signing-wrapper .g2,
+    #shm-signing-wrapper .g3,
+    #shm-signing-wrapper .g-pc,
+    #shm-signing-wrapper .g-dur {
+        grid-template-columns: 1fr;
+    }
+
+    #shm-signing-wrapper .nav-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #shm-signing-wrapper .btn-nav,
+    #shm-signing-wrapper .btn-submit {
+        width: 100%;
+    }
+
+    #shm-signing-wrapper .submit-area {
+        text-align: stretch;
+    }
+}
+
+/* Print */
+@media print {
+    #shm-signing-wrapper {
+        background: #ffffff;
+        padding: 0;
+    }
+
+    #shm-signing-wrapper #main-form {
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    #shm-signing-wrapper .progress-tabs,
+    #shm-signing-wrapper .nav-row,
+    #shm-signing-wrapper .submit-area {
+        display: none !important;
+    }
+
+    #shm-signing-wrapper .section-panel {
+        display: block !important;
+        page-break-inside: avoid;
+        margin-bottom: 30px;
+    }
+}
+
+
+/* Remove document/card shadow */
+#shm-signing-wrapper #main-form,
+#shm-signing-wrapper .main-card,
+#shm-signing-wrapper .success-view {
+    box-shadow: none !important;
+}
+
+/* Hide WordPress/theme header, page title, and site title on signing page */
+.site-header,
+.site-branding,
+.site-title,
+.page-title,
+.entry-title,
+h1.entry-title,
+header.entry-header,
+.ast-page-title-bar,
+.page-header,
+.wp-block-post-title {
+    display: none !important;
+}
+
+/* Remove extra top spacing from theme */
+.site-content,
+.content-area,
+.entry-content,
+.site-main,
+.wp-site-blocks,
+main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Keep signing page clean */
+#shm-signing-wrapper {
+    margin-top: 0 !important;
+}
+/* Tenant Agreement additions */
+#shm-signing-wrapper .tenant-agreement-tabs { grid-template-columns: repeat(5, 1fr); }
+#shm-signing-wrapper .tenant-agreement-shell .audit-table td:first-child { width: 190px; color: var(--shm-muted); }
+#shm-signing-wrapper .tenant-agreement-shell input[readonly],
+#shm-signing-wrapper .tenant-agreement-shell textarea[readonly] {
+    background: #f8fafc;
+    color: #334155;
+}
+#shm-signing-wrapper .signature-summary { margin-top: 18px; }
+#shm-signing-wrapper .sig-preview-holder img { max-height: 70px; object-fit: contain; }
+@media (max-width: 768px) {
+  #shm-signing-wrapper .tenant-agreement-tabs { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Ownership Statement additions */
+#shm-signing-wrapper .ownership-tabs { grid-template-columns: repeat(5, 1fr); }
+#shm-signing-wrapper .ownership-header { background: linear-gradient(135deg, #f97316 0%, #fb923c 100%); }
+#shm-signing-wrapper .ownership-statement-shell .part-label,
+#shm-signing-wrapper .ownership-statement-shell .sec-num,
+#shm-signing-wrapper .ownership-statement-shell .btn-nav.next,
+#shm-signing-wrapper .ownership-statement-shell .btn-submit,
+#shm-signing-wrapper .ownership-statement-shell .sig-tab.active,
+#shm-signing-wrapper .ownership-statement-shell .font-pill.active {
+    background: #f97316;
+}
+#shm-signing-wrapper .ownership-statement-shell .part-title,
+#shm-signing-wrapper .ownership-statement-shell .sub-header,
+#shm-signing-wrapper .ownership-statement-shell .disc-table th,
+#shm-signing-wrapper .ownership-statement-shell .info-box strong,
+#shm-signing-wrapper .ownership-statement-shell .help-card strong {
+    color: #ea580c;
+}
+#shm-signing-wrapper .ownership-statement-shell input[readonly],
+#shm-signing-wrapper .ownership-statement-shell textarea[readonly] {
+    background: #f8fafc;
+    color: #334155;
+}
+#shm-signing-wrapper .ownership-statement-shell .disc-table th {
+    background: #fff7ed;
+}
+#shm-signing-wrapper .ownership-table input,
+#shm-signing-wrapper .ownership-summary-table input {
+    min-height: 36px;
+    padding: 8px 9px;
+    font-size: 12px;
+}
+#shm-signing-wrapper .ownership-summary-table td:first-child { font-weight: 700; }
+@media (max-width: 768px) {
+  #shm-signing-wrapper .ownership-tabs { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* SaaS unified dashboard styling override */
+#shm-signing-wrapper,
+#shm-signing-wrapper * {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+#shm-signing-wrapper .doc-header,
+#shm-signing-wrapper .ownership-statement-shell .doc-header.ownership-header {
+  background: linear-gradient(135deg, #1677ff 0%, #0f5ed7 100%) !important;
+}
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .progress-tabs,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .tab.active,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .font-pill.active,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .btn-submit,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .btn-nav.next,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .sig-btn:not(.danger) {
+  background: #1677ff !important;
+  color: #fff !important;
+}
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .btn-nav.next:hover,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .btn-submit:hover,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .sig-btn:not(.danger):hover {
+  background: #1466e6 !important;
+}
+#shm-signing-wrapper .part-title,
+#shm-signing-wrapper .info-box strong,
+#shm-signing-wrapper .field-label,
+#shm-signing-wrapper h1,
+#shm-signing-wrapper h2,
+#shm-signing-wrapper h3 {
+  color: #0f172a !important;
+}
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .part-label,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .step-pill,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .number-pill {
+  background: #1677ff !important;
+  color: #fff !important;
+}
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) input:focus,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) textarea:focus,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) select:focus {
+  border-color: #1677ff !important;
+  box-shadow: 0 0 0 4px rgba(22, 119, 255, 0.12) !important;
+  outline: none !important;
+}
+
+/* v5.8.1: Force document header title to white */
+#shm-signing-wrapper .doc-header h1 {
+  color: #ffffff !important;
+}
+
+/* Phase 9.2 signature UI cleanup */
+#shm-signing-wrapper .sig-font-picker {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 12px 0 14px !important;
+  align-items: center !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+#shm-signing-wrapper .sig-panel input#sigTypeInput {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 0 12px !important;
+  box-sizing: border-box !important;
+}
+
+#shm-signing-wrapper .sig-type-preview {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 96px !important;
+  margin-top: 12px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+#shm-signing-wrapper .sig-type-preview span {
+  display: block !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+#shm-signing-wrapper .sig-confirmed {
+  display: none;
+  align-items: center !important;
+  gap: 12px !important;
+  min-height: 52px !important;
+  line-height: 1.3 !important;
+}
+
+#shm-signing-wrapper .sig-confirmed.show {
+  display: flex !important;
+}
+
+#shm-signing-wrapper .sig-confirmed-thumb {
+  display: block !important;
+  width: 120px !important;
+  height: 42px !important;
+  max-width: 120px !important;
+  max-height: 42px !important;
+  object-fit: contain !important;
+  margin: 0 !important;
+  padding: 4px !important;
+  background: #ffffff !important;
+  border: 1px solid #bbf7d0 !important;
+  border-radius: 8px !important;
+}
+
+#shm-signing-wrapper .sig-confirmed .sig-btn {
+  margin-left: auto !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+}
+
+#shm-signing-wrapper .sig-box > .field-wrap:last-child {
+  margin-top: 18px !important;
+}
+
+/* Phase 9.3 hide signature editor after signature is captured */
+#shm-signing-wrapper .sig-box.signature-locked .sig-tabs,
+#shm-signing-wrapper .sig-box.signature-locked .sig-panel,
+#shm-signing-wrapper .sig-box.signature-locked .sig-font-picker,
+#shm-signing-wrapper .sig-box.signature-locked .sig-type-preview,
+#shm-signing-wrapper .sig-box.signature-locked #sigTypeInput {
+  display: none !important;
+}
+
+#shm-signing-wrapper .sig-box.signature-locked .sig-confirmed.show {
+  display: flex !important;
+}
+
+/* Phase 9.4 tenant signature type layout hard fix */
+#shm-signing-wrapper #sig-panel-type.sig-panel.active {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+}
+
+#shm-signing-wrapper #sig-panel-type #sigTypeInput {
+  display: block !important;
+  width: 100% !important;
+  min-height: 42px !important;
+  margin: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+#shm-signing-wrapper #sig-panel-type .sig-font-picker {
+  order: 2 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  clear: both !important;
+  position: static !important;
+  z-index: auto !important;
+}
+
+#shm-signing-wrapper #sig-panel-type .font-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 36px !important;
+  padding: 9px 13px !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  position: static !important;
+}
+
+#shm-signing-wrapper #sig-panel-type .sig-type-preview {
+  order: 3 !important;
+  width: 100% !important;
+  min-height: 94px !important;
+  margin: 0 !important;
+  padding: 18px 22px !important;
+  position: relative !important;
+  z-index: 0 !important;
+}
+
+#shm-signing-wrapper #sig-panel-type .sig-actions {
+  order: 4 !important;
+  margin-top: 0 !important;
+}
+
+#shm-signing-wrapper .sig-confirmed.show {
+  gap: 18px !important;
+  justify-content: flex-start !important;
+}
+
+#shm-signing-wrapper .sig-confirmed #sigConfirmedText {
+  display: inline-block !important;
+  margin-right: 18px !important;
+}
+
+#shm-signing-wrapper .sig-confirmed .sig-btn {
+  margin-left: 24px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Phase 9.5 tenant application spacing update requested */
+#shm-signing-wrapper input[type="text"] {
+  margin-bottom: 16px !important;
+}
+
+#shm-signing-wrapper .sig-type-preview {
+  margin-top: 16px !important;
+}
+
+/* Phase 9.6 typed signature font button fix */
+#shm-signing-wrapper #fontPicker .font-pill:nth-child(1) {
+  font-family: 'Dancing Script', cursive !important;
+}
+#shm-signing-wrapper #fontPicker .font-pill:nth-child(2) {
+  font-family: 'Pinyon Script', cursive !important;
+}
+#shm-signing-wrapper #fontPicker .font-pill:nth-child(3) {
+  font-family: 'Sacramento', cursive !important;
+}
+#shm-signing-wrapper #fontPicker .font-pill:nth-child(4) {
+  font-family: 'Satisfy', cursive !important;
+}
+#shm-signing-wrapper #sigTypePreview {
+  font-family: 'Dancing Script', cursive !important;
+}
+
+/* Phase 9.7 load and apply typed signature web fonts */
+#shm-signing-wrapper #sigTypePreview,
+#shm-signing-wrapper #sigTypePreview * {
+  font-family: 'Dancing Script', cursive !important;
+}
+#shm-signing-wrapper #fontPicker .font-pill {
+  letter-spacing: 0 !important;
+}
+#shm-signing-wrapper #fontPicker .font-pill:nth-child(1) {
+  font-family: 'Dancing Script', cursive !important;
+}
+#shm-signing-wrapper #fontPicker .font-pill:nth-child(2) {
+  font-family: 'Pinyon Script', cursive !important;
+  font-size: 16px !important;
+}
+#shm-signing-wrapper #fontPicker .font-pill:nth-child(3) {
+  font-family: 'Sacramento', cursive !important;
+  font-size: 17px !important;
+}
+#shm-signing-wrapper #fontPicker .font-pill:nth-child(4) {
+  font-family: 'Satisfy', cursive !important;
+  font-size: 16px !important;
+}
+
+/* Phase 10.1 Tenant Agreement one-click signing note */
+#shm-signing-wrapper .tenant-agreement-shell .auto-sign-note {
+  margin-left: auto;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: right;
+  max-width: 420px;
+}
+
+/* Phase 10.2 Tenant Agreement signature options */
+#shm-signing-wrapper .tenant-agreement-shell .auto-sign-note {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 12px;
+}
+#shm-signing-wrapper .tenant-agreement-shell #ta-sig-panel-type.sig-panel.active {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+#shm-signing-wrapper .tenant-agreement-shell #sigTypeInput {
+  width: 100% !important;
+  margin-bottom: 16px !important;
+}
+#shm-signing-wrapper .tenant-agreement-shell #fontPicker {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 0 !important;
+}
+#shm-signing-wrapper .tenant-agreement-shell #sigTypePreview {
+  font-family: 'Dancing Script', cursive !important;
+}
+#shm-signing-wrapper .tenant-agreement-shell #fontPicker .font-pill:nth-child(1) { font-family: 'Dancing Script', cursive !important; }
+#shm-signing-wrapper .tenant-agreement-shell #fontPicker .font-pill:nth-child(2) { font-family: 'Pinyon Script', cursive !important; font-size: 16px !important; }
+#shm-signing-wrapper .tenant-agreement-shell #fontPicker .font-pill:nth-child(3) { font-family: 'Sacramento', cursive !important; font-size: 17px !important; }
+#shm-signing-wrapper .tenant-agreement-shell #fontPicker .font-pill:nth-child(4) { font-family: 'Satisfy', cursive !important; font-size: 16px !important; }
+
+/* Phase 11.3: keep Draw selected by default for signature tabs */
+#shm-signing-wrapper .sig-tab:not(.active) {
+  background: #e9f0fc !important;
+  color: #2c3a55 !important;
+}
+
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .sig-tab.active {
+  background: #1677ff !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 16px rgba(22, 119, 255, 0.22);
+}
+
+/* Tenant Agreement — warm SHM wizard (Figma-aligned) */
+#shm-signing-wrapper:has(.tenant-agreement-shell) {
+  background: #f7f4f1 !important;
+  padding: 32px 16px 64px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell {
+  --ta-orange: #d1541d;
+  --ta-orange-dark: #bc4b1a;
+  --ta-orange-soft: #feefe6;
+  --ta-text: #1a1a1a;
+  --ta-muted: #6b7280;
+  --ta-line: #e5e7eb;
+  --shm-blue: var(--ta-orange);
+  --shm-blue-dark: var(--ta-orange-dark);
+  --shm-orange: var(--ta-orange);
+  --shm-orange-dark: var(--ta-orange-dark);
+  --shm-line: var(--ta-line);
+}
+
+/* Beat global #shm-signing-wrapper blue theme inside tenant agreement */
+#shm-signing-wrapper .tenant-agreement-shell:not(.ta-recipient-mode) .part-header {
+  display: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .sub-header {
+  margin: 0 0 12px !important;
+  color: var(--ta-orange) !important;
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .sec-num {
+  width: 26px !important;
+  height: 26px !important;
+  background: var(--ta-orange) !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .part-label {
+  background: transparent !important;
+  color: var(--ta-orange) !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.16em !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .part-title {
+  color: var(--ta-text) !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell #panel-0 > .body-text {
+  margin: 0 0 20px !important;
+  padding: 14px 16px !important;
+  border-radius: 12px !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  color: #4b5563 !important;
+  background: var(--ta-orange-soft) !important;
+  border: 1px solid #f3ddd2 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell #panel-0 .info-box {
+  background: #f3f4f6 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  color: #374151 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-wizard-kicker {
+  color: var(--ta-orange) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  font-style: normal !important;
+  opacity: 1 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-wizard-title {
+  color: var(--ta-text) !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell input[type="checkbox"] {
+  accent-color: var(--ta-orange) !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell input:focus,
+#shm-signing-wrapper .tenant-agreement-shell textarea:focus,
+#shm-signing-wrapper .tenant-agreement-shell select:focus {
+  border-color: var(--ta-orange) !important;
+  box-shadow: 0 0 0 3px rgba(209, 84, 29, 0.12) !important;
+  outline: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell #main-form {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-header-logo {
+  display: block;
+  height: 36px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-progress-tabs {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid var(--ta-line) !important;
+  gap: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-progress-tabs .tab {
+  background: transparent !important;
+  color: #9ca3af !important;
+  text-transform: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  padding: 16px 8px 14px !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-progress-tabs .tab:hover {
+  color: #374151 !important;
+  background: #fafafa !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-progress-tabs .tab.active {
+  color: var(--ta-text) !important;
+  background: #ffffff !important;
+  border-bottom-color: var(--ta-orange) !important;
+  box-shadow: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .main-card {
+  background: #ffffff !important;
+  padding: 28px 32px 24px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell #agreementCapture:has(#panel-1.active) .ta-wizard-hero,
+#shm-signing-wrapper .tenant-agreement-shell #agreementCapture:has(#panel-2.active) .ta-wizard-hero {
+  display: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-section-block {
+  border-top-color: var(--ta-line) !important;
+  margin-top: 24px !important;
+  padding-top: 20px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .sec-title,
+#shm-signing-wrapper .tenant-agreement-shell .field-label {
+  color: #374151 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .sec-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--ta-text) !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .sec-header {
+  border-bottom: none !important;
+  margin: 20px 0 14px !important;
+  padding-bottom: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell input:not([type="checkbox"]),
+#shm-signing-wrapper .tenant-agreement-shell textarea,
+#shm-signing-wrapper .tenant-agreement-shell select {
+  border: 1px solid #d1d5db !important;
+  border-radius: 10px !important;
+  background: #ffffff !important;
+  color: var(--ta-text) !important;
+  box-shadow: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .info-box:not(#panel-0 .info-box),
+#shm-signing-wrapper .tenant-agreement-shell .help-card {
+  background: #f9fafb !important;
+  border: 1px solid #f9fafb !important;
+  border-radius: 12px !important;
+  color: #4b5563 !important;
+  padding: 14px 16px !important;
+  line-height: 1.55 !important;
+  font-size: 14px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .info-box strong {
+  color: var(--ta-text) !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-rent-includes-box {
+  background: #ffffff !important;
+  border: 1px solid var(--ta-line) !important;
+  border-radius: 12px !important;
+  gap: 12px 20px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-rent-includes-box input[type="checkbox"] {
+  appearance: none !important;
+  width: 22px !important;
+  height: 22px !important;
+  margin: 0 !important;
+  border: 2px solid #d1d5db !important;
+  border-radius: 6px !important;
+  background: #ffffff !important;
+  display: inline-grid !important;
+  place-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-rent-includes-box input[type="checkbox"]:checked {
+  background: var(--ta-orange) !important;
+  border-color: var(--ta-orange) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3E%3Cpath d='M12.2 4.2 6.8 10.2 3.8 7.2l-1.4 1.4 4.4 4.4 6.8-7.4z'/%3E%3C/svg%3E") !important;
+  background-size: 14px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .sig-box {
+  background: #fafafa !important;
+  border: 1px solid var(--ta-line) !important;
+  border-radius: 12px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .sig-tab:not(.active),
+#shm-signing-wrapper .tenant-agreement-shell .font-pill:not(.active),
+#shm-signing-wrapper .tenant-agreement-shell .btn-nav.prev,
+#shm-signing-wrapper .tenant-agreement-shell .sig-btn:not(.danger) {
+  background: #ffffff !important;
+  color: #374151 !important;
+  border: 1px solid var(--ta-line) !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .sig-tab.active,
+#shm-signing-wrapper .tenant-agreement-shell .font-pill.active {
+  background: var(--ta-orange) !important;
+  color: #ffffff !important;
+  border-color: var(--ta-orange) !important;
+  box-shadow: 0 4px 12px rgba(192, 78, 26, 0.22) !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .btn-submit,
+#shm-signing-wrapper .tenant-agreement-shell .btn-nav.next {
+  background: var(--ta-orange-dark) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 20px rgba(168, 67, 24, 0.22) !important;
+  font-weight: 700 !important;
+  padding: 14px 22px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .btn-nav.next::after {
+  content: " →";
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .btn-submit:hover,
+#shm-signing-wrapper .tenant-agreement-shell .btn-nav.next:hover {
+  background: #923a15 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .btn-nav.prev {
+  border-radius: 12px !important;
+  padding: 14px 22px !important;
+  font-weight: 600 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .nav-row {
+  margin-top: 28px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid var(--ta-line) !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell input:focus,
+#shm-signing-wrapper .tenant-agreement-shell textarea:focus,
+#shm-signing-wrapper .tenant-agreement-shell select:focus {
+  border-color: var(--ta-orange) !important;
+  box-shadow: 0 0 0 3px rgba(192, 78, 26, 0.12) !important;
+  outline: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell #panel-0 .g2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  margin-bottom: 18px !important;
+  align-items: start !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell #panel-0 .field-wrap {
+  margin-bottom: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell #panel-0 input:not([type="checkbox"]),
+#shm-signing-wrapper .tenant-agreement-shell #panel-0 textarea {
+  min-height: 48px !important;
+  padding: 12px 14px !important;
+  box-sizing: border-box !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell #panel-0 textarea#premises_address {
+  resize: vertical !important;
+  min-height: 48px !important;
+  height: auto !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .ta-rule-card textarea,
+#shm-signing-wrapper .tenant-agreement-shell .ta-rules-scroll {
+  border-color: var(--ta-line) !important;
+  border-radius: 12px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell .sig-btn[style*="f47a21"],
+#shm-signing-wrapper .tenant-agreement-shell .sig-btn[style*="border-color:#f47a21"] {
+  border-color: var(--ta-orange) !important;
+  color: var(--ta-orange) !important;
+}
+
+/* Recipient document view (signer) — centered box, no Details/Terms/Sign tabs */
+#shm-signing-wrapper:has(.tenant-agreement-shell.ta-recipient-mode) {
+  background: #f7f4f1 !important;
+  padding: 32px 16px 64px !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode.page-shell {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode #main-form {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .progress-tabs,
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-progress-tabs,
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .tenant-agreement-tabs,
+#shm-signing-wrapper .tenant-agreement-shell:has(#panel-2.section-panel.active) .progress-tabs.tenant-agreement-tabs {
+  display: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-form-shell {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.06) !important;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08) !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  max-width: 960px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-doc-page {
+  background: #ffffff !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-doc-body {
+  padding: 20px 32px 12px !important;
+  background: #ffffff !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode #panel-2 {
+  background: #ffffff !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-signer-glance {
+  display: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-signer-layout {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-signer-section-head.ta-signer-section-head-static,
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-signer-section-ack > .ta-signer-section-head {
+  display: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-head {
+  background: #fff !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-head .ta-signer-section-glyph,
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-signer-accordion-head .ta-signer-accordion-title {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .ta-signer-main .ta-doc-clause {
+  display: none !important;
+}
+
+#shm-signing-wrapper .tenant-agreement-shell.ta-recipient-mode .submit-area {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ta-line);
+}
+
+@media (max-width: 768px) {
+  #shm-signing-wrapper .tenant-agreement-shell .ta-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 16px 14px;
+  }
+
+  #shm-signing-wrapper .tenant-agreement-shell .main-card {
+    padding: 20px 16px 24px !important;
+  }
+
+  #shm-signing-wrapper .tenant-agreement-shell #panel-0 .g2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+#shm-signing-wrapper textarea.terms-body,
+#shm-signing-wrapper textarea.fee-notes {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 8px 10px;
+  border: 1px solid var(--shm-line, #dfe6f1);
+  border-radius: 8px;
+  font: inherit;
+  line-height: 1.45;
+  resize: vertical;
+  background: #fff;
+}
+
+#shm-signing-wrapper textarea.fee-notes {
+  min-width: 220px;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #panel-4 .disc-table {
+  table-layout: fixed;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #panel-4 .disc-table th:first-child,
+#shm-signing-wrapper .property-management-agreement-shell #panel-4 .disc-table td:first-child {
+  width: 32%;
+  max-width: 300px;
+  vertical-align: top;
+  padding-right: 10px;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #panel-4 .disc-table th:last-child,
+#shm-signing-wrapper .property-management-agreement-shell #panel-4 .disc-table td:last-child {
+  width: 68%;
+  vertical-align: top;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #panel-4 textarea.fee-notes {
+  min-height: 0 !important;
+  height: auto;
+  max-height: none !important;
+  overflow-y: hidden !important;
+  resize: vertical;
+  field-sizing: content;
+}
+
+#shm-signing-wrapper textarea.pma-client-locked {
+  background: #f8fafc;
+  color: #334155;
+  cursor: default;
+}
+
+/* Property Management Agreement — warm SHM form (mock-aligned) */
+#shm-signing-wrapper:has(.property-management-agreement-shell) {
+  background: #f7f4f1 !important;
+  padding: 32px 16px 64px !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell {
+  --pma-orange: #d1541d;
+  --pma-orange-dark: #bc4b1a;
+  --pma-orange-soft: #feefe6;
+  --pma-page: #f7f4f1;
+  --pma-text: #1a1a1a;
+  --pma-muted: #6b7280;
+  --pma-line: #e5e7eb;
+  --shm-blue: var(--pma-orange);
+  --shm-blue-dark: var(--pma-orange-dark);
+  --shm-line: var(--pma-line);
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #main-form {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-form-shell {
+  max-width: 920px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-doc-header-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 28px 18px;
+  border-bottom: 1px solid var(--pma-line);
+  background: #ffffff;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-logo-wrap {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .shm-header-logo {
+  height: 36px !important;
+  max-width: 140px !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-brand-name {
+  display: none !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-step-indicator {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--pma-muted);
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-progress-tabs {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid var(--pma-line) !important;
+  gap: 0 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-progress-tabs .tab {
+  background: transparent !important;
+  color: #9ca3af !important;
+  text-transform: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  padding: 16px 8px 14px !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-progress-tabs .tab:hover {
+  color: #374151 !important;
+  background: #fafafa !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-progress-tabs .tab.active {
+  color: var(--pma-text) !important;
+  background: #ffffff !important;
+  border-bottom-color: var(--pma-orange) !important;
+  box-shadow: none !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .main-card {
+  padding: 28px 32px 36px !important;
+  background: #ffffff !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .part-header {
+  display: block !important;
+  margin: 0 0 22px !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .part-label {
+  display: inline-block !important;
+  background: transparent !important;
+  color: var(--pma-orange) !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .part-title {
+  display: block !important;
+  margin-top: 10px !important;
+  font-size: clamp(1.65rem, 3vw, 2.05rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--pma-text) !important;
+  line-height: 1.15 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .part-divider {
+  display: none !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .info-box,
+#shm-signing-wrapper .property-management-agreement-shell .help-card {
+  background: var(--pma-orange-soft) !important;
+  border: 1px solid #f3ddd2 !important;
+  border-radius: 12px !important;
+  color: #4b5563 !important;
+  padding: 14px 16px !important;
+  line-height: 1.55 !important;
+  font-size: 14px !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .info-box strong {
+  display: block;
+  color: var(--pma-text) !important;
+  margin-bottom: 4px;
+  font-size: 14px !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #pma-creator-send-hint {
+  display: none !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #logBox:empty {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  min-height: 0 !important;
+  height: 0 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .sec-header {
+  border-bottom: none !important;
+  margin: 28px 0 14px !important;
+  padding-bottom: 0 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .sec-num {
+  background: var(--pma-orange) !important;
+  color: #ffffff !important;
+  width: 26px !important;
+  height: 26px !important;
+  font-size: 12px !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .sec-title {
+  color: var(--pma-text) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .field-label {
+  color: #374151 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-bottom: 6px !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell input,
+#shm-signing-wrapper .property-management-agreement-shell textarea,
+#shm-signing-wrapper .property-management-agreement-shell select {
+  border: 1px solid #d1d5db !important;
+  border-radius: 10px !important;
+  background: #ffffff !important;
+  color: var(--pma-text) !important;
+  padding: 11px 12px !important;
+  font-size: 14px !important;
+  box-shadow: none !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell input:focus,
+#shm-signing-wrapper .property-management-agreement-shell textarea:focus,
+#shm-signing-wrapper .property-management-agreement-shell select:focus {
+  border-color: var(--pma-orange) !important;
+  box-shadow: 0 0 0 3px rgba(209, 84, 29, 0.12) !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-feature-field {
+  width: 100%;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-feature-field select,
+#shm-signing-wrapper .property-management-agreement-shell .pma-feature-field .pma-feature-other-input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-feature-field .pma-feature-other-input {
+  display: none !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-feature-field.pma-feature-other-mode select {
+  display: none !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-feature-field.pma-feature-other-mode .pma-feature-other-input {
+  display: block !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .btn-nav.next,
+#shm-signing-wrapper .property-management-agreement-shell .btn-submit {
+  background: var(--pma-orange-dark) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 20px rgba(188, 75, 26, 0.22) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  padding: 14px 22px !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .btn-nav.next:hover,
+#shm-signing-wrapper .property-management-agreement-shell .btn-submit:hover {
+  background: #a84318 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .btn-nav.prev {
+  background: #ffffff !important;
+  color: #374151 !important;
+  border: 1px solid var(--pma-line) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .sig-tab.active,
+#shm-signing-wrapper .property-management-agreement-shell .font-pill.active {
+  background: var(--pma-orange) !important;
+  border-color: var(--pma-orange) !important;
+  color: #ffffff !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .sig-box {
+  background: #fafafa !important;
+  border-color: var(--pma-line) !important;
+}
+
+@media (max-width: 768px) {
+  #shm-signing-wrapper .property-management-agreement-shell .pma-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 16px 14px;
+  }
+
+  #shm-signing-wrapper .property-management-agreement-shell .pma-progress-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  #shm-signing-wrapper .property-management-agreement-shell .main-card {
+    padding: 20px 16px 28px !important;
+  }
+
+  #shm-signing-wrapper .property-management-agreement-shell .g3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-send-contacts-panel {
+  margin-top: 1.35rem;
+  padding: 1.15rem 1.1rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fafafa;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-send-contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-send-contact-row {
+  padding: 12px 12px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-send-contact-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-send-contact-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #374151;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-add-recipient-btn {
+  margin-top: 4px;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-signing-email-panel {
+  margin-top: 1.35rem;
+  padding: 1.15rem 1.1rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fafafa;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-signing-email-help {
+  font-size: 13px !important;
+  color: #6b7280 !important;
+  margin: 0 0 14px !important;
+  line-height: 1.55 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-signing-email-body-label,
+#shm-signing-wrapper .property-management-agreement-shell .pma-signing-email-preview-label {
+  margin-top: 12px !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-signing-email-preview-label {
+  text-transform: uppercase;
+  font-size: 11px !important;
+  letter-spacing: 0.04em;
+  color: #6b7280 !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #pmaSigningEmailBody {
+  min-height: 120px;
+  resize: vertical;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-email-preview-wrap {
+  margin-top: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell .pma-signing-email-preview-frame {
+  width: 100%;
+  min-height: 180px;
+  border: 0;
+  display: block;
+  background: #fff;
+}
