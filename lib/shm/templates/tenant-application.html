@@ -1,44 +1,59 @@
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Pinyon+Script&family=Sacramento&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Sacramento&family=Satisfy&display=swap" rel="stylesheet">
 
-<div class="page-shell">
+<div class="page-shell tenant-application-shell">
   <div id="main-form">
-    <div class="doc-header">
-      <div class="doc-header-left">
-        <h1>Residential Rental<br>Application</h1>
-        <div class="act-ref">Residential Tenancies Act 1997 · Section 29C</div>
+    <div class="tapp-form-shell">
+    <div class="tapp-top-bar">
+      <div class="tapp-brand-row" aria-label="ShareHouse Managers">
+        <img class="tapp-header-logo" src="/shm-logo.png" alt="ShareHouse Managers">
       </div>
-      <div class="cav-badge">CONSUMER<br>AFFAIRS<br>VICTORIA</div>
+      <div class="tapp-step-indicator" id="tappStepIndicator" aria-live="polite">1/5</div>
     </div>
-    <div class="progress-tabs">
-      <div class="tab active" onclick="goTo(0)">A · Info</div>
-      <div class="tab" onclick="goTo(1)">B · Rights</div>
-      <div class="tab" onclick="goTo(2)">C · Disclosures</div>
-      <div class="tab" onclick="goTo(3)">D · Property</div>
-      <div class="tab" onclick="goTo(4)">E · Applicant</div>
+    <div class="progress-tabs tapp-progress-tabs">
+      <div class="tab active" onclick="goTo(0)">1/5 — Info</div>
+      <div class="tab" onclick="goTo(1)">2/5 — Rights</div>
+      <div class="tab" onclick="goTo(2)">3/5 — Disclosures</div>
+      <div class="tab" onclick="goTo(3)">4/5 — Property</div>
+      <div class="tab" onclick="goTo(4)">5/5 — Applicant</div>
     </div>
     <div class="main-card">
       <!-- PANEL A -->
       <div class="section-panel active" id="panel-0">
-        <div class="part-header"><span class="part-label">Part A</span><span class="part-title">Important Information</span><div class="part-divider"></div></div>
-        <div class="sub-header">For the rental provider</div>
-        <ul class="styled-list">
-          <li>Rental auctions are prohibited under law. You may be fined if you invite prospective renters to offer more than the advertised rent.</li>
-          <li>You are required to include Part B – Statement of information for rental applicants in all applications for rental agreements.</li>
-          <li>You must complete Part C – Mandatory disclosures checklist before giving this form to an applicant. You may be fined if you fail to do this.</li>
-          <li>You cannot charge fees for this application.</li>
-          <li>The personal information provided is confidential and must only be used to assess suitability for the property.</li>
-          <li>Before the successful renter moves in, you must give them 2 signed copies of the Condition report. You may be fined if you fail to do this.</li>
-          <li>If the application is unsuccessful, this form and any copies should be destroyed.</li>
-        </ul>
-        <div class="sub-header">For the applicant(s)</div>
-        <ul class="styled-list">
-          <li>Each prospective renter should complete a copy of this application form.</li>
-          <li>Contact the rental provider/agent 2 business days after lodging to check if you were successful.</li>
-          <li>If successful, you may be required to:<ul><li>produce ID (usually a driver's licence or passport)</li><li>pay one month's rent in advance</li><li>pay the bond amount listed on this form</li><li>complete a <em>Residential tenancy agreement</em> to secure the premises</li></ul></li>
-          <li>Before moving in, the rental provider must give you 2 signed copies of the Condition report.</li>
-          <li>The rental provider's insurance policy does not cover your possessions. It is your responsibility to insure your possessions.</li>
-        </ul>
-        <div class="nav-row"><span></span><button class="btn-nav next" onclick="goTo(1)">Next: Rights & Protections →</button></div>
+        <div class="tapp-wizard-hero">
+          <div class="act-ref tapp-wizard-kicker">Residential Tenancies Act 1997 — Section 29C</div>
+          <h1 class="tapp-wizard-title">Residential Rental Application</h1>
+        </div>
+        <div class="part-header tapp-part-header"><span class="part-label">Part A</span><span class="part-title">Important Information</span><div class="part-divider"></div></div>
+        <div class="tapp-info-block">
+          <div class="tapp-info-block-head">
+            <span class="tapp-info-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span>
+            <span>For the rental provider</span>
+          </div>
+          <ul class="styled-list tapp-info-list">
+            <li>Rental auctions are prohibited under law. <span class="tapp-em">You may be fined if you invite prospective renters to offer more than the advertised rent.</span></li>
+            <li>You are required to include Part B – Statement of information for rental applicants in all applications for rental agreements.</li>
+            <li>You must complete Part C – Mandatory disclosures checklist before giving this form to an applicant. <span class="tapp-em">You may be fined if you fail to do this.</span></li>
+            <li>You cannot charge fees for this application.</li>
+            <li>The personal information provided is confidential and must only be used to assess suitability for the property.</li>
+            <li>Before the successful renter moves in, you must give them 2 signed copies of the Condition report. <span class="tapp-em">You may be fined if you fail to do this.</span></li>
+            <li>If the application is unsuccessful, this form and any copies should be destroyed.</li>
+          </ul>
+        </div>
+        <div class="tapp-section-divider" role="presentation"></div>
+        <div class="tapp-info-block">
+          <div class="tapp-info-block-head">
+            <span class="tapp-info-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <span>For the applicant(s)</span>
+          </div>
+          <ul class="styled-list tapp-info-list">
+            <li>Each prospective renter should complete a copy of this application form.</li>
+            <li>Contact the rental provider/agent 2 business days after lodging to check if you were successful.</li>
+            <li>If successful, you may be required to:<ul class="tapp-sublist"><li>produce ID (usually a driver's licence or passport)</li><li>pay one month's rent in advance</li><li>pay the bond amount listed on this form</li><li>complete a <em>Residential tenancy agreement</em> to secure the premises</li></ul></li>
+            <li>Before moving in, the rental provider must give you 2 signed copies of the Condition report.</li>
+            <li>The rental provider's insurance policy does not cover your possessions. It is your responsibility to insure your possessions.</li>
+          </ul>
+        </div>
+        <div class="nav-row tapp-nav-row"><span></span><button class="btn-nav next" type="button" onclick="goTo(1)">Next: Rights &amp; Protections</button></div>
       </div>
 
       <!-- PANEL B -->
@@ -104,18 +119,39 @@
       <div class="section-panel" id="panel-3">
         <div class="part-header"><span class="part-label">Part D</span><span class="part-title">Rental Provider / Agent Details</span><div class="part-divider"></div></div>
         <div class="sec-header"><span class="sec-num">1</span><span class="sec-title">Rental property details</span></div>
-        <div class="field-wrap"><label class="field-label">Street address</label><input type="text" id="d_addr" placeholder="123 Example Street"></div>
+        <div class="field-wrap tapp-address-field-wrap" id="d_addr_wrap">
+          <label class="field-label" for="d_addr">Street address</label>
+          <input type="text" id="d_addr" placeholder="e.g. 10/8 Example Street, suburb…" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="d_addr_suggest_list">
+          <p class="tapp-address-hint" id="d_addr_suggest_hint" hidden>Searching addresses…</p>
+          <ul class="tapp-address-suggest-list" id="d_addr_suggest_list" role="listbox" hidden></ul>
+        </div>
         <div class="g-pc field-wrap"><div><label class="field-label">Suburb / City</label><input type="text" id="d_addr2" placeholder="Melbourne"></div><div><label class="field-label">Postcode</label><input type="text" id="d_pc" placeholder="3000"></div></div>
         <div class="g3 field-wrap">
           <div><label class="field-label">Rent amount ($)</label><input type="number" id="d_rent" placeholder="0"></div>
-          <div><label class="field-label">Paid per</label><select id="d_rper"><option value="">Select…</option><option>Week</option><option>Fortnight</option><option>Calendar month</option></select></div>
+          <div><label class="field-label">Paid per</label><select id="d_rper"><option value="">Select…</option><option>Weekly</option><option>Fortnightly</option><option>Calendar Monthly</option></select></div>
           <div><label class="field-label">Bond amount ($)</label><input type="number" id="d_bond" placeholder="0"></div>
         </div>
-        <div class="g2 field-wrap"><div><label class="field-label">Tenancy start date</label><input type="date" id="d_start"></div><div><label class="field-label">Tenancy end date (if any)</label><input type="date" id="d_end"></div></div>
+        <div class="g3 field-wrap">
+          <div class="tapp-period-cell" id="d_period_cell">
+            <label class="field-label" for="d_period_select">Period</label>
+            <select id="d_period_select">
+              <option value="">Select…</option>
+              <option>3 months</option>
+              <option>6 months</option>
+              <option>9 months</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="d_period_custom" hidden placeholder="e.g. 12 months, 14 days, 2 years">
+            <input type="hidden" id="d_period">
+            <input type="hidden" id="d_period_other">
+          </div>
+          <div><label class="field-label">Tenancy start date</label><input type="date" id="d_start"></div>
+          <div><label class="field-label">Tenancy end date (if any)</label><input type="date" id="d_end"></div>
+        </div>
         <div class="sec-header"><span class="sec-num">2</span><span class="sec-title">Property manager details</span></div>
-        <div class="field-wrap"><label class="field-label">Name of property manager</label><input type="text" id="d_pm"></div>
-        <div class="g2 field-wrap"><div><label class="field-label">Phone number</label><input type="tel" id="d_pmph"></div><div><label class="field-label">Email address</label><input type="email" id="d_pmeml"></div></div>
-        <div class="field-wrap"><label class="field-label">Name of estate agency (if applicable)</label><input type="text" id="d_agency"></div>
+        <div class="field-wrap"><label class="field-label">Name of property manager</label><input type="text" id="d_pm" value="Ishaq M"></div>
+        <div class="g2 field-wrap"><div><label class="field-label">Phone number</label><input type="tel" id="d_pmph" value="(03) 83939396"></div><div><label class="field-label">Email address</label><input type="email" id="d_pmeml" value="info@sharehousemanagers.com.au"></div></div>
+        <div class="field-wrap"><label class="field-label">Name of estate agency (if applicable)</label><input type="text" id="d_agency" value="Sharehousemanagers"></div>
         <div class="nav-row"><button class="btn-nav prev" onclick="goTo(2)">← Back</button><button class="btn-nav next" onclick="goTo(4)">Next: Applicant Details →</button></div>
       </div>
 
@@ -146,13 +182,30 @@
         <div class="field-wrap"><label class="field-label">Name of previous employer</label><input type="text" id="e_pemp"></div>
         <div class="g-dur field-wrap"><div><label class="field-label">How long employed there</label><input type="number" id="e_pempyrs" min="0" placeholder="0"></div><div class="dur-label">years</div><div><label class="field-label">&nbsp;</label><input type="number" id="e_pempmos" min="0" max="11" placeholder="0"></div><div class="dur-label">months</div></div>
         <div class="g3 field-wrap"><div><label class="field-label">Position held</label><input type="text" id="e_pemppos"></div><div><label class="field-label">Contact person</label><input type="text" id="e_pempcnt"></div><div><label class="field-label">Phone number</label><input type="tel" id="e_pempph"></div></div>
-        <div class="sec-header"><span class="sec-num">8</span><span class="sec-title">References</span></div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:0.5rem;margin-top:0.25rem">Referee 1</div>
-        <div class="g2 field-wrap"><div><label class="field-label">Name</label><input type="text" id="r1n"></div><div><label class="field-label">Relationship to applicant</label><input type="text" id="r1rel"></div></div>
-        <div class="g2 field-wrap"><div><label class="field-label">Home phone</label><input type="tel" id="r1hph"></div><div><label class="field-label">Work phone</label><input type="tel" id="r1wph"></div></div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:0.5rem">Referee 2</div>
-        <div class="g2 field-wrap"><div><label class="field-label">Name</label><input type="text" id="r2n"></div><div><label class="field-label">Relationship to applicant</label><input type="text" id="r2rel"></div></div>
-        <div class="g2 field-wrap"><div><label class="field-label">Home phone</label><input type="tel" id="r2hph"></div><div><label class="field-label">Work phone</label><input type="tel" id="r2wph"></div></div>
+        <div class="sec-header tapp-refs-sec-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:0.5rem;"><span class="sec-num">8</span><span class="sec-title">References</span></div>
+          <button type="button" class="btn-nav" id="tapp_add_referee_btn" style="margin:0;padding:0.45rem 0.95rem;font-size:13px;">Add Referee</button>
+        </div>
+        <div id="tapp-referees-section">
+          <div class="tapp-referee-block" id="tapp-referee-1">
+            <div style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:0.5rem;margin-top:0.25rem">Referee 1</div>
+            <div class="g2 field-wrap"><div><label class="field-label">Name</label><input type="text" id="r1n"></div><div><label class="field-label">Relationship to applicant</label><input type="text" id="r1rel"></div></div>
+            <div class="g2 field-wrap"><div><label class="field-label">Home phone</label><input type="tel" id="r1hph"></div><div><label class="field-label">Work phone</label><input type="tel" id="r1wph"></div></div>
+          </div>
+          <div class="tapp-referee-block" id="tapp-referee-2" hidden>
+            <div style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:0.5rem;margin-top:0.75rem">Referee 2</div>
+            <div class="g2 field-wrap"><div><label class="field-label">Name</label><input type="text" id="r2n"></div><div><label class="field-label">Relationship to applicant</label><input type="text" id="r2rel"></div></div>
+            <div class="g2 field-wrap"><div><label class="field-label">Home phone</label><input type="tel" id="r2hph"></div><div><label class="field-label">Work phone</label><input type="tel" id="r2wph"></div></div>
+          </div>
+          <div id="tapp-referees-dynamic"></div>
+        </div>
+        <template id="tapp-referee-block-template">
+          <div class="tapp-referee-block">
+            <div style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:0.5rem;margin-top:0.75rem">Referee <span class="tapp-referee-num"></span></div>
+            <div class="g2 field-wrap"><div><label class="field-label">Name</label><input type="text" data-field="n"></div><div><label class="field-label">Relationship to applicant</label><input type="text" data-field="rel"></div></div>
+            <div class="g2 field-wrap"><div><label class="field-label">Home phone</label><input type="tel" data-field="hph"></div><div><label class="field-label">Work phone</label><input type="tel" data-field="wph"></div></div>
+          </div>
+        </template>
         <div class="sec-header"><span class="sec-num">9</span><span class="sec-title">Pets</span></div>
         <div class="field-wrap"><div class="pets-row"><label class="check-label"><input type="checkbox" id="pno"> No pets</label><label class="check-label"><input type="checkbox" id="pyes"> Yes – number and type:</label><input type="text" id="pdet" placeholder="e.g. 1 cat, 1 small dog"></div></div>
         <div class="sec-header"><span class="sec-num">10</span><span class="sec-title">Applicant's declaration</span></div>
@@ -196,7 +249,7 @@
           </div>
           <div class="sig-confirmed" id="sigConfirmed"><img class="sig-confirmed-thumb" id="sigConfirmedThumb" src="" alt=""><span id="sigConfirmedText">Signature captured</span><button class="sig-btn" type="button" onclick="resetSig()" style="margin-left:auto;font-size:11px">Change</button></div>
           <input type="hidden" id="e_sig">
-          <div class="field-wrap" style="margin-top:1rem;margin-bottom:0"><label class="field-label">Date</label><input type="date" id="e_sigdt" style="max-width:200px"></div>
+          <div class="field-wrap" style="margin-top:1rem;margin-bottom:0"><label class="field-label">Date</label><input type="date" id="e_sigdt" style="max-width:200px" readonly tabindex="-1" aria-readonly="true"></div>
         </div>
         <div class="submit-area">
           <button class="btn-submit" id="subBtn" onclick="doSubmit()"><div class="spinner" id="spin"></div><span class="btn-label">Submit Application</span></button>
@@ -226,6 +279,7 @@
         </div>
         <div class="nav-row"><button class="btn-nav prev" onclick="goTo(3)">← Back</button><span></span></div>
       </div>
+    </div>
     </div>
   </div>
   <div class="success-view" id="ok-view" style="display:none;">
@@ -270,7 +324,14 @@ function showConfirmed(dataUrl, label) { const box = document.getElementById('si
 function resetSig() { const box = document.getElementById('sigConfirmed'); const sigBox = box.closest('.sig-box'); box.classList.remove('show'); if (sigBox) sigBox.classList.remove('signature-locked'); document.getElementById('e_sig').value = ''; sigDataUrl = null; const tabs = document.querySelector('.sig-tabs'); if (tabs) tabs.style.display = ''; document.querySelectorAll('.sig-panel').forEach(panel => { panel.style.display = ''; }); sigMode = 'draw'; switchSigTab('draw', document.querySelector('.sig-tab[onclick*="\'draw\'"]') || document.querySelector('.sig-tabs .sig-tab')); }
 function switchSigTab(mode, btn) { sigMode = mode; document.querySelectorAll('.sig-panel').forEach(p => p.classList.remove('active')); document.querySelectorAll('.sig-tab').forEach(t => t.classList.remove('active')); document.getElementById('sig-panel-' + mode).classList.add('active'); btn.classList.add('active'); if (mode === 'draw') setTimeout(resizeCanvas, 50); }
 let currentTab = 0;
-function goTo(idx) { document.querySelectorAll('.section-panel').forEach((p,i) => p.classList.toggle('active', i === idx)); document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i === idx)); currentTab = idx; window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function goTo(idx) {
+  document.querySelectorAll('.section-panel').forEach((p,i) => p.classList.toggle('active', i === idx));
+  document.querySelectorAll('.tapp-progress-tabs .tab').forEach((t,i) => t.classList.toggle('active', i === idx));
+  currentTab = idx;
+  const stepEl = document.getElementById('tappStepIndicator');
+  if (stepEl) stepEl.textContent = (idx + 1) + '/5';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 function toggleLang(code, chip) { const el = document.getElementById('lang-' + code); const isOpen = el.classList.contains('show'); document.querySelectorAll('.lang-content').forEach(e => e.classList.remove('show')); document.querySelectorAll('.lang-chip').forEach(c => c.classList.remove('active')); if (!isOpen) { el.classList.add('show'); chip.classList.add('active'); } }
 
 // Keeps Yes/No pairs clean so both boxes cannot be selected at the same time.
@@ -289,6 +350,261 @@ function setupMutualExclusiveChecks() {
     if (!ea || !eb) return;
     ea.addEventListener('change', () => { if (ea.checked) eb.checked = false; });
     eb.addEventListener('change', () => { if (eb.checked) ea.checked = false; });
+  });
+}
+
+const TAPP_PERIOD_PRESETS = ['3 months', '6 months', '9 months'];
+
+function showPeriodCustomEntry(show) {
+  const sel = document.getElementById('d_period_select');
+  const customInp = document.getElementById('d_period_custom');
+  if (!sel || !customInp) return;
+  sel.hidden = show;
+  customInp.hidden = !show;
+  if (show) {
+    customInp.focus();
+  } else {
+    customInp.value = '';
+  }
+}
+
+function getPeriodFromUi() {
+  const sel = document.getElementById('d_period_select');
+  const customInp = document.getElementById('d_period_custom');
+  if (String(sel?.value || '').trim().toLowerCase() === 'other') {
+    return { d_period: 'Other', d_period_other: String(customInp?.value || '').trim() };
+  }
+  return { d_period: String(sel?.value || '').trim(), d_period_other: '' };
+}
+
+function getActivePeriodText() {
+  const fromUi = getPeriodFromUi();
+  if (String(fromUi.d_period || '').trim().toLowerCase() === 'other') {
+    return String(fromUi.d_period_other || '').trim();
+  }
+  return String(fromUi.d_period || '').trim();
+}
+
+function parsePeriodDuration(periodText) {
+  const text = String(periodText || '').trim().toLowerCase();
+  if (!text) return null;
+
+  const presets = {
+    '3 months': { months: 3 },
+    '6 months': { months: 6 },
+    '9 months': { months: 9 },
+  };
+  if (presets[text]) return presets[text];
+
+  const match = text.match(/(\d+(?:\.\d+)?)\s*(day|days|week|weeks|fortnight|fortnights|month|months|year|years)\b/i);
+  if (!match) return null;
+
+  const amount = Number(match[1]);
+  if (!Number.isFinite(amount) || amount <= 0) return null;
+
+  const unit = match[2].toLowerCase().replace(/s$/, '');
+  if (unit === 'day') return { days: amount };
+  if (unit === 'week') return { days: amount * 7 };
+  if (unit === 'fortnight') return { days: amount * 14 };
+  if (unit === 'month') return { months: amount };
+  if (unit === 'year') return { years: amount };
+  return null;
+}
+
+function formatDateISOFromLocalDate(date) {
+  if (!date || Number.isNaN(date.getTime())) return '';
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+  return yyyy + '-' + mm + '-' + dd;
+}
+
+function melbourneTodayISO() {
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Australia/Melbourne',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date());
+    const y = parts.find(function (p) { return p.type === 'year'; });
+    const m = parts.find(function (p) { return p.type === 'month'; });
+    const d = parts.find(function (p) { return p.type === 'day'; });
+    if (y && m && d) return y.value + '-' + m.value + '-' + d.value;
+  } catch (e) {}
+  return formatDateISOFromLocalDate(new Date());
+}
+
+function tappApplySignatureDate() {
+  const el = document.getElementById('e_sigdt');
+  if (!el) return;
+  el.value = melbourneTodayISO();
+}
+
+function setupSignatureDateField() {
+  const el = document.getElementById('e_sigdt');
+  if (!el) return;
+  el.readOnly = true;
+  el.setAttribute('readonly', 'readonly');
+  el.setAttribute('aria-readonly', 'true');
+  el.tabIndex = -1;
+  el.addEventListener('keydown', function (e) { e.preventDefault(); });
+  el.addEventListener('mousedown', function (e) { e.preventDefault(); });
+  tappApplySignatureDate();
+}
+
+window.tappApplySignatureDate = tappApplySignatureDate;
+
+function parseISODateLocal(isoDate) {
+  const parts = String(isoDate || '').split('-').map(Number);
+  if (parts.length !== 3 || parts.some(function (n) { return !Number.isFinite(n); })) return null;
+  const date = new Date(parts[0], parts[1] - 1, parts[2]);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function addDurationToDateISO(isoDate, duration) {
+  if (!isoDate || !duration) return '';
+  const date = parseISODateLocal(isoDate);
+  if (!date) return '';
+
+  if (duration.years) date.setFullYear(date.getFullYear() + duration.years);
+  if (duration.months) date.setMonth(date.getMonth() + duration.months);
+  if (duration.days) date.setDate(date.getDate() + Math.round(duration.days));
+
+  return formatDateISOFromLocalDate(date);
+}
+
+/** Inclusive tenancy end: day before the next period boundary (e.g. 1 Jan + 3 months → 31 Mar). */
+function computeTenancyEndDateISO(startIso, duration) {
+  const periodEndExclusive = addDurationToDateISO(startIso, duration);
+  if (!periodEndExclusive) return '';
+  const date = parseISODateLocal(periodEndExclusive);
+  if (!date) return '';
+  date.setDate(date.getDate() - 1);
+  return formatDateISOFromLocalDate(date);
+}
+
+function syncPeriodHiddenFields() {
+  const period = getPeriodFromUi();
+  const hPeriod = document.getElementById('d_period');
+  const hOther = document.getElementById('d_period_other');
+  if (hPeriod) hPeriod.value = period.d_period;
+  if (hOther) hOther.value = period.d_period_other;
+}
+
+function hydratePeriodFieldFromSaved() {
+  const sel = document.getElementById('d_period_select');
+  const customInp = document.getElementById('d_period_custom');
+  const hPeriod = document.getElementById('d_period');
+  const hOther = document.getElementById('d_period_other');
+  if (!sel || !customInp || !hPeriod) return;
+
+  const savedPeriod = String(hPeriod.value || '').trim();
+  const savedOther = String(hOther?.value || '').trim();
+  if (!savedPeriod && !savedOther) return;
+
+  if (savedPeriod.toLowerCase() === 'other' || savedOther) {
+    sel.value = 'Other';
+    customInp.value = savedOther || (TAPP_PERIOD_PRESETS.includes(savedPeriod) ? '' : savedPeriod);
+    showPeriodCustomEntry(true);
+    return;
+  }
+  if (TAPP_PERIOD_PRESETS.includes(savedPeriod)) {
+    sel.value = savedPeriod;
+    showPeriodCustomEntry(false);
+  }
+}
+
+function setupPeriodField() {
+  const sel = document.getElementById('d_period_select');
+  const customInp = document.getElementById('d_period_custom');
+  if (!sel || !customInp) return;
+
+  sel.addEventListener('change', function () {
+    const isOther = String(sel.value || '').trim().toLowerCase() === 'other';
+    showPeriodCustomEntry(isOther);
+    syncPeriodHiddenFields();
+  });
+
+  customInp.addEventListener('input', syncPeriodHiddenFields);
+  customInp.addEventListener('blur', function () {
+    if (!String(customInp.value || '').trim()) {
+      sel.value = '';
+      showPeriodCustomEntry(false);
+      syncPeriodHiddenFields();
+    }
+  });
+
+  showPeriodCustomEntry(false);
+  hydratePeriodFieldFromSaved();
+  syncPeriodHiddenFields();
+  setTimeout(hydratePeriodFieldFromSaved, 300);
+  setTimeout(hydratePeriodFieldFromSaved, 800);
+}
+
+function setupTenancyEndAutoCalc() {
+  const startEl = document.getElementById('d_start');
+  const endEl = document.getElementById('d_end');
+  const sel = document.getElementById('d_period_select');
+  const customInp = document.getElementById('d_period_custom');
+  if (!startEl || !endEl) return;
+
+  let syncing = false;
+
+  function recalcTenancyEnd() {
+    if (syncing) return;
+    const start = String(startEl.value || '').trim();
+    if (!start) return;
+    const duration = parsePeriodDuration(getActivePeriodText());
+    if (!duration) return;
+    const end = computeTenancyEndDateISO(start, duration);
+    if (!end || end === endEl.value) return;
+    syncing = true;
+    endEl.value = end;
+    syncing = false;
+  }
+
+  startEl.addEventListener('change', recalcTenancyEnd);
+  startEl.addEventListener('input', recalcTenancyEnd);
+  if (sel) sel.addEventListener('change', recalcTenancyEnd);
+  if (customInp) customInp.addEventListener('input', recalcTenancyEnd);
+}
+
+function setupRentBondAutoCalc() {
+  const rentEl = document.getElementById('d_rent');
+  const bondEl = document.getElementById('d_bond');
+  if (!rentEl || !bondEl) return;
+
+  let syncing = false;
+
+  function parseAmount(el) {
+    const raw = String(el.value ?? '').trim();
+    if (!raw) return null;
+    const n = Number(raw);
+    return Number.isFinite(n) && n >= 0 ? n : null;
+  }
+
+  function formatAmount(n) {
+    if (Number.isInteger(n)) return String(n);
+    return String(Math.round(n * 100) / 100);
+  }
+
+  function setAmount(el, value) {
+    const next = value == null ? '' : formatAmount(value);
+    if (el.value === next) return;
+    syncing = true;
+    el.value = next;
+    syncing = false;
+  }
+
+  bondEl.addEventListener('input', function () {
+    if (syncing) return;
+    const bond = parseAmount(bondEl);
+    if (bond === null) {
+      if (!String(bondEl.value ?? '').trim()) setAmount(rentEl, null);
+      return;
+    }
+    setAmount(rentEl, bond / 4);
   });
 }
 
@@ -315,10 +631,228 @@ async function captureSignatureBeforeSubmit() {
   }
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', setupMutualExclusiveChecks);
-} else {
+function parseAustralianAddressSuggestion(full) {
+  const trimmed = String(full || '').trim();
+  if (!trimmed) return { street: '', suburb: '', postcode: '' };
+
+  const pcMatch = trimmed.match(/\b(\d{4})\b/);
+  const postcode = pcMatch ? pcMatch[1] : '';
+  const parts = trimmed.split(',').map(function (p) { return p.trim(); }).filter(Boolean);
+  const street = parts[0] || trimmed;
+
+  const stateToken = /^(VIC|NSW|QLD|SA|WA|TAS|NT|ACT)$/i;
+  const stateName = /^(victoria|new south wales|queensland|south australia|western australia|tasmania|northern territory|australian capital territory)$/i;
+
+  function cleanLocality(part) {
+    return String(part || '')
+      .replace(/\s+(VIC|NSW|QLD|SA|WA|TAS|NT|ACT)\s*\d{4}$/i, '')
+      .replace(/\s+(VIC|NSW|QLD|SA|WA|TAS|NT|ACT)$/i, '')
+      .trim();
+  }
+
+  let suburb = '';
+  for (let i = 1; i < parts.length; i++) {
+    const part = parts[i];
+    if (!part || /^\d{4}$/.test(part)) continue;
+    if (stateToken.test(part) || stateName.test(part)) continue;
+    if (/^australia$/i.test(part)) continue;
+    const locality = cleanLocality(part);
+    if (locality) {
+      suburb = locality;
+      break;
+    }
+  }
+
+  if (!suburb && parts.length >= 2) {
+    suburb = cleanLocality(parts[1]);
+  }
+
+  return { street: street, suburb: suburb, postcode: postcode };
+}
+
+function applyPropertyAddressParts(parsed, opts) {
+  const options = opts || {};
+  const input = document.getElementById('d_addr');
+  const suburbEl = document.getElementById('d_addr2');
+  const pcEl = document.getElementById('d_pc');
+  if (!parsed) return;
+  if (suburbEl && parsed.suburb) suburbEl.value = parsed.suburb;
+  if (pcEl && parsed.postcode) pcEl.value = parsed.postcode;
+  if (options.trimStreet && input && parsed.street && String(input.value || '').indexOf(',') >= 0) {
+    input.value = parsed.street;
+  }
+}
+
+function syncSuburbPostcodeFromAddressField() {
+  const input = document.getElementById('d_addr');
+  if (!input) return;
+  const raw = String(input.value || '').trim();
+  if (!raw || raw.indexOf(',') < 0) return;
+  applyPropertyAddressParts(parseAustralianAddressSuggestion(raw), { trimStreet: true });
+}
+
+/** When street address is already saved/prefilled, derive suburb + postcode from it. */
+function hydrateSuburbPostcodeFromPrefilledAddress() {
+  const input = document.getElementById('d_addr');
+  if (!input) return;
+  const raw = String(input.value || '').trim();
+  if (!raw) return;
+  const parsed = parseAustralianAddressSuggestion(raw);
+  if (!parsed.suburb && !parsed.postcode) return;
+  applyPropertyAddressParts(parsed, { trimStreet: false });
+}
+window.hydrateSuburbPostcodeFromPrefilledAddress = hydrateSuburbPostcodeFromPrefilledAddress;
+
+function tenantApplicationAddressSuggestionsUrl(query) {
+  const q = encodeURIComponent(query);
+  const shmApi = String(window.SHM_API_URL || '/shm-docs/').replace(/\/?$/, '/');
+  return shmApi + 'address-suggestions?q=' + q;
+}
+
+function setupPropertyAddressAutocomplete() {
+  const input = document.getElementById('d_addr');
+  const wrap = document.getElementById('d_addr_wrap');
+  const list = document.getElementById('d_addr_suggest_list');
+  const hint = document.getElementById('d_addr_suggest_hint');
+  if (!input || !wrap || !list) return;
+
+  let suggestTimer = null;
+  let syncPartsTimer = null;
+
+  function closeSuggestions() {
+    list.hidden = true;
+    list.innerHTML = '';
+    input.setAttribute('aria-expanded', 'false');
+  }
+
+  function openSuggestions(items) {
+    list.innerHTML = '';
+    items.forEach(function (suggestion) {
+      const li = document.createElement('li');
+      li.setAttribute('role', 'option');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tapp-address-suggest-item';
+      btn.textContent = suggestion;
+      btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+      btn.addEventListener('click', function () {
+        const parsed = parseAustralianAddressSuggestion(suggestion);
+        input.value = parsed.street || suggestion;
+        applyPropertyAddressParts(parsed);
+        closeSuggestions();
+      });
+      li.appendChild(btn);
+      list.appendChild(li);
+    });
+    list.hidden = items.length === 0;
+    input.setAttribute('aria-expanded', items.length ? 'true' : 'false');
+  }
+
+  function fetchSuggestions(query) {
+    const q = query.trim();
+    if (q.length < (/^\d{4}$/.test(q) ? 4 : 3)) {
+      if (hint) hint.hidden = true;
+      closeSuggestions();
+      return;
+    }
+    if (hint) {
+      hint.hidden = false;
+      hint.textContent = 'Searching addresses…';
+    }
+    const url = tenantApplicationAddressSuggestionsUrl(q);
+    fetch(url)
+      .then(function (res) {
+        if (!res.ok && url.indexOf('/shm-docs/') >= 0) {
+          return fetch('/api/address-suggestions?q=' + encodeURIComponent(q));
+        }
+        return res;
+      })
+      .then(function (res) { return res.ok ? res.json() : { suggestions: [] }; })
+      .then(function (data) {
+        const items = Array.isArray(data.suggestions) ? data.suggestions : [];
+        if (hint) hint.hidden = true;
+        openSuggestions(items);
+      })
+      .catch(function () {
+        if (hint) hint.hidden = true;
+        closeSuggestions();
+      });
+  }
+
+  input.addEventListener('input', function () {
+    if (suggestTimer) clearTimeout(suggestTimer);
+    suggestTimer = setTimeout(function () { fetchSuggestions(input.value); }, 220);
+    const raw = String(input.value || '').trim();
+    if (raw.indexOf(',') >= 0 && /\b\d{4}\b/.test(raw)) {
+      if (syncPartsTimer) clearTimeout(syncPartsTimer);
+      syncPartsTimer = setTimeout(syncSuburbPostcodeFromAddressField, 350);
+    }
+  });
+  input.addEventListener('change', syncSuburbPostcodeFromAddressField);
+  input.addEventListener('blur', syncSuburbPostcodeFromAddressField);
+  input.addEventListener('focus', function () {
+    if (list.children.length) list.hidden = false;
+  });
+  document.addEventListener('mousedown', function (e) {
+    if (!wrap.contains(e.target)) closeSuggestions();
+  });
+}
+
+function setupAddReferee() {
+  const btn = document.getElementById('tapp_add_referee_btn');
+  const block2 = document.getElementById('tapp-referee-2');
+  const dynamic = document.getElementById('tapp-referees-dynamic');
+  const tpl = document.getElementById('tapp-referee-block-template');
+  if (!btn) return;
+
+  let nextIndex = 3;
+
+  function savedReferee2HasData() {
+    return ['r2n', 'r2rel', 'r2hph', 'r2wph'].some(function (id) {
+      return String(document.getElementById(id)?.value || '').trim();
+    });
+  }
+
+  if (block2 && savedReferee2HasData()) block2.hidden = false;
+
+  btn.addEventListener('click', function () {
+    if (block2 && block2.hidden) {
+      block2.hidden = false;
+      return;
+    }
+    if (!tpl || !dynamic || nextIndex > 10) return;
+    const idx = nextIndex++;
+    const node = tpl.content.cloneNode(true);
+    const root = node.querySelector('.tapp-referee-block');
+    if (!root) return;
+    const numEl = root.querySelector('.tapp-referee-num');
+    if (numEl) numEl.textContent = String(idx);
+    root.querySelectorAll('[data-field]').forEach(function (inp) {
+      const suffix = inp.getAttribute('data-field') || '';
+      inp.id = 'r' + idx + suffix;
+      inp.removeAttribute('data-field');
+    });
+    dynamic.appendChild(node);
+  });
+}
+
+function initTenantApplicationFormUi() {
   setupMutualExclusiveChecks();
+  setupPeriodField();
+  setupTenancyEndAutoCalc();
+  setupRentBondAutoCalc();
+  setupAddReferee();
+  setupSignatureDateField();
+  setupPropertyAddressAutocomplete();
+  hydrateSuburbPostcodeFromPrefilledAddress();
+  setTimeout(hydrateSuburbPostcodeFromPrefilledAddress, 300);
+  setTimeout(hydrateSuburbPostcodeFromPrefilledAddress, 900);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTenantApplicationFormUi);
+} else {
+  initTenantApplicationFormUi();
 }
 
 function g(id) { return (document.getElementById(id)?.value || '').trim(); }
@@ -471,8 +1005,8 @@ function addImageContentTypeIfNeeded(zip, ext, mime) {
 
 function signatureDrawingRunXml(rId, fileName) {
   // A clean signature size that fits the original CAV signature field.
-  const cx = 260 * 9525; // width in EMUs
-  const cy = 70 * 9525;  // height in EMUs
+  const cx = 200 * 9525; // width in EMUs — fits CAV bordered row (~680 twips)
+  const cy = 26 * 9525;  // height in EMUs
   const docPrId = Math.floor(Date.now() % 100000) + 9000;
 
   return `<w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"><wp:extent cx="${cx}" cy="${cy}"/><wp:effectExtent l="0" t="0" r="0" b="0"/><wp:docPr id="${docPrId}" name="Applicant Signature"/><wp:cNvGraphicFramePr><a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/></wp:cNvGraphicFramePr><a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="0" name="${xmlEscape(fileName)}"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:embed="${rId}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r>`;
@@ -499,7 +1033,35 @@ function insertSignatureImage(zip, xml, dataUrl) {
     return xml.replace(runWithPlaceholder, drawingRun);
   }
 
+  const decl = xml.indexOf('Applicant\u2019s declaration');
+  if (decl !== -1) {
+    const sigLabel = xml.indexOf('Applicant\u2019s s', decl);
+    if (sigLabel !== -1) {
+      const firstCellEnd = xml.indexOf('</w:tc>', sigLabel);
+      const valueCellStart = firstCellEnd !== -1 ? xml.indexOf('<w:tc>', firstCellEnd + 6) : -1;
+      if (valueCellStart !== -1) {
+        const valueCellEnd = xml.indexOf('</w:tc>', valueCellStart);
+        if (valueCellEnd !== -1) {
+          const cellXml = xml.slice(valueCellStart, valueCellEnd + '</w:tc>'.length);
+          const filledCell = cellXml.replace(
+            /<w:p\b[^>]*>[\s\S]*?<\/w:p>/,
+            '<w:p><w:pPr><w:pStyle w:val="Textfill" /><w:spacing w:before="0" w:after="0" w:line="240" w:lineRule="auto" /></w:pPr>' + drawingRun + '</w:p>'
+          );
+          return xml.slice(0, valueCellStart) + filledCell + xml.slice(valueCellEnd + '</w:tc>'.length);
+        }
+      }
+    }
+  }
+
   return xml.replace(/\{\{sig_text\}\}/g, '');
+}
+
+function formatPeriodDisplay(d) {
+  const sel = String(d.d_period || '').trim();
+  const other = String(d.d_period_other || '').trim();
+  if (!sel) return other;
+  if (sel.toLowerCase() === 'other') return other;
+  return sel;
 }
 
 function buildTemplateData(d) {
@@ -546,6 +1108,9 @@ function buildTemplateData(d) {
     rent_fortnight_box: box(rentPeriod === 'fortnight'),
     rent_month_box: box(rentPeriod === 'calendar month'),
     d_bond_fmt: money(d.d_bond),
+    d_period: d.d_period || '',
+    d_period_other: d.d_period_other || '',
+    d_period_fmt: formatPeriodDisplay(d),
     d_start_fmt: fmtDateAU(d.d_start),
     d_end_fmt: fmtDateAU(d.d_end),
     d_pm: d.d_pm || '',
@@ -636,6 +1201,49 @@ function fixGoogleDrivePageSpacing(xml) {
   return xml;
 }
 
+function fixTenantApplicationDocxGooglePreviewXml(xml) {
+  xml = xml.replace(/<w:lastRenderedPageBreak\s*\/>/g, '');
+  xml = xml.replace(/<w:pageBreakBefore\b[^>]*\/>/g, '');
+  return xml;
+}
+
+function tightenTenantApplicationTextfillParagraphSpacing(xml) {
+  return xml.replace(
+    /(<w:pPr>)([\s\S]*?<w:pStyle w:val="Textfill"[\s\S]*?)(<\/w:pPr>)/g,
+    function (_, open, mid, close) {
+      let inner = mid.replace(/<w:spacing\b[^>]*\/>/g, '');
+      inner += '<w:spacing w:before="0" w:after="0" w:line="240" w:lineRule="auto"/>';
+      return open + inner + close;
+    }
+  );
+}
+
+function fixTenantApplicationFooterPageCountZip(zip, totalPages) {
+  const totalStr = String(totalPages || 8);
+  Object.keys(zip.files).forEach(function (path) {
+    if (!path.startsWith('word/footer') || !path.endsWith('.xml')) return;
+    let xml = zip.file(path).asText();
+    if (!/NUMPAGES|Page /i.test(xml)) return;
+    xml = xml.replace(
+      /(<w:fldSimple w:instr="NUMPAGES[^"]*">[\s\S]*?<w:t>)\d+(<\/w:t>[\s\S]*?<\/w:fldSimple>)/g,
+      '$1' + totalStr + '$2'
+    );
+    zip.file(path, xml);
+  });
+}
+
+function ensureWordUpdatesFieldsOnOpenZip(zip) {
+  const settingsFile = zip.file('word/settings.xml');
+  if (!settingsFile) return;
+  let settingsXml = settingsFile.asText();
+  if (settingsXml.includes('w:updateFields')) {
+    settingsXml = settingsXml.replace(/<w:updateFields w:val="[^"]*"\/>/, '<w:updateFields w:val="true"/>');
+  } else {
+    settingsXml = settingsXml.replace('</w:settings>', '<w:updateFields w:val="true"/></w:settings>');
+  }
+  zip.file('word/settings.xml', settingsXml);
+}
+
 
 function cleanRunProperties(rPrXml) {
   return rPrXml
@@ -669,7 +1277,7 @@ function applyGeneratedFieldStyling(xml) {
   // Arial 11pt, black, no underline.
   const valueKeys = [
     'c_en_name','c_en_abn','c_en_ph','c_en_web','c_en_tar','c_further','c_elec_fmt','c_gas_fmt','c_pool_fmt',
-    'd_addr_full','d_pc','d_rent_fmt','d_bond_fmt','d_start_fmt','d_end_fmt','d_pm','d_pmph','d_pmeml','d_agency',
+    'd_addr_full','d_pc','d_rent_fmt','d_bond_fmt','d_period_fmt','d_start_fmt','d_end_fmt','d_pm','d_pmph','d_pmeml','d_agency',
     'applicant_name','e_addr_full','e_pc','e_phbh','e_phah','e_email','e_dob_fmt','e_depn','e_depa','e_prp','e_prpph','e_prpeml',
     'e_occ','e_sal_fmt','e_othinc_fmt','e_emp','e_empaddr_full','e_emppc','e_empyrs','e_empmos','e_emppos','e_empcnt','e_empph',
     'e_pemp','e_pempyrs','e_pempmos','e_pemppos','e_pempcnt','e_pempph',
@@ -721,7 +1329,11 @@ async function buildDocx(data) {
   // Remove any remaining placeholders so applicants never see template tags.
   xml = xml.replace(/\{\{[^{}]+\}\}/g, '');
 
+  xml = fixTenantApplicationDocxGooglePreviewXml(xml);
+  xml = tightenTenantApplicationTextfillParagraphSpacing(xml);
   zip.file('word/document.xml', xml);
+  fixTenantApplicationFooterPageCountZip(zip, 8);
+  ensureWordUpdatesFieldsOnOpenZip(zip);
 
   return zip.generate({
     type: 'blob',
@@ -767,6 +1379,7 @@ async function doSubmit() {
   try {
     // Capture signature before building the doc
     await captureSignatureBeforeSubmit();
+    tappApplySignatureDate();
 
     // Build the file name
     const name     = (first + ' ' + last).trim();
@@ -793,6 +1406,7 @@ async function doSubmit() {
       // Part D
       d_addr: g('d_addr'), d_addr2: g('d_addr2'), d_pc: g('d_pc'),
       d_rent: g('d_rent'), d_rper:  g('d_rper'),  d_bond: g('d_bond'),
+      ...getPeriodFromUi(),
       d_start: g('d_start'), d_end: g('d_end'),
       d_pm: g('d_pm'), d_pmph: g('d_pmph'), d_pmeml: g('d_pmeml'), d_agency: g('d_agency'),
       // Part E
@@ -815,6 +1429,10 @@ async function doSubmit() {
       e_sig: g('e_sig'), e_sigdt: g('e_sigdt'),
       submittedAt: now
     };
+
+    document.querySelectorAll('#tapp-referees-dynamic input[id]').forEach(function (el) {
+      formData[el.id] = (el.value || '').trim();
+    });
 
     if (!formData.e_sig) {
       throw new Error('Missing signature');
@@ -848,6 +1466,8 @@ async function doSubmit() {
         fileName:    fileName,
         fileContent: base64Docx,
         fileType:    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        field_values: formData,
+        agreement_data: formData,
         recipient: {
           name:  name,
           email: email

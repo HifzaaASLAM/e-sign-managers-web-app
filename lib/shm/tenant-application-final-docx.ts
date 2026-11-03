@@ -1,10 +1,6 @@
 import { prisma } from "../prisma";
 import { logShmEvent } from "./documents";
-import {
-  buildTenantApplicationAuditLines,
-  readLastSubmissionDocx,
-  stampCreatorSignatureOnTenantApplicationDocx,
-} from "./tenant-application-docx";
+import { readLastSubmissionDocx, stampCreatorSignatureOnTenantApplicationDocx } from "./tenant-application-docx";
 import { loadCreatorAutoSignatureDataUrl } from "./creator-auto-signature";
 
 function parseAgreementData(raw: string | null) {
@@ -16,7 +12,7 @@ function parseAgreementData(raw: string | null) {
 }
 
 /**
- * Stamp creator signature + audit trail onto the applicant DOCX and re-upload via Make.
+ * Stamp agent/creator signature onto the applicant DOCX and re-upload via Make.
  * Returns the regenerated last_submission payload, or null on failure.
  */
 export async function regenerateTenantApplicationFinalDocx(input: {
@@ -55,35 +51,9 @@ export async function regenerateTenantApplicationFinalDocx(input: {
     doc.adminSignature ||
     (await loadCreatorAutoSignatureDataUrl());
 
-  const landlord =
-    agreementData.landlord && typeof agreementData.landlord === "object"
-      ? (agreementData.landlord as Record<string, unknown>)
-      : null;
-
-  const events = await prisma.shmDocumentEvent.findMany({
-    where: { documentId: input.documentId },
-    orderBy: { eventTime: "asc" },
-    take: 40,
-    select: { eventType: true, eventTime: true, ipAddress: true },
-  });
-
-  const auditLines = buildTenantApplicationAuditLines({
-    documentId: doc.documentId,
-    sentAt: doc.sentAt || doc.tenantSentAt,
-    applicantName,
-    applicantEmail,
-    applicantSignedAt: doc.tenantSignedAt || doc.signedAt,
-    creatorName,
-    creatorEmail,
-    creatorSignedAt: signedAt,
-    landlordName: landlord ? String(landlord.name || "Landlord") : undefined,
-    landlordEmail: landlord ? String(landlord.email || "") : undefined,
-    landlordApprovedAt:
-      landlord?.status === "approved"
-        ? String(landlord.approvedAt || agreementData.landlord_approved_at || "") || undefined
-        : undefined,
-    events,
-  });
+  const applicantSignature = String(
+    fieldValues.e_sig || agreementData.tenant_signature || agreementData.signature || "",
+  ).trim();
 
   // Prefer stamping onto the original applicant DOCX (before any previous stamp),
   // so re-runs replace the approval block cleanly. The stamp function also removes prior stamps.
@@ -94,9 +64,9 @@ export async function regenerateTenantApplicationFinalDocx(input: {
     creatorEmail,
     applicantName,
     applicantEmail,
+    applicantSignatureDataUrl: applicantSignature.startsWith("data:image/") ? applicantSignature : undefined,
     signedAt,
     documentId: doc.documentId,
-    auditLines,
   });
 
   const stampedBase64 = stamped.toString("base64");
@@ -112,7 +82,7 @@ export async function regenerateTenantApplicationFinalDocx(input: {
     signerName: creatorName,
     signerEmail: creatorEmail,
     creatorStamped: true,
-    auditIncluded: true,
+    auditIncluded: false,
   };
 
   const { sendPayloadToMake } = await import("./make");

@@ -1798,18 +1798,18 @@ main {
 #shm-signing-wrapper .ownership-statement-shell .doc-header.ownership-header {
   background: linear-gradient(135deg, #1677ff 0%, #0f5ed7 100%) !important;
 }
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .progress-tabs,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .tab.active,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .font-pill.active,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .btn-submit,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .btn-nav.next,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .sig-btn:not(.danger) {
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .progress-tabs,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .tab.active,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .font-pill.active,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .btn-submit,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .btn-nav.next,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .sig-btn:not(.danger) {
   background: #1677ff !important;
   color: #fff !important;
 }
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .btn-nav.next:hover,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .btn-submit:hover,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .sig-btn:not(.danger):hover {
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .btn-nav.next:hover,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .btn-submit:hover,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .sig-btn:not(.danger):hover {
   background: #1466e6 !important;
 }
 #shm-signing-wrapper .part-title,
@@ -1820,15 +1820,15 @@ main {
 #shm-signing-wrapper h3 {
   color: #0f172a !important;
 }
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .part-label,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .step-pill,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .number-pill {
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .part-label,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .step-pill,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .number-pill {
   background: #1677ff !important;
   color: #fff !important;
 }
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) input:focus,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) textarea:focus,
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) select:focus {
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) input:focus,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) textarea:focus,
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) select:focus {
   border-color: #1677ff !important;
   box-shadow: 0 0 0 4px rgba(22, 119, 255, 0.12) !important;
   outline: none !important;
@@ -2093,7 +2093,7 @@ main {
   color: #2c3a55 !important;
 }
 
-#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)) .sig-tab.active {
+#shm-signing-wrapper:not(:has(.tenant-agreement-shell)):not(:has(.property-management-agreement-shell)):not(:has(.tenant-application-shell)) .sig-tab.active {
   background: #1677ff !important;
   color: #ffffff !important;
   box-shadow: 0 6px 16px rgba(22, 119, 255, 0.22);
@@ -2989,4 +2989,399 @@ main {
   border: 0;
   display: block;
   background: #fff;
+}
+
+/* Tenant Application — Figma warm wizard (Residential Rental Application) */
+#shm-signing-wrapper:has(.tenant-application-shell) {
+  background: #f7f4f1 !important;
+  padding: 32px 16px 64px !important;
+  font-family: Montserrat, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell {
+  --tapp-orange: #1a1a1a;
+  --tapp-orange-dark: #374151;
+  --tapp-orange-soft: #f3f4f6;
+  --tapp-peach-head: #f3f4f6;
+  --tapp-text: #1a1a1a;
+  --tapp-muted: #6b7280;
+  --tapp-line: #e5e7eb;
+  --shm-blue: #1a1a1a;
+  --shm-blue-dark: #374151;
+  --shm-line: var(--tapp-line);
+  --shm-text: #374151;
+}
+
+#shm-signing-wrapper .tenant-application-shell #main-form {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-form-shell {
+  max-width: 920px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 28px 18px;
+  border-bottom: 1px solid var(--tapp-line);
+  background: #ffffff;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-header-logo {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 168px;
+  object-fit: contain;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-step-indicator {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--tapp-muted);
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-progress-tabs {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid var(--tapp-line) !important;
+  gap: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-progress-tabs .tab {
+  background: transparent !important;
+  color: #9ca3af !important;
+  text-transform: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  padding: 16px 6px 14px !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-progress-tabs .tab:hover {
+  color: #374151 !important;
+  background: #fafafa !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-progress-tabs .tab.active {
+  color: var(--tapp-text) !important;
+  background: #ffffff !important;
+  border-bottom-color: #1a1a1a !important;
+  box-shadow: none !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .main-card {
+  background: #ffffff !important;
+  padding: 28px 32px 32px !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-wizard-hero {
+  margin: 0 0 22px;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-wizard-kicker {
+  color: var(--tapp-orange) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  font-style: normal !important;
+  opacity: 1 !important;
+  margin-bottom: 10px;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-wizard-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.125rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--tapp-text) !important;
+  line-height: 1.12;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-part-header {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+#shm-signing-wrapper .tenant-application-shell .part-label {
+  background: var(--tapp-peach-head) !important;
+  color: var(--tapp-text) !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .part-title {
+  color: var(--tapp-text) !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
+
+#shm-signing-wrapper .tenant-application-shell .part-divider {
+  background: var(--tapp-line) !important;
+  height: 1px;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-info-block {
+  margin-bottom: 8px;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-info-block-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--tapp-peach-head);
+  color: var(--tapp-text);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: var(--tapp-text);
+  flex-shrink: 0;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-info-list {
+  margin: 0 0 20px !important;
+  padding-left: 22px !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-info-list li {
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+  color: #374151 !important;
+  margin-bottom: 14px !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-info-list li::marker {
+  color: #374151 !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-em {
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-sublist {
+  margin-top: 10px !important;
+  padding-left: 22px !important;
+  list-style-type: circle !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-sublist li {
+  margin-bottom: 8px !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-section-divider {
+  height: 1px;
+  background: var(--tapp-line);
+  margin: 8px 0 24px;
+}
+
+#shm-signing-wrapper .tenant-application-shell .sub-header {
+  margin: 0 0 12px !important;
+  color: var(--tapp-text) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 700 !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .sec-num {
+  background: var(--tapp-peach-head) !important;
+  color: var(--tapp-text) !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .styled-list li::marker {
+  color: #374151 !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell input[type="checkbox"] {
+  accent-color: #374151 !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell input:focus,
+#shm-signing-wrapper .tenant-application-shell textarea:focus,
+#shm-signing-wrapper .tenant-application-shell select:focus {
+  border-color: #9ca3af !important;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.15) !important;
+  outline: none !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .btn-nav.next,
+#shm-signing-wrapper .tenant-application-shell .btn-submit {
+  background: #f3f4f6 !important;
+  color: #1a1a1a !important;
+  border: 1px solid var(--tapp-line) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+  padding: 14px 24px !important;
+  font-size: 14px !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .btn-nav.next:hover,
+#shm-signing-wrapper .tenant-application-shell .btn-submit:hover {
+  background: #e5e7eb !important;
+  color: #1a1a1a !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .btn-nav.prev {
+  background: #ffffff !important;
+  color: #374151 !important;
+  border: 1px solid var(--tapp-line) !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  padding: 14px 22px !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-nav-row {
+  margin-top: 28px;
+  padding-top: 8px;
+}
+
+#shm-signing-wrapper .tenant-application-shell .sig-tab.active,
+#shm-signing-wrapper .tenant-application-shell .font-pill.active {
+  background: #f3f4f6 !important;
+  color: #1a1a1a !important;
+  border-color: #d1d5db !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .sig-tab:not(.active),
+#shm-signing-wrapper .tenant-application-shell .font-pill:not(.active) {
+  background: #ffffff !important;
+  color: #374151 !important;
+  border: 1px solid var(--tapp-line) !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .info-box {
+  background: #f9fafb !important;
+  border: 1px solid var(--tapp-line) !important;
+  border-radius: 12px !important;
+  color: #4b5563 !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .help-card {
+  background: #f9fafb !important;
+  border: 1px solid var(--tapp-line) !important;
+  border-radius: 12px !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .help-card a {
+  color: #1a1a1a !important;
+  text-decoration: underline;
+}
+
+#shm-signing-wrapper .tenant-application-shell .disc-table th {
+  background: var(--tapp-peach-head) !important;
+  color: var(--tapp-text) !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .success-view {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 48px 32px;
+  max-width: 520px;
+  margin: 0 auto;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-address-field-wrap {
+  position: relative;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-address-hint {
+  margin: 6px 0 0 !important;
+  font-size: 12px !important;
+  color: #64748b !important;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-address-suggest-list {
+  position: absolute;
+  z-index: 40;
+  left: 0;
+  right: 0;
+  margin: 6px 0 0;
+  padding: 6px 0;
+  list-style: none;
+  max-height: 220px;
+  overflow: auto;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-address-suggest-item {
+  display: block;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+#shm-signing-wrapper .tenant-application-shell .tapp-address-suggest-item:hover,
+#shm-signing-wrapper .tenant-application-shell .tapp-address-suggest-item:focus {
+  background: #f8fafc;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  #shm-signing-wrapper .tenant-application-shell .tapp-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 16px 14px;
+  }
+
+  #shm-signing-wrapper .tenant-application-shell .tapp-progress-tabs .tab {
+    font-size: 11px !important;
+    padding: 12px 4px 10px !important;
+  }
+
+  #shm-signing-wrapper .tenant-application-shell .main-card {
+    padding: 20px 16px 24px !important;
+  }
+
+  #shm-signing-wrapper .tenant-application-shell .tapp-nav-row .btn-nav.next {
+    width: 100%;
+    justify-content: center;
+  }
 }

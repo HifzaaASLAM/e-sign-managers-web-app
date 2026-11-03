@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { prisma } from "../prisma";
 import { ensureAdminDocumentDownloadUrl } from "./admin-document-download";
-import { getAppUrl } from "./documents";
+import { getAppUrl, isTenantApplication } from "./documents";
 import { formatRentDisplay } from "./tenant-application-prefill";
 import {
   renderSigningEmailHtml,
@@ -1042,6 +1042,113 @@ export async function sendTenantApplicationApprovedEmail(input: {
   }
 }
 
+export function resolveTenantApplicationFinalNotifyEmail() {
+  return (process.env.TENANT_APPLICATION_FINAL_NOTIFY_EMAIL || "info@sharehousemanagers.com.au")
+    .trim()
+    .toLowerCase();
+}
+
+type TenantApplicationFinalEmailInput = {
+  documentId: string;
+  propertyAddress?: string | null;
+  applicantName?: string | null;
+  applicantEmail?: string | null;
+  attachments?: Array<{ fileName: string; fileContent: string; fileType: string }>;
+};
+
+function renderTenantApplicationFinalEmailHtml(input: {
+  greetingName: string;
+  heading: string;
+  intro: string;
+  documentId: string;
+  propertyAddress?: string | null;
+  applicantName?: string | null;
+  applicantEmail?: string | null;
+  hasAttachment: boolean;
+}) {
+  const docId = escapeHtml(input.documentId);
+  const property = escapeHtml(String(input.propertyAddress || "").trim() || "Not specified");
+  const applicant = escapeHtml(input.applicantName || "Applicant");
+  const applicantEmail = escapeHtml(input.applicantEmail || "");
+  const attachmentNote = input.hasAttachment
+    ? `<p style="line-height:1.6;margin:0 0 14px;">Your signed Tenant Application is attached to this email for your records.</p>`
+    : `<p style="line-height:1.6;margin:0 0 14px;">We could not attach the document to this email; please contact us if you need a copy.</p>`;
+
+  return `
+    <html><body style="font-family:Arial,sans-serif;color:#333;max-width:620px;margin:0 auto;background:#f8fafc;padding:24px;">
+      <div style="background:#1677ff;padding:24px 30px;border-radius:8px 8px 0 0;">
+        <h1 style="color:#fff;margin:0;font-size:21px;">ShareHouseManagers</h1>
+      </div>
+      <div style="background:#fff;padding:30px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px;">
+        <p>Dear ${escapeHtml(input.greetingName)},</p>
+        <h2 style="margin:0 0 14px;color:#0f172a;font-size:20px;">${escapeHtml(input.heading)}</h2>
+        <p style="line-height:1.6;">${escapeHtml(input.intro)}</p>
+        ${attachmentNote}
+        <div style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:20px 0;">
+          <p style="margin:0 0 8px;"><strong>Document ID:</strong> ${docId}</p>
+          <p style="margin:0 0 8px;"><strong>Property:</strong> ${property}</p>
+          <p style="margin:0;"><strong>Applicant:</strong> ${applicant}${applicantEmail ? ` (${applicantEmail})` : ""}</p>
+        </div>
+        <p style="font-size:12px;color:#64748b;line-height:1.6;">If you have questions, contact us at <a href="mailto:info@sharehousemanagers.com.au" style="color:#1677ff;">info@sharehousemanagers.com.au</a>.</p>
+      </div>
+    </body></html>`;
+}
+
+/** Applicant — final Tenant Application after creator auto-signature (PDF attached). */
+export async function sendTenantApplicationFinalApplicantEmail(
+  input: TenantApplicationFinalEmailInput & { to: string; name?: string | null },
+) {
+  const property = String(input.propertyAddress || "").trim();
+  const subject = property
+    ? `Your signed Tenant Application — ${property}`
+    : `Your signed Tenant Application — ${input.documentId}`;
+  const html = renderTenantApplicationFinalEmailHtml({
+    greetingName: input.name || input.applicantName || "Applicant",
+    heading: "Your application is signed by ShareHouseManagers",
+    intro:
+      "Thank you for completing your Tenant Application. ShareHouseManagers has signed as the rental provider. Please keep the attached copy for your records.",
+    documentId: input.documentId,
+    propertyAddress: input.propertyAddress,
+    applicantName: input.applicantName,
+    applicantEmail: input.applicantEmail,
+    hasAttachment: Boolean(input.attachments?.length),
+  });
+  return sendPmaFinalSignedEmailWithAttachment({
+    to: input.to,
+    subject,
+    html,
+    documentId: input.documentId,
+    emailType: "shm_tenant_application_final_applicant",
+    attachments: input.attachments,
+  });
+}
+
+/** Internal copy for info@ after creator auto-signature on Tenant Application. */
+export async function sendTenantApplicationFinalInfoEmail(input: TenantApplicationFinalEmailInput) {
+  const to = resolveTenantApplicationFinalNotifyEmail();
+  const property = String(input.propertyAddress || "").trim();
+  const subject = `Tenant Application creator signed — ${input.documentId}${property ? ` — ${property}` : ""}`;
+  const html = renderTenantApplicationFinalEmailHtml({
+    greetingName: "Team",
+    heading: "Tenant Application — creator signature applied",
+    intro:
+      "The applicant signed and ShareHouseManagers auto-signed as creator. A PDF copy of the stamped application is attached for filing.",
+    documentId: input.documentId,
+    propertyAddress: input.propertyAddress,
+    applicantName: input.applicantName,
+    applicantEmail: input.applicantEmail,
+    hasAttachment: Boolean(input.attachments?.length),
+  });
+  return sendPmaFinalSignedEmailWithAttachment({
+    to,
+    subject,
+    html,
+    documentId: input.documentId,
+    emailType: "shm_tenant_application_final_info",
+    attachments: input.attachments,
+  });
+}
+
 export async function sendLandlordApplicationSentNotice(input: {
   to: string;
   landlordName: string;
@@ -1265,6 +1372,7 @@ async function sendAdminNotificationEmail(input: {
   fileUrl?: string | null;
   downloadUrl?: string | null;
   emailType: string;
+  showDashboardButton?: boolean;
 }): Promise<SigningEmailResult> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const from = resolveFromAddress();
@@ -1305,6 +1413,13 @@ async function sendAdminNotificationEmail(input: {
     ? `<div style="text-align:center;margin:18px 0;">${actionButtons.join("")}</div>`
     : "";
 
+  const showDashboard = input.showDashboardButton !== false;
+  const dashboardButtonBlock = showDashboard
+    ? `<div style="text-align:center;margin:24px 0;">
+          <a href="${dashboardUrl}" style="background:#1677ff;color:#fff;padding:13px 28px;border-radius:6px;text-decoration:none;font-weight:700;display:inline-block;">Open Dashboard</a>
+        </div>`
+    : "";
+
   const html = `
     <html><body style="font-family:Arial,sans-serif;color:#333;max-width:620px;margin:0 auto;background:#f8fafc;padding:24px;">
       <div style="background:#1677ff;padding:24px 30px;border-radius:8px 8px 0 0;">
@@ -1321,9 +1436,7 @@ async function sendAdminNotificationEmail(input: {
           <p style="margin:0 0 8px;"><strong>${signerLabel}:</strong> ${signerName}${signerEmail ? ` (${signerEmail})` : ""}</p>
         </div>
         ${fileButton}
-        <div style="text-align:center;margin:24px 0;">
-          <a href="${dashboardUrl}" style="background:#1677ff;color:#fff;padding:13px 28px;border-radius:6px;text-decoration:none;font-weight:700;display:inline-block;">Open Dashboard</a>
-        </div>
+        ${dashboardButtonBlock}
         <p style="font-size:12px;color:#64748b;line-height:1.6;">This is an automated notification from the SHM document signing system.</p>
       </div>
     </body></html>`;
@@ -1707,6 +1820,7 @@ export async function sendAdminFinalFileReadyEmail(input: {
     intro:
       "The final signed document has been uploaded to Google Drive. Use Download Doc to save the file directly, or open it from the dashboard.",
     emailType: "shm_admin_final_file_ready",
+    showDashboardButton: !isTenantApplication(input.documentType),
   });
 }
 

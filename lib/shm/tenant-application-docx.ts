@@ -1,5 +1,6 @@
 import PizZip from "pizzip";
 import { stripDataUri } from "./make";
+import { applyTenantApplicationDocxPreviewFixes } from "./tenant-application-docx-preview-fixes";
 
 function xmlEscape(value: string) {
   return String(value || "")
@@ -56,12 +57,16 @@ function para(text: string, opts?: { bold?: boolean; before?: number; after?: nu
   );
 }
 
-function signatureDrawingParagraph(relId: string, name: string, docPrId: number) {
-  const cx = 2400000;
-  const cy = 800000;
+/** CAV bordered rows use ~680 twips (~34pt); keep signatures inside the box. */
+const TA_SIGNATURE_WIDTH_PT = 200;
+const TA_SIGNATURE_HEIGHT_PT = 26;
+const EMU_PER_PT = 9525;
+
+function signatureDrawingRun(relId: string, name: string, docPrId: number) {
+  const cx = TA_SIGNATURE_WIDTH_PT * EMU_PER_PT;
+  const cy = TA_SIGNATURE_HEIGHT_PT * EMU_PER_PT;
   const safe = xmlEscape(name);
   return (
-    `<w:p><w:pPr><w:spacing w:before="120" w:after="40"/></w:pPr>` +
     `<w:r><w:drawing>` +
     `<wp:inline distT="0" distB="0" distL="0" distR="0" ` +
     `xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" ` +
@@ -69,13 +74,43 @@ function signatureDrawingParagraph(relId: string, name: string, docPrId: number)
     `xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" ` +
     `xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">` +
     `<wp:extent cx="${cx}" cy="${cy}"/>` +
+    `<wp:effectExtent l="0" t="0" r="0" b="0"/>` +
     `<wp:docPr id="${docPrId}" name="${safe}"/>` +
     `<a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">` +
     `<pic:pic><pic:nvPicPr><pic:cNvPr id="0" name="${safe}"/><pic:cNvPicPr/></pic:nvPicPr>` +
     `<pic:blipFill><a:blip r:embed="${relId}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>` +
     `<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm>` +
     `<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic>` +
-    `</a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>`
+    `</a:graphicData></a:graphic></wp:inline></w:drawing></w:r>`
+  );
+}
+
+function signatureFieldParagraph(drawingRun: string) {
+  return (
+    `<w:p><w:pPr><w:pStyle w:val="Textfill"/>` +
+    `<w:spacing w:before="0" w:after="0" w:line="240" w:lineRule="auto"/></w:pPr>${drawingRun}</w:p>`
+  );
+}
+
+function textFillParagraph(text: string) {
+  return `<w:p><w:pPr><w:pStyle w:val="Textfill"/></w:pPr><w:r><w:t xml:space="preserve">${xmlEscape(text)}</w:t></w:r></w:p>`;
+}
+
+function captionLabelCell(label: string) {
+  return (
+    `<w:tc><w:tcPr><w:tcW w:w="2495" w:type="dxa"/>` +
+    `<w:tcBorders><w:top w:val="nil"/><w:left w:val="nil"/><w:bottom w:val="nil"/><w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/></w:tcBorders>` +
+    `<w:vAlign w:val="center"/></w:tcPr>` +
+    `<w:p><w:pPr><w:pStyle w:val="Caption2"/></w:pPr><w:r><w:t>${xmlEscape(label)}</w:t></w:r></w:p></w:tc>`
+  );
+}
+
+function borderedValueCell(innerParagraphs: string, rowHeight = 680) {
+  return (
+    `<w:tc><w:tcPr><w:tcW w:w="7938" w:type="dxa"/>` +
+    `<w:tcBorders><w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>` +
+    `<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/><w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/></w:tcBorders>` +
+    `<w:vAlign w:val="center"/></w:tcPr>${innerParagraphs}</w:tc>`
   );
 }
 
@@ -121,8 +156,156 @@ function formatDateAU(value: Date) {
 
 const STAMP_START = "SHM_CREATOR_APPROVAL_START";
 const STAMP_END = "SHM_CREATOR_APPROVAL_END";
+const AGENT_STAMP_START = "SHM_AGENT_SIGNATURE_START";
+const AGENT_STAMP_END = "SHM_AGENT_SIGNATURE_END";
+
+function findApplicantDeclarationIndex(xml: string) {
+  return xml.indexOf("Applicant\u2019s declaration");
+}
+
+function findInsertPointAfterApplicantDateTable(xml: string) {
+  const decl = findApplicantDeclarationIndex(xml);
+  if (decl === -1) return null;
+  let pos = decl;
+  let tablesClosed = 0;
+  while (pos < xml.length && tablesClosed < 2) {
+    const close = xml.indexOf("</w:tbl>", pos);
+    if (close === -1) return null;
+    tablesClosed += 1;
+    if (tablesClosed === 2) return close + "</w:tbl>".length;
+    pos = close + 1;
+  }
+  return null;
+}
+
+function removePreviousAgentStamp(xml: string) {
+  const startMarker = `<!--${AGENT_STAMP_START}-->`;
+  const endMarker = `<!--${AGENT_STAMP_END}-->`;
+  if (xml.includes(startMarker) && xml.includes(endMarker)) {
+    return xml.replace(new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, "g"), "");
+  }
+  return xml;
+}
+
+/** Same flow fixes as applicant DOCX build (tenant-application.html). */
+function fixTenantApplicationDocxFlow(xml: string) {
+  xml = xml.replace(/<w:br\s+w:type="page"\s*\/>/g, "");
+  xml = xml
+    .replace(/<w:type\s+w:val="nextPage"\s*\/>/g, '<w:type w:val="continuous"/>')
+    .replace(/<w:type\s+w:val="nextPage"\s*><\/w:type>/g, '<w:type w:val="continuous"/>');
+  xml = xml.replace(/<w:sectPr\b[^>]*>[\s\S]*?<\/w:sectPr>/g, (sectionXml) => {
+    if (/<w:type\b/.test(sectionXml)) return sectionXml;
+    return sectionXml.replace(/<w:sectPr\b([^>]*)>/, '<w:sectPr$1><w:type w:val="continuous"/>');
+  });
+  xml = xml.replace(
+    /<w:p\b[^>]*>\s*<w:pPr>(?:(?!<\/w:pPr>)[\s\S])*?<\/w:pPr>\s*(?:<w:r\b[^>]*>\s*(?:<w:rPr>(?:(?!<\/w:rPr>)[\s\S])*?<\/w:rPr>)?\s*<\/w:r>\s*)+<\/w:p>/g,
+    "",
+  );
+  return xml;
+}
+
+function normalizeTenantApplicationSignatureExtents(xml: string) {
+  const cx = TA_SIGNATURE_WIDTH_PT * EMU_PER_PT;
+  const cy = TA_SIGNATURE_HEIGHT_PT * EMU_PER_PT;
+  return xml
+    .replace(/wp:extent cx="\d+" cy="\d+"/g, `wp:extent cx="${cx}" cy="${cy}"`)
+    .replace(/<a:ext cx="\d+" cy="\d+"\/>/g, `<a:ext cx="${cx}" cy="${cy}"/>`);
+}
+
+/** Drops the forced page break before CAV “Help or further information” (avoids a trailing blank page). */
+function removePageBreakBeforeHelpSection(xml: string) {
+  const helpIdx = xml.indexOf("Help or further information");
+  if (helpIdx < 0) return xml;
+  const start = Math.max(0, helpIdx - 4000);
+  const region = xml.slice(start, helpIdx);
+  const cleaned = region.replace(/<w:br\s+w:type="page"\s*\/>/g, "");
+  return xml.slice(0, start) + cleaned + xml.slice(helpIdx);
+}
+
+function applicantSignatureRowHasDrawing(xml: string) {
+  const decl = findApplicantDeclarationIndex(xml);
+  if (decl === -1) return true;
+  const label = xml.indexOf("Applicant\u2019s s", decl);
+  if (label === -1) return true;
+  const rowEnd = xml.indexOf("</w:tr>", label);
+  if (rowEnd === -1) return true;
+  return xml.slice(label, rowEnd).includes("<w:drawing");
+}
+
+function insertApplicantSignatureDrawing(xml: string, drawingRun: string) {
+  const runWithPlaceholder = /<w:r\b[^>]*>(?:(?!<\/w:r>)[\s\S])*?\{\{sig_text\}\}(?:(?!<\/w:r>)[\s\S])*?<\/w:r>/;
+  if (runWithPlaceholder.test(xml)) {
+    return xml.replace(runWithPlaceholder, drawingRun);
+  }
+
+  const decl = findApplicantDeclarationIndex(xml);
+  if (decl === -1) return xml;
+  const label = xml.indexOf("Applicant\u2019s s", decl);
+  if (label === -1) return xml;
+  const valueCell = xml.indexOf("<w:tc>", xml.indexOf("</w:tc>", label) + 6);
+  if (valueCell === -1) return xml;
+  const cellClose = xml.indexOf("</w:tc>", valueCell);
+  if (cellClose === -1) return xml;
+  const cellXml = xml.slice(valueCell, cellClose + "</w:tc>".length);
+  const filledCell = cellXml.replace(/<w:p\b[^>]*>[\s\S]*?<\/w:p>/, signatureFieldParagraph(drawingRun));
+  return xml.slice(0, valueCell) + filledCell + xml.slice(cellClose + "</w:tc>".length);
+}
+
+function ensureApplicantSignatureEmbedded(
+  zip: PizZip,
+  xml: string,
+  applicantSignatureDataUrl?: string,
+): string {
+  const dataUrl = String(applicantSignatureDataUrl || "").trim();
+  if (!dataUrl.startsWith("data:image/")) return xml;
+  if (applicantSignatureRowHasDrawing(xml)) return xml;
+
+  const embedded = embedSignatureImage(zip, dataUrl, "applicant-signature");
+  if (!embedded) return xml;
+  const run = signatureDrawingRun(embedded.rId, "Applicant Signature", 9501);
+  return insertApplicantSignatureDrawing(xml, run);
+}
+
+function buildAgentSignatureBlock(input: {
+  agentSigRun: string;
+  agentName: string;
+  approvedDate: string;
+}) {
+  const tableStart =
+    `<w:tbl><w:tblPr><w:tblStyle w:val="TableGridLight1"/><w:tblW w:w="10433" w:type="dxa"/>` +
+    `<w:tblInd w:w="340" w:type="dxa"/><w:tblLayout w:type="fixed"/></w:tblPr>` +
+    `<w:tblGrid><w:gridCol w:w="2495"/><w:gridCol w:w="7938"/></w:tblGrid>`;
+
+  const sigRow =
+    `<w:tr><w:trPr><w:trHeight w:hRule="exact" w:val="680"/></w:trPr>` +
+    captionLabelCell("Agent / property manager signature") +
+    borderedValueCell(signatureFieldParagraph(input.agentSigRun)) +
+    `</w:tr>`;
+
+  const nameRow =
+    `<w:tr><w:trPr><w:trHeight w:hRule="exact" w:val="340"/></w:trPr>` +
+    captionLabelCell("Agent name") +
+    borderedValueCell(textFillParagraph(input.agentName)) +
+    `</w:tr>`;
+
+  const dateRow =
+    `<w:tr><w:trPr><w:trHeight w:hRule="exact" w:val="340"/></w:trPr>` +
+    captionLabelCell("Date approved") +
+    borderedValueCell(textFillParagraph(input.approvedDate)) +
+    `</w:tr>`;
+
+  return (
+    `<!--${AGENT_STAMP_START}-->` +
+    tableStart +
+    sigRow +
+    nameRow +
+    dateRow +
+    `</w:tbl><!--${AGENT_STAMP_END}-->`
+  );
+}
 
 function removePreviousStamp(xml: string) {
+  xml = removePreviousAgentStamp(xml);
   // Prefer marker-based removal; fall back to heading text if markers were stripped.
   const startMarker = `<!--${STAMP_START}-->`;
   const endMarker = `<!--${STAMP_END}-->`;
@@ -161,64 +344,6 @@ function removePreviousStamp(xml: string) {
   return xml.slice(0, pStart) + xml.slice(cursor);
 }
 
-/**
- * CAV templates have multiple mid-document <w:sectPr> section breaks.
- * Only the final body-level sectPr (last one before </w:body>) is safe for append.
- */
-function insertBeforeFinalBodySectPr(xml: string, block: string) {
-  const bodyClose = xml.lastIndexOf("</w:body>");
-  if (bodyClose === -1) {
-    throw new Error("DOCX body marker missing; cannot stamp creator signature.");
-  }
-  const sectIdx = xml.lastIndexOf("<w:sectPr", bodyClose);
-  if (sectIdx !== -1) {
-    return xml.slice(0, sectIdx) + block + xml.slice(sectIdx);
-  }
-  return xml.slice(0, bodyClose) + block + xml.slice(bodyClose);
-}
-
-/**
- * Prefer placing the creator approval block directly under the applicant signature
- * (after "I declare" / "Applicant's signature"), where reviewers actually look.
- */
-function findInsertPointAfterApplicantSignature(xml: string): number | null {
-  const markers = [
-    "Applicant's signature",
-    "Applicant’s signature",
-    "I declare that the information given on this form is true",
-    "I declare that the information",
-  ];
-
-  let markerIdx = -1;
-  for (const marker of markers) {
-    const idx = xml.indexOf(marker);
-    if (idx !== -1 && (markerIdx === -1 || idx < markerIdx)) markerIdx = idx;
-  }
-  if (markerIdx === -1) return null;
-
-  // Search forward for the applicant signature drawing, then end of that paragraph.
-  const searchEnd = Math.min(xml.length, markerIdx + 25000);
-  const region = xml.slice(markerIdx, searchEnd);
-  const drawingRel = region.search(/<w:drawing[\s>]/);
-  if (drawingRel !== -1) {
-    const absDrawing = markerIdx + drawingRel;
-    const pClose = xml.indexOf("</w:p>", absDrawing);
-    if (pClose !== -1) return pClose + "</w:p>".length;
-  }
-
-  // Fallback: end of the paragraph that contains the marker.
-  const pClose = xml.indexOf("</w:p>", markerIdx);
-  return pClose !== -1 ? pClose + "</w:p>".length : null;
-}
-
-function insertStampBlock(xml: string, block: string) {
-  const afterSig = findInsertPointAfterApplicantSignature(xml);
-  if (afterSig !== null) {
-    return xml.slice(0, afterSig) + block + xml.slice(afterSig);
-  }
-  return insertBeforeFinalBodySectPr(xml, block);
-}
-
 export type TenantApplicationAuditLine = {
   label: string;
   at?: Date | string | null;
@@ -226,8 +351,8 @@ export type TenantApplicationAuditLine = {
 };
 
 /**
- * Take the applicant-signed Tenant Application DOCX and physically stamp the
- * ShareHouseManagers / creator signature + audit trail into a regenerated final DOCX.
+ * Take the applicant-signed Tenant Application DOCX and stamp the agent/creator
+ * signature into labelled CAV-style fields after the applicant declaration (no audit trail).
  */
 export function stampCreatorSignatureOnTenantApplicationDocx(input: {
   docxBase64: string;
@@ -236,8 +361,10 @@ export function stampCreatorSignatureOnTenantApplicationDocx(input: {
   creatorEmail?: string;
   applicantName?: string;
   applicantEmail?: string;
+  applicantSignatureDataUrl?: string;
   signedAt?: Date;
   documentId?: string;
+  /** @deprecated Audit trail is not written to the final document. */
   auditLines?: TenantApplicationAuditLine[];
 }): Buffer {
   const raw = Buffer.from(stripDataUri(input.docxBase64), "base64");
@@ -248,6 +375,7 @@ export function stampCreatorSignatureOnTenantApplicationDocx(input: {
   }
 
   let xml = removePreviousStamp(documentFile.asText());
+  xml = ensureApplicantSignatureEmbedded(zip, xml, input.applicantSignatureDataUrl);
 
   const embedded = embedSignatureImage(zip, input.creatorSignatureDataUrl, "creator-auto-signature");
   if (!embedded) {
@@ -255,56 +383,25 @@ export function stampCreatorSignatureOnTenantApplicationDocx(input: {
   }
 
   const signedAt = input.signedAt || new Date();
-  const creatorSigPara = signatureDrawingParagraph(embedded.rId, "Creator Signature", 9601);
-  const auditLines =
-    input.auditLines && input.auditLines.length
-      ? input.auditLines
-      : [
-          {
-            label: "Application sent to applicant",
-            detail: input.applicantEmail || undefined,
-          },
-          {
-            label: "Applicant signed",
-            detail: input.applicantName || undefined,
-          },
-          {
-            label: "Agency / creator approved",
-            at: signedAt,
-            detail: input.creatorName || undefined,
-          },
-        ];
+  const agentName = String(input.creatorName || "ShareHouse Managers").trim();
+  const agentSigRun = signatureDrawingRun(embedded.rId, "Agent Signature", 9601);
 
-  const auditParas = auditLines
-    .map((line) => {
-      const when = line.at
-        ? formatDateTimeAU(line.at instanceof Date ? line.at : new Date(line.at))
-        : "";
-      const detail = line.detail ? ` — ${line.detail}` : "";
-      const whenPart = when ? ` — ${when}` : "";
-      return para(`${line.label}${whenPart}${detail}`, { before: 40, after: 40, size: 18 });
-    })
-    .join("");
+  const agentBlock = buildAgentSignatureBlock({
+    agentSigRun,
+    agentName,
+    approvedDate: formatDateAU(signedAt),
+  });
 
-  const stamp = [
-    `<!--${STAMP_START}-->`,
-    para(""),
-    para("ShareHouseManagers — Agency / Creator Approval", { bold: true, before: 280, after: 100, size: 24 }),
-    para(`Approved by: ${input.creatorName || "ShareHouse Managers"}`, { before: 40, after: 40 }),
-    para(`Email: ${input.creatorEmail || "—"}`, { before: 0, after: 40 }),
-    para(`Document ID: ${input.documentId || ""}`, { before: 0, after: 40 }),
-    para(`Approved on: ${formatDateAU(signedAt)}`, { before: 0, after: 80 }),
-    para("Creator / Admin signature", { bold: true, before: 120, after: 40 }),
-    creatorSigPara,
-    para(""),
-    para("Audit trail", { bold: true, before: 200, after: 100, size: 24 }),
-    auditParas,
-    para(`ID: ${input.documentId || ""}`, { bold: true, before: 80, after: 120 }),
-    `<!--${STAMP_END}-->`,
-  ].join("");
+  const insertAt = findInsertPointAfterApplicantDateTable(xml);
+  if (insertAt === null) {
+    throw new Error("Could not locate applicant declaration section in Tenant Application DOCX.");
+  }
 
-  xml = insertStampBlock(xml, stamp);
-  zip.file("word/document.xml", xml);
+  xml = xml.slice(0, insertAt) + agentBlock + xml.slice(insertAt);
+  xml = fixTenantApplicationDocxFlow(xml);
+  xml = removePageBreakBeforeHelpSection(xml);
+  xml = normalizeTenantApplicationSignatureExtents(xml);
+  applyTenantApplicationDocxPreviewFixes(zip, xml);
 
   return zip.generate({ type: "nodebuffer", compression: "DEFLATE" }) as Buffer;
 }

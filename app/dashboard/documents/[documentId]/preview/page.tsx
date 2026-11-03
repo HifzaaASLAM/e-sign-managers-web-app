@@ -5,7 +5,11 @@ import { authOptions } from "../../../../../lib/auth";
 import { prisma } from "../../../../../lib/prisma";
 import { getWorkspaceByEmail } from "../../../../../lib/workspace";
 import { getDashboardDocumentFileUrl } from "../../../../../lib/dashboard/document-file";
-import { isPropertyManagementAgreement, isTenantAgreement } from "../../../../../lib/shm/documents";
+import {
+  isPropertyManagementAgreement,
+  isTenantAgreement,
+  isTenantApplication,
+} from "../../../../../lib/shm/documents";
 import { DashboardDocumentPreviewFrame } from "../../../../../components/dashboard/DashboardDocumentPreviewFrame";
 
 export const dynamic = "force-dynamic";
@@ -34,7 +38,8 @@ export default async function DocumentPreviewPage({ params }: PageProps) {
   const canPreview =
     getDashboardDocumentFileUrl(doc.documentId, doc.agreementData, doc.documentType)
     || docTypeLower === "tenant agreement"
-    || docTypeLower === "property management agreement";
+    || docTypeLower === "property management agreement"
+    || docTypeLower === "tenant application";
   if (!canPreview) {
     return (
       <main className="flex min-h-screen flex-col bg-slate-50">
@@ -48,7 +53,9 @@ export default async function DocumentPreviewPage({ params }: PageProps) {
 
   const docType = doc.documentType || "";
   const useDocxPreview =
-    isPropertyManagementAgreement(docType) || isTenantAgreement(docType);
+    isPropertyManagementAgreement(docType)
+    || isTenantAgreement(docType)
+    || isTenantApplication(docType);
   const previewFormat = useDocxPreview ? "docx" : "pdf";
   const title = [doc.recipientName, doc.propertyAddress, doc.documentType].filter(Boolean).join(" · ");
 

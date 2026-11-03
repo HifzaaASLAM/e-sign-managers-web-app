@@ -11,7 +11,11 @@ import { getImportedPdfBuffer } from "../shm/ta-imported-document";
 import { applyShmBrandingToImportedPdfBuffer } from "../shm/tenant-agreement-pdf-branding";
 import { buildPropertyManagementAgreementDashboardPreview } from "../shm/property-management-agreement-dashboard-preview";
 import { buildTenantAgreementDashboardPreview } from "../shm/tenant-agreement-dashboard-preview";
-import { isLandlordWeeklyReport, isPropertyManagementAgreement } from "../shm/documents";
+import {
+  isLandlordWeeklyReport,
+  isPropertyManagementAgreement,
+  isTenantApplication,
+} from "../shm/documents";
 import { generateLandlordWeeklyReportFile } from "../shm/landlord-weekly-report-export";
 import {
   landlordFromAgreementData,
@@ -24,6 +28,17 @@ export type DocumentFileSource = {
   documentType: string | null;
   documentId: string;
 };
+
+function isDocxZipBuffer(buffer: Buffer) {
+  return buffer.length >= 4 && buffer[0] === 0x50 && buffer[1] === 0x4b;
+}
+
+function tenantApplicationStoredFileInvalid(rawContent: string, buffer: Buffer) {
+  const trimmed = String(rawContent || "").trim();
+  if (trimmed.startsWith("[omitted")) return true;
+  if (!buffer.length) return true;
+  return !isDocxZipBuffer(buffer);
+}
 
 async function buildLandlordWeeklyReportPreview(agreementDataRaw: string | null) {
   const agreementData = parseAgreementData(agreementDataRaw);
@@ -146,6 +161,19 @@ export async function buildDashboardDocumentFileResponse(
   const file = submission ? pickStoredPreviewFile(submission, format) : null;
   if (file?.fileContent) {
     const buffer = decodeStoredFileContent(file.fileContent);
+    if (
+      isTenantApplication(String(documentType || "")) &&
+      (format === "docx" || file.fileType.includes("wordprocessingml")) &&
+      tenantApplicationStoredFileInvalid(file.fileContent, buffer)
+    ) {
+      return NextResponse.json(
+        {
+          message:
+            "This Tenant Application file was saved incorrectly and cannot be previewed. Clone the document and have the applicant sign again.",
+        },
+        { status: 422 },
+      );
+    }
     if (buffer.length) {
       return new NextResponse(new Uint8Array(buffer), {
         status: 200,

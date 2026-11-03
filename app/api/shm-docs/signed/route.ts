@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../../../lib/prisma";
-import { isTenantAgreement, logShmEvent, validateShmSignerToken, rollupDocumentStatus } from "../../../../lib/shm/documents";
+import {
+  isTenantAgreement,
+  isTenantApplication,
+  logShmEvent,
+  validateShmSignerToken,
+  rollupDocumentStatus,
+} from "../../../../lib/shm/documents";
 import { revokeSignerAccess } from "../../../../lib/shm/signing-access";
 import { sendPayloadToMake, stripDataUri, normalizeFileType } from "../../../../lib/shm/make";
 import { scheduleBackgroundWork } from "../../../../lib/shm/background-jobs";
@@ -12,6 +18,7 @@ import {
 } from "../../../../lib/shm/multi-tenant-signatures";
 import { regenerateMultiTenantCombinedFile } from "../../../../lib/shm/regenerate-multi-tenant-file";
 import { deliverFinalDocumentDirectToDrive } from "../../../../lib/shm/drive-delivery";
+import { scheduleTenantApplicationAutoApprove } from "../../../../lib/shm/tenant-application-auto-approve";
 
 function mergeAgreementData(existingRaw: string | null, patch: Record<string, unknown>) {
   let existing: Record<string, unknown> = {};
@@ -125,6 +132,7 @@ export async function POST(request: Request) {
   const embeddedFileName = combinedArtifact?.fileName || fileName;
   const embeddedFileType = combinedArtifact?.fileType || fileType;
 
+  const strippedFileContent = stripDataUri(embeddedFileContent);
   let agreementData = mergeAgreementData(doc.agreementData, {
     field_values: fieldValues,
     last_submission: {
@@ -133,10 +141,22 @@ export async function POST(request: Request) {
       signerEmail: signer.email,
       fileName: embeddedFileName,
       fileType: embeddedFileType,
-      fileContent: stripDataUri(embeddedFileContent),
-      fileBytes: stripDataUri(embeddedFileContent).length,
+      fileContent: strippedFileContent,
+      fileBytes: strippedFileContent.length,
       signedAt: new Date().toISOString(),
     },
+    ...(isTenantApplication(doc.documentType || "") &&
+    signerType === "recipient" &&
+    strippedFileContent &&
+    !strippedFileContent.startsWith("[omitted")
+      ? {
+          applicant_signed_docx: {
+            fileName: embeddedFileName,
+            fileType: embeddedFileType,
+            fileContent: strippedFileContent,
+          },
+        }
+      : {}),
   });
   agreementData = mergeTenantSignaturesIntoAgreement(agreementData, updatedSigners);
 
@@ -173,6 +193,10 @@ export async function POST(request: Request) {
   const allSigned = isTenantAgreement(doc.documentType)
     ? allRecipientsSigned
     : creatorSigned && recipientSigned;
+
+  if (signerType === "recipient" && isTenantApplication(doc.documentType || "") && !creatorSigned) {
+    await scheduleTenantApplicationAutoApprove(doc.documentId, request);
+  }
 
   if (signerType === "recipient" && isTenantAgreement(doc.documentType)) {
     const payloadFileContent = stripDataUri(embeddedFileContent);

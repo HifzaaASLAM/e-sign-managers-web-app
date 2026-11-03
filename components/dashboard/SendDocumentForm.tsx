@@ -53,7 +53,9 @@ export function SendDocumentForm() {
   const addressFieldWrapRef = useRef<HTMLDivElement>(null);
   const [recipientRole, setRecipientRole] = useState("Tenant");
   const [tenantRows, setTenantRows] = useState([{ id: "t1", name: "", email: "" }]);
+  const [applicationRows, setApplicationRows] = useState([{ id: "a1", name: "", email: "" }]);
   const isTenantAgreement = documentType === "Tenant Agreement";
+  const isTenantApplication = documentType === "Tenant Application";
   const isLandlordWeeklyReport = documentType === "Landlord Weekly Report";
   const creatorPrepareFirst = isCreatorPrepareBeforeRecipientEmail(documentType);
 
@@ -66,6 +68,15 @@ export function SendDocumentForm() {
       .filter((row) => row.tenant_name && row.tenant_email.includes("@")),
   );
   const multiTenantMode = isTenantAgreement && tenantRows.filter((r) => r.name.trim() && r.email.trim()).length >= 2;
+
+  const applicationRecipientsJson = JSON.stringify(
+    applicationRows
+      .map((row) => ({
+        tenant_name: row.name.trim(),
+        tenant_email: row.email.trim().toLowerCase(),
+      }))
+      .filter((row) => row.tenant_name && row.tenant_email.includes("@")),
+  );
 
   useEffect(() => {
     if (documentType === "Property Management Agreement") {
@@ -80,6 +91,7 @@ export function SendDocumentForm() {
     if (state?.ok) {
       formRef.current?.reset();
       setFormKey((key) => key + 1);
+      setApplicationRows([{ id: "a1", name: "", email: "" }]);
     }
   }, [state]);
 
@@ -95,7 +107,7 @@ export function SendDocumentForm() {
 
   function fetchAddressSuggestions(query: string) {
     const trimmed = query.trim();
-    if (trimmed.length < 3) {
+    if (trimmed.length < (/^\d{4}$/.test(trimmed) ? 4 : 3)) {
       setAddressSuggestions([]);
       setAddressSuggestOpen(false);
       setAddressSuggestLoading(false);
@@ -119,7 +131,7 @@ export function SendDocumentForm() {
   function onPropertyAddressChange(value: string) {
     setPropertyAddress(value);
     if (addressSuggestTimer.current) clearTimeout(addressSuggestTimer.current);
-    addressSuggestTimer.current = setTimeout(() => fetchAddressSuggestions(value), 320);
+    addressSuggestTimer.current = setTimeout(() => fetchAddressSuggestions(value), 220);
   }
 
   function selectAddressSuggestion(suggestion: string) {
@@ -175,6 +187,11 @@ export function SendDocumentForm() {
               .
             </p>
           ) : null}
+          {isTenantApplication ? (
+            <p className="mt-2 text-xs leading-5 text-slate-500">
+              Add one or more applicants — each person receives their own Tenant Application link by email (separate document per applicant).
+            </p>
+          ) : null}
           {documentType === "Property Management Agreement" ? (
             <p className="mt-2 text-xs leading-5 text-slate-500">
               We open the agreement for you first so you can edit property details, terms, fees, and bank instructions. Use{" "}
@@ -213,7 +230,7 @@ export function SendDocumentForm() {
               aria-autocomplete="list"
               aria-expanded={addressSuggestOpen}
               className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-[#1677ff]"
-              placeholder="Full property or room address"
+              placeholder="e.g. 10/8 Example Street, suburb…"
             />
             {addressSuggestLoading ? (
               <p className="mt-1 text-xs text-slate-500">Searching addresses…</p>
@@ -323,6 +340,75 @@ export function SendDocumentForm() {
               </>
             )}
           </div>
+        ) : isTenantApplication ? (
+          <div className="space-y-3">
+            <input type="hidden" name="applicationRecipientsJson" value={applicationRecipientsJson} />
+            <input type="hidden" name="recipientRole" value="Tenant" />
+            <div className="flex items-center justify-between gap-3">
+              <label className="text-sm font-bold text-slate-800">Applicants</label>
+              <button
+                type="button"
+                onClick={() =>
+                  setApplicationRows((rows) => [
+                    ...rows,
+                    { id: `a${Date.now()}`, name: "", email: "" },
+                  ])
+                }
+                className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-bold text-[#1677ff] hover:bg-blue-50"
+              >
+                + Add applicant
+              </button>
+            </div>
+            {applicationRows.map((row, index) => (
+              <div key={row.id} className="grid gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 md:grid-cols-2">
+                <div>
+                  <label className="text-xs font-bold uppercase tracking-wide text-slate-600">
+                    Applicant {index + 1} name
+                  </label>
+                  <input
+                    required={index === 0}
+                    value={row.name}
+                    onChange={(e) =>
+                      setApplicationRows((rows) =>
+                        rows.map((r) => (r.id === row.id ? { ...r, name: e.target.value } : r)),
+                      )
+                    }
+                    className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-[#1677ff]"
+                    placeholder="Applicant name"
+                  />
+                </div>
+                <div className="flex gap-2">
+                  <div className="min-w-0 flex-1">
+                    <label className="text-xs font-bold uppercase tracking-wide text-slate-600">
+                      Applicant {index + 1} email
+                    </label>
+                    <input
+                      type="email"
+                      required={index === 0}
+                      value={row.email}
+                      onChange={(e) =>
+                        setApplicationRows((rows) =>
+                          rows.map((r) => (r.id === row.id ? { ...r, email: e.target.value } : r)),
+                        )
+                      }
+                      className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-[#1677ff]"
+                      placeholder="applicant@email.com"
+                    />
+                  </div>
+                  {applicationRows.length > 1 ? (
+                    <button
+                      type="button"
+                      aria-label={`Remove applicant ${index + 1}`}
+                      onClick={() => setApplicationRows((rows) => rows.filter((r) => r.id !== row.id))}
+                      className="mt-6 rounded-lg border border-red-200 px-2.5 text-xs font-bold text-red-600 hover:bg-red-50"
+                    >
+                      Remove
+                    </button>
+                  ) : null}
+                </div>
+              </div>
+            ))}
+          </div>
         ) : isLandlordWeeklyReport ? null : (
           <>
             <div className="grid gap-4 md:grid-cols-2">
@@ -374,7 +460,9 @@ export function SendDocumentForm() {
               ? documentType === "Property Management Agreement"
                 ? "You will preview and edit the agreement first. The owner receives the signing email only after you use Send to Owner on Part F. Each signing link works once only."
                 : "The signing email is sent after you complete the creator step. Each signing link works once only."
-              : "A signing email is sent immediately to the recipient. The creator can sign later from the dashboard. Each signing link works once only."}
+              : isTenantApplication && applicationRows.filter((r) => r.name.trim() && r.email.trim()).length >= 2
+                ? "A separate Tenant Application and signing email is sent to each applicant. The creator can sign later from the dashboard. Each signing link works once only."
+                : "A signing email is sent immediately to the recipient. The creator can sign later from the dashboard. Each signing link works once only."}
         </div>
         <SubmitButton creatorPrepareFirst={creatorPrepareFirst} documentType={documentType} />
       </form>

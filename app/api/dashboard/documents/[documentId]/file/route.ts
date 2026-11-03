@@ -3,7 +3,10 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../../../lib/auth";
 import { prisma } from "../../../../../../lib/prisma";
 import { buildDashboardDocumentFileResponse } from "../../../../../../lib/dashboard/serve-document-file";
-import { isPropertyManagementAgreement } from "../../../../../../lib/shm/documents";
+import {
+  isPropertyManagementAgreement,
+  isTenantApplication,
+} from "../../../../../../lib/shm/documents";
 import { getWorkspaceByEmail } from "../../../../../../lib/workspace";
 
 export const dynamic = "force-dynamic";
@@ -43,6 +46,7 @@ export async function GET(request: Request, { params }: RouteContext) {
       : formatParam === "pdf"
         ? "pdf"
         : isPropertyManagementAgreement(doc.documentType || "")
+          || isTenantApplication(doc.documentType || "")
           ? "docx"
           : "pdf";
   const asAttachment =

@@ -200,17 +200,19 @@ export function dispatchTenantApplicationAutoApproveJob(documentId: string, jobI
             },
             body: JSON.stringify({ documentId, jobId }),
           });
-          if (response.ok || response.status === 200 || response.status === 202) return;
+          if (response.ok || response.status === 200 || response.status === 202 || response.status === 409) {
+            return;
+          }
           // 425 = not due yet — keep waiting
           if (response.status === 425) continue;
         } catch {
-          // fall through to in-process run
+          // fall through to in-process run only when the worker request did not complete
         }
       }
 
       const result = await processTenantApplicationAutoApprove(documentId, jobId);
       if (result.status === 425) continue;
-      return;
+      if (result.status === 200 || result.status === 202 || result.status === 409) return;
     }
 
     // Final attempt after deadline window.

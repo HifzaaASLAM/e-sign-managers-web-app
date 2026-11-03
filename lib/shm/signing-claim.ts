@@ -46,9 +46,30 @@ export function stripHeavyAgreementBlobs(data: Record<string, unknown>): Record<
     }
   }
 
+  const submissionFileKeys = [
+    "fileContent",
+    "file_content",
+    "pdfFileContent",
+    "docxFileContent",
+    "docxContent",
+    "docx_content",
+  ] as const;
+
   const last = out.last_submission;
   if (last && typeof last === "object" && !Array.isArray(last)) {
-    out.last_submission = stripHeavyAgreementBlobs(last as Record<string, unknown>);
+    const lastObj = { ...(last as Record<string, unknown>) };
+    const preservedSubmissionFiles: Record<string, unknown> = {};
+    for (const key of submissionFileKeys) {
+      const value = lastObj[key];
+      if (typeof value === "string" && value.length > 0) {
+        preservedSubmissionFiles[key] = value;
+        delete lastObj[key];
+      }
+    }
+    out.last_submission = {
+      ...stripHeavyAgreementBlobs(lastObj),
+      ...preservedSubmissionFiles,
+    };
   }
 
   const fieldValues = out.field_values;

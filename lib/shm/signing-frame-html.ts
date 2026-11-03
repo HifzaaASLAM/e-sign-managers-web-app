@@ -5,9 +5,14 @@ import {
   isLandlordWeeklyReport,
   isOwnershipStatement,
   isPropertyManagementAgreement,
+  isTenantApplication,
   signerRoleForToken,
   validateShmToken,
 } from "./documents";
+import {
+  omitTenantApplicationApplicantPrefill,
+  TENANT_APPLICATION_APPLICANT_FIELD_IDS,
+} from "./tenant-application-prefill";
 import { preparePmaAgreementDataForSigningUi } from "./property-management-agreement-fields";
 import { isRevokedToken } from "./signing-access";
 import { loadSigningTemplateHtml } from "./load-signing-template";
@@ -139,19 +144,28 @@ export async function GET(request: Request) {
         },
       });
       if (profile?.profileData) {
-        const profileFields = JSON.parse(profile.profileData) as Record<string, unknown>;
+        let profileFields = JSON.parse(profile.profileData) as Record<string, unknown>;
         const existingFields =
           (agreementData.field_values as Record<string, unknown> | undefined) ||
           (agreementData.fieldValues as Record<string, unknown> | undefined) ||
           {};
+        if (isTenantApplication(doc.documentType)) {
+          profileFields = omitTenantApplicationApplicantPrefill(profileFields);
+        }
         agreementData = {
           ...agreementData,
-          field_values: {
-            ...profileFields,
-            ...existingFields,
-            e_email: existingFields.e_email || doc.recipientEmail,
-            d_addr: existingFields.d_addr || doc.propertyAddress,
-          },
+          field_values: isTenantApplication(doc.documentType)
+            ? {
+                ...profileFields,
+                ...existingFields,
+                d_addr: existingFields.d_addr || doc.propertyAddress,
+              }
+            : {
+                ...profileFields,
+                ...existingFields,
+                e_email: existingFields.e_email || doc.recipientEmail,
+                d_addr: existingFields.d_addr || doc.propertyAddress,
+              },
         };
       }
     } catch {
@@ -244,6 +258,7 @@ export async function GET(request: Request) {
     window.OS_HEADER_IMAGE_URL = '/shm-plugin-assets/images/ownership-statement-header.png';
     window.OS_TEMPLATE_DOCX_URL = '/shm-plugin-assets/templates/ownership-statement-template.docx';
     window.LWR_PROPERTY_LANDLORDS = ${safeScriptJson(LWR_PROPERTY_LANDLORDS)};
+    window.SHM_TA_APPLICANT_NO_PREFILL = ${safeScriptJson([...TENANT_APPLICATION_APPLICANT_FIELD_IDS])};
     window.shmAgentSignDisplayName = function(value){
       var n = String(value || '').trim();
       if(!n || /^sharehouse\\s*managers?$/i.test(n) || n.toLowerCase() === 'sharehousemanagers') return 'Ishaq M';
@@ -365,7 +380,11 @@ export async function GET(request: Request) {
         ['field_values','fieldValues','last_submission','fileContent','pdfFileContent','docxFileContent','agreement_data','agreementData'].forEach(function(k){ delete fieldValues[k]; });
       }
       var isTenantAgreementEarly = String(ctx.documentType || '').toLowerCase() === 'tenant agreement';
+      var isTenantApplicationEarly = String(ctx.documentType || '').toLowerCase() === 'tenant application';
+      var taNoPrefill = window.SHM_TA_APPLICANT_NO_PREFILL || [];
       Object.keys(fieldValues || {}).forEach(function(key){
+        if(isTenantApplicationEarly && taNoPrefill.indexOf(key) !== -1) return;
+        if(isTenantApplicationEarly && key === 'e_sigdt') return;
         if(isTenantAgreementEarly && (key === 'provider_name' || key === 'provider_email')) return;
         if(/^item_\\d+$/.test(key)){
           var val = fieldValues[key];
@@ -377,6 +396,24 @@ export async function GET(request: Request) {
         }
         setVal(key, fieldValues[key]);
       });
+      if (isTenantApplicationEarly && typeof window.hydrateSuburbPostcodeFromPrefilledAddress === 'function') {
+        window.hydrateSuburbPostcodeFromPrefilledAddress();
+        setTimeout(window.hydrateSuburbPostcodeFromPrefilledAddress, 0);
+      }
+      if (isTenantApplicationEarly && typeof window.tappApplySignatureDate === 'function') {
+        window.tappApplySignatureDate();
+      }
+      if (isTenantApplicationEarly && window.SHM_SIGNER_TYPE === 'recipient') {
+        document.querySelectorAll('#panel-2 input, #panel-2 textarea, #panel-2 select').forEach(function(el) {
+          if (el.type === 'checkbox' || el.type === 'radio') el.disabled = true;
+          else el.readOnly = true;
+        });
+        ['d_pm', 'd_pmph', 'd_pmeml', 'd_agency'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.readOnly = true;
+        });
+      }
       if (isPmaDoc) {
         var pmaCanonicalToForm = {
           available_from: 'pma_available_from', available_to: 'pma_available_to', property: 'pma_property',

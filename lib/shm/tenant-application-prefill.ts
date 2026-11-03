@@ -1,3 +1,56 @@
+/** Part E (and related) — never prefill from applicant profile or saved profileData. */
+export const TENANT_APPLICATION_APPLICANT_FIELD_IDS = [
+  "e_first",
+  "e_last",
+  "e_addr",
+  "e_addr2",
+  "e_pc",
+  "e_phbh",
+  "e_phah",
+  "e_email",
+  "e_dob",
+  "e_depn",
+  "e_depa",
+  "e_prp",
+  "e_prpph",
+  "e_prpeml",
+  "e_occ",
+  "e_sal",
+  "e_othinc",
+  "e_emp",
+  "e_empaddr",
+  "e_empaddr2",
+  "e_emppc",
+  "e_empyrs",
+  "e_empmos",
+  "e_emppos",
+  "e_empcnt",
+  "e_empph",
+  "e_pemp",
+  "e_pempyrs",
+  "e_pempmos",
+  "e_pemppos",
+  "e_pempcnt",
+  "e_pempph",
+  "r1n",
+  "r1rel",
+  "r1hph",
+  "r1wph",
+  "r2n",
+  "r2rel",
+  "r2hph",
+  "r2wph",
+  "pdet",
+] as const;
+
+export function omitTenantApplicationApplicantPrefill(fields: Record<string, unknown>) {
+  const out = { ...fields };
+  for (const key of TENANT_APPLICATION_APPLICANT_FIELD_IDS) {
+    delete out[key];
+  }
+  return out;
+}
+
 /** Normalize optional admin-entered rent for tenant application prefill. */
 export function parseRentAmount(raw: unknown): string | null {
   const value = String(raw ?? "").trim();
