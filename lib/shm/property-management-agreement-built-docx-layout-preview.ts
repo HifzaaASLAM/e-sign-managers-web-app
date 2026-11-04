@@ -325,7 +325,11 @@ function renderFees(data: Record<string, unknown>) {
         );
       } else if (/^3\.\s*Management fee/i.test(line)) {
         parts.push(
-          bullet(`3. Management fee ${pmaField(data, ["fee_management", "pma_fee_management"], "10%")}`),
+          bullet(`3. Management fee ${(() => {
+            const raw = pmaField(data, ["fee_management", "pma_fee_management"], "10%");
+            const base = String(raw || "10%").replace(/\s*\+?\s*GST\.?\s*$/i, "").trim() || "10%";
+            return `${base} +GST`;
+          })()}`),
         );
       } else if (/^2\./.test(line)) {
         parts.push(

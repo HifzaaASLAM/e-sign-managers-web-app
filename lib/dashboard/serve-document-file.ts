@@ -91,7 +91,7 @@ async function buildInlinePreviewBuffer(
 
   if (isPropertyManagementAgreement(type)) {
     try {
-      const generated = await buildPropertyManagementAgreementDashboardPreview(documentId, "docx");
+      const generated = await buildPropertyManagementAgreementDashboardPreview(documentId, format);
       if (generated?.buffer.length) return generated;
     } catch (error) {
       console.error("[document-file] property management agreement preview failed", error);

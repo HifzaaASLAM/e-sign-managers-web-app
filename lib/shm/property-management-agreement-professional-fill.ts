@@ -149,18 +149,42 @@ function escapeXml(value: string) {
     .replace(/"/g, "&quot;");
 }
 
-/** Only update the first text run in the first paragraph — never nested tables (terms/fees). */
+/** Drop sample yellow highlighter left on template value runs (shows broken in View). */
+function stripRunHighlight(pXml: string) {
+  return pXml
+    .replace(/<w:highlight\b[^>]*\/>/g, "")
+    .replace(/<w:highlight\b[^>]*>\s*<\/w:highlight>/g, "");
+}
+
+/**
+ * Replace the value cell text completely.
+ * Template sample answers are often split across many <w:t> runs (e.g. "Shawaiz " + "pty" +
+ * " ltd- Bilal "…). Updating only the first run left leftovers glued to real data.
+ * Never touch nested tables (terms/fees).
+ */
 function setCellValue(cellXml: string, value: string) {
   if (cellXml.includes("<w:tbl")) return cellXml;
   const text = escapeXml(value);
-  let replaced = false;
+  let paraDone = false;
   return cellXml.replace(/<w:p\b[\s\S]*?<\/w:p>/g, (pXml) => {
-    if (replaced) return pXml;
-    const next = pXml.replace(/<w:t([^>]*)>[\s\S]*?<\/w:t>/, (_m, attrs) => {
-      replaced = true;
+    if (!/<w:t[\s>]/.test(pXml)) return pXml;
+    if (paraDone) {
+      // Clear leftover paragraphs in the same value cell.
+      return stripRunHighlight(pXml).replace(/<w:t([^>]*)>[\s\S]*?<\/w:t>/g, (_m, attrs) => {
+        const space = String(attrs).includes("xml:space") ? "" : ' xml:space="preserve"';
+        return `<w:t${attrs}${space}></w:t>`;
+      });
+    }
+    let first = true;
+    const next = stripRunHighlight(pXml).replace(/<w:t([^>]*)>[\s\S]*?<\/w:t>/g, (_m, attrs) => {
       const space = String(attrs).includes("xml:space") ? "" : ' xml:space="preserve"';
-      return `<w:t${attrs}${space}>${text}</w:t>`;
+      if (first) {
+        first = false;
+        return `<w:t${attrs}${space}>${text}</w:t>`;
+      }
+      return `<w:t${attrs}${space}></w:t>`;
     });
+    paraDone = true;
     return next;
   });
 }
@@ -178,6 +202,77 @@ function valueCellIndex(cells: string[], labelIndex: number, label: string) {
   if (isComplianceLabel(label) && cells.length >= 4) return cells.length - 1;
   const next = labelIndex + 1;
   return next < cells.length ? next : -1;
+}
+
+function isTrOpenAt(documentXml: string, idx: number) {
+  const ch = documentXml[idx + 5];
+  return ch === ">" || ch === " " || ch === "/";
+}
+
+function findTrOpen(documentXml: string, from: number) {
+  let p = from;
+  while (p < documentXml.length) {
+    const idx = documentXml.indexOf("<w:tr", p);
+    if (idx === -1) return -1;
+    if (isTrOpenAt(documentXml, idx)) return idx;
+    p = idx + 5;
+  }
+  return -1;
+}
+
+function sliceTopLevelRow(documentXml: string, start: number) {
+  const openEnd = documentXml.indexOf(">", start);
+  if (openEnd === -1) return null;
+  let depth = 1;
+  let p = openEnd + 1;
+  while (p < documentXml.length && depth > 0) {
+    const open = findTrOpen(documentXml, p);
+    const close = documentXml.indexOf("</w:tr>", p);
+    if (close === -1) return null;
+    if (open !== -1 && open < close) {
+      depth += 1;
+      p = open + 5;
+    } else {
+      depth -= 1;
+      if (depth === 0) {
+        return { rowXml: documentXml.slice(start, close + 7), end: close + 7 };
+      }
+      p = close + 7;
+    }
+  }
+  return null;
+}
+
+function fillSingleProfessionalRow(
+  rowXml: string,
+  valueByToken: Map<string, string>,
+  policyNoIndex: { value: number },
+) {
+  const cells = extractDirectRowCells(rowXml);
+  if (cells.length < 2) return rowXml;
+  if (cells.some((c) => c.includes("<w:tbl"))) return rowXml;
+
+  let newRow = rowXml;
+  for (let i = 0; i < cells.length; i++) {
+    const label = normLabel(cellText(cells[i]));
+    const token = tokenForLabel(label, policyNoIndex.value);
+    if (label === "policy no.") policyNoIndex.value += 1;
+    if (!token) continue;
+    const valueIndex = valueCellIndex(cells, i, label);
+    if (valueIndex < 0) continue;
+    const value = valueByToken.get(token);
+    if (value === undefined) continue;
+    const updated = setCellValue(cells[valueIndex], value);
+    if (updated === cells[valueIndex]) continue;
+    newRow = newRow.replace(cells[valueIndex], updated);
+    if (isComplianceLabel(label) && cells.length >= 4) {
+      for (let j = i + 1; j < cells.length - 1; j++) {
+        const cleared = setCellValue(cells[j], "");
+        if (cleared !== cells[j]) newRow = newRow.replace(cells[j], cleared);
+      }
+    }
+  }
+  return newRow;
 }
 
 function tokenForLabel(label: string, policyNoIndex: number) {
@@ -206,35 +301,27 @@ export function fillProfessionalAgreementRows(
   documentXml: string,
   valueByToken: Map<string, string>,
 ) {
-  let policyNoIndex = 0;
+  const policyNoIndex = { value: 0 };
+  let out = "";
+  let pos = 0;
 
-  return documentXml.replace(/<w:tr\b[\s\S]*?<\/w:tr>/g, (rowXml) => {
-    const cells = extractDirectRowCells(rowXml);
-    if (cells.length < 2) return rowXml;
-    if (cells.some((c) => c.includes("<w:tbl"))) return rowXml;
-
-    let newRow = rowXml;
-    for (let i = 0; i < cells.length; i++) {
-      const label = normLabel(cellText(cells[i]));
-      const token = tokenForLabel(label, policyNoIndex);
-      if (label === "policy no.") policyNoIndex += 1;
-      if (!token) continue;
-      const valueIndex = valueCellIndex(cells, i, label);
-      if (valueIndex < 0) continue;
-      const value = valueByToken.get(token);
-      if (value === undefined) continue;
-      const updated = setCellValue(cells[valueIndex], value);
-      if (updated === cells[valueIndex]) continue;
-      newRow = newRow.replace(cells[valueIndex], updated);
-      if (isComplianceLabel(label) && cells.length >= 4) {
-        for (let j = i + 1; j < cells.length - 1; j++) {
-          const cleared = setCellValue(cells[j], "");
-          if (cleared !== cells[j]) newRow = newRow.replace(cells[j], cleared);
-        }
-      }
+  while (pos < documentXml.length) {
+    const start = findTrOpen(documentXml, pos);
+    if (start === -1) {
+      out += documentXml.slice(pos);
+      break;
     }
-    return newRow;
-  });
+    out += documentXml.slice(pos, start);
+    const sliced = sliceTopLevelRow(documentXml, start);
+    if (!sliced) {
+      out += documentXml.slice(start);
+      break;
+    }
+    out += fillSingleProfessionalRow(sliced.rowXml, valueByToken, policyNoIndex);
+    pos = sliced.end;
+  }
+
+  return out;
 }
 
 export function patchSubmittedAtLine(documentXml: string, submittedAt: string) {

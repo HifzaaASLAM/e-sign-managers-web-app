@@ -207,9 +207,12 @@ function replaceFees(xml: string, data: Record<string, unknown>) {
 
   const mgmtCustom = pmaField(data, ["fee_management", "pma_fee_management"], PMA_HTML_FEE_MANAGEMENT);
   if (mgmtCustom) {
-    const line = /management fee/i.test(mgmtCustom)
-      ? mgmtCustom
-      : `Management fee ${mgmtCustom}`;
+    const mgmtWithGst = /\+?\s*GST/i.test(mgmtCustom)
+      ? mgmtCustom.replace(/\s*\+?\s*GST\.?\s*$/i, "").trim() + " +GST"
+      : `${String(mgmtCustom).trim()} +GST`;
+    const line = /management fee/i.test(mgmtWithGst)
+      ? mgmtWithGst
+      : `Management fee ${mgmtWithGst}`;
     out = forEachTextBlock(out, (cell) => replaceCellWhenContains(cell, tpl.management, line));
   }
 

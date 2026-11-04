@@ -4,13 +4,17 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../../lib/auth";
 import { prisma } from "../../../../../lib/prisma";
 import { getWorkspaceByEmail } from "../../../../../lib/workspace";
-import { getDashboardDocumentFileUrl } from "../../../../../lib/dashboard/document-file";
+import {
+  buildDashboardDocumentDownloadHref,
+  getDashboardDocumentFileUrl,
+} from "../../../../../lib/dashboard/document-file";
 import {
   isPropertyManagementAgreement,
   isTenantAgreement,
   isTenantApplication,
 } from "../../../../../lib/shm/documents";
 import { DashboardDocumentPreviewFrame } from "../../../../../components/dashboard/DashboardDocumentPreviewFrame";
+import { PmaFinalDocumentPreviewFrame } from "../../../../../components/dashboard/PmaFinalDocumentPreviewFrame";
 
 export const dynamic = "force-dynamic";
 
@@ -52,12 +56,20 @@ export default async function DocumentPreviewPage({ params }: PageProps) {
   }
 
   const docType = doc.documentType || "";
-  const useDocxPreview =
-    isPropertyManagementAgreement(docType)
-    || isTenantAgreement(docType)
-    || isTenantApplication(docType);
-  const previewFormat = useDocxPreview ? "docx" : "pdf";
   const title = [doc.recipientName, doc.propertyAddress, doc.documentType].filter(Boolean).join(" · ");
+  const downloadHref = buildDashboardDocumentDownloadHref(doc.documentId);
+
+  if (isPropertyManagementAgreement(docType)) {
+    return (
+      <main className="flex h-screen flex-col bg-slate-100">
+        <PreviewHeader documentId={doc.documentId} title={title} />
+        <PmaFinalDocumentPreviewFrame documentId={doc.documentId} downloadHref={downloadHref} />
+      </main>
+    );
+  }
+
+  const useDocxPreview = isTenantAgreement(docType) || isTenantApplication(docType);
+  const previewFormat = useDocxPreview ? "docx" : "pdf";
 
   return (
     <main className="flex h-screen flex-col bg-slate-100">

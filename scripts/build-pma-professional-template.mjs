@@ -12,7 +12,7 @@ const root = path.join(__dirname, "..");
 
 const ref =
   process.argv[2] ||
-  "C:/Users/Os/Downloads/Property-Management-Agreement-Professional-22-10-2026.docx";
+  "C:/Users/Os/Downloads/Property-Management-Agreement-Professional-03-11-2026.docx";
 const out = path.join(root, "lib/shm/templates/property-management-agreement-professional-template.docx");
 const publicOut = path.join(
   root,

@@ -7,22 +7,84 @@ type Props = {
   format: "pdf" | "docx";
 };
 
+async function renderDocxPreview(blob: Blob, host: HTMLDivElement) {
+  const docxPreview = await import("docx-preview");
+  const renderAsync = docxPreview.renderAsync ?? docxPreview.default?.renderAsync;
+  if (typeof renderAsync !== "function") {
+    throw new Error("Document preview viewer failed to load.");
+  }
+  host.innerHTML = "";
+  await renderAsync(blob, host, undefined, {
+    className: "docx-preview-surface",
+    inWrapper: true,
+    ignoreWidth: false,
+    ignoreHeight: false,
+    ignoreFonts: false,
+    breakPages: true,
+    useBase64URL: true,
+  });
+}
+
 export function DashboardDocumentPreviewFrame({ documentId, format }: Props) {
   const docxHostRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(format === "docx");
+  const [mode, setMode] = useState<"pdf" | "docx" | "loading">(format === "pdf" ? "loading" : "docx");
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    if (format !== "docx") return;
-
-    const url = `/api/dashboard/documents/${encodeURIComponent(documentId)}/file?format=docx`;
     let cancelled = false;
+    let objectUrl: string | null = null;
 
     (async () => {
       setLoading(true);
       setError(null);
+      setPdfUrl(null);
+
       try {
-        const res = await fetch(url, { credentials: "same-origin" });
+        if (format === "pdf") {
+          const res = await fetch(
+            `/api/dashboard/documents/${encodeURIComponent(documentId)}/file?format=pdf`,
+            { credentials: "same-origin" },
+          );
+          const contentType = res.headers.get("Content-Type") || "";
+          if (!res.ok) {
+            if (contentType.includes("application/json")) {
+              const json = await res.json().catch(() => ({}));
+              throw new Error(String(json.message || "Could not load document."));
+            }
+            throw new Error(`Could not load document (${res.status}).`);
+          }
+          const blob = await res.blob();
+          if (!blob.size) throw new Error("Document file is empty.");
+          if (cancelled) return;
+
+          // PDF conversion may fall back to DOCX — render accordingly.
+          if (contentType.includes("pdf") || blob.type.includes("pdf")) {
+            objectUrl = URL.createObjectURL(blob);
+            if (!cancelled) {
+              setPdfUrl(objectUrl);
+              setMode("pdf");
+            }
+            return;
+          }
+
+          if (!docxHostRef.current) {
+            setMode("docx");
+          }
+          setMode("docx");
+          // Wait a tick so the docx host mounts when switching from loading/pdf.
+          await new Promise((r) => setTimeout(r, 0));
+          if (cancelled || !docxHostRef.current) return;
+          await renderDocxPreview(blob, docxHostRef.current);
+          return;
+        }
+
+        setMode("docx");
+        const res = await fetch(
+          `/api/dashboard/documents/${encodeURIComponent(documentId)}/file?format=docx`,
+          { credentials: "same-origin" },
+        );
         const contentType = res.headers.get("Content-Type") || "";
         if (!res.ok) {
           if (contentType.includes("application/json")) {
@@ -39,22 +101,7 @@ export function DashboardDocumentPreviewFrame({ documentId, format }: Props) {
         const blob = await res.blob();
         if (!blob.size) throw new Error("Document file is empty.");
         if (cancelled || !docxHostRef.current) return;
-
-        const docxPreview = await import("docx-preview");
-        const renderAsync = docxPreview.renderAsync ?? docxPreview.default?.renderAsync;
-        if (typeof renderAsync !== "function") {
-          throw new Error("Document preview viewer failed to load.");
-        }
-        docxHostRef.current.innerHTML = "";
-        await renderAsync(blob, docxHostRef.current, undefined, {
-          className: "docx-preview-surface",
-          inWrapper: true,
-          ignoreWidth: false,
-          ignoreHeight: false,
-          ignoreFonts: false,
-          breakPages: true,
-          useBase64URL: true,
-        });
+        await renderDocxPreview(blob, docxHostRef.current);
       } catch (e) {
         if (!cancelled) {
           setError(e instanceof Error ? e.message : "Preview failed.");
@@ -66,14 +113,15 @@ export function DashboardDocumentPreviewFrame({ documentId, format }: Props) {
 
     return () => {
       cancelled = true;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
   }, [documentId, format]);
 
-  if (format === "pdf") {
+  if (mode === "pdf" && pdfUrl) {
     return (
       <iframe
         title="Document preview"
-        src={`/api/dashboard/documents/${encodeURIComponent(documentId)}/file?format=pdf`}
+        src={pdfUrl}
         className="min-h-0 w-full flex-1 border-0 bg-white"
       />
     );
@@ -89,7 +137,7 @@ export function DashboardDocumentPreviewFrame({ documentId, format }: Props) {
       ) : null}
       <div
         ref={docxHostRef}
-        className="docx-preview-host mx-auto w-full max-w-[920px] bg-white px-2 py-4 shadow-sm md:my-4 md:rounded-lg"
+        className="docx-preview-host mx-auto w-full max-w-[920px] bg-white px-2 py-4 shadow-sm md:my-4 md:rounded-lg [&_.docx-wrapper]:!w-full [&_.docx-wrapper]:!max-w-full [&_table]:!w-full [&_table]:border-collapse [&_td]:!max-w-full [&_td]:align-top [&_td]:break-words"
       />
     </div>
   );

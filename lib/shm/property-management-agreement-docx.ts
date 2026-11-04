@@ -2,19 +2,16 @@ import fs from "fs/promises";
 import path from "path";
 import PizZip from "pizzip";
 import { PMA_LEGISLATION_NOTE } from "./property-management-agreement-content";
-import {
-  fillProfessionalAgreementRows,
-  patchSubmittedAtLine,
-} from "./property-management-agreement-professional-fill";
+import { pmaMergedFieldValuesForPrefill } from "./property-management-agreement-fields";
+import { fillProfessionalAgreementRows } from "./property-management-agreement-professional-fill";
 import { applyProfessionalParagraphSampleFill } from "./property-management-agreement-professional-paragraph-fill";
 import {
-  compactPmaProfessionalDocumentLayout,
   ensureWordUpdateFieldsOnOpen,
   refreshWordPageFieldResults,
+  stripPmaProfessionalAuditTrail,
 } from "./property-management-agreement-professional-layout";
 import { signatureDrawingRunForImage } from "./signature-image-embed";
 import { applyTermsAndFeesToProfessionalDocument } from "./property-management-agreement-professional-terms-fees";
-
 function str(value: unknown, fallback = "") {
   return String(value ?? fallback).trim();
 }
@@ -302,6 +299,91 @@ function applyProfessionalLabelSignature(
   return replaceSignatureLineAfterLabel(xml, label, drawingRun);
 }
 
+function plainParagraphText(pXml: string) {
+  return pXml
+    .replace(/<[^>]+>/g, "")
+    .replace(/\u00a0/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** 03-11-2026 template: Acknowledgement table uses "(Owner signature)" / "(Agent signature)" labels. */
+function insertSignatureParagraphAfterMatchingParagraph(
+  xml: string,
+  labelRe: RegExp,
+  drawingRun: string,
+) {
+  const paraRe = /<w:p\b[\s\S]*?<\/w:p>/g;
+  let match: RegExpExecArray | null;
+  while ((match = paraRe.exec(xml)) !== null) {
+    if (!labelRe.test(plainParagraphText(match[0]))) continue;
+    const insertAt = match.index + match[0].length;
+    const sigPara = `<w:p><w:pPr><w:spacing w:before="60" w:after="80"/></w:pPr>${drawingRun}</w:p>`;
+    return xml.slice(0, insertAt) + sigPara + xml.slice(insertAt);
+  }
+  return xml;
+}
+
+function applyAcknowledgementTableSignatures(
+  xml: string,
+  ownerDataUrl: string | undefined,
+  agentDataUrl: string | undefined,
+) {
+  let out = xml;
+  const slots: Array<{
+    re: RegExp;
+    dataUrl: string | undefined;
+    relId: string;
+    mediaName: string;
+    docPrId: number;
+  }> = [
+    {
+      re: /^\(\s*Owner signature\s*\)$/i,
+      dataUrl: ownerDataUrl,
+      relId: "rIdPmaOwnerSig",
+      mediaName: "Owner Signature",
+      docPrId: 991001,
+    },
+    {
+      re: /^\(\s*Agent signature\s*\)$/i,
+      dataUrl: agentDataUrl,
+      relId: "rIdPmaAgentSig",
+      mediaName: "Agent Signature",
+      docPrId: 991002,
+    },
+  ];
+  for (const slot of slots) {
+    if (!slot.dataUrl) continue;
+    const info = getSignatureInfo(slot.dataUrl);
+    if (!info) continue;
+    const buffer = decodeDataUri(slot.dataUrl);
+    const drawingRun = signatureDrawingRunForImage(
+      slot.relId,
+      slot.mediaName,
+      slot.docPrId,
+      buffer,
+      info.ext,
+    );
+    out = insertSignatureParagraphAfterMatchingParagraph(out, slot.re, drawingRun);
+  }
+  return out;
+}
+
+function isPmaAcknowledgementSignatureShell(xml: string) {
+  if (!xml.includes("Acknowledgement")) return false;
+  // Label text is split across <w:t> runs — raw XML often lacks contiguous "Owner signature".
+  let hasOwnerLabel = false;
+  let hasAgentLabel = false;
+  const paraRe = /<w:p\b[\s\S]*?<\/w:p>/g;
+  let match: RegExpExecArray | null;
+  while ((match = paraRe.exec(xml)) !== null) {
+    const plain = plainParagraphText(match[0]);
+    if (/^\(\s*Owner signature\s*\)$/i.test(plain)) hasOwnerLabel = true;
+    if (/^\(\s*Agent signature\s*\)$/i.test(plain)) hasAgentLabel = true;
+  }
+  return hasOwnerLabel && hasAgentLabel;
+}
+
 function applySignaturePlaceholder(
   xml: string,
   placeholder: string,
@@ -342,12 +424,8 @@ function applyTemplatePlaceholders(
 ) {
   const d = buildPropertyManagementAgreementTemplateData(data);
   // Professional template keeps terms/fees in nested tables — only merge runs when filling signatures.
-  let out = compactPmaProfessionalDocumentLayout(normalizeSignaturePlaceholders(xml));
-
-  const submittedAt = str(
-    data.submittedAt,
-    new Date().toLocaleString("en-AU", { timeZone: "Australia/Melbourne" }),
-  );
+  // Keep reference template spacing (section gaps, page-break hints). Do not compact or re-typography here.
+  let out = normalizeSignaturePlaceholders(xml);
 
   const cell = fillCellProfessional;
   const note = withNoteProfessional;
@@ -425,14 +503,12 @@ function applyTemplatePlaceholders(
     ["[[OWNER_SIG_DATE]]", cell(d.sig_date)],
     ["[[AGENT_SIGN_NAME]]", cell(d.agent_sign_name || "Ishaq M")],
     ["[[AGENT_SIG_DATE]]", cell(d.agent_sig_date)],
-    ["[[SUBMITTED_AT]]", submittedAt],
   ];
 
   const valueByToken = new Map<string, string>(pairs);
   out = fillProfessionalAgreementRows(out, valueByToken);
   out = applyTermsAndFeesToProfessionalDocument(out, data);
   out = applyProfessionalParagraphSampleFill(out, data, d);
-  out = patchSubmittedAtLine(out, submittedAt);
 
   // Legacy templates may still contain [[TOKENS]] from an older build — replace any leftovers.
   for (const [needle, value] of pairs) {
@@ -441,8 +517,11 @@ function applyTemplatePlaceholders(
 
   const ownerSig = options?.ownerSignature || str(data.signature);
   const agentSig = options?.agentSignature || str(data.agent_signature);
-  const professionalShell = out.includes("Owner (Sign)") && out.includes("Agent (Sign)");
-  if (professionalShell) {
+  const acknowledgementShell = isPmaAcknowledgementSignatureShell(out);
+  const legacySignShell = out.includes("Owner (Sign)") && out.includes("Agent (Sign)");
+  if (acknowledgementShell) {
+    out = applyAcknowledgementTableSignatures(out, ownerSig, agentSig);
+  } else if (legacySignShell) {
     out = applyProfessionalLabelSignature(
       out,
       "Owner (Sign)",
@@ -464,6 +543,8 @@ function applyTemplatePlaceholders(
     out = applySignaturePlaceholder(out, "[[OWNER_SIGNATURE]]", ownerSig, "rIdOwnerSig", "Owner Signature", 9101);
     out = applySignaturePlaceholder(out, "[[AGENT_SIGNATURE]]", agentSig, "rIdAgentSig", "Agent Signature", 9102);
   }
+
+  out = stripPmaProfessionalAuditTrail(out);
 
   return out;
 }
@@ -513,7 +594,8 @@ export async function generatePropertyManagementAgreementDocx(
   }
 
   const xml = documentFile.asText();
-  const filled = applyTemplatePlaceholders(xml, data, options);
+  const mergedData = pmaMergedFieldValuesForPrefill(data);
+  const filled = applyTemplatePlaceholders(xml, mergedData, options);
   zip.file("word/document.xml", filled);
 
   const footerFile = zip.file("word/footer1.xml");
@@ -529,14 +611,15 @@ export async function generatePropertyManagementAgreementDocx(
   let relsXml = relsFile ? relsFile.asText() : "";
   const mediaEntries: Array<{ relId: string; ext: string; buffer: Buffer }> = [];
 
-  const ownerSigUri = options?.ownerSignature || str(data.signature);
-  const agentSigUri = options?.agentSignature || str(data.agent_signature);
+  const ownerSigUri = options?.ownerSignature || str(mergedData.signature);
+  const agentSigUri = options?.agentSignature || str(mergedData.agent_signature);
 
   const xmlAfterFill = zip.file("word/document.xml")?.asText() || "";
-  const professionalShell =
-    xmlAfterFill.includes("Owner (Sign)") && xmlAfterFill.includes("Agent (Sign)");
-  const ownerRelId = professionalShell ? "rIdPmaOwnerSig" : "rIdOwnerSig";
-  const agentRelId = professionalShell ? "rIdPmaAgentSig" : "rIdAgentSig";
+  const usesPmaProfessionalSigRels =
+    isPmaAcknowledgementSignatureShell(xmlAfterFill)
+    || (xmlAfterFill.includes("Owner (Sign)") && xmlAfterFill.includes("Agent (Sign)"));
+  const ownerRelId = usesPmaProfessionalSigRels ? "rIdPmaOwnerSig" : "rIdOwnerSig";
+  const agentRelId = usesPmaProfessionalSigRels ? "rIdPmaAgentSig" : "rIdAgentSig";
 
   if (ownerSigUri) {
     const info = getSignatureInfo(ownerSigUri);

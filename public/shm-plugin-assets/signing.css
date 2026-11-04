@@ -2587,6 +2587,27 @@ main {
   field-sizing: content;
 }
 
+#shm-signing-wrapper .property-management-agreement-shell #panel-4 .pma-fee-with-suffix {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #panel-4 .pma-fee-with-suffix textarea.fee-notes {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto !important;
+}
+
+#shm-signing-wrapper .property-management-agreement-shell #panel-4 .pma-fee-suffix {
+  flex: 0 0 auto;
+  font-weight: 700;
+  color: #1a1a1a;
+  white-space: nowrap;
+  user-select: none;
+}
+
 #shm-signing-wrapper textarea.pma-client-locked {
   background: #f8fafc;
   color: #334155;

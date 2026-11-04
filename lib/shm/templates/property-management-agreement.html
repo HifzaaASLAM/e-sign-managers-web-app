@@ -286,7 +286,12 @@ Advertise the Property as available for letting and conduct inspections.</textar
             <tr><td>Quick Rent sign</td><td><textarea id="pma_fee_quick_rent_sign" class="inline-input fee-notes" rows="2">“Is This Your New Rental Share House”</textarea></td></tr>
             <tr><td>Attendance and leasing tasks</td><td><textarea id="pma_fee_attendance" class="inline-input fee-notes" rows="3">Attendance to show prospective tenants, commencement/final attendance, condition report, inventory update, reference checking, cleaning/repair coordination, lease signing, bond lodgement/finalisation and out-of-pocket expenses.</textarea></td></tr>
             <tr><td>Renegotiation to secure existing tenants to a new lease</td><td><textarea id="pma_fee_renegotiation" class="inline-input fee-notes" rows="2">0% of a week’s rent</textarea></td></tr>
-            <tr><td>Management fee</td><td><textarea id="pma_fee_management" class="inline-input fee-notes" rows="2" placeholder="10%"></textarea></td></tr>
+            <tr><td>Management fee</td><td>
+              <div class="pma-fee-with-suffix">
+                <textarea id="pma_fee_management" class="inline-input fee-notes" rows="1" placeholder="10%">10%</textarea>
+                <span class="pma-fee-suffix" aria-hidden="true">+GST</span>
+              </div>
+            </td></tr>
             <tr><td>Monthly statement and accounting fee</td><td><textarea id="pma_fee_monthly_statement" class="inline-input fee-notes" rows="2">N/A</textarea></td></tr>
             <tr><td>Residential tenancy tribunal matters</td><td><textarea id="pma_fee_tribunal" class="inline-input fee-notes" rows="3">Lodgement/application fee at cost; preparation of dispute submission and evidence $100.00; attendance fee $50.00/hr.</textarea></td></tr>
             <tr><td>GST</td><td><textarea id="pma_fee_gst" class="inline-input fee-notes" rows="2">All charges are plus GST.</textarea></td></tr>
@@ -586,6 +591,7 @@ function goTo(idx) {
   if (stepEl) stepEl.textContent = 'Step ' + (idx + 1) + ' of 6';
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (idx === 4) {
+    pmaNormalizeManagementFeeField();
     pmaInitFeeTextareaAutosize();
   }
   if (idx === 5) {
@@ -664,6 +670,24 @@ function pmaFeatureCollect(selectId) {
 window.pmaApplyFeatureSelectValue = pmaApplyFeatureSelectValue;
 function g(id) { return (document.getElementById(id)?.value || '').trim(); }
 function chk(id) { return document.getElementById(id)?.checked || false; }
+
+/** Management fee UI keeps % editable; "+GST" is fixed beside the field. */
+function pmaStripManagementFeeGstSuffix(value) {
+  return String(value || '')
+    .replace(/\s*\+?\s*GST\.?\s*$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+function pmaWithManagementFeeGst(value) {
+  var base = pmaStripManagementFeeGstSuffix(value) || '10%';
+  return base + ' +GST';
+}
+function pmaNormalizeManagementFeeField() {
+  var el = document.getElementById('pma_fee_management');
+  if (!el) return;
+  var next = pmaStripManagementFeeGstSuffix(el.value) || '10%';
+  if (el.value !== next) el.value = next;
+}
 function ck(id) { return chk(id) ? 'Yes' : 'No'; }
 function escXml(v) { return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;'); }
 function fmtDate(v) { if (!v) return ''; const d = new Date(v + 'T00:00:00'); return isNaN(d) ? v : d.toLocaleDateString('en-AU'); }
@@ -829,7 +853,7 @@ function collectAgreementData() {
     special_instructions: g('pma_special_instructions'), instruction_books: g('pma_instruction_books'), hot_water_location: g('pma_hot_water_location'), meter_box: g('pma_meter_box'), water_meter: g('pma_water_meter'), additional_info: g('pma_additional_info'),
     owner_sign_name: g('pma_owner_sign_name') || g('pma_owner'), sig_date: pmaSigningDate(g('pma_sigdt')), signature: g('pma_sig'), agent_sign_name: g('pma_agent_sign_name'), agent_sig_date: pmaSigningDate(g('pma_agent_sigdt')), agent_signature: g('pma_agent_sig'),
     term_appointment: g('pma_term_appointment'), term_management_fees: g('pma_term_management_fees'), term_termination: g('pma_term_termination'), term_keys: g('pma_term_keys'), term_insurance: g('pma_term_insurance'), term_duties: g('pma_term_duties'), term_expenditure: g('pma_term_expenditure'), term_privacy: g('pma_term_privacy'),
-    fee_initial_letting: g('pma_fee_initial_letting'), fee_advertising: g('pma_fee_advertising'), fee_quick_rent_sign: g('pma_fee_quick_rent_sign'), fee_attendance: g('pma_fee_attendance'), fee_renegotiation: g('pma_fee_renegotiation'), fee_management: g('pma_fee_management'), fee_monthly_statement: g('pma_fee_monthly_statement'), fee_tribunal: g('pma_fee_tribunal'), fee_gst: g('pma_fee_gst'),
+    fee_initial_letting: g('pma_fee_initial_letting'), fee_advertising: g('pma_fee_advertising'), fee_quick_rent_sign: g('pma_fee_quick_rent_sign'), fee_attendance: g('pma_fee_attendance'), fee_renegotiation: g('pma_fee_renegotiation'), fee_management: pmaWithManagementFeeGst(g('pma_fee_management')), fee_monthly_statement: g('pma_fee_monthly_statement'), fee_tribunal: g('pma_fee_tribunal'), fee_gst: g('pma_fee_gst'),
     signing_email: collectPmaSigningEmailFields(),
     pma_send_contacts: collectPmaSendContacts(),
     submittedAt: new Date().toLocaleString('en-AU', { timeZone: 'Australia/Melbourne' })
@@ -1060,7 +1084,7 @@ async function buildDocx(data) {
     bullet('Quick Rent sign: ' + pmaCopy(data.fee_quick_rent_sign, '“Is This Your New Rental Share House”.')),
     bullet('Attendance and leasing tasks: ' + pmaCopy(data.fee_attendance, 'Attendance to show prospective tenants; commencement/final attendance; condition report; inventory update; reference checking; cleaning/repair coordination; lease signing; bond lodgement/finalisation and out-of-pocket expenses.')),
     bullet('Renegotiation to secure existing tenants to a new lease: ' + pmaCopy(data.fee_renegotiation, '0% of a week’s rent.')),
-    bullet('Management fee: ' + pmaCopy(data.fee_management, '10%.')),
+    bullet('Management fee: ' + pmaWithManagementFeeGst(pmaCopy(data.fee_management, '10%'))),
     bullet('Monthly statement and accounting fee: ' + pmaCopy(data.fee_monthly_statement, 'N/A.')),
     bullet('Residential tenancy tribunal matters: ' + pmaCopy(data.fee_tribunal, 'Lodgement/application fee at cost; preparation of dispute submission and evidence $100.00; attendance fee $50.00/hr.')),
     p('N.B. ' + pmaCopy(data.fee_gst, 'all charges are plus GST.'), {bold:true}),
@@ -1569,6 +1593,10 @@ document.addEventListener('DOMContentLoaded', function() {
   PMA_FEATURE_SELECT_IDS.forEach(pmaFeatureSelectChanged);
   setupPmaSignatureRoleUi();
   setupPmaClientTermsLock();
+  // Prefill may include "+GST"; keep only the editable % in the field.
+  pmaNormalizeManagementFeeField();
+  setTimeout(pmaNormalizeManagementFeeField, 0);
+  setTimeout(pmaNormalizeManagementFeeField, 250);
   pmaInitFeeTextareaAutosize();
   pmaBindOwnerToDepositSync();
   pmaSyncDepositToFromOwner();
