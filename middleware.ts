@@ -10,6 +10,8 @@ export function middleware(request: NextRequest) {
   if (
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/api/dashboard") ||
+    pathname.startsWith("/api/inspections") ||
+    pathname.startsWith("/inspect") ||
     pathname === "/sign-document" ||
     pathname.startsWith("/signing-frame") ||
     pathname.startsWith("/shm-docs") ||
@@ -28,6 +30,8 @@ export const config = {
   matcher: [
     "/dashboard/:path*",
     "/api/dashboard/:path*",
+    "/api/inspections/:path*",
+    "/inspect/:path*",
     "/sign-document",
     "/signing-frame",
     "/shm-docs/:path*",

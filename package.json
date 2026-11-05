@@ -16,7 +16,7 @@
     "format": "prettier --write .",
     "build:normal": "prisma generate && next build",
     "db:push": "prisma db push",
-    "build:with-db-push": "prisma generate && prisma db push && next build",
+    "build:with-db-push": "node scripts/fix-permissions.js && prisma generate && node scripts/fix-permissions.js && prisma db push && next build",
     "zip:hostinger": "powershell -ExecutionPolicy Bypass -File scripts/prepare-hostinger-zip.ps1"
   },
   "dependencies": {

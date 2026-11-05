@@ -4,6 +4,7 @@ export const DASHBOARD_NAV_LINKS = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/dashboard/documents/new", label: "Send New" },
   { href: "/dashboard/applications", label: "Applications" },
+  { href: "/dashboard/inspections", label: "Inspection" },
   { href: "/dashboard/profiles", label: "Profiles" },
   { href: "/dashboard/templates", label: "Templates" },
   { href: "/dashboard/data", label: "Data" },

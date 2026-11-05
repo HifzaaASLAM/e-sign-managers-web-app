@@ -81,6 +81,7 @@ model Company {
   templates        Template[]
   contracts        Contract[]
   files            File[]
+  inspections      Inspection[]
 }
 
 model CompanyUser {
@@ -452,4 +453,122 @@ model OtpChallenge {
   createdAt  DateTime  @default(now())
 
   @@index([documentId, email])
+}
+
+// ─────────────────────────────────────────
+// PROPERTY INSPECTIONS (Entry / Routine / Exit)
+// ─────────────────────────────────────────
+
+enum InspectionType {
+  ENTRY
+  ROUTINE
+  EXIT
+}
+
+enum InspectionStatus {
+  DRAFT
+  AWAITING_CAPTURE
+  SUBMITTED
+  IN_REVIEW
+  COMPLETED
+}
+
+enum InspectionSignatureRole {
+  TENANT
+  AGENT
+  OTHER
+}
+
+model Inspection {
+  id              String            @id @default(cuid())
+  companyId       String
+  createdById     String?
+  type            InspectionType    @default(ENTRY)
+  status          InspectionStatus  @default(DRAFT)
+  tenantName      String
+  propertyName    String
+  scheduledAt     DateTime?
+  bathroomCount   Int               @default(1)
+  bedroomCount    Int               @default(1)
+  captureToken    String            @unique
+  reportToken     String?           @unique
+  inviteName      String?
+  inviteEmail     String?
+  submittedAt     DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  company    Company                @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  areas      InspectionArea[]
+  signatures InspectionSignature[]
+
+  @@index([companyId])
+  @@index([companyId, createdAt(sort: Desc)])
+  @@index([status])
+  @@index([type])
+}
+
+model InspectionArea {
+  id           String   @id @default(cuid())
+  inspectionId String
+  areaKey      String
+  label        String
+  sortOrder    Int      @default(0)
+  tenantNotes  String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  inspection Inspection       @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  parts      InspectionPart[]
+
+  @@index([inspectionId])
+}
+
+model InspectionPart {
+  id           String   @id @default(cuid())
+  areaId       String
+  partKey      String
+  label        String
+  sortOrder    Int      @default(0)
+  tenantNote   String?  @db.Text
+  adminComment String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  area   InspectionArea    @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  photos InspectionPhoto[]
+
+  @@index([areaId])
+}
+
+model InspectionPhoto {
+  id          String   @id @default(cuid())
+  partId      String
+  storagePath String
+  /// Durable copy for Hostinger (disk uploads are wiped on redeploy)
+  dataBase64  String?  @db.Text
+  fileName    String
+  mimeType    String
+  size        Int      @default(0)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  part InspectionPart @relation(fields: [partId], references: [id], onDelete: Cascade)
+
+  @@index([partId])
+}
+
+model InspectionSignature {
+  id           String                   @id @default(cuid())
+  inspectionId String
+  role         InspectionSignatureRole
+  name         String
+  imageDataUrl String                   @db.Text
+  signedAt     DateTime                 @default(now())
+  createdAt    DateTime                 @default(now())
+
+  inspection Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+
+  @@index([inspectionId])
 }

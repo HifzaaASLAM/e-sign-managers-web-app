@@ -39,3 +39,6 @@ prisma/migrations/
 
 # Local temp/work folders (do not ship to Hostinger)
 scripts/.check-work*/
+
+# Inspection photo uploads
+uploads/
